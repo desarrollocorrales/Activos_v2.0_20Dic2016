@@ -1,0 +1,16 @@
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\Activos.exe
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\Activos.pdb
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.Properties.Resources.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.csproj.GenerateResource.Cache
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.exe
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.pdb
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Usuarios.frmAltaUsuarios.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.FormPrincipal.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Usuarios.frmModifUsuarios.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Sucursales.frmAltaSuc.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Sucursales.frmModifSuc.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Sucursales.frmSucursales.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.exe.licenses
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\Activos.exe.config
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\MySql.Data.dll
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.csprojResolveAssemblyReference.cache

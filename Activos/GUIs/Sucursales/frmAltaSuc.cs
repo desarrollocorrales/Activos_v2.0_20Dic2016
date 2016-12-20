@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Activos
+namespace Activos.GUIs.Sucursales
 {
-    public partial class Form1 : Form
+    public partial class frmAltaSuc : Form
     {
-        public Form1()
+        public frmAltaSuc()
         {
             InitializeComponent();
         }
