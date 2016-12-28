@@ -7,6 +7,18 @@ using System.Data;
 
 namespace Activos.Modelos
 {
+    public enum Estatus
+    {
+        OK, ERROR
+    }
+
+    public partial class Response
+    {
+        public Estatus status { get; set; }
+        public string resultado { get; set; }
+        public string error { get; set; }
+    }
+
     public static class Utilerias
     {
         /// <summary>

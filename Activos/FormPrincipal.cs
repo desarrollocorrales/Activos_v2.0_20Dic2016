@@ -8,7 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using Activos.GUIs.Usuarios;
 using Activos.GUIs.Sucursales;
+using Activos.GUIs.Puestos;
+using Activos.GUIs.Areas;
 using Activos.Modelos;
+using Activos.GUIs.Tipos;
+using Activos.GUIs.Ejemplos_QR;
+using Activos.GUIs.AltaActivos;
 
 namespace Activos
 {
@@ -19,44 +24,23 @@ namespace Activos
             InitializeComponent();
         }
 
-        private void altasToolStripMenuItem_Click(object sender, EventArgs e)
+        // Valida si el formulario no se encuentre abierto
+        private bool validaFormsDuplicados(Type type)
         {
-            try
+            bool result = true;
+
+            foreach (Form form in Application.OpenForms)
             {
-                frmAltaUsuarios child = new frmAltaUsuarios();
+                if (form.GetType() == type)
+                {
+                    form.Close();
 
-                if (!this.validaFormsDuplicados(child.GetType()))
-                    throw new Exception("Ya tiene abierto el formulario que intenta abrir");
-
-                child.MdiParent = this;
-
-                child.Show();
-
+                    result = false;
+                    break;
+                }
             }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-            }
-        }
 
-        private void modificacionesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                frmModifUsuarios child = new frmModifUsuarios();
-
-                if (!this.validaFormsDuplicados(child.GetType()))
-                    throw new Exception("Ya tiene abierto el formulario que intenta abrir");
-
-                child.MdiParent = this;
-
-                child.Show();
-
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-            }
+            return result;
         }
 
 
@@ -70,8 +54,7 @@ namespace Activos
             {
                 frmSucursales child = new frmSucursales();
 
-                if (!this.validaFormsDuplicados(child.GetType()))
-                    throw new Exception("Ya tiene abierto el formulario que intenta abrir");
+                this.validaFormsDuplicados(child.GetType());
 
                 child.MdiParent = this;
 
@@ -80,28 +63,218 @@ namespace Activos
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message);
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
-        // Valida si el formulario no se encuentre abierto
-        private bool validaFormsDuplicados(Type type)
+        //****************************************************************************************************
+        //************** P U E S T O S ***********************************************************************
+        //****************************************************************************************************
+        private void puestoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool result = true;
-
-            foreach (Form form in Application.OpenForms)
+            try
             {
-                if (form.GetType() == type)
-                {
-                    form.Activate();
-                    result = false;
-                    break;
-                }
-            }
+                frmPuestos child = new frmPuestos();
 
-            return result;
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
 
+        //****************************************************************************************************
+        //************** U S U A R I O S *********************************************************************
+        //****************************************************************************************************
+        // alta usuarios
+        private void altaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmAltaUsuarios child = new frmAltaUsuarios();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        // modificaciones usuarios
+        private void modificacionesToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                frmModifUsuarios child = new frmModifUsuarios();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        // activar usuarios
+        private void activarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmActUs child = new frmActUs();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        // baja de usuarios
+        private void bajasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmBajaUsuarios child = new frmBajaUsuarios();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        // cambia clave
+        private void cambiaClaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmModifContra form = new frmModifContra("sistemas", 1);
+
+                form.ShowDialog();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        //****************************************************************************************************
+        //************** A R E A S ***************************************************************************
+        //****************************************************************************************************
+        private void áreasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmAreas child = new frmAreas();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        //****************************************************************************************************
+        //************** T I P O S ***************************************************************************
+        //****************************************************************************************************
+        private void tipoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                frmTipos child = new frmTipos();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        //****************************************************************************************************
+        //************** E J E M P L O   Q R *****************************************************************
+        //****************************************************************************************************
+        private void ejemploQRToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EjemploQR child = new EjemploQR();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+        //****************************************************************************************************
+        //************** A L T A S   D E   A C T I V O S *****************************************************
+        //****************************************************************************************************
+        private void altasToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                frmAltaActivo child = new frmAltaActivo();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
     }
 }

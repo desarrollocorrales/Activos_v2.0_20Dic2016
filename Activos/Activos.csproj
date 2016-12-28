@@ -40,6 +40,10 @@
     <Reference Include="DevExpress.XtraEditors.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGrid.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\QrCode.Net.0.4.0.0\lib\net40\Gma.QrCodeNet.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.6.9.9\lib\net40\MySql.Data.dll</HintPath>
       <Private>True</Private>
@@ -57,7 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datos\ActivosDatos.cs" />
     <Compile Include="Datos\CatalogosDatos.cs" />
+    <Compile Include="Datos\IActivosDatos.cs" />
     <Compile Include="Datos\ICatalogosDatos.cs" />
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
@@ -65,11 +71,59 @@
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\Sucursales\frmAltaSuc.cs">
+    <Compile Include="GUIs\AltaActivos\frmAltaActivo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\Sucursales\frmAltaSuc.Designer.cs">
-      <DependentUpon>frmAltaSuc.cs</DependentUpon>
+    <Compile Include="GUIs\AltaActivos\frmAltaActivo.Designer.cs">
+      <DependentUpon>frmAltaActivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Areas\frmActAreas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Areas\frmActAreas.Designer.cs">
+      <DependentUpon>frmActAreas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Areas\frmAreas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Areas\frmAreas.Designer.cs">
+      <DependentUpon>frmAreas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Areas\frmModifArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Areas\frmModifArea.Designer.cs">
+      <DependentUpon>frmModifArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Ejemplos QR\EjemploQR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Ejemplos QR\EjemploQR.Designer.cs">
+      <DependentUpon>EjemploQR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Puestos\frmActPuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Puestos\frmActPuestos.Designer.cs">
+      <DependentUpon>frmActPuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Puestos\frmModifPuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Puestos\frmModifPuestos.Designer.cs">
+      <DependentUpon>frmModifPuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Puestos\frmPuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Puestos\frmPuestos.Designer.cs">
+      <DependentUpon>frmPuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Sucursales\frmActSuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Sucursales\frmActSuc.Designer.cs">
+      <DependentUpon>frmActSuc.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Sucursales\frmModifSuc.cs">
       <SubType>Form</SubType>
@@ -83,33 +137,98 @@
     <Compile Include="GUIs\Sucursales\frmSucursales.Designer.cs">
       <DependentUpon>frmSucursales.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Tipos\frmActTipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Tipos\frmActTipos.Designer.cs">
+      <DependentUpon>frmActTipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Tipos\frmModiftipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Tipos\frmModiftipos.Designer.cs">
+      <DependentUpon>frmModiftipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Tipos\frmTipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Tipos\frmTipos.Designer.cs">
+      <DependentUpon>frmTipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Usuarios\frmActUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Usuarios\frmActUs.Designer.cs">
+      <DependentUpon>frmActUs.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Usuarios\frmAltaUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUIs\Usuarios\frmAltaUsuarios.Designer.cs">
       <DependentUpon>frmAltaUsuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\Usuarios\frmModificacionUsuarios.cs">
+    <Compile Include="GUIs\Usuarios\frmBajaUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\Usuarios\frmModificacionUsuarios.Designer.cs">
-      <DependentUpon>frmModificacionUsuarios.cs</DependentUpon>
+    <Compile Include="GUIs\Usuarios\frmBajaUsuarios.Designer.cs">
+      <DependentUpon>frmBajaUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Usuarios\frmModifContra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Usuarios\frmModifContra.Designer.cs">
+      <DependentUpon>frmModifContra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Usuarios\frmModifUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Usuarios\frmModifUsuarios.Designer.cs">
+      <DependentUpon>frmModifUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\Areas.cs" />
     <Compile Include="Modelos\Conexion.cs" />
     <Compile Include="Modelos\IConexion.cs" />
     <Compile Include="Modelos\ManejoSql.cs" />
+    <Compile Include="Modelos\Puestos.cs" />
     <Compile Include="Modelos\Sucursales.cs" />
+    <Compile Include="Modelos\Tipos.cs" />
     <Compile Include="Modelos\Usuarios.cs" />
     <Compile Include="Modelos\Utilerias.cs" />
+    <Compile Include="Negocio\ActivosNegocio.cs" />
     <Compile Include="Negocio\CatalogosNegocio.cs" />
+    <Compile Include="Negocio\IActivosNegocio.cs" />
     <Compile Include="Negocio\ICatalogosNegocio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Sucursales\frmAltaSuc.resx">
-      <DependentUpon>frmAltaSuc.cs</DependentUpon>
+    <EmbeddedResource Include="GUIs\AltaActivos\frmAltaActivo.resx">
+      <DependentUpon>frmAltaActivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Areas\frmActAreas.resx">
+      <DependentUpon>frmActAreas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Areas\frmAreas.resx">
+      <DependentUpon>frmAreas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Areas\frmModifArea.resx">
+      <DependentUpon>frmModifArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Ejemplos QR\EjemploQR.resx">
+      <DependentUpon>EjemploQR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Puestos\frmActPuestos.resx">
+      <DependentUpon>frmActPuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Puestos\frmModifPuestos.resx">
+      <DependentUpon>frmModifPuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Puestos\frmPuestos.resx">
+      <DependentUpon>frmPuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Sucursales\frmActSuc.resx">
+      <DependentUpon>frmActSuc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Sucursales\frmModifSuc.resx">
       <DependentUpon>frmModifSuc.cs</DependentUpon>
@@ -117,11 +236,29 @@
     <EmbeddedResource Include="GUIs\Sucursales\frmSucursales.resx">
       <DependentUpon>frmSucursales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Tipos\frmActTipos.resx">
+      <DependentUpon>frmActTipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Tipos\frmModiftipos.resx">
+      <DependentUpon>frmModiftipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Tipos\frmTipos.resx">
+      <DependentUpon>frmTipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Usuarios\frmActUs.resx">
+      <DependentUpon>frmActUs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Usuarios\frmAltaUsuarios.resx">
       <DependentUpon>frmAltaUsuarios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Usuarios\frmModificacionUsuarios.resx">
-      <DependentUpon>frmModificacionUsuarios.cs</DependentUpon>
+    <EmbeddedResource Include="GUIs\Usuarios\frmBajaUsuarios.resx">
+      <DependentUpon>frmBajaUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Usuarios\frmModifContra.resx">
+      <DependentUpon>frmModifContra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Usuarios\frmModifUsuarios.resx">
+      <DependentUpon>frmModifUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -135,7 +272,11 @@
     </Compile>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Activos.Modelos.Areas.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Puestos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Sucursales.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Tipos.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Usuarios.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
