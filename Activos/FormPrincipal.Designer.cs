@@ -33,6 +33,12 @@
             this.cambiaClaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.activosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.altasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificacionesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.bajasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.etiquetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.traspasosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.responsivasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ejemploQRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,12 +53,8 @@
             this.áreasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.activosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.altasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificacionesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.bajasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.etiquetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.traspasosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,9 +99,56 @@
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.salirToolStripMenuItem.Text = "&Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // activosToolStripMenuItem
+            // 
+            this.activosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.altasToolStripMenuItem,
+            this.modificacionesToolStripMenuItem1,
+            this.bajasToolStripMenuItem1,
+            this.etiquetasToolStripMenuItem,
+            this.traspasosToolStripMenuItem});
+            this.activosToolStripMenuItem.Name = "activosToolStripMenuItem";
+            this.activosToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.activosToolStripMenuItem.Text = "Activos";
+            // 
+            // altasToolStripMenuItem
+            // 
+            this.altasToolStripMenuItem.Name = "altasToolStripMenuItem";
+            this.altasToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.altasToolStripMenuItem.Text = "Altas";
+            this.altasToolStripMenuItem.Click += new System.EventHandler(this.altasToolStripMenuItem_Click_1);
+            // 
+            // modificacionesToolStripMenuItem1
+            // 
+            this.modificacionesToolStripMenuItem1.Name = "modificacionesToolStripMenuItem1";
+            this.modificacionesToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
+            this.modificacionesToolStripMenuItem1.Text = "Modificaciones";
+            // 
+            // bajasToolStripMenuItem1
+            // 
+            this.bajasToolStripMenuItem1.Name = "bajasToolStripMenuItem1";
+            this.bajasToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
+            this.bajasToolStripMenuItem1.Text = "Bajas";
+            // 
+            // etiquetasToolStripMenuItem
+            // 
+            this.etiquetasToolStripMenuItem.Name = "etiquetasToolStripMenuItem";
+            this.etiquetasToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.etiquetasToolStripMenuItem.Text = "Etiquetas";
+            // 
+            // traspasosToolStripMenuItem
+            // 
+            this.traspasosToolStripMenuItem.Name = "traspasosToolStripMenuItem";
+            this.traspasosToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.traspasosToolStripMenuItem.Text = "Traspasos";
             // 
             // responsivasToolStripMenuItem
             // 
+            this.responsivasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevaToolStripMenuItem,
+            this.modificarToolStripMenuItem});
             this.responsivasToolStripMenuItem.Name = "responsivasToolStripMenuItem";
             this.responsivasToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.responsivasToolStripMenuItem.Text = "Responsivas";
@@ -206,48 +255,18 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // activosToolStripMenuItem
+            // nuevaToolStripMenuItem
             // 
-            this.activosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.altasToolStripMenuItem,
-            this.modificacionesToolStripMenuItem1,
-            this.bajasToolStripMenuItem1,
-            this.etiquetasToolStripMenuItem,
-            this.traspasosToolStripMenuItem});
-            this.activosToolStripMenuItem.Name = "activosToolStripMenuItem";
-            this.activosToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.activosToolStripMenuItem.Text = "Activos";
+            this.nuevaToolStripMenuItem.Name = "nuevaToolStripMenuItem";
+            this.nuevaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevaToolStripMenuItem.Text = "Nueva";
+            this.nuevaToolStripMenuItem.Click += new System.EventHandler(this.nuevaToolStripMenuItem_Click);
             // 
-            // altasToolStripMenuItem
+            // modificarToolStripMenuItem
             // 
-            this.altasToolStripMenuItem.Name = "altasToolStripMenuItem";
-            this.altasToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.altasToolStripMenuItem.Text = "Altas";
-            this.altasToolStripMenuItem.Click += new System.EventHandler(this.altasToolStripMenuItem_Click_1);
-            // 
-            // modificacionesToolStripMenuItem1
-            // 
-            this.modificacionesToolStripMenuItem1.Name = "modificacionesToolStripMenuItem1";
-            this.modificacionesToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
-            this.modificacionesToolStripMenuItem1.Text = "Modificaciones";
-            // 
-            // bajasToolStripMenuItem1
-            // 
-            this.bajasToolStripMenuItem1.Name = "bajasToolStripMenuItem1";
-            this.bajasToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
-            this.bajasToolStripMenuItem1.Text = "Bajas";
-            // 
-            // etiquetasToolStripMenuItem
-            // 
-            this.etiquetasToolStripMenuItem.Name = "etiquetasToolStripMenuItem";
-            this.etiquetasToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.etiquetasToolStripMenuItem.Text = "Etiquetas";
-            // 
-            // traspasosToolStripMenuItem
-            // 
-            this.traspasosToolStripMenuItem.Name = "traspasosToolStripMenuItem";
-            this.traspasosToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.traspasosToolStripMenuItem.Text = "Traspasos";
+            this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modificarToolStripMenuItem.Text = "Modificar";
             // 
             // FormPrincipal
             // 
@@ -295,6 +314,8 @@
         private System.Windows.Forms.ToolStripMenuItem bajasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem etiquetasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem traspasosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
     }
 }
 

@@ -14,6 +14,7 @@ using Activos.Modelos;
 using Activos.GUIs.Tipos;
 using Activos.GUIs.Ejemplos_QR;
 using Activos.GUIs.AltaActivos;
+using Activos.GUIs.Responsivas;
 
 namespace Activos
 {
@@ -22,6 +23,17 @@ namespace Activos
         public FormPrincipal()
         {
             InitializeComponent();
+        }
+
+        // salir
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("¿Desea salir de la aplicación?", "Sistema de Activos", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
         // Valida si el formulario no se encuentre abierto
@@ -177,7 +189,7 @@ namespace Activos
         {
             try
             {
-                frmModifContra form = new frmModifContra("sistemas", 1);
+                frmModifContra form = new frmModifContra(Modelos.Login.usuario, Modelos.Login.idUsuario);
 
                 form.ShowDialog();
             }
@@ -276,5 +288,32 @@ namespace Activos
                 MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+
+        //****************************************************************************************************
+        //************** R E S P O N S I V A S *****************************************************
+        //****************************************************************************************************
+        private void nuevaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmResponsivas child = new frmResponsivas();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+
+        
     }
 }

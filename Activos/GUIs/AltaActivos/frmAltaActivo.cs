@@ -115,7 +115,7 @@ namespace Activos.GUIs.AltaActivos
 
                 if (result)
                 {
-                    MessageBox.Show("Activo guardado correctamente", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Activo guardado correctamente", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.tbMarca.Text = string.Empty;
                     this.tbModelo.Text = string.Empty;

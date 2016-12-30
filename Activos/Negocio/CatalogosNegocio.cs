@@ -81,9 +81,43 @@ namespace Activos.Negocio
 
 
         /* ********** U S U A R I O  S ************* */
+        public Response validaAcceso(string usuario, string pass)
+        {
+            Response result = new Response();
+            result.status = Estatus.OK;
+
+            // buscar si el usuario ya existe
+            bool us = this._catalogosDatos.buscaUsuario(usuario.Trim().ToLower());
+
+            if (!us)
+            {
+                result.status = Estatus.ERROR;
+                result.error = "El usuario no existe";
+                return result;
+            }
+
+            Usuarios resultado = this._catalogosDatos.validaAcceso(usuario, pass);
+
+            if (resultado == null)
+            {
+                result.status = Estatus.ERROR;
+                result.error = "Contraseña incorrecta";
+                return result;
+            }
+
+            result.usuario = resultado;
+
+            return result;
+        }
+
         public List<Usuarios> getResponsables(string status)
         {
             return this._catalogosDatos.getResponsables(status);
+        }
+
+        public List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda)
+        {
+            return this._catalogosDatos.busquedaUsuarios(usuario, busqueda);
         }
 
         public Response creaUsuario(string nombre, int idPuesto, string fecha, string correo, string usuario, string clave)

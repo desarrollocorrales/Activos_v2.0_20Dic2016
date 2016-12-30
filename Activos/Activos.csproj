@@ -71,6 +71,12 @@
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\AltaActivos\frmAltaActivo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,12 @@
     </Compile>
     <Compile Include="GUIs\Puestos\frmPuestos.Designer.cs">
       <DependentUpon>frmPuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmResponsivas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmResponsivas.Designer.cs">
+      <DependentUpon>frmResponsivas.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Sucursales\frmActSuc.cs">
       <SubType>Form</SubType>
@@ -193,6 +205,7 @@
     <Compile Include="Modelos\Sucursales.cs" />
     <Compile Include="Modelos\Tipos.cs" />
     <Compile Include="Modelos\Usuarios.cs" />
+    <Compile Include="Modelos\UsuariosResponsivas.cs" />
     <Compile Include="Modelos\Utilerias.cs" />
     <Compile Include="Negocio\ActivosNegocio.cs" />
     <Compile Include="Negocio\CatalogosNegocio.cs" />
@@ -202,6 +215,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\AltaActivos\frmAltaActivo.resx">
       <DependentUpon>frmAltaActivo.cs</DependentUpon>
@@ -226,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Puestos\frmPuestos.resx">
       <DependentUpon>frmPuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmResponsivas.resx">
+      <DependentUpon>frmResponsivas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Sucursales\frmActSuc.resx">
       <DependentUpon>frmActSuc.cs</DependentUpon>
@@ -277,6 +296,7 @@
     <None Include="Properties\DataSources\Activos.Modelos.Sucursales.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Tipos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Usuarios.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.UsuariosResponsivas.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

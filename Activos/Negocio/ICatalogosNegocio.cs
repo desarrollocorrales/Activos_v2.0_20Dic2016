@@ -33,7 +33,11 @@ namespace Activos.Negocio
 
 
         /* ********** U S U A R I O  S ************* */
+        Response validaAcceso(string usuario, string pass);
+
         List<Usuarios> getResponsables(string status);
+
+        List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda);
 
         Response creaUsuario(string nombre, int idPuesto, string fecha, string correo, string usuario, string clave);
 
@@ -67,7 +71,7 @@ namespace Activos.Negocio
 
         Tipos getTipo(int idTipo);
 
-        bool agregaTipo(string p, int marca, int modelo, int serie, int color);
+        bool agregaTipo(string nombre, int marca, int modelo, int serie, int color);
 
         bool activaTipos(List<int> seleccionados);
 
@@ -76,7 +80,5 @@ namespace Activos.Negocio
         bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color);
 
 
-
-        
     }
 }

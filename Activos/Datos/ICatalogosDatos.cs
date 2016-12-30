@@ -32,7 +32,11 @@ namespace Activos.Datos
         bool modificaPuesto(string puestoNom, int idSuc, int idPuesto);
 
         /* ********** U S U A R I O  S ************* */
+        Usuarios validaAcceso(string usuario, string pass);
+
         List<Usuarios> getResponsables(string status);
+
+        List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda);
 
         bool buscaUsuario(string usuario);
 

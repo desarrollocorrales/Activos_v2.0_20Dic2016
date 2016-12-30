@@ -69,5 +69,14 @@ namespace Activos.GUIs.Usuarios
                 MessageBox.Show(Ex.Message, "Cambio de Clave", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void tbConfirmClave_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)13)
+            {
+                this.button1_Click(null, null);
+            }
+        }
     }
 }

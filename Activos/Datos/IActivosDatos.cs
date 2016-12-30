@@ -7,6 +7,10 @@ namespace Activos.Datos
 {
     public interface IActivosDatos
     {
-        bool guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario);
+        long guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string claveActivo);
+
+        string obtConsecTipo(int idTipo);
+
+        bool actNumEtiquetaActivo(long idActivo, string numEtiqueta);
     }
 }

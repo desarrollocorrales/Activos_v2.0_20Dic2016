@@ -48,6 +48,7 @@
             this.tbConfirmClave.Size = new System.Drawing.Size(292, 30);
             this.tbConfirmClave.TabIndex = 40;
             this.tbConfirmClave.UseSystemPasswordChar = true;
+            this.tbConfirmClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbConfirmClave_KeyPress);
             // 
             // label8
             // 

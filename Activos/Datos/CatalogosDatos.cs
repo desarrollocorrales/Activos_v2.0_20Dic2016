@@ -82,6 +82,56 @@ namespace Activos.Datos
             return result;
         }
 
+        // valida las credenciales del usuario
+        public Usuarios validaAcceso(string usuario, string pass)
+        {
+            Usuarios result = null;
+
+            string sql = "select idusuario, usuario, nombre from activos_usuarios where usuario = @usuario and clave = @clave";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    cmd.Parameters.AddWithValue("@clave", pass);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if(res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                result = new Usuarios();
+
+                                result.idUsuario = Convert.ToInt16(res.reader["idusuario"]);
+                                result.nombre = Convert.ToString(res.reader["nombre"]);
+
+                                result.usuario = Convert.ToString(res.reader["usuario"]);
+
+                            }
+                        else result = null;
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
         // obtiene una lista de todas las sucursales ACTIVAS
         public List<Sucursales> getSucursales(string status)
         {
@@ -485,12 +535,68 @@ namespace Activos.Datos
             return result;
         }
 
+        // busquedas usuarios
+        public List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda)
+        {
+            List<UsuariosResponsivas> result = new List<UsuariosResponsivas>();
+            UsuariosResponsivas ent;
+
+            string sql = string.Format(
+                        "SELECT u.idusuario, u.nombre AS nombre_usuario, u.usuario, p.nombre AS puesto, s.nombre AS sucursal " +
+                        "FROM activos_usuarios u " +
+                        "LEFT JOIN activos_puesto p ON (u.idpuesto = p.idpuesto) " +
+                        "LEFT JOIN activos_sucursales s ON (p.idsucursal = s.idsucursal) " +
+                        "WHERE u.{0} LIKE @usuario", busqueda);
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@usuario", "%" + usuario + "%");
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new UsuariosResponsivas();
+
+                            ent.idUsuario = Convert.ToInt16(res.reader["idusuario"]);
+
+                            ent.nomUsuario = Convert.ToString(res.reader["nombre_usuario"]);
+                            ent.usuario = Convert.ToString(res.reader["usuario"]);
+                            ent.puesto = Convert.ToString(res.reader["puesto"]);
+                            ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
         // busca si el usuario no existe
         public bool buscaUsuario(string usuario)
         {
             bool result = false;
 
-            string sql = "select count(*) from activos_usuarios where usuario = @usuario";
+            string sql = "select count(*) from activos_usuarios where trim(usuario) = @usuario";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -1306,8 +1412,5 @@ namespace Activos.Datos
             return result;
         }
 
-
-
-        
     }
 }
