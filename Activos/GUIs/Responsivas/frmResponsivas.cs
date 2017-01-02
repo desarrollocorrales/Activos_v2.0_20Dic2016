@@ -13,6 +13,8 @@ namespace Activos.GUIs.Responsivas
     public partial class frmResponsivas : Form
     {
         ICatalogosNegocio _catalogosNegocio;
+        IResponsivasNegocio _responsivasNegocio;
+
         private int? _idUsuario = null;
 
         public frmResponsivas()
@@ -20,16 +22,13 @@ namespace Activos.GUIs.Responsivas
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             this._catalogosNegocio = new CatalogosNegocio();
+            this._responsivasNegocio = new ResponsivasNegocio();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             try
             {
-                // validacion usuario
-                if (string.IsNullOrEmpty(this.tbUsuario.Text))
-                    throw new Exception("Llene el campo Usuario");
-
                 // valida radio
                 string busqueda = this.rbUsuario.Checked ? "usuario" : "nombre";
 
@@ -39,6 +38,8 @@ namespace Activos.GUIs.Responsivas
                 if (usuarios.Count == 0)
                 {
                     this.gcUsuarios.DataSource = null;
+                    this.ActiveControl = this.tbUsuario;
+                    this.tbUsuario.SelectAll();
                     throw new Exception("Sin resultados");
                 }
 
@@ -73,6 +74,26 @@ namespace Activos.GUIs.Responsivas
 
                 this._idUsuario = ent.idUsuario;
 
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnBuscaActivos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmBuscaActivos form = new frmBuscaActivos();
+
+                var result = form.ShowDialog();
+
+                if (result == DialogResult.OK || result == DialogResult.Cancel)
+                {
+                    // llena el grid con las areas disponibles
+                    //this.gcActivos.DataSource = this._.getAreas("A");
+                }
             }
             catch (Exception Ex)
             {

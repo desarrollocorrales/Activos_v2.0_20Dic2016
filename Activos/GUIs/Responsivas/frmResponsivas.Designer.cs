@@ -323,6 +323,7 @@
             this.btnBuscaActivos.TabIndex = 0;
             this.btnBuscaActivos.Text = "Buscar Activos";
             this.btnBuscaActivos.UseVisualStyleBackColor = true;
+            this.btnBuscaActivos.Click += new System.EventHandler(this.btnBuscaActivos_Click);
             // 
             // frmResponsivas
             // 

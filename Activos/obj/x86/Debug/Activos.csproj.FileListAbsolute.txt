@@ -33,3 +33,4 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.pdb
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.csprojResolveAssemblyReference.cache
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.frmLogin.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmResponsivas.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmBuscaActivos.resources

@@ -20,13 +20,15 @@ namespace Activos.GUIs.AltaActivos
         // CAMBIAR CUANDO SE DEFINA EL LOGIN
         private int _idUsuario = 1;
 
-        public frmAltaActivo()
+        public frmAltaActivo(int idUsuario)
         {
             InitializeComponent();
 
             this.WindowState = FormWindowState.Maximized;
             this._catalogosNegocio = new CatalogosNegocio();
             this._activosNegocio = new ActivosNegocio();
+
+            this._idUsuario = idUsuario;
         }
 
         private void frmAltaActivo_Load(object sender, EventArgs e)

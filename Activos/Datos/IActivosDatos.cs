@@ -12,5 +12,9 @@ namespace Activos.Datos
         string obtConsecTipo(int idTipo);
 
         bool actNumEtiquetaActivo(long idActivo, string numEtiqueta);
+
+        List<Modelos.Activos> getBuscaActivos(int idTipo, string nombre);
+
+        List<Modelos.Activos> getBuscaActivos(string parametro, string tipoBq);
     }
 }

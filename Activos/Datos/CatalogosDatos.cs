@@ -546,7 +546,7 @@ namespace Activos.Datos
                         "FROM activos_usuarios u " +
                         "LEFT JOIN activos_puesto p ON (u.idpuesto = p.idpuesto) " +
                         "LEFT JOIN activos_sucursales s ON (p.idsucursal = s.idsucursal) " +
-                        "WHERE u.{0} LIKE @usuario", busqueda);
+                        "WHERE u.{0} LIKE @usuario order by u.{0}", busqueda);
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())

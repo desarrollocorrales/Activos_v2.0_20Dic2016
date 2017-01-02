@@ -65,6 +65,8 @@
     <Compile Include="Datos\CatalogosDatos.cs" />
     <Compile Include="Datos\IActivosDatos.cs" />
     <Compile Include="Datos\ICatalogosDatos.cs" />
+    <Compile Include="Datos\IResponsivasDatos.cs" />
+    <Compile Include="Datos\ResponsivasDatos.cs" />
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +126,12 @@
     </Compile>
     <Compile Include="GUIs\Puestos\frmPuestos.Designer.cs">
       <DependentUpon>frmPuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmBuscaActivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmBuscaActivos.Designer.cs">
+      <DependentUpon>frmBuscaActivos.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Responsivas\frmResponsivas.cs">
       <SubType>Form</SubType>
@@ -197,6 +205,7 @@
     <Compile Include="GUIs\Usuarios\frmModifUsuarios.Designer.cs">
       <DependentUpon>frmModifUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Activos.cs" />
     <Compile Include="Modelos\Areas.cs" />
     <Compile Include="Modelos\Conexion.cs" />
     <Compile Include="Modelos\IConexion.cs" />
@@ -211,6 +220,8 @@
     <Compile Include="Negocio\CatalogosNegocio.cs" />
     <Compile Include="Negocio\IActivosNegocio.cs" />
     <Compile Include="Negocio\ICatalogosNegocio.cs" />
+    <Compile Include="Negocio\IResponsivasNegocio.cs" />
+    <Compile Include="Negocio\ResponsivasNegocio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormPrincipal.resx">
@@ -242,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Puestos\frmPuestos.resx">
       <DependentUpon>frmPuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmBuscaActivos.resx">
+      <DependentUpon>frmBuscaActivos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmResponsivas.resx">
       <DependentUpon>frmResponsivas.cs</DependentUpon>
@@ -291,6 +305,7 @@
     </Compile>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Activos.Modelos.Activos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Areas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Puestos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Sucursales.datasource" />

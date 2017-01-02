@@ -274,7 +274,7 @@ namespace Activos
         {
             try
             {
-                frmAltaActivo child = new frmAltaActivo();
+                frmAltaActivo child = new frmAltaActivo(Login.idUsuario);
 
                 this.validaFormsDuplicados(child.GetType());
 

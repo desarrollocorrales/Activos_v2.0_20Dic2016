@@ -36,5 +36,17 @@ namespace Activos.Negocio
 
             return this._activosDatos.actNumEtiquetaActivo(idActivo, numEtiqueta);
         }
+
+
+        public List<Modelos.Activos> getBuscaActivos(int idTipo, string nombre)
+        {
+            return this._activosDatos.getBuscaActivos(idTipo, nombre);
+        }
+
+
+        public List<Modelos.Activos> getBuscaActivos(string parametro, string tipoBq)
+        {
+            return this._activosDatos.getBuscaActivos(parametro, tipoBq);
+        }
     }
 }

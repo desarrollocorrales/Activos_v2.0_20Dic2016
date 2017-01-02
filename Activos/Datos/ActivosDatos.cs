@@ -20,6 +20,7 @@ namespace Activos.Datos
             _conexion = new Conexion(ConfigurationManager.AppSettings["ConnectionString"].ToString());
         }
 
+        // guarda un activo
         public long guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string claveActivo)
         {
             string sql = 
@@ -61,7 +62,7 @@ namespace Activos.Datos
             return result;
         }
 
-
+        // obtiene un consecutivo por tipo
         public string obtConsecTipo(int idTipo)
         {
             string result = string.Empty;
@@ -106,7 +107,7 @@ namespace Activos.Datos
             return result.PadLeft(4, '0');
         }
 
-
+        // actualiza el numero de etiqueta de activos
         public bool actNumEtiquetaActivo(long idActivo, string numEtiqueta)
         {
             string sql = "UPDATE activos_activos SET numetiqueta = @numEti where idactivo = @idActivo";
@@ -135,6 +136,178 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+                }
+            }
+
+            return result;
+        }
+
+        // busqueda de activos por tipo y nombre
+        public List<Modelos.Activos> getBuscaActivos(int idTipo, string nombre)
+        {
+            List<Modelos.Activos> result = new List<Modelos.Activos>();
+            Modelos.Activos ent;
+
+            string sql =
+                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo,  " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
+                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
+                "from activos_activos a " +
+                "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "where a.status = 'A' and rd.idactivo is null and a.idtipo = @idTipo and a.nombrecorto like @nombre";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                    cmd.Parameters.AddWithValue("@idTipo", idTipo);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Activos();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
+                                ent.tipo = Convert.ToString(res.reader["tipo"]);
+
+                                ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "   ").Trim();
+                                ent.fechaAlta = Convert.ToString(res.reader["fechaalta"]);
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo= Convert.ToString(res.reader["claveactivo"]);
+
+                                ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+
+                                if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
+                                else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
+
+                                if (res.reader["fechamodificacion"] is DBNull) ent.fechaModificacion = string.Empty;
+                                else ent.fechaModificacion = Convert.ToString(res.reader["fechamodificacion"]);
+
+                                if (res.reader["costo"] is DBNull) ent.costo = null;
+                                else ent.costo = Convert.ToDecimal(res.reader["costo"]);
+
+                                ent.status = Convert.ToString(res.reader["status"]);
+
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // busca los activos que contengan cierto numero de etiqueta o por clave de articulo
+        public List<Modelos.Activos> getBuscaActivos(string parametro, string tipoBq)
+        {
+            List<Modelos.Activos> result = new List<Modelos.Activos>();
+            Modelos.Activos ent;
+
+            string sql =
+                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo,  " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
+                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
+                "from activos_activos a " +
+                "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "where a.status = 'A' and rd.idactivo is null";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    if (tipoBq.Equals("NE"))
+                    {
+                        sql += " and a.numetiqueta like @numEti";
+                        cmd.Parameters.AddWithValue("@numEti", parametro + "%");
+                    }
+
+                    if (tipoBq.Equals("CA"))
+                    {
+                        sql += " and a.claveactivo like @cveArt";
+                        cmd.Parameters.AddWithValue("@cveArt", parametro + "%");
+                    }
+
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Activos();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
+                                ent.tipo = Convert.ToString(res.reader["tipo"]);
+
+                                ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "   ").Trim();
+                                ent.fechaAlta = Convert.ToString(res.reader["fechaalta"]);
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
+
+                                ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+
+                                if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
+                                else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
+
+                                if (res.reader["fechamodificacion"] is DBNull) ent.fechaModificacion = string.Empty;
+                                else ent.fechaModificacion = Convert.ToString(res.reader["fechamodificacion"]);
+
+                                if (res.reader["costo"] is DBNull) ent.costo = null;
+                                else ent.costo = Convert.ToDecimal(res.reader["costo"]);
+
+                                ent.status = Convert.ToString(res.reader["status"]);
+
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
                 }
             }
 
