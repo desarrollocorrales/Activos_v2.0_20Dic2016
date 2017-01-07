@@ -8,30 +8,36 @@ using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
 
-namespace Activos.GUIs.Responsivas
+namespace Activos.GUIs.AltaActivos
 {
-    public partial class frmBuscaActivos : Form
+    public partial class frmBuscActivos : Form
     {
         ICatalogosNegocio _catalogosNegocio;
         IActivosNegocio _activosNegocio;
 
-        public List<Modelos.Activos> _listaAgregados;
+        public Modelos.ActivosDesc _activoSelecc;
+        public int _idTipo;
 
-        public frmBuscaActivos()
+        public frmBuscActivos()
         {
             InitializeComponent();
-
+            
             // acomoda radios
             this.rbPTN.Location = new Point(this.gbPTN.Location.X + 13, this.gbPTN.Location.Y - 1);
+            this.rbPN.Location = new Point(this.gbPN.Location.X + 13, this.gbPN.Location.Y - 1);
             this.rbPNE.Location = new Point(this.gbPNE.Location.X + 13, this.gbPNE.Location.Y - 1);
             this.rbPCA.Location = new Point(this.gbPCA.Location.X + 13, this.gbPCA.Location.Y - 1);
 
             // inicializa variables
             this._catalogosNegocio = new CatalogosNegocio();
             this._activosNegocio = new ActivosNegocio();
+            this._activoSelecc = new Modelos.ActivosDesc();
+
+            this.tbResultCveActivo.Text = string.Empty;
+            this.tbResultNumEtiqueta.Text = string.Empty;
         }
 
-        private void frmBuscaActivos_Load(object sender, EventArgs e)
+        private void frmBuscActivos_Load(object sender, EventArgs e)
         {
             try
             {
@@ -44,8 +50,6 @@ namespace Activos.GUIs.Responsivas
                 // define radios activos
                 this.rbPTN.Checked = true;
 
-                // inicializa la lista de agregados
-                this._listaAgregados = new List<Modelos.Activos>();
             }
             catch (Exception Ex)
             {
@@ -55,29 +59,42 @@ namespace Activos.GUIs.Responsivas
 
         private void rbPTN_CheckedChanged(object sender, EventArgs e)
         {
-            this.gbPTN.Enabled = true;
-            this.gbPNE.Enabled = false;
             this.gbPCA.Enabled = false;
+            this.gbPN.Enabled = false;
+            this.gbPNE.Enabled = false;
+            this.gbPTN.Enabled = true;
 
-            reiniciaControles();
+            this.reiniciaControles();
         }
 
         private void rbPNE_CheckedChanged(object sender, EventArgs e)
         {
-            this.gbPTN.Enabled = false;
-            this.gbPNE.Enabled = true;
             this.gbPCA.Enabled = false;
+            this.gbPN.Enabled = false;
+            this.gbPNE.Enabled = true;
+            this.gbPTN.Enabled = false;
 
-            reiniciaControles();
+            this.reiniciaControles();
         }
 
         private void rbPCA_CheckedChanged(object sender, EventArgs e)
         {
-            this.gbPTN.Enabled = false;
-            this.gbPNE.Enabled = false;
             this.gbPCA.Enabled = true;
+            this.gbPN.Enabled = false;
+            this.gbPNE.Enabled = false;
+            this.gbPTN.Enabled = false;
 
-            reiniciaControles();
+            this.reiniciaControles();
+        }
+
+        private void rbPN_CheckedChanged(object sender, EventArgs e)
+        {
+            this.gbPCA.Enabled = false;
+            this.gbPN.Enabled = true;
+            this.gbPNE.Enabled = false;
+            this.gbPTN.Enabled = false;
+
+            this.reiniciaControles();
         }
 
         private void reiniciaControles()
@@ -85,11 +102,28 @@ namespace Activos.GUIs.Responsivas
             this.tbNombre.Text = string.Empty;
             this.cmbTipo.SelectedIndex = -1;
 
+            this.tbUsuarioPU.Text = string.Empty;
+            this.rbNombrePU.Checked = true;
+            this.rbUsuarioPU.Checked = false;
+
             this.tbNumEtiqueta.Text = string.Empty;
 
             this.tbCveActivo.Text = string.Empty;
 
             this.gcResulBusquedas.DataSource = null;
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Close();
         }
 
         private void btnBuscarPTN_Click(object sender, EventArgs e)
@@ -103,9 +137,9 @@ namespace Activos.GUIs.Responsivas
                 int idTipo = (int)this.cmbTipo.SelectedValue;
                 string nombre = this.tbNombre.Text;
 
-                List<Modelos.Activos> resultado = this._activosNegocio.getBuscaActivos(idTipo, nombre, "A");
+                List<Modelos.ActivosDesc> resultado = this._activosNegocio.getBuscaActivosResp(idTipo, nombre, "A");
 
-                if (resultado.Count==0)
+                if (resultado.Count == 0)
                 {
                     this.gcResulBusquedas.DataSource = null;
                     this.ActiveControl = this.tbNombre;
@@ -117,7 +151,7 @@ namespace Activos.GUIs.Responsivas
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -127,7 +161,7 @@ namespace Activos.GUIs.Responsivas
             {
                 string numEtiqueta = this.tbNumEtiqueta.Text;
 
-                List<Modelos.Activos> resultado = this._activosNegocio.getBuscaActivos(numEtiqueta, "NE");
+                List<Modelos.ActivosDesc> resultado = this._activosNegocio.getBuscaActivosResp(numEtiqueta, "NE");
 
                 if (resultado.Count == 0)
                 {
@@ -141,7 +175,7 @@ namespace Activos.GUIs.Responsivas
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -151,7 +185,7 @@ namespace Activos.GUIs.Responsivas
             {
                 string cveActivo = this.tbCveActivo.Text;
 
-                List<Modelos.Activos> resultado = this._activosNegocio.getBuscaActivos(cveActivo, "CA");
+                List<Modelos.ActivosDesc> resultado = this._activosNegocio.getBuscaActivosResp(cveActivo, "CA");
 
                 if (resultado.Count == 0)
                 {
@@ -165,75 +199,29 @@ namespace Activos.GUIs.Responsivas
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
-        private void btnAgrega_Click(object sender, EventArgs e)
+        private void btnBuscarPU_Click(object sender, EventArgs e)
         {
             try
             {
-                List<Modelos.Activos> activos = ((List<Modelos.Activos>)this.gridView1.DataSource).Where(w => w.seleccionado == true).Select(s => s).ToList();
+                // valida radio
+                string busqueda = this.rbUsuarioPU.Checked ? "usuario" : "nombre";
 
-                if (activos.Count == 0)
-                    throw new Exception("No se ha seleccionado ningun activo");
+                // busqueda de usuarios
+                List<Modelos.ActivosDesc> usuarios = this._activosNegocio.busquedaUsuariosResponsiva(this.tbUsuarioPU.Text, busqueda);
 
-                foreach (Modelos.Activos ac in activos)
-
-
-                    if (this._listaAgregados.Where(w=>w.idActivo == ac.idActivo).ToList().Count == 0)
-                    {
-                        this._listaAgregados.Add(new Modelos.Activos
-                        {
-                            area = ac.area,
-                            claveActivo = ac.claveActivo,
-                            costo = ac.costo,
-                            descripcion = ac.descripcion,
-                            fechaAlta = ac.fechaAlta,
-                            fechaModificacion = ac.fechaModificacion,
-                            idActivo = ac.idActivo,
-                            idArea = ac.idArea,
-                            idTipo = ac.idTipo,
-                            idUsuarioAlta = ac.idUsuarioAlta,
-                            idUsuarioModifica = ac.idUsuarioModifica,
-                            nombreCorto = ac.nombreCorto,
-                            numEtiqueta = ac.numEtiqueta,
-                            seleccionado = false,
-                            status = ac.status,
-                            tipo = ac.tipo
-                        });
-                    }
-
-                this.gcSeleccionados.DataSource = null;
-
-                this.gcSeleccionados.DataSource = this._listaAgregados;
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-
-        private void btnQuitar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                List<Modelos.Activos> activos = ((List<Modelos.Activos>)this.gridView2.DataSource).Where(w => w.seleccionado == true).Select(s => s).ToList();
-
-                if (activos.Count == 0)
-                    throw new Exception("No se ha seleccionado ningun activo");
-
-                foreach (Modelos.Activos ac in activos)
+                if (usuarios.Count == 0)
                 {
-                    this._listaAgregados.Remove(ac);
+                    this.gcResulBusquedas.DataSource = null;
+                    this.ActiveControl = this.tbUsuarioPU;
+                    this.tbUsuarioPU.SelectAll();
+                    throw new Exception("Sin resultados");
                 }
 
-                // obtiene los ids de los puestos seleccionadas
-                // this._listaAgregados.AddRange(activos);
-
-                this.gcSeleccionados.DataSource = null;
-
-                this.gcSeleccionados.DataSource = this._listaAgregados;
+                this.gcResulBusquedas.DataSource = usuarios;
             }
             catch (Exception Ex)
             {
@@ -241,15 +229,30 @@ namespace Activos.GUIs.Responsivas
             }
         }
 
-        private void btnQuitarTodos_Click(object sender, EventArgs e)
+        private void gcResulBusquedas_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                this._listaAgregados = new List<Modelos.Activos>();
+                if (this.gridView1.GetSelectedRows().Count() == 0)
+                    return;
 
-                this.gcSeleccionados.DataSource = null;
+                this._activoSelecc = new Modelos.ActivosDesc();
 
-                this.gcSeleccionados.DataSource = this._listaAgregados;
+                foreach (int i in this.gridView1.GetSelectedRows())
+                {
+                    var dr1 = this.gridView1.GetRow(i);
+
+                    this._activoSelecc = (Modelos.ActivosDesc)dr1;
+                }
+
+                // imprime datos
+                this.tbResultNombre.Text = this._activoSelecc.nombreCorto;
+                this.tbResultDesc.Text = this._activoSelecc.descripcion.Replace("&", " ").Trim();
+                this.tbResultNumEtiqueta.Text = this._activoSelecc.numEtiqueta;
+                this.tbResultCveActivo.Text = this._activoSelecc.claveActivo;
+
+                this._idTipo = this._activoSelecc.idTipo;
+
             }
             catch (Exception Ex)
             {
@@ -257,14 +260,5 @@ namespace Activos.GUIs.Responsivas
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-        }
     }
 }

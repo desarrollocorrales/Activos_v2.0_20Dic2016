@@ -34,3 +34,7 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.csprojResolveAsse
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.frmLogin.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmResponsivas.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmBuscaActivos.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.AltaActivos.frmBuscActivos.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.AltaActivos.frmModifActivo.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.AltaActivos.frmBajaActivo.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.AltaActivos.frmReparaActivos.resources

@@ -65,17 +65,33 @@
             this.btnAgrega = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnQuitarTodos = new System.Windows.Forms.Button();
-            this.gcSeleecionados = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.gcSeleccionados = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gbPTN.SuspendLayout();
             this.gbPNE.SuspendLayout();
             this.gbPCA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcResulBusquedas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSeleecionados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcSeleccionados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,7 +145,7 @@
             // rbPTN
             // 
             this.rbPTN.AutoSize = true;
-            this.rbPTN.Location = new System.Drawing.Point(12, 408);
+            this.rbPTN.Location = new System.Drawing.Point(14, 353);
             this.rbPTN.Name = "rbPTN";
             this.rbPTN.Size = new System.Drawing.Size(183, 27);
             this.rbPTN.TabIndex = 1;
@@ -167,7 +183,7 @@
             // rbPNE
             // 
             this.rbPNE.AutoSize = true;
-            this.rbPNE.Location = new System.Drawing.Point(12, 429);
+            this.rbPNE.Location = new System.Drawing.Point(14, 374);
             this.rbPNE.Name = "rbPNE";
             this.rbPNE.Size = new System.Drawing.Size(182, 27);
             this.rbPNE.TabIndex = 2;
@@ -205,7 +221,7 @@
             // rbPCA
             // 
             this.rbPCA.AutoSize = true;
-            this.rbPCA.Location = new System.Drawing.Point(12, 450);
+            this.rbPCA.Location = new System.Drawing.Point(14, 395);
             this.rbPCA.Name = "rbPCA";
             this.rbPCA.Size = new System.Drawing.Size(160, 27);
             this.rbPCA.TabIndex = 3;
@@ -219,7 +235,7 @@
             this.gcResulBusquedas.Location = new System.Drawing.Point(12, 203);
             this.gcResulBusquedas.MainView = this.gridView1;
             this.gcResulBusquedas.Name = "gcResulBusquedas";
-            this.gcResulBusquedas.Size = new System.Drawing.Size(911, 199);
+            this.gcResulBusquedas.Size = new System.Drawing.Size(911, 153);
             this.gcResulBusquedas.TabIndex = 1;
             this.gcResulBusquedas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -251,6 +267,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // colseleccionado
             // 
@@ -380,74 +397,226 @@
             // 
             // btnAgrega
             // 
-            this.btnAgrega.Location = new System.Drawing.Point(163, 429);
+            this.btnAgrega.Location = new System.Drawing.Point(163, 374);
             this.btnAgrega.Name = "btnAgrega";
             this.btnAgrega.Size = new System.Drawing.Size(179, 41);
             this.btnAgrega.TabIndex = 2;
             this.btnAgrega.Text = "Agregar";
             this.btnAgrega.UseVisualStyleBackColor = true;
+            this.btnAgrega.Click += new System.EventHandler(this.btnAgrega_Click);
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(378, 429);
+            this.btnQuitar.Location = new System.Drawing.Point(378, 374);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(179, 41);
             this.btnQuitar.TabIndex = 3;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // btnQuitarTodos
             // 
-            this.btnQuitarTodos.Location = new System.Drawing.Point(593, 429);
+            this.btnQuitarTodos.Location = new System.Drawing.Point(593, 374);
             this.btnQuitarTodos.Name = "btnQuitarTodos";
             this.btnQuitarTodos.Size = new System.Drawing.Size(179, 41);
             this.btnQuitarTodos.TabIndex = 4;
             this.btnQuitarTodos.Text = "Quitar Todos";
             this.btnQuitarTodos.UseVisualStyleBackColor = true;
-            // 
-            // gcSeleecionados
-            // 
-            this.gcSeleecionados.Location = new System.Drawing.Point(12, 492);
-            this.gcSeleecionados.MainView = this.gridView2;
-            this.gcSeleecionados.Name = "gcSeleecionados";
-            this.gcSeleecionados.Size = new System.Drawing.Size(911, 199);
-            this.gcSeleecionados.TabIndex = 5;
-            this.gcSeleecionados.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            // 
-            // gridView2
-            // 
-            this.gridView2.GridControl = this.gcSeleecionados;
-            this.gridView2.Name = "gridView2";
+            this.btnQuitarTodos.Click += new System.EventHandler(this.btnQuitarTodos_Click);
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(531, 717);
+            this.btnAceptar.Location = new System.Drawing.Point(531, 602);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(179, 41);
             this.btnAceptar.TabIndex = 6;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(725, 717);
+            this.btnCancelar.Location = new System.Drawing.Point(725, 602);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(179, 41);
             this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // gcSeleccionados
+            // 
+            this.gcSeleccionados.DataSource = this.activosBindingSource;
+            this.gcSeleccionados.Location = new System.Drawing.Point(12, 428);
+            this.gcSeleccionados.MainView = this.gridView2;
+            this.gcSeleccionados.Name = "gcSeleccionados";
+            this.gcSeleccionados.Size = new System.Drawing.Size(911, 156);
+            this.gcSeleccionados.TabIndex = 8;
+            this.gcSeleccionados.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9,
+            this.gridColumn10,
+            this.gridColumn11,
+            this.gridColumn12,
+            this.gridColumn13,
+            this.gridColumn14,
+            this.gridColumn15,
+            this.gridColumn16});
+            this.gridView2.GridControl = this.gcSeleccionados;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsSelection.MultiSelect = true;
+            this.gridView2.OptionsView.ColumnAutoWidth = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = " ";
+            this.gridColumn1.FieldName = "seleccionado";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 38;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.FieldName = "idActivo";
+            this.gridColumn2.Name = "gridColumn2";
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.FieldName = "idArea";
+            this.gridColumn3.Name = "gridColumn3";
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Área";
+            this.gridColumn4.FieldName = "area";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.OptionsColumn.AllowMove = false;
+            this.gridColumn4.OptionsColumn.ReadOnly = true;
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 1;
+            this.gridColumn4.Width = 170;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.FieldName = "idTipo";
+            this.gridColumn5.Name = "gridColumn5";
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Tipo";
+            this.gridColumn6.FieldName = "tipo";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.OptionsColumn.AllowMove = false;
+            this.gridColumn6.OptionsColumn.ReadOnly = true;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 2;
+            this.gridColumn6.Width = 170;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Nombre Activo";
+            this.gridColumn7.FieldName = "nombreCorto";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.OptionsColumn.AllowMove = false;
+            this.gridColumn7.OptionsColumn.ReadOnly = true;
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 3;
+            this.gridColumn7.Width = 150;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "Descripción";
+            this.gridColumn8.FieldName = "descripcion";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
+            this.gridColumn8.OptionsColumn.AllowMove = false;
+            this.gridColumn8.OptionsColumn.ReadOnly = true;
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 4;
+            this.gridColumn8.Width = 200;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.FieldName = "fechaAlta";
+            this.gridColumn9.Name = "gridColumn9";
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.FieldName = "idUsuarioAlta";
+            this.gridColumn10.Name = "gridColumn10";
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.FieldName = "fechaModificacion";
+            this.gridColumn11.Name = "gridColumn11";
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.FieldName = "idUsuarioModifica";
+            this.gridColumn12.Name = "gridColumn12";
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.FieldName = "costo";
+            this.gridColumn13.Name = "gridColumn13";
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.Caption = "Núm. Etiqueta";
+            this.gridColumn14.FieldName = "numEtiqueta";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.OptionsColumn.AllowEdit = false;
+            this.gridColumn14.OptionsColumn.AllowMove = false;
+            this.gridColumn14.OptionsColumn.ReadOnly = true;
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 5;
+            this.gridColumn14.Width = 90;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "Cve. Activo";
+            this.gridColumn15.FieldName = "claveActivo";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.OptionsColumn.AllowEdit = false;
+            this.gridColumn15.OptionsColumn.AllowMove = false;
+            this.gridColumn15.OptionsColumn.ReadOnly = true;
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 6;
+            this.gridColumn15.Width = 70;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.FieldName = "status";
+            this.gridColumn16.Name = "gridColumn16";
             // 
             // frmBuscaActivos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 785);
+            this.ClientSize = new System.Drawing.Size(935, 658);
+            this.Controls.Add(this.gcSeleccionados);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.rbPCA);
             this.Controls.Add(this.rbPNE);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.gcSeleecionados);
             this.Controls.Add(this.rbPTN);
             this.Controls.Add(this.btnQuitarTodos);
             this.Controls.Add(this.btnQuitar);
@@ -473,7 +642,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcResulBusquedas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.activosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcSeleecionados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcSeleccionados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -501,8 +670,6 @@
         private System.Windows.Forms.Button btnAgrega;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.Button btnQuitarTodos;
-        private DevExpress.XtraGrid.GridControl gcSeleecionados;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.BindingSource activosBindingSource;
@@ -522,5 +689,23 @@
         private DevExpress.XtraGrid.Columns.GridColumn colnumEtiqueta;
         private DevExpress.XtraGrid.Columns.GridColumn colclaveActivo;
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
+        private DevExpress.XtraGrid.GridControl gcSeleccionados;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
     }
 }

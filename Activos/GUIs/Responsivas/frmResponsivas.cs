@@ -89,11 +89,38 @@ namespace Activos.GUIs.Responsivas
 
                 var result = form.ShowDialog();
 
-                if (result == DialogResult.OK || result == DialogResult.Cancel)
+                if (result == DialogResult.OK)
                 {
-                    // llena el grid con las areas disponibles
-                    //this.gcActivos.DataSource = this._.getAreas("A");
+                    // llena el grid los activos seleccionados
+                    this.gcActivos.DataSource = form._listaAgregados;
                 }
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnCreaResp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // validaciones
+                if (this._idUsuario == null)
+                    throw new Exception("Seleccione un usuario");
+
+                if(this.gridView2.DataRowCount == 0)
+                    throw new Exception("Añada al menos un activo para asignarlo al usuario");
+
+                // obtiene los activos agregados
+                List<Modelos.Activos> activos = (List<Modelos.Activos>)this.gridView2.DataSource;
+
+                // registrar responsiva
+                bool resultado = this._responsivasNegocio.crearResponsivas(activos, Modelos.Login.idUsuario, this._idUsuario, this.tbObservaciones.Text);
+
+                if(resultado)
+                    MessageBox.Show("La responsiva fue creada correctamente", "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
             }
             catch (Exception Ex)
             {

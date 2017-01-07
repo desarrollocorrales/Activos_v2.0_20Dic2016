@@ -65,7 +65,9 @@
     <Compile Include="Datos\CatalogosDatos.cs" />
     <Compile Include="Datos\IActivosDatos.cs" />
     <Compile Include="Datos\ICatalogosDatos.cs" />
+    <Compile Include="Datos\IReparacionesDatos.cs" />
     <Compile Include="Datos\IResponsivasDatos.cs" />
+    <Compile Include="Datos\ReparacionesDatos.cs" />
     <Compile Include="Datos\ResponsivasDatos.cs" />
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
@@ -84,6 +86,30 @@
     </Compile>
     <Compile Include="GUIs\AltaActivos\frmAltaActivo.Designer.cs">
       <DependentUpon>frmAltaActivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\AltaActivos\frmBajaActivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\AltaActivos\frmBajaActivo.Designer.cs">
+      <DependentUpon>frmBajaActivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\AltaActivos\frmBuscActivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\AltaActivos\frmBuscActivos.Designer.cs">
+      <DependentUpon>frmBuscActivos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\AltaActivos\frmModifActivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\AltaActivos\frmModifActivo.Designer.cs">
+      <DependentUpon>frmModifActivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\AltaActivos\frmReparaActivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\AltaActivos\frmReparaActivos.Designer.cs">
+      <DependentUpon>frmReparaActivos.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Areas\frmActAreas.cs">
       <SubType>Form</SubType>
@@ -211,6 +237,7 @@
     <Compile Include="Modelos\IConexion.cs" />
     <Compile Include="Modelos\ManejoSql.cs" />
     <Compile Include="Modelos\Puestos.cs" />
+    <Compile Include="Modelos\Reparaciones.cs" />
     <Compile Include="Modelos\Sucursales.cs" />
     <Compile Include="Modelos\Tipos.cs" />
     <Compile Include="Modelos\Usuarios.cs" />
@@ -220,7 +247,9 @@
     <Compile Include="Negocio\CatalogosNegocio.cs" />
     <Compile Include="Negocio\IActivosNegocio.cs" />
     <Compile Include="Negocio\ICatalogosNegocio.cs" />
+    <Compile Include="Negocio\IReparacionesNegocio.cs" />
     <Compile Include="Negocio\IResponsivasNegocio.cs" />
+    <Compile Include="Negocio\ReparacionesNegocio.cs" />
     <Compile Include="Negocio\ResponsivasNegocio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -232,6 +261,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\AltaActivos\frmAltaActivo.resx">
       <DependentUpon>frmAltaActivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\AltaActivos\frmBajaActivo.resx">
+      <DependentUpon>frmBajaActivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\AltaActivos\frmBuscActivos.resx">
+      <DependentUpon>frmBuscActivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\AltaActivos\frmModifActivo.resx">
+      <DependentUpon>frmModifActivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\AltaActivos\frmReparaActivos.resx">
+      <DependentUpon>frmReparaActivos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Areas\frmActAreas.resx">
       <DependentUpon>frmActAreas.cs</DependentUpon>
@@ -306,8 +347,10 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Activos.Modelos.Activos.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.ActivosDesc.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Areas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Puestos.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Reparaciones.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Sucursales.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Tipos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Usuarios.datasource" />

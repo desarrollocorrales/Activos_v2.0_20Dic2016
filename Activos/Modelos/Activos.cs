@@ -32,4 +32,24 @@ namespace Activos.Modelos
 
         public string status { get; set; }
     }
+
+    public partial class ActivosDesc
+    {
+        public int idActivo { get; set; }
+        public string area { get; set; }
+        public int idTipo { get; set; }
+        public string tipo { get; set; }
+
+        public string nombreCorto { get; set; }
+        public string descripcion { get; set; }
+
+        public string sucursal { get; set; }
+
+        public string usuario { get; set; }
+
+        public decimal? costo { get; set; }
+
+        public string numEtiqueta { get; set; }
+        public string claveActivo { get; set; }
+    }
 }

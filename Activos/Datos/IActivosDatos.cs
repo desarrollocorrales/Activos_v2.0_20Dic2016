@@ -13,8 +13,20 @@ namespace Activos.Datos
 
         bool actNumEtiquetaActivo(long idActivo, string numEtiqueta);
 
-        List<Modelos.Activos> getBuscaActivos(int idTipo, string nombre);
+        List<Modelos.Activos> getBuscaActivos(int idTipo, string nombre, string status);
 
         List<Modelos.Activos> getBuscaActivos(string parametro, string tipoBq);
+
+        List<Modelos.ActivosDesc> getBuscaActivosResp(int idTipo, string nombre, string status);
+
+        List<Modelos.ActivosDesc> getBuscaActivosResp(string parametro, string tipoBus);
+
+        List<Modelos.ActivosDesc> busquedaUsuariosResponsiva(string usuario, string busqueda);
+
+        bool modificActivo(int? idActivo, string nombre, string descripcion);
+
+        long bajaActivo(int? idActivo, string motivo, string causa, string fecha, int idUsuario);
+
+        bool actualizaStatus(long idRB, int? idActivo, string motivo);
     }
 }

@@ -268,7 +268,7 @@ namespace Activos
 
 
         //****************************************************************************************************
-        //************** A L T A S   D E   A C T I V O S *****************************************************
+        //************** A C T I V O S ***********************************************************************
         //****************************************************************************************************
         private void altasToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -289,6 +289,65 @@ namespace Activos
             }
         }
 
+
+        private void modificacionesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmModifActivo child = new frmModifActivo();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+        private void bajasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmBajaActivo child = new frmBajaActivo();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+        private void reparacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmReparaActivos child = new frmReparaActivos();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
 
         //****************************************************************************************************
         //************** R E S P O N S I V A S *****************************************************
@@ -312,8 +371,5 @@ namespace Activos
             }
         }
 
-
-
-        
     }
 }

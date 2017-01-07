@@ -50,20 +50,38 @@
             this.rbUsuario = new System.Windows.Forms.RadioButton();
             this.tbUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.usuariosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnCreaResp = new System.Windows.Forms.Button();
             this.gcActivos = new DevExpress.XtraGrid.GridControl();
+            this.activosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colseleccionado = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colidActivo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colidArea = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colarea = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colidTipo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coltipo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colnombreCorto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.coldescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colfechaAlta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colidUsuarioAlta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colfechaModificacion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colidUsuarioModifica = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcosto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colnumEtiqueta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colclaveActivo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnBuscaActivos = new System.Windows.Forms.Button();
+            this.tbObservaciones = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuariosResponsivasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.usuariosBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcActivos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,7 +116,7 @@
             // lbPuesto
             // 
             this.lbPuesto.AutoSize = true;
-            this.lbPuesto.Location = new System.Drawing.Point(104, 371);
+            this.lbPuesto.Location = new System.Drawing.Point(104, 362);
             this.lbPuesto.Name = "lbPuesto";
             this.lbPuesto.Size = new System.Drawing.Size(17, 23);
             this.lbPuesto.TabIndex = 8;
@@ -107,7 +125,7 @@
             // lbUsuarios
             // 
             this.lbUsuarios.AutoSize = true;
-            this.lbUsuarios.Location = new System.Drawing.Point(104, 328);
+            this.lbUsuarios.Location = new System.Drawing.Point(104, 310);
             this.lbUsuarios.Name = "lbUsuarios";
             this.lbUsuarios.Size = new System.Drawing.Size(17, 23);
             this.lbUsuarios.TabIndex = 7;
@@ -125,7 +143,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 371);
+            this.label3.Location = new System.Drawing.Point(13, 362);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 23);
             this.label3.TabIndex = 5;
@@ -134,7 +152,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 328);
+            this.label2.Location = new System.Drawing.Point(13, 310);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 23);
             this.label2.TabIndex = 4;
@@ -146,7 +164,7 @@
             this.gcUsuarios.Location = new System.Drawing.Point(17, 138);
             this.gcUsuarios.MainView = this.gridView1;
             this.gcUsuarios.Name = "gcUsuarios";
-            this.gcUsuarios.Size = new System.Drawing.Size(530, 174);
+            this.gcUsuarios.Size = new System.Drawing.Size(530, 144);
             this.gcUsuarios.TabIndex = 3;
             this.gcUsuarios.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -166,6 +184,7 @@
             this.colusuario});
             this.gridView1.GridControl = this.gcUsuarios;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // colidUsuario
             // 
@@ -275,12 +294,10 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Usuario";
             // 
-            // usuariosBindingSource
-            // 
-            this.usuariosBindingSource.DataSource = typeof(Activos.Modelos.Usuarios);
-            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.tbObservaciones);
             this.groupBox2.Controls.Add(this.btnCreaResp);
             this.groupBox2.Controls.Add(this.gcActivos);
             this.groupBox2.Controls.Add(this.btnBuscaActivos);
@@ -293,27 +310,167 @@
             // 
             // btnCreaResp
             // 
-            this.btnCreaResp.Location = new System.Drawing.Point(189, 379);
+            this.btnCreaResp.Location = new System.Drawing.Point(189, 400);
             this.btnCreaResp.Name = "btnCreaResp";
             this.btnCreaResp.Size = new System.Drawing.Size(186, 41);
             this.btnCreaResp.TabIndex = 2;
             this.btnCreaResp.Text = "Crear Responsiva";
             this.btnCreaResp.UseVisualStyleBackColor = true;
+            this.btnCreaResp.Click += new System.EventHandler(this.btnCreaResp_Click);
             // 
             // gcActivos
             // 
+            this.gcActivos.DataSource = this.activosBindingSource;
             this.gcActivos.Location = new System.Drawing.Point(6, 85);
             this.gcActivos.MainView = this.gridView2;
             this.gcActivos.Name = "gcActivos";
-            this.gcActivos.Size = new System.Drawing.Size(552, 266);
+            this.gcActivos.Size = new System.Drawing.Size(552, 197);
             this.gcActivos.TabIndex = 1;
             this.gcActivos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
             // 
+            // activosBindingSource
+            // 
+            this.activosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
+            // 
             // gridView2
             // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colseleccionado,
+            this.colidActivo,
+            this.colidArea,
+            this.colarea,
+            this.colidTipo,
+            this.coltipo,
+            this.colnombreCorto,
+            this.coldescripcion,
+            this.colfechaAlta,
+            this.colidUsuarioAlta,
+            this.colfechaModificacion,
+            this.colidUsuarioModifica,
+            this.colcosto,
+            this.colnumEtiqueta,
+            this.colclaveActivo,
+            this.colstatus});
             this.gridView2.GridControl = this.gcActivos;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsView.ColumnAutoWidth = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // colseleccionado
+            // 
+            this.colseleccionado.FieldName = "seleccionado";
+            this.colseleccionado.Name = "colseleccionado";
+            // 
+            // colidActivo
+            // 
+            this.colidActivo.FieldName = "idActivo";
+            this.colidActivo.Name = "colidActivo";
+            // 
+            // colidArea
+            // 
+            this.colidArea.FieldName = "idArea";
+            this.colidArea.Name = "colidArea";
+            // 
+            // colarea
+            // 
+            this.colarea.Caption = "Área";
+            this.colarea.FieldName = "area";
+            this.colarea.Name = "colarea";
+            this.colarea.OptionsColumn.AllowEdit = false;
+            this.colarea.OptionsColumn.AllowMove = false;
+            this.colarea.OptionsColumn.ReadOnly = true;
+            this.colarea.Visible = true;
+            this.colarea.VisibleIndex = 0;
+            this.colarea.Width = 114;
+            // 
+            // colidTipo
+            // 
+            this.colidTipo.FieldName = "idTipo";
+            this.colidTipo.Name = "colidTipo";
+            // 
+            // coltipo
+            // 
+            this.coltipo.Caption = "Tipo";
+            this.coltipo.FieldName = "tipo";
+            this.coltipo.Name = "coltipo";
+            this.coltipo.OptionsColumn.AllowEdit = false;
+            this.coltipo.OptionsColumn.AllowMove = false;
+            this.coltipo.OptionsColumn.ReadOnly = true;
+            this.coltipo.Visible = true;
+            this.coltipo.VisibleIndex = 1;
+            this.coltipo.Width = 114;
+            // 
+            // colnombreCorto
+            // 
+            this.colnombreCorto.Caption = "Nombre";
+            this.colnombreCorto.FieldName = "nombreCorto";
+            this.colnombreCorto.Name = "colnombreCorto";
+            this.colnombreCorto.OptionsColumn.AllowEdit = false;
+            this.colnombreCorto.OptionsColumn.AllowMove = false;
+            this.colnombreCorto.OptionsColumn.ReadOnly = true;
+            this.colnombreCorto.Visible = true;
+            this.colnombreCorto.VisibleIndex = 2;
+            this.colnombreCorto.Width = 114;
+            // 
+            // coldescripcion
+            // 
+            this.coldescripcion.FieldName = "descripcion";
+            this.coldescripcion.Name = "coldescripcion";
+            // 
+            // colfechaAlta
+            // 
+            this.colfechaAlta.FieldName = "fechaAlta";
+            this.colfechaAlta.Name = "colfechaAlta";
+            // 
+            // colidUsuarioAlta
+            // 
+            this.colidUsuarioAlta.FieldName = "idUsuarioAlta";
+            this.colidUsuarioAlta.Name = "colidUsuarioAlta";
+            // 
+            // colfechaModificacion
+            // 
+            this.colfechaModificacion.FieldName = "fechaModificacion";
+            this.colfechaModificacion.Name = "colfechaModificacion";
+            // 
+            // colidUsuarioModifica
+            // 
+            this.colidUsuarioModifica.FieldName = "idUsuarioModifica";
+            this.colidUsuarioModifica.Name = "colidUsuarioModifica";
+            // 
+            // colcosto
+            // 
+            this.colcosto.FieldName = "costo";
+            this.colcosto.Name = "colcosto";
+            // 
+            // colnumEtiqueta
+            // 
+            this.colnumEtiqueta.Caption = "Núm. Etiqueta";
+            this.colnumEtiqueta.FieldName = "numEtiqueta";
+            this.colnumEtiqueta.Name = "colnumEtiqueta";
+            this.colnumEtiqueta.OptionsColumn.AllowEdit = false;
+            this.colnumEtiqueta.OptionsColumn.AllowMove = false;
+            this.colnumEtiqueta.OptionsColumn.ReadOnly = true;
+            this.colnumEtiqueta.Visible = true;
+            this.colnumEtiqueta.VisibleIndex = 3;
+            this.colnumEtiqueta.Width = 90;
+            // 
+            // colclaveActivo
+            // 
+            this.colclaveActivo.Caption = "Cve. Etiqueta";
+            this.colclaveActivo.FieldName = "claveActivo";
+            this.colclaveActivo.Name = "colclaveActivo";
+            this.colclaveActivo.OptionsColumn.AllowEdit = false;
+            this.colclaveActivo.OptionsColumn.AllowMove = false;
+            this.colclaveActivo.OptionsColumn.ReadOnly = true;
+            this.colclaveActivo.Visible = true;
+            this.colclaveActivo.VisibleIndex = 4;
+            this.colclaveActivo.Width = 102;
+            // 
+            // colstatus
+            // 
+            this.colstatus.FieldName = "status";
+            this.colstatus.Name = "colstatus";
             // 
             // btnBuscaActivos
             // 
@@ -324,6 +481,25 @@
             this.btnBuscaActivos.Text = "Buscar Activos";
             this.btnBuscaActivos.UseVisualStyleBackColor = true;
             this.btnBuscaActivos.Click += new System.EventHandler(this.btnBuscaActivos_Click);
+            // 
+            // tbObservaciones
+            // 
+            this.tbObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbObservaciones.Location = new System.Drawing.Point(12, 317);
+            this.tbObservaciones.MaxLength = 250;
+            this.tbObservaciones.Multiline = true;
+            this.tbObservaciones.Name = "tbObservaciones";
+            this.tbObservaciones.Size = new System.Drawing.Size(546, 75);
+            this.tbObservaciones.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 291);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(130, 23);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Observaciones";
             // 
             // frmResponsivas
             // 
@@ -343,9 +519,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.usuariosBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcActivos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
 
@@ -362,7 +539,6 @@
         private System.Windows.Forms.RadioButton rbUsuario;
         private System.Windows.Forms.TextBox tbUsuario;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.BindingSource usuariosBindingSource;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -380,5 +556,24 @@
         private System.Windows.Forms.Label lbSucursal;
         private System.Windows.Forms.Label lbPuesto;
         private System.Windows.Forms.Label lbUsuarios;
+        private System.Windows.Forms.BindingSource activosBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colseleccionado;
+        private DevExpress.XtraGrid.Columns.GridColumn colidActivo;
+        private DevExpress.XtraGrid.Columns.GridColumn colidArea;
+        private DevExpress.XtraGrid.Columns.GridColumn colarea;
+        private DevExpress.XtraGrid.Columns.GridColumn colidTipo;
+        private DevExpress.XtraGrid.Columns.GridColumn coltipo;
+        private DevExpress.XtraGrid.Columns.GridColumn colnombreCorto;
+        private DevExpress.XtraGrid.Columns.GridColumn coldescripcion;
+        private DevExpress.XtraGrid.Columns.GridColumn colfechaAlta;
+        private DevExpress.XtraGrid.Columns.GridColumn colidUsuarioAlta;
+        private DevExpress.XtraGrid.Columns.GridColumn colfechaModificacion;
+        private DevExpress.XtraGrid.Columns.GridColumn colidUsuarioModifica;
+        private DevExpress.XtraGrid.Columns.GridColumn colcosto;
+        private DevExpress.XtraGrid.Columns.GridColumn colnumEtiqueta;
+        private DevExpress.XtraGrid.Columns.GridColumn colclaveActivo;
+        private DevExpress.XtraGrid.Columns.GridColumn colstatus;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbObservaciones;
     }
 }
