@@ -26,9 +26,9 @@ namespace Activos.GUIs.Sucursales
             try
             {
                 // llena el catalogo de responsables (usuarios) disponibles
-                this.cmbResponsable.DataSource = this._catalogosNegocio.getResponsables("A");
-                this.cmbResponsable.DisplayMember = "nombre";
-                this.cmbResponsable.ValueMember = "idUsuario";
+                this.cmbResponsable.DataSource = this._catalogosNegocio.getPersonas("", "A");
+                this.cmbResponsable.DisplayMember = "nombreCompleto";
+                this.cmbResponsable.ValueMember = "idPersona";
                 this.cmbResponsable.SelectedIndex = -1;
 
                 // llena el grid con las sucursales disponibles

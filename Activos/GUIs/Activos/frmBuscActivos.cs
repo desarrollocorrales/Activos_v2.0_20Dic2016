@@ -17,8 +17,9 @@ namespace Activos.GUIs.AltaActivos
 
         public Modelos.ActivosDesc _activoSelecc;
         public int _idTipo;
+        public string _tipoConsulta = string.Empty;
 
-        public frmBuscActivos()
+        public frmBuscActivos(string tipoConsulta)
         {
             InitializeComponent();
             
@@ -35,6 +36,9 @@ namespace Activos.GUIs.AltaActivos
 
             this.tbResultCveActivo.Text = string.Empty;
             this.tbResultNumEtiqueta.Text = string.Empty;
+
+            // tipo de consulta
+            this._tipoConsulta = tipoConsulta;
         }
 
         private void frmBuscActivos_Load(object sender, EventArgs e)
@@ -147,7 +151,9 @@ namespace Activos.GUIs.AltaActivos
                     throw new Exception("Sin resultados");
                 }
 
-                this.gcResulBusquedas.DataSource = resultado;
+                List<Modelos.ActivosDesc> lista = resultado.Where(w => !string.IsNullOrEmpty(w.usuario)).ToList();
+
+                this.gcResulBusquedas.DataSource = this._tipoConsulta.Equals("BAJAS") ? lista : resultado;
             }
             catch (Exception Ex)
             {
@@ -208,7 +214,7 @@ namespace Activos.GUIs.AltaActivos
             try
             {
                 // valida radio
-                string busqueda = this.rbUsuarioPU.Checked ? "usuario" : "nombre";
+                string busqueda = this.rbUsuarioPU.Checked ? "usuario" : "nombrecompleto";
 
                 // busqueda de usuarios
                 List<Modelos.ActivosDesc> usuarios = this._activosNegocio.busquedaUsuariosResponsiva(this.tbUsuarioPU.Text, busqueda);

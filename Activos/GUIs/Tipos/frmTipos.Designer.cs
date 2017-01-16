@@ -189,6 +189,7 @@
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // colseleccionado
             // 
@@ -280,7 +281,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(207, 176);
+            this.btnAgregar.Location = new System.Drawing.Point(190, 176);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(186, 41);
             this.btnAgregar.TabIndex = 6;

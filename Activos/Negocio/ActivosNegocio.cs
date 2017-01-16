@@ -74,13 +74,34 @@ namespace Activos.Negocio
         }
 
 
-        public bool bajaActivo(int? idActivo, string motivo, string causa, string fecha, int idUsuario)
+        public bool bajaActivo(int? idActivo, int idMotivo, string motivo, string detalle, string fecha, int idUsuario)
         {
             // inserta e activos_reparacion o activos_baja
-            long idRB = this._activosDatos.bajaActivo(idActivo, motivo, causa, fecha, idUsuario);
+            long idRB = this._activosDatos.bajaActivo(idActivo, idMotivo, motivo, detalle, fecha, idUsuario);
 
             // actualizar activos_activos y activos_responsivasdetalle status a 'R' o 'B'
             return this._activosDatos.actualizaStatus(idRB, idActivo, motivo);
+        }
+
+
+        public bool actActivoReparacion(int? idReparacion, string observAct, string fechaFin, int? idActivo)
+        {
+            bool activa = this._activosDatos.actActivoReparacion(idReparacion, observAct, fechaFin);
+
+            if (activa)
+                return this._activosDatos.cambiaStatusActivo(idReparacion, idActivo);
+            else
+                return false;
+        }
+
+
+        public List<Modelos.Activos> getBuscaActivos(int idResponsiva)
+        {
+            List<int> idActivos = this._activosDatos.getActivosIdsRespon(idResponsiva);
+
+            if (idActivos.Count == 0) return new List<Modelos.Activos>();
+
+            return this._activosDatos.getBuscaActivos(idActivos);
         }
     }
 }

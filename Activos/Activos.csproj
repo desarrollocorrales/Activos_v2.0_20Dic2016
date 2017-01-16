@@ -81,35 +81,41 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\AltaActivos\frmAltaActivo.cs">
+    <Compile Include="GUIs\Activos\frmAltaActivo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\AltaActivos\frmAltaActivo.Designer.cs">
+    <Compile Include="GUIs\Activos\frmAltaActivo.Designer.cs">
       <DependentUpon>frmAltaActivo.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\AltaActivos\frmBajaActivo.cs">
+    <Compile Include="GUIs\Activos\frmBajaActivo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\AltaActivos\frmBajaActivo.Designer.cs">
+    <Compile Include="GUIs\Activos\frmBajaActivo.Designer.cs">
       <DependentUpon>frmBajaActivo.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\AltaActivos\frmBuscActivos.cs">
+    <Compile Include="GUIs\Activos\frmActReparacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\AltaActivos\frmBuscActivos.Designer.cs">
+    <Compile Include="GUIs\Activos\frmActReparacion.Designer.cs">
+      <DependentUpon>frmActReparacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Activos\frmBuscActivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Activos\frmBuscActivos.Designer.cs">
       <DependentUpon>frmBuscActivos.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\AltaActivos\frmModifActivo.cs">
+    <Compile Include="GUIs\Activos\frmModifActivo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\AltaActivos\frmModifActivo.Designer.cs">
+    <Compile Include="GUIs\Activos\frmModifActivo.Designer.cs">
       <DependentUpon>frmModifActivo.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\AltaActivos\frmReparaActivos.cs">
+    <Compile Include="GUIs\Activos\frmBuscaActReparacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\AltaActivos\frmReparaActivos.Designer.cs">
-      <DependentUpon>frmReparaActivos.cs</DependentUpon>
+    <Compile Include="GUIs\Activos\frmBuscaActReparacion.Designer.cs">
+      <DependentUpon>frmBuscaActReparacion.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Areas\frmActAreas.cs">
       <SubType>Form</SubType>
@@ -135,6 +141,12 @@
     <Compile Include="GUIs\Ejemplos QR\EjemploQR.Designer.cs">
       <DependentUpon>EjemploQR.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Personas\frmPersonas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Personas\frmPersonas.Designer.cs">
+      <DependentUpon>frmPersonas.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Puestos\frmActPuestos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +170,18 @@
     </Compile>
     <Compile Include="GUIs\Responsivas\frmBuscaActivos.Designer.cs">
       <DependentUpon>frmBuscaActivos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmBuscarResponsiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmBuscarResponsiva.Designer.cs">
+      <DependentUpon>frmBuscarResponsiva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmModifResp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmModifResp.Designer.cs">
+      <DependentUpon>frmModifResp.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Responsivas\frmResponsivas.cs">
       <SubType>Form</SubType>
@@ -201,6 +225,24 @@
     <Compile Include="GUIs\Tipos\frmTipos.Designer.cs">
       <DependentUpon>frmTipos.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Traspasos\frmBuscaUsuarioResp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Traspasos\frmBuscaUsuarioResp.Designer.cs">
+      <DependentUpon>frmBuscaUsuarioResp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Traspasos\frmConfirmTraspaso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Traspasos\frmConfirmTraspaso.Designer.cs">
+      <DependentUpon>frmConfirmTraspaso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Traspasos\frmTraspasos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Traspasos\frmTraspasos.Designer.cs">
+      <DependentUpon>frmTraspasos.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Usuarios\frmActUs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,8 +278,11 @@
     <Compile Include="Modelos\Conexion.cs" />
     <Compile Include="Modelos\IConexion.cs" />
     <Compile Include="Modelos\ManejoSql.cs" />
+    <Compile Include="Modelos\MotivosBaja.cs" />
+    <Compile Include="Modelos\Personas.cs" />
     <Compile Include="Modelos\Puestos.cs" />
     <Compile Include="Modelos\Reparaciones.cs" />
+    <Compile Include="Modelos\Responsivas.cs" />
     <Compile Include="Modelos\Sucursales.cs" />
     <Compile Include="Modelos\Tipos.cs" />
     <Compile Include="Modelos\Usuarios.cs" />
@@ -259,20 +304,23 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\AltaActivos\frmAltaActivo.resx">
+    <EmbeddedResource Include="GUIs\Activos\frmAltaActivo.resx">
       <DependentUpon>frmAltaActivo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\AltaActivos\frmBajaActivo.resx">
+    <EmbeddedResource Include="GUIs\Activos\frmBajaActivo.resx">
       <DependentUpon>frmBajaActivo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\AltaActivos\frmBuscActivos.resx">
+    <EmbeddedResource Include="GUIs\Activos\frmActReparacion.resx">
+      <DependentUpon>frmActReparacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Activos\frmBuscActivos.resx">
       <DependentUpon>frmBuscActivos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\AltaActivos\frmModifActivo.resx">
+    <EmbeddedResource Include="GUIs\Activos\frmModifActivo.resx">
       <DependentUpon>frmModifActivo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\AltaActivos\frmReparaActivos.resx">
-      <DependentUpon>frmReparaActivos.cs</DependentUpon>
+    <EmbeddedResource Include="GUIs\Activos\frmBuscaActReparacion.resx">
+      <DependentUpon>frmBuscaActReparacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Areas\frmActAreas.resx">
       <DependentUpon>frmActAreas.cs</DependentUpon>
@@ -286,6 +334,9 @@
     <EmbeddedResource Include="GUIs\Ejemplos QR\EjemploQR.resx">
       <DependentUpon>EjemploQR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Personas\frmPersonas.resx">
+      <DependentUpon>frmPersonas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Puestos\frmActPuestos.resx">
       <DependentUpon>frmActPuestos.cs</DependentUpon>
     </EmbeddedResource>
@@ -297,6 +348,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmBuscaActivos.resx">
       <DependentUpon>frmBuscaActivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmBuscarResponsiva.resx">
+      <DependentUpon>frmBuscarResponsiva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmModifResp.resx">
+      <DependentUpon>frmModifResp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmResponsivas.resx">
       <DependentUpon>frmResponsivas.cs</DependentUpon>
@@ -318,6 +375,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Tipos\frmTipos.resx">
       <DependentUpon>frmTipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Traspasos\frmBuscaUsuarioResp.resx">
+      <DependentUpon>frmBuscaUsuarioResp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Traspasos\frmConfirmTraspaso.resx">
+      <DependentUpon>frmConfirmTraspaso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Traspasos\frmTraspasos.resx">
+      <DependentUpon>frmTraspasos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Usuarios\frmActUs.resx">
       <DependentUpon>frmActUs.cs</DependentUpon>
@@ -349,8 +415,10 @@
     <None Include="Properties\DataSources\Activos.Modelos.Activos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.ActivosDesc.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Areas.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Personas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Puestos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Reparaciones.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Responsivas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Sucursales.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Tipos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Usuarios.datasource" />

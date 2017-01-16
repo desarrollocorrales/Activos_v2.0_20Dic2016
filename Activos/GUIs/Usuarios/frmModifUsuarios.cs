@@ -28,7 +28,7 @@ namespace Activos.GUIs.Usuarios
             try
             {
                 // llena el combo de usuarios
-                this.cmbSelecUsuario.DataSource = this._catalogosNegocio.getResponsables("A");
+                this.cmbSelecUsuario.DataSource = this._catalogosNegocio.getPersonas("A");
                 this.cmbSelecUsuario.DisplayMember = "nombre";
                 this.cmbSelecUsuario.ValueMember = "idUsuario";
                 this.cmbSelecUsuario.SelectedIndex = -1;
@@ -83,24 +83,15 @@ namespace Activos.GUIs.Usuarios
                 if (this.cmbSelecUsuario.SelectedIndex == -1)
                     throw new Exception("Seleccione un usuario para modificar");
 
-                if (string.IsNullOrEmpty(this.tbNombre.Text))
-                    throw new Exception("Llene el campo 'Nombre'");
-
-                if (this.cmbPuesto.SelectedIndex == -1)
-                    throw new Exception("Seleccione un Puesto");
-
                 if (string.IsNullOrEmpty(this.tbCorreo.Text))
                     throw new Exception("Llene el campo 'Correo'");
 
-                string nombre = this.tbNombre.Text;
-                int idPuesto = (int)this.cmbPuesto.SelectedValue;
                 string correo = this.tbCorreo.Text;
-                string fecIng = this.dtpFechaIngreso.Value.ToString("yyyy-MM-dd");
 
                 int idUsuario = (int)this.cmbSelecUsuario.SelectedValue;
 
                 // guarda el usuario
-                bool resp = this._catalogosNegocio.modificacionUsuario(nombre, idPuesto, fecIng, correo, idUsuario);
+                bool resp = this._catalogosNegocio.modificacionUsuario(correo, idUsuario);
 
                 if (resp)
                 {

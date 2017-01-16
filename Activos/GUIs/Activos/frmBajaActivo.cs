@@ -13,6 +13,7 @@ namespace Activos.GUIs.AltaActivos
     public partial class frmBajaActivo : Form
     {
         IActivosNegocio _activosNegocio;
+        ICatalogosNegocio _catalogosNegocio;
         private int? _idActivo = null;
 
         public frmBajaActivo()
@@ -20,6 +21,7 @@ namespace Activos.GUIs.AltaActivos
             InitializeComponent();
 
             this.WindowState = FormWindowState.Maximized;
+            this._catalogosNegocio = new CatalogosNegocio();
             this._activosNegocio = new ActivosNegocio();
         }
 
@@ -30,13 +32,18 @@ namespace Activos.GUIs.AltaActivos
             this.tbUsuario.Text = string.Empty;
 
             this.dtpFecha.MaxDate = DateTime.Today.AddDays(10);
+
+            // carga combo motivos
+            this.cbMotivo.ValueMember = "idMotivoBaja";
+            this.cbMotivo.DisplayMember = "motivo";
+            this.cbMotivo.DataSource = this._catalogosNegocio.getMotivosBaja();
         }
 
         private void btnBusqAct_Click(object sender, EventArgs e)
         {
             try
             {
-                frmBuscActivos form = new frmBuscActivos();
+                frmBuscActivos form = new frmBuscActivos("BAJAS");
 
                 var result = form.ShowDialog();
 
@@ -65,7 +72,7 @@ namespace Activos.GUIs.AltaActivos
 
                     // reinicia campos
                     this.cbMotivo.SelectedIndex = -1;
-                    this.tbCausa.Text = string.Empty;
+                    this.tbDetalles.Text = string.Empty;
                 }
 
                 if (result == DialogResult.Cancel)
@@ -91,22 +98,45 @@ namespace Activos.GUIs.AltaActivos
                 if (this.cbMotivo.SelectedIndex == -1)
                     throw new Exception("Seleccione un motivo");
 
-                if (string.IsNullOrEmpty(this.tbCausa.Text))
-                    throw new Exception("Defina una causa");
+                if (string.IsNullOrEmpty(this.tbDetalles.Text))
+                    throw new Exception("Proporcione un detalle");
 
                 if (string.IsNullOrEmpty(this.dtpFecha.Text))
                     throw new Exception("Seleccione una fecha");
 
-                string motivo = (string)this.cbMotivo.SelectedItem;
+                string motivo = ((Modelos.MotivosBaja)this.cbMotivo.SelectedItem).clave;
+                int idMotivo = ((Modelos.MotivosBaja)this.cbMotivo.SelectedItem).idMotivoBaja;
                 string fecha = this.dtpFecha.Value.ToString("yyyy-MM-dd");
-                string causa = this.tbCausa.Text;
+                string detalle = this.tbDetalles.Text;
 
                 bool resultado;
 
-                resultado = this._activosNegocio.bajaActivo(this._idActivo, (motivo.Equals("REPARACION") ? "R" : "B"), causa, fecha, Modelos.Login.idUsuario);
+                resultado = this._activosNegocio.bajaActivo(this._idActivo, idMotivo, motivo, detalle, fecha, Modelos.Login.idUsuario);
 
-                if(resultado)
+                if (resultado)
+                {
                     MessageBox.Show("Movimiento realizado correctamente", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.tbNombre.Text = string.Empty;
+                    this.tbTipo.Text = string.Empty;
+                    this.tbSucursal.Text = string.Empty;
+                    this.tbArea.Text = string.Empty;
+                    this.tbMarca.Text = string.Empty;
+                    this.tbModelo.Text = string.Empty;
+                    this.tbNumSerie.Text = string.Empty;
+                    this.tbColor.Text = string.Empty;
+                    this.tbDescripcion.Text = string.Empty;
+                    this.tbUsuario.Text = string.Empty;
+
+                    this.lbNumetiqueta.Text = string.Empty;
+                    this.lbCveActivo.Text = string.Empty;
+
+                    this._idActivo = null;
+
+                    // reinicia campos
+                    this.cbMotivo.SelectedIndex = -1;
+                    this.tbDetalles.Text = string.Empty;
+                }
             }
             catch (Exception Ex)
             {

@@ -32,9 +32,9 @@ namespace Activos.GUIs.Sucursales
         private void frmModifSuc_Load(object sender, EventArgs e)
         {
             // llena el catalogo de responsables (usuarios) disponibles
-            this.cmbResponsable.DataSource = this._catalogosNegocio.getResponsables("A");
-            this.cmbResponsable.DisplayMember = "nombre";
-            this.cmbResponsable.ValueMember = "idUsuario";
+            this.cmbResponsable.DataSource = this._catalogosNegocio.getPersonas("", "A");
+            this.cmbResponsable.DisplayMember = "nombreCompleto";
+            this.cmbResponsable.ValueMember = "idPersona";
             
 
             // selecciona el usuario enviado

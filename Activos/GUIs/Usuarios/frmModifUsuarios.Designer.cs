@@ -54,6 +54,7 @@
             // 
             this.cmbPuesto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPuesto.DropDownWidth = 600;
+            this.cmbPuesto.Enabled = false;
             this.cmbPuesto.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.cmbPuesto.FormattingEnabled = true;
             this.cmbPuesto.Location = new System.Drawing.Point(155, 130);
@@ -77,6 +78,7 @@
             this.tbNombre.Location = new System.Drawing.Point(155, 88);
             this.tbNombre.MaxLength = 255;
             this.tbNombre.Name = "tbNombre";
+            this.tbNombre.ReadOnly = true;
             this.tbNombre.Size = new System.Drawing.Size(432, 30);
             this.tbNombre.TabIndex = 20;
             // 

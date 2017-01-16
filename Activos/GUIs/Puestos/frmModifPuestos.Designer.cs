@@ -37,6 +37,7 @@
             // 
             // btnGuardar
             // 
+            this.btnGuardar.Font = new System.Drawing.Font("Tahoma", 14F);
             this.btnGuardar.Location = new System.Drawing.Point(191, 153);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(189, 74);

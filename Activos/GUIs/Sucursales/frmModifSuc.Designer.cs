@@ -64,7 +64,8 @@
             // 
             // cmbResponsable
             // 
-            this.cmbResponsable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbResponsable.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbResponsable.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbResponsable.FormattingEnabled = true;
             this.cmbResponsable.Location = new System.Drawing.Point(184, 90);
             this.cmbResponsable.Name = "cmbResponsable";
@@ -73,6 +74,7 @@
             // 
             // btnGuardar
             // 
+            this.btnGuardar.Font = new System.Drawing.Font("Tahoma", 14F);
             this.btnGuardar.Location = new System.Drawing.Point(248, 153);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(189, 74);

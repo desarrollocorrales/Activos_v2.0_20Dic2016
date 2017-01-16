@@ -23,5 +23,23 @@ namespace Activos.Negocio
 
             return this._responsivasDatos.creaRespDet(idResult, activos);
         }
+
+
+        public List<Modelos.Responsivas> buscaResponsiva(string responsable, int idSuc)
+        {
+            return this._responsivasDatos.buscaResponsiva(responsable, idSuc);
+        }
+
+
+        public bool modifResponsiva(int? idResponsiva, List<Modelos.Activos> activosMtos)
+        {
+            return this._responsivasDatos.modifResponsiva(idResponsiva, activosMtos);
+        }
+
+
+        public List<Modelos.Responsivas> buscaResponsiva(int idUsuario)
+        {
+            return this._responsivasDatos.buscaResponsiva(idUsuario);
+        }
     }
 }

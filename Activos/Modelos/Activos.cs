@@ -31,6 +31,8 @@ namespace Activos.Modelos
         public string claveActivo { get; set; }
 
         public string status { get; set; }
+
+        public string accion { get; set; }
     }
 
     public partial class ActivosDesc

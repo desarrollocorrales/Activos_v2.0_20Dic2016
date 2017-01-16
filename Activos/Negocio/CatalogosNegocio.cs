@@ -110,9 +110,9 @@ namespace Activos.Negocio
             return result;
         }
 
-        public List<Usuarios> getResponsables(string status)
+        public List<Usuarios> getPersonas(string status)
         {
-            return this._catalogosDatos.getResponsables(status);
+            return this._catalogosDatos.getPersonas(status);
         }
 
         public List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda)
@@ -120,7 +120,7 @@ namespace Activos.Negocio
             return this._catalogosDatos.busquedaUsuarios(usuario, busqueda);
         }
 
-        public Response creaUsuario(string nombre, int idPuesto, string fecha, string correo, string usuario, string clave)
+        public Response creaUsuario(int idPersona, string fecha, string correo, string usuario, string clave)
         {
             Response result = new Response();
 
@@ -145,7 +145,7 @@ namespace Activos.Negocio
             }
 
             // inserta el usuario
-            bool inserta = this._catalogosDatos.insertaUsuario(nombre, idPuesto, fecha, correo, usuario, clave);
+            bool inserta = this._catalogosDatos.insertaUsuario(idPersona, fecha, correo, usuario, clave);
 
             result.status = Estatus.OK;
 
@@ -153,9 +153,9 @@ namespace Activos.Negocio
         }
 
 
-        public bool modificacionUsuario(string nombre, int idPuesto, string fecIng, string correo, int idUsuario)
+        public bool modificacionUsuario(string correo, int idUsuario)
         {
-            return this._catalogosDatos.modificacionUsuario(nombre, idPuesto, fecIng, correo, idUsuario);
+            return this._catalogosDatos.modificacionUsuario(correo, idUsuario);
         }
 
 
@@ -255,5 +255,48 @@ namespace Activos.Negocio
         }
 
 
+
+
+        /* ********** P E R S O N A S *********** */
+        public bool altaPersona(string nombre, int idPuesto)
+        {
+            return this._catalogosDatos.altaPersonas(nombre, idPuesto);
+        }
+
+
+        public List<Personas> getPersonas(string paramBusq, string status)
+        {
+            return this._catalogosDatos.getPersonas(paramBusq, status);
+        }
+
+
+        public bool modifPersona(string nombre, int idPuesto, int? idPersona)
+        {
+            return this._catalogosDatos.modifPersona(nombre, idPuesto, idPersona);
+        }
+
+
+        public bool bajaPersonas(List<int> seleccionados)
+        {
+            return this._catalogosDatos.bajaPersonas(seleccionados);
+        }
+
+
+        public bool activaPersonas(List<int> seleccionados)
+        {
+            return this._catalogosDatos.activaPersonas(seleccionados);
+        }
+
+
+        public List<Personas> getPersonasSinUsuario(string status)
+        {
+            return this._catalogosDatos.getPersonasSinUsuario(status);
+        }
+
+
+        public List<MotivosBaja> getMotivosBaja()
+        {
+            return this._catalogosDatos.getMotivosBaja();
+        }
     }
 }

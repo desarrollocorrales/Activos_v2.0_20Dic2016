@@ -83,6 +83,7 @@
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // colseleccionado
             // 
@@ -175,7 +176,7 @@
             // 
             // btnBaja
             // 
-            this.btnBaja.Font = new System.Drawing.Font("Tahoma", 18F);
+            this.btnBaja.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBaja.Location = new System.Drawing.Point(399, 337);
             this.btnBaja.Margin = new System.Windows.Forms.Padding(5);
             this.btnBaja.Name = "btnBaja";

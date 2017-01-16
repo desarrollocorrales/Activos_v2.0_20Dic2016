@@ -15,6 +15,8 @@ using Activos.GUIs.Tipos;
 using Activos.GUIs.Ejemplos_QR;
 using Activos.GUIs.AltaActivos;
 using Activos.GUIs.Responsivas;
+using Activos.GUIs.Personas;
+using Activos.GUIs.Traspasos;
 
 namespace Activos
 {
@@ -334,7 +336,7 @@ namespace Activos
         {
             try
             {
-                frmReparaActivos child = new frmReparaActivos();
+                frmActReparacion child = new frmActReparacion();
 
                 this.validaFormsDuplicados(child.GetType());
 
@@ -350,13 +352,76 @@ namespace Activos
         }
 
         //****************************************************************************************************
-        //************** R E S P O N S I V A S *****************************************************
+        //************** R E S P O N S I V A S ***************************************************************
         //****************************************************************************************************
         private void nuevaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 frmResponsivas child = new frmResponsivas();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmModifResp child = new frmModifResp();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        //****************************************************************************************************
+        //************** P E R S O N A S *********************************************************************
+        //****************************************************************************************************
+        private void personasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmPersonas child = new frmPersonas();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        //****************************************************************************************************
+        //************** T R A S P A S O S *******************************************************************
+        //****************************************************************************************************
+        private void traspasosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmTraspasos child = new frmTraspasos();
 
                 this.validaFormsDuplicados(child.GetType());
 

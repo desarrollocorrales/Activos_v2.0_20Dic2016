@@ -62,7 +62,7 @@ namespace Activos.GUIs.AltaActivos
         {
             try
             {
-                frmBuscActivos form = new frmBuscActivos();
+                frmBuscActivos form = new frmBuscActivos("MODIFICACION");
 
                 var result = form.ShowDialog();
 

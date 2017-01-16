@@ -21,6 +21,10 @@ namespace Activos.Negocio
 
         bool modifActivo(int? idActivo, string nombre, string descripcion);
 
-        bool bajaActivo(int? idActivo, string motivo, string causa, string fecha, int idUsuario);
+        bool bajaActivo(int? idActivo, int idMotivo, string motivo, string detalle, string fecha, int idUsuario);
+
+        bool actActivoReparacion(int? idReparacion, string observAct, string fechaFin, int? idActivo);
+
+        List<Modelos.Activos> getBuscaActivos(int idResponsiva);
     }
 }

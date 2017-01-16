@@ -10,16 +10,17 @@ using Activos.Negocio;
 
 namespace Activos.GUIs.AltaActivos
 {
-    public partial class frmReparaActivos : Form
+    public partial class frmBuscaActReparacion : Form
     {
         ICatalogosNegocio _catalogosNegocio;
         IReparacionesNegocio _reparacionesNegocio;
 
-        public frmReparaActivos()
+        public Modelos.Reparaciones _activoSelecc;
+
+        public frmBuscaActReparacion()
         {
             InitializeComponent();
 
-            this.WindowState = FormWindowState.Maximized;
 
             this._catalogosNegocio = new CatalogosNegocio();
             this._reparacionesNegocio = new ReparacionesNegocio();
@@ -64,6 +65,31 @@ namespace Activos.GUIs.AltaActivos
                 }
 
                 this.gcReparaciones.DataSource = resultado;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void gcReparaciones_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.gridView1.GetSelectedRows().Count() == 0)
+                    return;
+
+                this._activoSelecc = new Modelos.Reparaciones();
+
+                foreach (int i in this.gridView1.GetSelectedRows())
+                {
+                    var dr1 = this.gridView1.GetRow(i);
+
+                    this._activoSelecc = (Modelos.Reparaciones)dr1;
+                }
+
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
             }
             catch (Exception Ex)
             {

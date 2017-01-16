@@ -35,13 +35,13 @@ namespace Activos.Negocio
         /* ********** U S U A R I O  S ************* */
         Response validaAcceso(string usuario, string pass);
 
-        List<Usuarios> getResponsables(string status);
+        List<Usuarios> getPersonas(string status);
 
         List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda);
 
-        Response creaUsuario(string nombre, int idPuesto, string fecha, string correo, string usuario, string clave);
+        Response creaUsuario(int idPersona, string fecha, string correo, string usuario, string clave);
 
-        bool modificacionUsuario(string nombre, int idPuesto, string fecIng, string correo, int idUsuario);
+        bool modificacionUsuario(string correo, int idUsuario);
 
         bool activaUsuarios(List<int> seleccionados);
 
@@ -80,5 +80,20 @@ namespace Activos.Negocio
         bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color);
 
 
+
+        /* ********** P E R S O N A S *********** */
+        bool altaPersona(string nombre, int idPuesto);
+
+        List<Personas> getPersonas(string paramBusq, string status);
+
+        bool modifPersona(string nombre, int idPuesto, int? idPersona);
+
+        bool bajaPersonas(List<int> seleccionados);
+
+        bool activaPersonas(List<int> seleccionados);
+
+        List<Modelos.Personas> getPersonasSinUsuario(string status);
+
+        List<Modelos.MotivosBaja> getMotivosBaja();
     }
 }

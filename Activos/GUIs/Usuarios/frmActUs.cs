@@ -25,7 +25,7 @@ namespace Activos.GUIs.Usuarios
         private void frmActUs_Load(object sender, EventArgs e)
         {
             // llena el grid con las sucursales disponibles
-            this.gcUsuariosBaja.DataSource = this._catalogosNegocio.getResponsables("B");
+            this.gcUsuariosBaja.DataSource = this._catalogosNegocio.getPersonas("B");
 
             if (this.gridView1.RowCount != 0)
                 this.gridView1.UnselectRow(0);
@@ -50,7 +50,7 @@ namespace Activos.GUIs.Usuarios
                     MessageBox.Show("Usuarios(s) activado(s) correctamente", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // llena el grid con las sucursales disponibles
-                this.gcUsuariosBaja.DataSource = this._catalogosNegocio.getResponsables("B");
+                this.gcUsuariosBaja.DataSource = this._catalogosNegocio.getPersonas("B");
             }
             catch (Exception Ex)
             {

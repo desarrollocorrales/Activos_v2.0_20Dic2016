@@ -28,11 +28,12 @@ namespace Activos.Datos
             Modelos.Reparaciones ent;
 
             string sql =
-                "select r.idreparacion, r.idactivo, r.idusuarioresponsable, r.fechainicio, " +
-                        "r.fechafin, r.causa, r.status, a.nombrecorto as activo, a.idtipo, u.nombre as usuario " +
+                "select r.idreparacion, r.idactivo, r.idusuarioresponsable, r.fechainicio, r.observacionesactivacion, " +
+                        "r.fechafin, r.causa, r.status, a.nombrecorto as activo, a.idtipo, p.nombrecompleto as usuario " +
                 "from activos_reparacion r " +
                 "left join activos_activos a on (r.idactivo = a.idactivo) " +
                 "left join activos_usuarios u on (r.idusuarioresponsable = u.idusuario) " +
+                "left join activos_personas p on (u.idpersona = p.idpersona) " +
                 "where FIND_IN_SET(r.idactivo, @parameter) != 0";
 
             string wherIn = string.Join(",", activosIds);
@@ -64,20 +65,23 @@ namespace Activos.Datos
                                 ent.idUsuarioResp = Convert.ToInt16(res.reader["idusuarioresponsable"]);
 
                                 ent.usuario = Convert.ToString(res.reader["usuario"]);
+
+                                ent.usuario = ent.usuario.Replace("&", " ");
+
                                 ent.activo = Convert.ToString(res.reader["activo"]);
 
                                 DateTime dt = DateTime.Parse(Convert.ToString(res.reader["fechainicio"]));
-                                ent.fechaInicio = dt.ToString("dd/MM/yyyy"); ;
+                                ent.fechaInicio = dt.ToString("dd/MM/yyyy");
 
 
                                 if (res.reader["fechafin"] is DBNull) ent.fechaFin = null;
                                 else ent.fechaFin = Convert.ToString(res.reader["fechafin"]);
 
+
                                 ent.causa = Convert.ToString(res.reader["causa"]);
+                                ent.observActivacion = Convert.ToString(res.reader["observacionesactivacion"]);
 
                                 ent.status= Convert.ToString(res.reader["status"]);
-
-                                
 
                                 result.Add(ent);
                             }

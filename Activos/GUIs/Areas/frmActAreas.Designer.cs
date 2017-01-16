@@ -75,6 +75,7 @@
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // colseleccionado
             // 
@@ -126,7 +127,7 @@
             // 
             // btnActiva
             // 
-            this.btnActiva.Font = new System.Drawing.Font("Tahoma", 18F);
+            this.btnActiva.Font = new System.Drawing.Font("Tahoma", 14F);
             this.btnActiva.Location = new System.Drawing.Point(96, 344);
             this.btnActiva.Margin = new System.Windows.Forms.Padding(5);
             this.btnActiva.Name = "btnActiva";
@@ -149,7 +150,7 @@
             // 
             // bntCerrar
             // 
-            this.bntCerrar.Font = new System.Drawing.Font("Tahoma", 18F);
+            this.bntCerrar.Font = new System.Drawing.Font("Tahoma", 14F);
             this.bntCerrar.Location = new System.Drawing.Point(280, 344);
             this.bntCerrar.Margin = new System.Windows.Forms.Padding(5);
             this.bntCerrar.Name = "bntCerrar";

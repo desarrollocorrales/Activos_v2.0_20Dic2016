@@ -34,7 +34,7 @@ namespace Activos.Datos
         /* ********** U S U A R I O  S ************* */
         Usuarios validaAcceso(string usuario, string pass);
 
-        List<Usuarios> getResponsables(string status);
+        List<Usuarios> getPersonas(string status);
 
         List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda);
 
@@ -42,9 +42,9 @@ namespace Activos.Datos
 
         bool buscaCorreo(string p);
 
-        bool insertaUsuario(string nombre, int idPuesto, string fecha, string correo, string usuario, string clave);
+        bool insertaUsuario(int idPersona, string fecha, string correo, string usuario, string clave);
 
-        bool modificacionUsuario(string nombre, int idPuesto, string fecIng, string correo, int idUsuario);
+        bool modificacionUsuario(string correo, int idUsuario);
 
         bool activaUsuarios(List<int> seleccionados);
 
@@ -80,5 +80,23 @@ namespace Activos.Datos
 
         bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color);
 
+
+        /* ********** P E R S O N A S *********** */
+        bool altaPersonas(string nombre, int idPuesto);
+
+        List<Personas> getPersonas(string paramBusq, string status);
+
+        bool modifPersona(string nombre, int idPuesto, int? idPersona);
+
+        bool bajaPersonas(List<int> seleccionados);
+
+        bool activaPersonas(List<int> seleccionados);
+
+        List<Personas> getPersonasSinUsuario(string status);
+
+
+
+        /* ****** M O T I V O S   B A J A ****** */
+        List<MotivosBaja> getMotivosBaja();
     }
 }

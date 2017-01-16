@@ -25,8 +25,16 @@ namespace Activos.Datos
 
         bool modificActivo(int? idActivo, string nombre, string descripcion);
 
-        long bajaActivo(int? idActivo, string motivo, string causa, string fecha, int idUsuario);
+        long bajaActivo(int? idActivo, int idMotivo, string motivo, string detalle, string fecha, int idUsuario);
 
         bool actualizaStatus(long idRB, int? idActivo, string motivo);
+
+        bool actActivoReparacion(int? idReparacion, string observAct, string fechaFin);
+
+        bool cambiaStatusActivo(int? idReparacion, int? idActivo);
+
+        List<int> getActivosIdsRespon(int idResponsiva);
+
+        List<Modelos.Activos> getBuscaActivos(List<int> idActivos);
     }
 }

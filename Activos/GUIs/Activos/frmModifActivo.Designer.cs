@@ -131,7 +131,9 @@
             // 
             // tbNombre
             // 
+            this.tbNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombre.Location = new System.Drawing.Point(115, 29);
+            this.tbNombre.MaxLength = 40;
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.ReadOnly = true;
             this.tbNombre.Size = new System.Drawing.Size(420, 30);

@@ -180,7 +180,6 @@ namespace Activos.GUIs.Responsivas
 
                 foreach (Modelos.Activos ac in activos)
 
-
                     if (this._listaAgregados.Where(w=>w.idActivo == ac.idActivo).ToList().Count == 0)
                     {
                         this._listaAgregados.Add(new Modelos.Activos

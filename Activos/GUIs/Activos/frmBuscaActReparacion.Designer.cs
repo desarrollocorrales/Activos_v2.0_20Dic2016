@@ -1,6 +1,6 @@
 ﻿namespace Activos.GUIs.AltaActivos
 {
-    partial class frmReparaActivos
+    partial class frmBuscaActReparacion
     {
         /// <summary>
         /// Required designer variable.
@@ -95,6 +95,7 @@
             this.gcReparaciones.TabIndex = 5;
             this.gcReparaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gcReparaciones.DoubleClick += new System.EventHandler(this.gcReparaciones_DoubleClick);
             // 
             // reparacionesBindingSource
             // 
@@ -115,6 +116,7 @@
             this.gridView1.GridControl = this.gcReparaciones;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // colidReparacion
             // 
@@ -199,11 +201,11 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // frmReparaActivos
+            // frmBuscaActReparacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 346);
+            this.ClientSize = new System.Drawing.Size(552, 337);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.gcReparaciones);
             this.Controls.Add(this.tbNombre);
@@ -212,7 +214,8 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "frmReparaActivos";
+            this.Name = "frmBuscaActReparacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Activos en Reparación";
             this.Load += new System.EventHandler(this.frmReparaActivos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcReparaciones)).EndInit();

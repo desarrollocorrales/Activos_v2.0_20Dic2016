@@ -337,7 +337,7 @@ namespace Activos.Datos
             Modelos.ActivosDesc ent;
 
             string sql =
-                "select a.idactivo, r.idusuario, u.nombre as usuario, a.idarea, ar.nombre as area, " +
+                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area, " +
                         "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, " +
                         "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
                         "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
@@ -345,6 +345,7 @@ namespace Activos.Datos
                 "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
                 "left join activos_responsivas r on (r.idresponsiva = rd.idresponsiva) " +
                 "left join activos_usuarios u on (r.idusuario = u.idusuario) " +
+                "left join activos_personas p on (u.idpersona = p.idpersona) " +
                 "left join activos_areas ar on (a.idarea = ar.idarea) " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
@@ -385,6 +386,8 @@ namespace Activos.Datos
 
                                 ent.usuario = Convert.ToString(res.reader["usuario"]);
 
+                                ent.usuario = ent.usuario.Replace("&", " ");
+
                                 ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
                                 ent.descripcion = Convert.ToString(res.reader["descripcion"]);
 
@@ -416,7 +419,7 @@ namespace Activos.Datos
             Modelos.ActivosDesc ent;
 
             string sql =
-                "select a.idactivo, r.idusuario, u.nombre as usuario, a.idarea, ar.nombre as area, " +
+                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area, " +
                         "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, " +
                         "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
                         "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
@@ -424,6 +427,7 @@ namespace Activos.Datos
                 "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
                 "left join activos_responsivas r on (r.idresponsiva = rd.idresponsiva) " +
                 "left join activos_usuarios u on (r.idusuario = u.idusuario) " +
+                "left join activos_personas p on (u.idpersona = p.idpersona) " +
                 "left join activos_areas ar on (a.idarea = ar.idarea) " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
@@ -473,6 +477,8 @@ namespace Activos.Datos
 
                                 ent.usuario = Convert.ToString(res.reader["usuario"]);
 
+                                ent.usuario = ent.usuario.Replace("&", " ");
+
                                 ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
                                 ent.descripcion = Convert.ToString(res.reader["descripcion"]);
 
@@ -504,7 +510,7 @@ namespace Activos.Datos
             Modelos.ActivosDesc ent;
 
             string sql = string.Format(
-                "select a.idactivo, r.idusuario, u.nombre as usuario, a.idarea, ar.nombre as area, " +
+                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area, " +
                         "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, " +
                         "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
                         "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
@@ -512,10 +518,11 @@ namespace Activos.Datos
                 "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
                 "left join activos_responsivas r on (r.idresponsiva = rd.idresponsiva) " +
                 "left join activos_usuarios u on (r.idusuario = u.idusuario) " +
+                "left join activos_personas p on (u.idpersona = p.idpersona) " +
                 "left join activos_areas ar on (a.idarea = ar.idarea) " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
-                "where a.status = 'A' and u.{0} LIKE @usuario order by u.{0}", busqueda);
+                "where a.status = 'A' and {0} LIKE @usuario order by {0}", busqueda.Equals("usuario") ? "u." + busqueda : "p." + busqueda);
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -549,6 +556,8 @@ namespace Activos.Datos
                                 ent.sucursal = Convert.ToString(res.reader["sucursal"]);
 
                                 ent.usuario = Convert.ToString(res.reader["usuario"]);
+
+                                ent.usuario = ent.usuario.Replace("&", " ");
 
                                 ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
                                 ent.descripcion = Convert.ToString(res.reader["descripcion"]);
@@ -614,7 +623,7 @@ namespace Activos.Datos
         }
 
         // crea un registro de baja o de reparacion
-        public long bajaActivo(int? idActivo, string motivo, string causa, string fecha, int idUsuario)
+        public long bajaActivo(int? idActivo, int idMotivo, string motivo, string detalle, string fecha, int idUsuario)
         {
             long result = 0;
 
@@ -626,10 +635,10 @@ namespace Activos.Datos
                       "VALUES(@idActivo, @idUs, @fecha, @causa, 'A')";
             }
 
-            if (motivo.Equals("B"))
+            else
             {
-                sql = "INSERT INTO activos_baja (idactivo, idusuariobaja, fecha, motivo) " +
-                      "VALUES(@idActivo, @idUs, @fecha, @causa)";
+                sql = "INSERT INTO activos_baja (idactivo, idusuariobaja, fecha, observaciones, idmotivobaja) " +
+                      "VALUES(@idActivo, @idUs, @fecha, @causa, @idMotivo)";
             }
 
             int rows = 0;
@@ -646,7 +655,9 @@ namespace Activos.Datos
                     cmd.Parameters.AddWithValue("@idActivo", idActivo);
                     cmd.Parameters.AddWithValue("@idUs", idUsuario);
                     cmd.Parameters.AddWithValue("@fecha", fecha);
-                    cmd.Parameters.AddWithValue("@causa", causa);
+                    cmd.Parameters.AddWithValue("@causa", detalle);
+
+                    if (!motivo.Equals("R")) cmd.Parameters.AddWithValue("@idMotivo", idMotivo);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 
@@ -702,14 +713,14 @@ namespace Activos.Datos
 
                         // actualiza RESPONISVA_DETALLE
                         string sqlRDS = string.Format("select idresposivadet from activos_responsivasdetalle where idactivo = {0} and status = 'A'", idActivo);
-                        res = Utilerias.EjecutaSQL(sqlA, cmd);
+                        res = Utilerias.EjecutaSQL(sqlRDS, cmd);
 
                         if (res.ok)
                         {
                             if (res.reader.HasRows)
                                 while (res.reader.Read())
                                 {
-                                    idRD = (int)res.reader["idresponsivadet"];
+                                    idRD = (int)res.reader["idresposivadet"];
                                 }
                         }
                         else
@@ -775,6 +786,237 @@ namespace Activos.Datos
                 }
 
                 throw new Exception(e.Message);
+            }
+
+            return result;
+        }
+
+        // activa una reparacion
+        public bool actActivoReparacion(int? idReparacion, string observAct, string fechaFin)
+        {
+            string sql =
+                "UPDATE activos_reparacion SET observacionesactivacion = @onserv, fechafin = @fechaF " +
+                "where idreparacion = @idRepara";
+
+            bool result = true;
+
+            int rows = 0;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@onserv", observAct);
+                    cmd.Parameters.AddWithValue("@fechaF", fechaFin);
+                    cmd.Parameters.AddWithValue("@idRepara", idReparacion);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                }
+            }
+
+            return result;
+        }
+
+        // cambia el estatus del activo que estaba anteriormente en reparacion
+        public bool cambiaStatusActivo(int? idReparacion, int? idActivo)
+        {
+            int rows = 0;
+
+            bool result = true;
+
+            try
+            {
+                string sqlA = 
+                    "UPDATE activos_activos SET status = 'A' " +
+                    "WHERE idactivo = @idActivo";
+
+                using (var conn = this._conexion.getConexion())
+                {
+                    conn.Open();
+
+                    using (var cmd = new MySqlCommand())
+                    {
+                        cmd.Connection = conn;
+
+                        // parametros
+                        cmd.Parameters.AddWithValue("idActivo", idActivo);
+
+                        // actualiza ACTIVOS
+                        ManejoSql res = Utilerias.EjecutaSQL(sqlA, ref rows, cmd);
+
+                        if (res.ok)
+                        {
+                            if (rows == 0) result = false;
+                        }
+                        else
+                            throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                // deshacer modificaciones
+                using (var conn = this._conexion.getConexion())
+                {
+                    conn.Open();
+
+                    using (var cmd = new MySqlCommand())
+                    {
+                        cmd.Connection = conn;
+
+                        string sql = string.Empty;
+
+                        int rowsAf = 0;
+
+                        cmd.Parameters.AddWithValue("idReparacion", idReparacion);
+
+                        var a = Utilerias.EjecutaSQL(
+                            "update activos_reparacion set fechafin = null, observacionesactivacion = null where idreparacion = @idReparacion",
+                            ref rowsAf, cmd);
+
+                    }
+
+                }
+
+                throw new Exception(e.Message);
+            }
+
+            return result;
+        }
+
+        // obtiene los activos dentro de una responsiva
+        public List<int> getActivosIdsRespon(int idResponsiva)
+        {
+            List<int> result = new List<int>();
+
+            string sql =
+                "select idactivo from activos_responsivasdetalle where idresponsiva = @idRespo";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    cmd.Parameters.AddWithValue("@idRespo", idResponsiva);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                result.Add((int)res.reader["idactivo"]);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene los activos 
+        public List<Modelos.Activos> getBuscaActivos(List<int> idActivos)
+        {
+            List<Modelos.Activos> result = new List<Modelos.Activos>();
+            Modelos.Activos ent;
+
+            string sql =
+                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo, " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
+                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, m.motivo as status " +
+                "from activos_activos a " +
+                "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "left join activos_motivosbaja m on (a.status = m.clave) " +
+                "where FIND_IN_SET(a.idactivo, @parameter) != 0 and rd.status != 'B'";
+
+            string wherIn = string.Join(",", idActivos);
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@parameter", wherIn);
+                    
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Activos();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
+                                ent.tipo = Convert.ToString(res.reader["tipo"]);
+
+                                ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---").Trim();
+                                ent.fechaAlta = Convert.ToString(res.reader["fechaalta"]);
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
+
+                                ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+
+                                if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
+                                else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
+
+                                if (res.reader["fechamodificacion"] is DBNull) ent.fechaModificacion = string.Empty;
+                                else ent.fechaModificacion = Convert.ToString(res.reader["fechamodificacion"]);
+
+                                if (res.reader["costo"] is DBNull) ent.costo = null;
+                                else ent.costo = Convert.ToDecimal(res.reader["costo"]);
+
+                                ent.status = Convert.ToString(res.reader["status"]);
+
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
             }
 
             return result;

@@ -18,6 +18,7 @@ namespace Activos.Modelos
         public string fechaInicio { get; set; }
         public string fechaFin { get; set; }
         public string causa { get; set; }
+        public string observActivacion { get; set; }
         public string status { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace Activos.GUIs.Responsivas
             try
             {
                 // valida radio
-                string busqueda = this.rbUsuario.Checked ? "usuario" : "nombre";
+                string busqueda = this.rbUsuario.Checked ? "usuario" : "nombrecompleto";
 
                 // busqueda de usuarios
                 List<Modelos.UsuariosResponsivas> usuarios = this._catalogosNegocio.busquedaUsuarios(this.tbUsuario.Text, busqueda);

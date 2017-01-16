@@ -20,15 +20,16 @@ namespace Activos.Datos
         }
 
         // obtiene una lista de todos los usuarios ACTIVOS
-        public List<Usuarios> getResponsables(string status)
+        public List<Usuarios> getPersonas(string status)
         {
             List<Usuarios> result = new List<Usuarios>();
             Usuarios ent;
 
-            string sql = 
-                "select a.idusuario, a.nombre, a.idpuesto, p.nombre as puesto, a.fechaingreso, a.correo, a.usuario, a.clave, a.status  " +
+            string sql =
+                "select a.idusuario, pe.idpersona, pe.nombrecompleto as nombre, pe.idpuesto, p.nombre as puesto, a.fechaingreso, a.correo, a.usuario, a.clave, a.status " +
                 "from activos_usuarios a " +
-                "left join activos_puesto p on (a.idpuesto = p.idpuesto)  " +
+                "left join activos_personas pe on (a.idpersona = pe.idpersona)  " +
+                "left join activos_puesto p on (pe.idpuesto = p.idpuesto)  " +
                 "where a.status = @status";
 
             // define conexion con la cadena de conexion
@@ -53,7 +54,12 @@ namespace Activos.Datos
                             ent = new Usuarios();
 
                             ent.idUsuario = Convert.ToInt16(res.reader["idusuario"]);
-                            ent.nombre = Convert.ToString(res.reader["nombre"]);
+
+                            if (res.reader["idpersona"] is DBNull) ent.idPersona = null;
+                            else ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
+
+                            if (res.reader["nombre"] is DBNull) ent.nombre = string.Empty;
+                            else ent.nombre = Convert.ToString(res.reader["nombre"]).Replace("&", " ");
 
                             if (res.reader["idpuesto"] is DBNull) ent.idPuesto = null;
                             else ent.idPuesto = Convert.ToInt16(res.reader["idpuesto"]);
@@ -61,7 +67,9 @@ namespace Activos.Datos
                             if (res.reader["puesto"] is DBNull) ent.puesto = string.Empty;
                             else ent.puesto = Convert.ToString(res.reader["puesto"]);
 
-                            ent.fechaIngreso = Convert.ToString(res.reader["fechaingreso"]);
+                            DateTime dt = DateTime.Parse(Convert.ToString(res.reader["fechaingreso"]));
+                            ent.fechaIngreso = dt.ToString("dd/MM/yyyy");
+
                             ent.correo = Convert.ToString(res.reader["correo"]);
                             ent.usuario = Convert.ToString(res.reader["usuario"]);
                             ent.clave = Convert.ToString(res.reader["clave"]);
@@ -87,7 +95,7 @@ namespace Activos.Datos
         {
             Usuarios result = null;
 
-            string sql = "select idusuario, usuario, nombre from activos_usuarios where usuario = @usuario and clave = @clave";
+            string sql = "select idusuario, usuario from activos_usuarios where usuario = @usuario and clave = @clave";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -113,7 +121,6 @@ namespace Activos.Datos
                                 result = new Usuarios();
 
                                 result.idUsuario = Convert.ToInt16(res.reader["idusuario"]);
-                                result.nombre = Convert.ToString(res.reader["nombre"]);
 
                                 result.usuario = Convert.ToString(res.reader["usuario"]);
 
@@ -138,10 +145,10 @@ namespace Activos.Datos
             List<Sucursales> result = new List<Sucursales>();
             Sucursales ent;
 
-            string sql = 
-                        "select s.idsucursal, s.nombre, s.idresponsable, u.nombre as responsable, s.status  " +
+            string sql =
+                        "select s.idsucursal, s.nombre, s.idresponsable, p.nombrecompleto as responsable, s.status " +
                         "from activos_sucursales s  " +
-                        "left join activos_usuarios u on (s.idresponsable = u.idusuario)  " +
+                        "left join activos_personas p on (s.idresponsable = p.idpersona)  " +
                         "where s.status = @status order by s.nombre";
 
             // define conexion con la cadena de conexion
@@ -172,7 +179,7 @@ namespace Activos.Datos
                             else ent.idResponsable = Convert.ToInt16(res.reader["idresponsable"]);
 
                             if (res.reader["responsable"] is DBNull) ent.responsable = "";
-                            else ent.responsable = Convert.ToString(res.reader["responsable"]);
+                            else ent.responsable = Convert.ToString(res.reader["responsable"]).Replace("&", " ");
 
                             ent.status = Convert.ToString(res.reader["status"]);
 
@@ -542,11 +549,12 @@ namespace Activos.Datos
             UsuariosResponsivas ent;
 
             string sql = string.Format(
-                        "SELECT u.idusuario, u.nombre AS nombre_usuario, u.usuario, p.nombre AS puesto, s.nombre AS sucursal " +
+                        "SELECT u.idusuario, u.usuario AS usuario, pe.nombrecompleto as nombre_usuario, p.nombre AS puesto, s.nombre AS sucursal " +
                         "FROM activos_usuarios u " +
-                        "LEFT JOIN activos_puesto p ON (u.idpuesto = p.idpuesto) " +
+                        "LEFT JOIN activos_personas pe ON (u.idpersona = pe.idpersona) " +
+                        "LEFT JOIN activos_puesto p ON (pe.idpuesto = p.idpuesto) " +
                         "LEFT JOIN activos_sucursales s ON (p.idsucursal = s.idsucursal) " +
-                        "WHERE u.{0} LIKE @usuario order by u.{0}", busqueda);
+                        "WHERE u.status = 'A' and {0} LIKE @usuario order by {0}", busqueda.Equals("usuario") ? "u." + busqueda : "pe." + busqueda);
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -573,6 +581,7 @@ namespace Activos.Datos
 
                             ent.nomUsuario = Convert.ToString(res.reader["nombre_usuario"]);
                             ent.usuario = Convert.ToString(res.reader["usuario"]);
+                            ent.nomUsuario = ent.nomUsuario.Replace("&", " ");
                             ent.puesto = Convert.ToString(res.reader["puesto"]);
                             ent.sucursal = Convert.ToString(res.reader["sucursal"]);
 
@@ -678,11 +687,11 @@ namespace Activos.Datos
         }
 
         // inserta un nuevo usuario
-        public bool insertaUsuario(string nombre, int idPuesto, string fecha, string correo, string usuario, string clave)
+        public bool insertaUsuario(int idPersona, string fecha, string correo, string usuario, string clave)
         {
             string sql = 
-                "INSERT INTO activos_usuarios (nombre, idpuesto, fechaingreso, correo, usuario, clave, status) " + 
-                "VALUES (@nombre, @idPuesto, @fecha, @correo, @usuario, @clave, 'A')";
+                "INSERT INTO activos_usuarios (idpersona, fechaingreso, correo, usuario, clave, status) " + 
+                "VALUES (@idPersona, @fecha, @correo, @usuario, @clave, 'A')";
 
             bool result = true;
 
@@ -697,8 +706,7 @@ namespace Activos.Datos
                     cmd.Connection = conn;
 
                     // define parametros
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@idPuesto", idPuesto);
+                    cmd.Parameters.AddWithValue("@idPersona", idPersona);
                     cmd.Parameters.AddWithValue("@fecha", fecha);
                     cmd.Parameters.AddWithValue("@correo", correo);
                     cmd.Parameters.AddWithValue("@usuario", usuario);
@@ -719,9 +727,9 @@ namespace Activos.Datos
         }
 
         // modifica usuarios
-        public bool modificacionUsuario(string nombre, int idPuesto, string fecIng, string correo, int idUsuario)
+        public bool modificacionUsuario(string correo, int idUsuario)
         {
-            string sql = "UPDATE activos_usuarios SET nombre=@nombre, idpuesto=@idPuesto, fechaingreso=@fecha, correo=@correo WHERE idusuario=@idUsuario";
+            string sql = "UPDATE activos_usuarios SET correo=@correo WHERE idusuario=@idUsuario";
 
             bool result = true;
 
@@ -736,9 +744,6 @@ namespace Activos.Datos
                     cmd.Connection = conn;
 
                     // define parametros
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@idPuesto", idPuesto);
-                    cmd.Parameters.AddWithValue("@fecha", fecIng);
                     cmd.Parameters.AddWithValue("@correo", correo);
                     cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 
@@ -1208,6 +1213,7 @@ namespace Activos.Datos
             return result;
         }
 
+        // selecciona un tipo segun un id
         public Tipos getTipos(int idTipo)
         {
             Tipos result = new Tipos();
@@ -1412,5 +1418,331 @@ namespace Activos.Datos
             return result;
         }
 
+        // alta de personas
+        public bool altaPersonas(string nombre, int idPuesto)
+        {
+            string sql = "insert into activos_personas(nombrecompleto, idpuesto, status) values (@nombre, @idpuesto, 'A')";
+
+            bool result = true;
+
+            int rows = 0;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@idpuesto", idPuesto);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene las personas segun un parametro de busqueda
+        public List<Personas> getPersonas(string paramBusq, string status)
+        {
+            List<Personas> result = new List<Personas>();
+            Personas ent;
+
+            string sql =
+                        "select p.idpersona, p.nombrecompleto, p.idpuesto, p.status, " +
+                        "pu.nombre as puesto, s.nombre as sucursal " +
+                        "from activos_personas p " +
+                        "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                        "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                        "where p.nombrecompleto like @nombre and p.status = @status";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@nombre", paramBusq.Equals("&") ? "" : "%" + paramBusq + "%");
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new Personas();
+
+                            ent.idPuesto = Convert.ToInt16(res.reader["idpuesto"]);
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
+
+                            ent.nombreCompleto = Convert.ToString(res.reader["nombrecompleto"]);
+
+                            string[] splitNombre = ent.nombreCompleto.Split('&');
+
+                            ent.nombreCompleto = ent.nombreCompleto.Replace("&", " ");
+                            
+                            ent.nombre = splitNombre[0];
+                            ent.apPaterno = splitNombre[1];
+                            ent.apMaterno = splitNombre[2];
+
+                            ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+                            ent.puesto = Convert.ToString(res.reader["puesto"]);
+
+                            ent.status = Convert.ToString(res.reader["status"]);
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // modifica una persona
+        public bool modifPersona(string nombre, int idPuesto, int? idPersona)
+        {
+            string sql = "update activos_personas set nombrecompleto = @nombre, idpuesto = @idPuesto where idpersona = @idPers";
+
+            bool result = true;
+
+            int rows = 0;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@idpuesto", idPuesto);
+                    cmd.Parameters.AddWithValue("@idPers", idPersona);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                }
+            }
+
+            return result;
+        }
+
+        // baja a una persona
+        public bool bajaPersonas(List<int> seleccionados)
+        {
+            string sql = "update activos_personas set status = 'B' where FIND_IN_SET(idpersona, @parameter) != 0";
+
+            bool result = true;
+
+            int rows = 0;
+
+            string wherIn = string.Join(",", seleccionados);
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@parameter", wherIn);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                }
+            }
+
+            return result;
+        }
+
+        // activa personas
+        public bool activaPersonas(List<int> seleccionados)
+        {
+            string sql = "update activos_personas set status = 'A' where FIND_IN_SET(idpersona, @parameter) != 0";
+
+            bool result = true;
+
+            int rows = 0;
+
+            string wherIn = string.Join(",", seleccionados);
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@parameter", wherIn);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene las personas que no tengan usuario
+        public List<Personas> getPersonasSinUsuario(string status)
+        {
+            List<Personas> result = new List<Personas>();
+            Personas ent;
+
+            string sql =
+                        "select p.idpersona, p.nombrecompleto, p.idpuesto, p.status, pu.nombre as puesto, s.nombre as sucursal " +
+                        "from activos_personas p " +
+                        "left join activos_usuarios a on (p.idpersona = a.idpersona) " +
+                        "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                        "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                        "where a.idusuario is null and p.status = @status";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@status", status);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new Personas();
+
+                            ent.idPuesto = Convert.ToInt16(res.reader["idpuesto"]);
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
+
+                            ent.nombreCompleto = Convert.ToString(res.reader["nombrecompleto"]);
+
+                            string[] splitNombre = ent.nombreCompleto.Split('&');
+
+                            ent.nombreCompleto = ent.nombreCompleto.Replace("&", " ");
+
+                            ent.nombre = splitNombre[0];
+                            ent.apPaterno = splitNombre[1];
+                            ent.apMaterno = splitNombre[2];
+
+                            ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+                            ent.puesto = Convert.ToString(res.reader["puesto"]);
+
+                            ent.status = Convert.ToString(res.reader["status"]);
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene los motivos de baja
+        public List<MotivosBaja> getMotivosBaja()
+        {
+            List<MotivosBaja> result = new List<MotivosBaja>();
+            MotivosBaja ent;
+
+            string sql = "select idmotivobaja, motivo, descripcion, clave, status from activos_motivosbaja";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new MotivosBaja();
+
+                            ent.idMotivoBaja = Convert.ToInt16(res.reader["idmotivobaja"]);
+                            ent.motivo = Convert.ToString(res.reader["motivo"]);
+                            ent.descripcion = Convert.ToString(res.reader["descripcion"]);
+                            ent.clave = Convert.ToString(res.reader["clave"]);
+
+                            ent.status = Convert.ToString(res.reader["status"]);
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
     }
 }
