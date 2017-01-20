@@ -19,12 +19,16 @@ namespace Activos.GUIs.Responsivas
         public Modelos.Responsivas _responsiva;
         public List<Modelos.Activos> _activos;
 
-        public frmBuscarResponsiva()
+        private string _tipoCons = string.Empty;
+
+        public frmBuscarResponsiva(string tipoCons)
         {
             InitializeComponent();
             this._catalogosNegocio = new CatalogosNegocio();
             this._responsivasNegocio = new ResponsivasNegocio();
             this._activosNegocio = new ActivosNegocio();
+
+            this._tipoCons = tipoCons;
         }
 
         private void frmBuscarResponsiva_Load(object sender, EventArgs e)
@@ -54,7 +58,7 @@ namespace Activos.GUIs.Responsivas
                 string responsable = this.tbResp.Text;
                 int idSuc = (int)this.cmbSucursal.SelectedValue;
 
-                List<Modelos.Responsivas> responsivas = this._responsivasNegocio.buscaResponsiva(responsable, idSuc);
+                List<Modelos.Responsivas> responsivas = this._responsivasNegocio.buscaResponsiva(responsable, idSuc, this._tipoCons);
 
                 this._activos = null;
 

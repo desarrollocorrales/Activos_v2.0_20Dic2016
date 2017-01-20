@@ -47,7 +47,7 @@ namespace Activos.GUIs.Traspasos
         {
             try
             {
-                frmBuscarResponsiva form = new frmBuscarResponsiva();
+                frmBuscarResponsiva form = new frmBuscarResponsiva("B");
 
                 var result = form.ShowDialog();
 
@@ -93,6 +93,9 @@ namespace Activos.GUIs.Traspasos
                     this._nuevaResp = form._nuevaResp;
                     this._respSelec = form._respSelec;
                     this._idUsuarioT = form._usuario.idUsuario;
+
+                    this.gcActivosT.DataSource = null;
+                    this._activosT = new List<Modelos.Activos>();
 
                     if (this._respSelec)
                     {
@@ -176,25 +179,28 @@ namespace Activos.GUIs.Traspasos
 
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
+                    Modelos.Activos acttemp = form._activoModif;
+
                     // agregar el activo seleccionado al traspaso
                     this._activosT.Add(new Modelos.Activos
                     {
-                            idActivo = activoSel.idActivo,
-                            area = activoSel.area,
-                            costo = activoSel.costo,
-                            claveActivo = activoSel.claveActivo,
-                            descripcion = activoSel.descripcion,
-                            fechaAlta = activoSel.fechaAlta,
-                            fechaModificacion = activoSel.fechaModificacion,
-                            idArea = activoSel.idArea,
-                            idTipo = activoSel.idTipo,
-                            idUsuarioAlta = activoSel.idUsuarioAlta,
-                            idUsuarioModifica = activoSel.idUsuarioModifica,
-                            nombreCorto = activoSel.nombreCorto,
-                            numEtiqueta = activoSel.numEtiqueta,
-                            seleccionado = activoSel.seleccionado,
-                            status = activoSel.status,
-                            tipo = activoSel.tipo
+                        accion = "TRASPASO",
+                        idActivo = acttemp.idActivo,
+                        area = acttemp.area,
+                        costo = acttemp.costo,
+                        claveActivo = acttemp.claveActivo,
+                        descripcion = acttemp.descripcion,
+                        fechaAlta = acttemp.fechaAlta,
+                        fechaModificacion = acttemp.fechaModificacion,
+                        idArea = acttemp.idArea,
+                        idTipo = acttemp.idTipo,
+                        idUsuarioAlta = acttemp.idUsuarioAlta,
+                        idUsuarioModifica = acttemp.idUsuarioModifica,
+                        nombreCorto = acttemp.nombreCorto,
+                        numEtiqueta = acttemp.numEtiqueta,
+                        seleccionado = acttemp.seleccionado,
+                        status = acttemp.status,
+                        tipo = acttemp.tipo
                     });
 
                     this.gcActivosT.DataSource = null;
@@ -241,6 +247,11 @@ namespace Activos.GUIs.Traspasos
         {
             try
             {
+                if (this._idResponsiva == null || this._idUsuarioT == null)
+                    throw new Exception("Realice algún movimiento para guardar cambios");
+
+                bool resultado = false;
+
                 if (this._respSelec)
                 {
                     // validaciones
@@ -249,17 +260,43 @@ namespace Activos.GUIs.Traspasos
 
                     // agrega a la responsiva existente los nuevos activos
                     // y cambia el estatus a los anteriores
-                    bool resultado = this._responsivasNegocio.traspasoCreaResp(
-                        this._activos.Where(w=>!string.IsNullOrEmpty(w.accion)).ToList(),
+                    // y las areas de los activos
+                    resultado = this._responsivasNegocio.traspasoRespExist(
+                        this._activosT.Where(w => !string.IsNullOrEmpty(w.accion)).ToList(),
                         this._idResponsivaT, this._idResponsiva);
+                    
                 }
                 else if (this._nuevaResp)
                 {
-                    // crea nueva responsiva
-                    // y cambia el estatus a los anteriores
+                    if (this._activosT.Count == 0)
+                        throw new Exception("Agregue al menos un activo a la lista");
 
+                    string responsable = this.tbResponsableT.Text;
+                    string sucursal = this.tbSucursalT.Text;
+                    string puesto = this.tbPuestoT.Text;
+
+                    // abre formulario para la creacion de la nueva responsiva
+                    frmNuevaResponsiva form = new frmNuevaResponsiva(this._activosT, responsable, sucursal, puesto);
+
+                    var result = form.ShowDialog();
+
+                    if (result == System.Windows.Forms.DialogResult.OK)
+                    {
+                        string observaciones = form.observaciones;
+
+                        // crea nueva responsiva
+                        // y cambia el estatus a los anteriores
+                        resultado = this._responsivasNegocio.traspasoCreaResp(
+                            this._activosT.Where(w => !string.IsNullOrEmpty(w.accion)).ToList(),
+                            this._idResponsiva, observaciones, this._idUsuarioT, Modelos.Login.idUsuario);
+                    }
+                    else return;
                 }
 
+                if (resultado)
+                { MessageBox.Show("Cambios guardados correctamente", "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Information); this.limpia(); }
+                else
+                    throw new Exception("Problemas al guardar cambios");
             }
             catch (Exception Ex)
             {
@@ -343,44 +380,49 @@ namespace Activos.GUIs.Traspasos
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    // limpia formulario
-                    // almacena ids de la primer seleccion
-                    this._idResponsiva = null;
-                    this._idUsuario = null;
-                    this._activos = new List<Modelos.Activos>();
-
-                    // almacena ids del traspaso
-                    this._idResponsivaT = null;
-                    this._idUsuarioT = null;
-                    this._activosT = new List<Modelos.Activos>();
-
-                    // definen cual accion tomar
-                    // nueva responsiva o agregar activos a una ya existente
-                    this._nuevaResp = false;
-                    this._respSelec = false;
-
-                    this._movimiento = false;
-
-                    this.tbResponsable.Text = string.Empty;
-                    this.tbResponsableT.Text = string.Empty;
-                    this.tbSucursal.Text = string.Empty;
-                    this.tbSucursalT.Text = string.Empty;
-                    this.tbPuesto.Text = string.Empty;
-                    this.tbPuestoT.Text = string.Empty;
-
-                    this.gcActivos.DataSource = null;
-                    this.gcActivosT.DataSource = null;
-
-                    this.btnBuscaResponsiva.Enabled = true;
-                    this.btnBuscaUsuario.Enabled = true;
-
-                    this._countListTraspaso = 0;
+                    this.limpia();
                 }
             }
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void limpia()
+        {
+            // limpia formulario
+            // almacena ids de la primer seleccion
+            this._idResponsiva = null;
+            this._idUsuario = null;
+            this._activos = new List<Modelos.Activos>();
+
+            // almacena ids del traspaso
+            this._idResponsivaT = null;
+            this._idUsuarioT = null;
+            this._activosT = new List<Modelos.Activos>();
+
+            // definen cual accion tomar
+            // nueva responsiva o agregar activos a una ya existente
+            this._nuevaResp = false;
+            this._respSelec = false;
+
+            this._movimiento = false;
+
+            this.tbResponsable.Text = string.Empty;
+            this.tbResponsableT.Text = string.Empty;
+            this.tbSucursal.Text = string.Empty;
+            this.tbSucursalT.Text = string.Empty;
+            this.tbPuesto.Text = string.Empty;
+            this.tbPuestoT.Text = string.Empty;
+
+            this.gcActivos.DataSource = null;
+            this.gcActivosT.DataSource = null;
+
+            this.btnBuscaResponsiva.Enabled = true;
+            this.btnBuscaUsuario.Enabled = true;
+
+            this._countListTraspaso = 0;
         }
     }
 }

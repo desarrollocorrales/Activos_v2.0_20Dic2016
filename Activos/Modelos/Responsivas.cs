@@ -19,6 +19,8 @@ namespace Activos.Modelos
         public string sucursal { get; set; }
         public string puesto { get; set; }
         public string responsable { get; set; }
+
+        public string fechaImpresion { get; set; }
     }
 
     public partial class RespDetalle

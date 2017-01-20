@@ -11,10 +11,16 @@ namespace Activos.Datos
 
         bool creaRespDet(long idResult, List<Modelos.Activos> activos);
 
-        List<Modelos.Responsivas> buscaResponsiva(string responsable, int idSuc);
+        List<Modelos.Responsivas> buscaResponsiva(string responsable, int idSuc, string tipoCons);
 
         bool modifResponsiva(int? idResponsiva, List<Modelos.Activos> activosMtos);
 
         List<Modelos.Responsivas> buscaResponsiva(int idUsuario);
+
+        bool traspasoRespExist(List<Modelos.Activos> activosTraspaso, int? idRespTraspaso, int? idResponsiva);
+
+        bool traspasoCreaResp(List<Modelos.Activos> activosTraspaso, int? idResponsiva, string observaciones, int? idUsuario, int idUsCrea);
+
+        bool bajaResponsiva(int? idResponsiva, string motivo);
     }
 }

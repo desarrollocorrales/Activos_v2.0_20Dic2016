@@ -17,7 +17,6 @@ namespace Activos.GUIs.Tipos
         public frmTipos()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
             this._catalogosNegocio = new CatalogosNegocio();
         }
 
@@ -69,6 +68,8 @@ namespace Activos.GUIs.Tipos
 
                 // actualizar grid
                 this.gcTipos.DataSource = this._catalogosNegocio.getTipos("A");
+
+                this.gcTipos.ShowPrintPreview();
             }
             catch (Exception Ex)
             {

@@ -17,7 +17,6 @@ namespace Activos.GUIs.Puestos
         public frmPuestos()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
             this._catalogosNegocio = new CatalogosNegocio();
         }
 

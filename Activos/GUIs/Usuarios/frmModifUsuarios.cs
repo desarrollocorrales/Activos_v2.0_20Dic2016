@@ -19,7 +19,6 @@ namespace Activos.GUIs.Usuarios
         {
             InitializeComponent();
 
-            this.WindowState = FormWindowState.Maximized;
             this._catalogosNegocio = new CatalogosNegocio();
         }
 

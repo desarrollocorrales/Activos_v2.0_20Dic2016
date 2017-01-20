@@ -17,7 +17,6 @@ namespace Activos.GUIs.Areas
         public frmAreas()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
             this._catalogosNegocio = new CatalogosNegocio();
         }
 

@@ -19,7 +19,6 @@ namespace Activos.GUIs.Personas
         public frmPersonas()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
             this._catalogosNegocio = new CatalogosNegocio();
         }
 

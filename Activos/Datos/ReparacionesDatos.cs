@@ -70,9 +70,12 @@ namespace Activos.Datos
 
                                 ent.activo = Convert.ToString(res.reader["activo"]);
 
-                                DateTime dt = DateTime.Parse(Convert.ToString(res.reader["fechainicio"]));
-                                ent.fechaInicio = dt.ToString("dd/MM/yyyy");
-
+                                if (res.reader["fechainicio"] is DBNull) ent.fechaInicio = null;
+                                else
+                                {
+                                    DateTime dt = DateTime.Parse(Convert.ToString(res.reader["fechainicio"]));
+                                    ent.fechaInicio = dt.ToString("dd/MM/yyyy");
+                                }
 
                                 if (res.reader["fechafin"] is DBNull) ent.fechaFin = null;
                                 else ent.fechaFin = Convert.ToString(res.reader["fechafin"]);

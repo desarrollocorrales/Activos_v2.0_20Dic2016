@@ -392,6 +392,46 @@ namespace Activos
             }
         }
 
+
+        private void bajasToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmBajaResponsiva child = new frmBajaResponsiva();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+        private void imprimirResponsivaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmImprimeResp child = new frmImprimeResp();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
         //****************************************************************************************************
         //************** P E R S O N A S *********************************************************************
         //****************************************************************************************************
@@ -436,5 +476,26 @@ namespace Activos
             }
         }
 
+        //****************************************************************************************************
+        //************** G R U P O S *************************************************************************
+        //****************************************************************************************************
+        private void gruposToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmAltaGrupos child = new frmAltaGrupos();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
     }
 }

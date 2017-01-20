@@ -25,9 +25,9 @@ namespace Activos.Negocio
         }
 
 
-        public List<Modelos.Responsivas> buscaResponsiva(string responsable, int idSuc)
+        public List<Modelos.Responsivas> buscaResponsiva(string responsable, int idSuc, string tipoCons)
         {
-            return this._responsivasDatos.buscaResponsiva(responsable, idSuc);
+            return this._responsivasDatos.buscaResponsiva(responsable, idSuc, tipoCons);
         }
 
 
@@ -40,6 +40,24 @@ namespace Activos.Negocio
         public List<Modelos.Responsivas> buscaResponsiva(int idUsuario)
         {
             return this._responsivasDatos.buscaResponsiva(idUsuario);
+        }
+
+
+        public bool traspasoRespExist(List<Modelos.Activos> activosTraspaso, int? idRespTraspaso, int? idResponsiva)
+        {
+            return this._responsivasDatos.traspasoRespExist(activosTraspaso, idRespTraspaso, idResponsiva);
+        }
+
+
+        public bool traspasoCreaResp(List<Modelos.Activos> activosTraspaso, int? idResponsiva, string observaciones, int? idUsuario, int idUsCrea)
+        {
+            return this._responsivasDatos.traspasoCreaResp(activosTraspaso, idResponsiva, observaciones, idUsuario, idUsCrea);
+        }
+
+
+        public bool bajaResponsiva(int? idResponsiva, string motivo)
+        {
+            return this._responsivasDatos.bajaResponsiva(idResponsiva, motivo);
         }
     }
 }

@@ -32,7 +32,6 @@ namespace Activos.GUIs.AltaActivos
             // inicializa variables
             this._catalogosNegocio = new CatalogosNegocio();
             this._activosNegocio = new ActivosNegocio();
-            this._activoSelecc = new Modelos.ActivosDesc();
 
             this.tbResultCveActivo.Text = string.Empty;
             this.tbResultNumEtiqueta.Text = string.Empty;
@@ -126,8 +125,19 @@ namespace Activos.GUIs.AltaActivos
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Close();
+            try
+            {
+                if (this._activoSelecc == null)
+                    throw new Exception("Seleccione un activo");
+
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnBuscarPTN_Click(object sender, EventArgs e)
@@ -151,9 +161,16 @@ namespace Activos.GUIs.AltaActivos
                     throw new Exception("Sin resultados");
                 }
 
+                /*
                 List<Modelos.ActivosDesc> lista = resultado.Where(w => !string.IsNullOrEmpty(w.usuario)).ToList();
 
                 this.gcResulBusquedas.DataSource = this._tipoConsulta.Equals("BAJAS") ? lista : resultado;
+
+                if (this.gridView1.DataRowCount == 0)
+                    throw new Exception("Sin resultados");
+                */
+
+                this.gcResulBusquedas.DataSource = resultado;
             }
             catch (Exception Ex)
             {
@@ -176,6 +193,15 @@ namespace Activos.GUIs.AltaActivos
                     this.tbNumEtiqueta.SelectAll();
                     throw new Exception("Sin resultados");
                 }
+
+                /*
+                List<Modelos.ActivosDesc> lista = resultado.Where(w => !string.IsNullOrEmpty(w.usuario)).ToList();
+
+                this.gcResulBusquedas.DataSource = this._tipoConsulta.Equals("BAJAS") ? lista : resultado;
+
+                if (this.gridView1.DataRowCount == 0)
+                    throw new Exception("Sin resultados");
+                */
 
                 this.gcResulBusquedas.DataSource = resultado;
             }
@@ -200,6 +226,15 @@ namespace Activos.GUIs.AltaActivos
                     this.tbCveActivo.SelectAll();
                     throw new Exception("Sin resultados");
                 }
+
+                /*
+                List<Modelos.ActivosDesc> lista = resultado.Where(w => !string.IsNullOrEmpty(w.usuario)).ToList();
+
+                this.gcResulBusquedas.DataSource = this._tipoConsulta.Equals("BAJAS") ? lista : resultado;
+
+                if (this.gridView1.DataRowCount == 0)
+                    throw new Exception("Sin resultados");
+                */
 
                 this.gcResulBusquedas.DataSource = resultado;
             }

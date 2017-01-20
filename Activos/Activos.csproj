@@ -44,6 +44,8 @@
       <HintPath>packages\QrCode.Net.0.4.0.0\lib\net40\Gma.QrCodeNet.Encoding.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.6.9.9\lib\net40\MySql.Data.dll</HintPath>
       <Private>True</Private>
@@ -51,6 +53,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -165,6 +168,12 @@
     <Compile Include="GUIs\Puestos\frmPuestos.Designer.cs">
       <DependentUpon>frmPuestos.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Responsivas\frmBajaResponsiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmBajaResponsiva.Designer.cs">
+      <DependentUpon>frmBajaResponsiva.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Responsivas\frmBuscaActivos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +186,12 @@
     <Compile Include="GUIs\Responsivas\frmBuscarResponsiva.Designer.cs">
       <DependentUpon>frmBuscarResponsiva.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Responsivas\frmImprimeResp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmImprimeResp.Designer.cs">
+      <DependentUpon>frmImprimeResp.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Responsivas\frmModifResp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +203,12 @@
     </Compile>
     <Compile Include="GUIs\Responsivas\frmResponsivas.Designer.cs">
       <DependentUpon>frmResponsivas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\Reporte\frmResponsivaReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\Reporte\frmResponsivaReporte.Designer.cs">
+      <DependentUpon>frmResponsivaReporte.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Sucursales\frmActSuc.cs">
       <SubType>Form</SubType>
@@ -236,6 +257,12 @@
     </Compile>
     <Compile Include="GUIs\Traspasos\frmConfirmTraspaso.Designer.cs">
       <DependentUpon>frmConfirmTraspaso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Traspasos\frmNuevaResponsiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Traspasos\frmNuevaResponsiva.Designer.cs">
+      <DependentUpon>frmNuevaResponsiva.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Traspasos\frmTraspasos.cs">
       <SubType>Form</SubType>
@@ -346,17 +373,26 @@
     <EmbeddedResource Include="GUIs\Puestos\frmPuestos.resx">
       <DependentUpon>frmPuestos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmBajaResponsiva.resx">
+      <DependentUpon>frmBajaResponsiva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmBuscaActivos.resx">
       <DependentUpon>frmBuscaActivos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmBuscarResponsiva.resx">
       <DependentUpon>frmBuscarResponsiva.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmImprimeResp.resx">
+      <DependentUpon>frmImprimeResp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmModifResp.resx">
       <DependentUpon>frmModifResp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmResponsivas.resx">
       <DependentUpon>frmResponsivas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\Reporte\frmResponsivaReporte.resx">
+      <DependentUpon>frmResponsivaReporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Sucursales\frmActSuc.resx">
       <DependentUpon>frmActSuc.cs</DependentUpon>
@@ -381,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Traspasos\frmConfirmTraspaso.resx">
       <DependentUpon>frmConfirmTraspaso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Traspasos\frmNuevaResponsiva.resx">
+      <DependentUpon>frmNuevaResponsiva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Traspasos\frmTraspasos.resx">
       <DependentUpon>frmTraspasos.cs</DependentUpon>
@@ -410,6 +449,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reportes\infResponsivas.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Activos.Modelos.Activos.datasource" />
@@ -418,6 +460,7 @@
     <None Include="Properties\DataSources\Activos.Modelos.Personas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Puestos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Reparaciones.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Reportes.Responsiva.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Responsivas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Sucursales.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Tipos.datasource" />

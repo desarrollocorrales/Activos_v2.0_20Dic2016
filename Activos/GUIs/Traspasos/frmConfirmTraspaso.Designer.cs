@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.tbUsuario = new System.Windows.Forms.TextBox();
-            this.tbArea = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbDescripcion = new System.Windows.Forms.TextBox();
@@ -52,37 +51,37 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.cmbSucursal = new System.Windows.Forms.ComboBox();
+            this.tbArea = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.gbArea = new System.Windows.Forms.GroupBox();
+            this.cmbArea = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbArea = new System.Windows.Forms.CheckBox();
+            this.gbArea.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbUsuario
             // 
-            this.tbUsuario.Location = new System.Drawing.Point(17, 314);
+            this.tbUsuario.Location = new System.Drawing.Point(21, 534);
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.ReadOnly = true;
-            this.tbUsuario.Size = new System.Drawing.Size(216, 30);
+            this.tbUsuario.Size = new System.Drawing.Size(213, 30);
             this.tbUsuario.TabIndex = 178;
-            // 
-            // tbArea
-            // 
-            this.tbArea.Location = new System.Drawing.Point(109, 85);
-            this.tbArea.Name = "tbArea";
-            this.tbArea.ReadOnly = true;
-            this.tbArea.Size = new System.Drawing.Size(564, 30);
-            this.tbArea.TabIndex = 177;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(48, 88);
+            this.label8.Location = new System.Drawing.Point(23, 53);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 23);
+            this.label8.Size = new System.Drawing.Size(81, 23);
             this.label8.TabIndex = 176;
-            this.label8.Text = "Área";
+            this.label8.Text = "Sucursal";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 288);
+            this.label1.Location = new System.Drawing.Point(34, 508);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 23);
             this.label1.TabIndex = 175;
@@ -91,7 +90,7 @@
             // tbDescripcion
             // 
             this.tbDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbDescripcion.Location = new System.Drawing.Point(240, 252);
+            this.tbDescripcion.Location = new System.Drawing.Point(240, 472);
             this.tbDescripcion.MaxLength = 500;
             this.tbDescripcion.Multiline = true;
             this.tbDescripcion.Name = "tbDescripcion";
@@ -103,7 +102,7 @@
             // tbColor
             // 
             this.tbColor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbColor.Location = new System.Drawing.Point(19, 252);
+            this.tbColor.Location = new System.Drawing.Point(19, 472);
             this.tbColor.MaxLength = 70;
             this.tbColor.Name = "tbColor";
             this.tbColor.ReadOnly = true;
@@ -113,7 +112,7 @@
             // tbNumSerie
             // 
             this.tbNumSerie.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbNumSerie.Location = new System.Drawing.Point(459, 190);
+            this.tbNumSerie.Location = new System.Drawing.Point(459, 410);
             this.tbNumSerie.MaxLength = 70;
             this.tbNumSerie.Name = "tbNumSerie";
             this.tbNumSerie.ReadOnly = true;
@@ -123,7 +122,7 @@
             // tbModelo
             // 
             this.tbModelo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbModelo.Location = new System.Drawing.Point(239, 190);
+            this.tbModelo.Location = new System.Drawing.Point(239, 410);
             this.tbModelo.MaxLength = 70;
             this.tbModelo.Name = "tbModelo";
             this.tbModelo.ReadOnly = true;
@@ -133,17 +132,17 @@
             // tbMarca
             // 
             this.tbMarca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbMarca.Location = new System.Drawing.Point(19, 190);
+            this.tbMarca.Location = new System.Drawing.Point(19, 410);
             this.tbMarca.MaxLength = 70;
             this.tbMarca.Name = "tbMarca";
             this.tbMarca.ReadOnly = true;
-            this.tbMarca.Size = new System.Drawing.Size(214, 30);
+            this.tbMarca.Size = new System.Drawing.Size(215, 30);
             this.tbMarca.TabIndex = 170;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(255, 226);
+            this.label7.Location = new System.Drawing.Point(255, 446);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(106, 23);
             this.label7.TabIndex = 169;
@@ -152,7 +151,7 @@
             // lColor
             // 
             this.lColor.AutoSize = true;
-            this.lColor.Location = new System.Drawing.Point(34, 226);
+            this.lColor.Location = new System.Drawing.Point(34, 446);
             this.lColor.Name = "lColor";
             this.lColor.Size = new System.Drawing.Size(52, 23);
             this.lColor.TabIndex = 168;
@@ -161,7 +160,7 @@
             // lNumSerie
             // 
             this.lNumSerie.AutoSize = true;
-            this.lNumSerie.Location = new System.Drawing.Point(474, 164);
+            this.lNumSerie.Location = new System.Drawing.Point(474, 384);
             this.lNumSerie.Name = "lNumSerie";
             this.lNumSerie.Size = new System.Drawing.Size(131, 23);
             this.lNumSerie.TabIndex = 167;
@@ -170,7 +169,7 @@
             // lModelo
             // 
             this.lModelo.AutoSize = true;
-            this.lModelo.Location = new System.Drawing.Point(254, 164);
+            this.lModelo.Location = new System.Drawing.Point(254, 384);
             this.lModelo.Name = "lModelo";
             this.lModelo.Size = new System.Drawing.Size(70, 23);
             this.lModelo.TabIndex = 166;
@@ -179,7 +178,7 @@
             // lMarca
             // 
             this.lMarca.AutoSize = true;
-            this.lMarca.Location = new System.Drawing.Point(34, 164);
+            this.lMarca.Location = new System.Drawing.Point(34, 384);
             this.lMarca.Name = "lMarca";
             this.lMarca.Size = new System.Drawing.Size(61, 23);
             this.lMarca.TabIndex = 165;
@@ -204,7 +203,7 @@
             // lbCveActivo
             // 
             this.lbCveActivo.AutoSize = true;
-            this.lbCveActivo.Location = new System.Drawing.Point(527, 129);
+            this.lbCveActivo.Location = new System.Drawing.Point(527, 349);
             this.lbCveActivo.Name = "lbCveActivo";
             this.lbCveActivo.Size = new System.Drawing.Size(70, 23);
             this.lbCveActivo.TabIndex = 161;
@@ -213,7 +212,7 @@
             // lbNumetiqueta
             // 
             this.lbNumetiqueta.AutoSize = true;
-            this.lbNumetiqueta.Location = new System.Drawing.Point(231, 129);
+            this.lbNumetiqueta.Location = new System.Drawing.Point(231, 349);
             this.lbNumetiqueta.Name = "lbNumetiqueta";
             this.lbNumetiqueta.Size = new System.Drawing.Size(140, 23);
             this.lbNumetiqueta.TabIndex = 160;
@@ -222,7 +221,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(412, 129);
+            this.label9.Location = new System.Drawing.Point(412, 349);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(109, 23);
             this.label9.TabIndex = 159;
@@ -231,7 +230,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(94, 129);
+            this.label5.Location = new System.Drawing.Point(94, 349);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(131, 23);
             this.label5.TabIndex = 158;
@@ -257,7 +256,7 @@
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(354, 356);
+            this.btnConfirm.Location = new System.Drawing.Point(354, 576);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(149, 41);
             this.btnConfirm.TabIndex = 179;
@@ -267,7 +266,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(509, 356);
+            this.btnCancel.Location = new System.Drawing.Point(509, 576);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(149, 41);
             this.btnCancel.TabIndex = 180;
@@ -275,16 +274,87 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // cmbSucursal
+            // 
+            this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucursal.FormattingEnabled = true;
+            this.cmbSucursal.Location = new System.Drawing.Point(131, 50);
+            this.cmbSucursal.Name = "cmbSucursal";
+            this.cmbSucursal.Size = new System.Drawing.Size(494, 31);
+            this.cmbSucursal.TabIndex = 181;
+            this.cmbSucursal.SelectionChangeCommitted += new System.EventHandler(this.cmbSucursal_SelectionChangeCommitted);
+            // 
+            // tbArea
+            // 
+            this.tbArea.Location = new System.Drawing.Point(109, 84);
+            this.tbArea.Name = "tbArea";
+            this.tbArea.ReadOnly = true;
+            this.tbArea.Size = new System.Drawing.Size(564, 30);
+            this.tbArea.TabIndex = 183;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(48, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 23);
+            this.label4.TabIndex = 182;
+            this.label4.Text = "Área";
+            // 
+            // gbArea
+            // 
+            this.gbArea.Controls.Add(this.cmbArea);
+            this.gbArea.Controls.Add(this.label6);
+            this.gbArea.Controls.Add(this.cmbSucursal);
+            this.gbArea.Controls.Add(this.label8);
+            this.gbArea.Enabled = false;
+            this.gbArea.Location = new System.Drawing.Point(25, 137);
+            this.gbArea.Name = "gbArea";
+            this.gbArea.Size = new System.Drawing.Size(648, 184);
+            this.gbArea.TabIndex = 184;
+            this.gbArea.TabStop = false;
+            // 
+            // cmbArea
+            // 
+            this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbArea.FormattingEnabled = true;
+            this.cmbArea.Location = new System.Drawing.Point(131, 117);
+            this.cmbArea.Name = "cmbArea";
+            this.cmbArea.Size = new System.Drawing.Size(494, 31);
+            this.cmbArea.TabIndex = 183;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(56, 120);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 23);
+            this.label6.TabIndex = 182;
+            this.label6.Text = "Área";
+            // 
+            // cbArea
+            // 
+            this.cbArea.AutoSize = true;
+            this.cbArea.Location = new System.Drawing.Point(12, 113);
+            this.cbArea.Name = "cbArea";
+            this.cbArea.Size = new System.Drawing.Size(431, 27);
+            this.cbArea.TabIndex = 186;
+            this.cbArea.Text = "Puede cambiar el Área en caso de ser necesario";
+            this.cbArea.UseVisualStyleBackColor = true;
+            this.cbArea.CheckedChanged += new System.EventHandler(this.cbArea_CheckedChanged);
+            // 
             // frmConfirmTraspaso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(688, 411);
+            this.ClientSize = new System.Drawing.Size(688, 638);
+            this.Controls.Add(this.cbArea);
+            this.Controls.Add(this.gbArea);
+            this.Controls.Add(this.tbArea);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.tbUsuario);
-            this.Controls.Add(this.tbArea);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbDescripcion);
             this.Controls.Add(this.tbColor);
@@ -312,6 +382,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Confirmar Traspaso";
             this.Load += new System.EventHandler(this.frmConfirmTraspaso_Load);
+            this.gbArea.ResumeLayout(false);
+            this.gbArea.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,7 +392,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox tbUsuario;
-        private System.Windows.Forms.TextBox tbArea;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbDescripcion;
@@ -343,5 +414,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox cmbSucursal;
+        private System.Windows.Forms.TextBox tbArea;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox gbArea;
+        private System.Windows.Forms.ComboBox cmbArea;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox cbArea;
     }
 }

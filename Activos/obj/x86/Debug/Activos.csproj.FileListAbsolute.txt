@@ -45,3 +45,9 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.csprojResolveAsse
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Traspasos.frmTraspasos.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Traspasos.frmBuscaUsuarioResp.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Traspasos.frmConfirmTraspaso.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Traspasos.frmNuevaResponsiva.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmBajaResponsiva.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmImprimeResp.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.Reporte.frmResponsivaReporte.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\RdlCompile.cache
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\RdlCompile.compiled

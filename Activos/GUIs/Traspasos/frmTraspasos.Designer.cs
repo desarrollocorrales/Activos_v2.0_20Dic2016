@@ -437,6 +437,9 @@
             this.colarea1.Caption = "Área";
             this.colarea1.FieldName = "area";
             this.colarea1.Name = "colarea1";
+            this.colarea1.OptionsColumn.AllowEdit = false;
+            this.colarea1.OptionsColumn.AllowMove = false;
+            this.colarea1.OptionsColumn.ReadOnly = true;
             this.colarea1.Visible = true;
             this.colarea1.VisibleIndex = 0;
             // 
@@ -453,6 +456,9 @@
             this.coltipo1.Caption = "Tipo";
             this.coltipo1.FieldName = "tipo";
             this.coltipo1.Name = "coltipo1";
+            this.coltipo1.OptionsColumn.AllowEdit = false;
+            this.coltipo1.OptionsColumn.AllowMove = false;
+            this.coltipo1.OptionsColumn.ReadOnly = true;
             this.coltipo1.Visible = true;
             this.coltipo1.VisibleIndex = 1;
             // 
@@ -461,6 +467,9 @@
             this.colnombreCorto1.Caption = "Activo";
             this.colnombreCorto1.FieldName = "nombreCorto";
             this.colnombreCorto1.Name = "colnombreCorto1";
+            this.colnombreCorto1.OptionsColumn.AllowEdit = false;
+            this.colnombreCorto1.OptionsColumn.AllowMove = false;
+            this.colnombreCorto1.OptionsColumn.ReadOnly = true;
             this.colnombreCorto1.Visible = true;
             this.colnombreCorto1.VisibleIndex = 2;
             // 
@@ -517,6 +526,9 @@
             this.colnumEtiqueta1.Caption = "Núm. Etiqueta";
             this.colnumEtiqueta1.FieldName = "numEtiqueta";
             this.colnumEtiqueta1.Name = "colnumEtiqueta1";
+            this.colnumEtiqueta1.OptionsColumn.AllowEdit = false;
+            this.colnumEtiqueta1.OptionsColumn.AllowMove = false;
+            this.colnumEtiqueta1.OptionsColumn.ReadOnly = true;
             this.colnumEtiqueta1.Visible = true;
             this.colnumEtiqueta1.VisibleIndex = 3;
             // 
@@ -525,6 +537,9 @@
             this.colclaveActivo1.Caption = "Cve. Activo";
             this.colclaveActivo1.FieldName = "claveActivo";
             this.colclaveActivo1.Name = "colclaveActivo1";
+            this.colclaveActivo1.OptionsColumn.AllowEdit = false;
+            this.colclaveActivo1.OptionsColumn.AllowMove = false;
+            this.colclaveActivo1.OptionsColumn.ReadOnly = true;
             this.colclaveActivo1.Visible = true;
             this.colclaveActivo1.VisibleIndex = 4;
             // 

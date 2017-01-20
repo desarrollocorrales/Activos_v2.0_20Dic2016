@@ -125,7 +125,7 @@ namespace Activos.Datos
         }
 
         // consulta las responsivas por sucursal y nombre
-        public List<Responsivas> buscaResponsiva(string responsable, int idSuc)
+        public List<Responsivas> buscaResponsiva(string responsable, int idSuc, string tipoCons)
         {
             List<Responsivas> result = new List<Responsivas>();
             Responsivas ent;
@@ -141,7 +141,7 @@ namespace Activos.Datos
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
                         "left join activos_responsivasdetalle rd on (r.idresponsiva = rd.idresponsiva) " +
-                        "where s.idsucursal = @isSucursal and p.nombrecompleto LIKE @nomb and rd.status != 'B' " +
+                        "where s.idsucursal = @isSucursal and p.nombrecompleto LIKE @nomb and rd.status != @status and r.status != 'B' " +
                         "group by r.idresponsiva, r.idusuario, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
                         "p.nombrecompleto, pu.nombre, s.nombre";
 
@@ -158,6 +158,7 @@ namespace Activos.Datos
                     // define parametros
                     cmd.Parameters.AddWithValue("@nomb", responsable.Equals("&") ? "" : "%" + responsable + "%");
                     cmd.Parameters.AddWithValue("@isSucursal", idSuc);
+                    cmd.Parameters.AddWithValue("@status", tipoCons);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
 
@@ -277,7 +278,7 @@ namespace Activos.Datos
                         "select r.idresponsiva, r.idusuario, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status " +
                         "from activos_responsivas r " +
                         "left join activos_usuarios u on (r.idusuario = u.idusuario) " +
-                        "where u.idusuario = @idUs";
+                        "where u.idusuario = @idUs and r.status != 'B'";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -320,6 +321,317 @@ namespace Activos.Datos
                     // cerrar el reader
                     res.reader.Close();
 
+                }
+            }
+
+            return result;
+        }
+
+        // agrega a una responsiva existente los activos a traspasar
+        // y quita activos a la responsiva anterior
+        public bool traspasoRespExist(List<Modelos.Activos> activosTraspaso, int? idRespTraspaso, int? idResponsiva)
+        {
+            MySqlTransaction trans;
+
+            bool result = true;
+
+            int rows = 0;
+            string error = string.Empty;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+
+                    trans = conn.BeginTransaction();
+
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    cmd.Parameters.Clear();
+
+                    string ids = string.Join(",", activosTraspaso.Select(s => s.idActivo).ToList());
+
+                    // quitar activos de responsiva anterior
+                    string sqlQuitaActivos = 
+                        "update activos_responsivasdetalle set status = 'B' " +
+                        "where idresponsiva = @idResp and FIND_IN_SET(idactivo, @parameter) != 0 and status = 'A'";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idResp", idResponsiva);
+                    cmd.Parameters.AddWithValue("@parameter", ids);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sqlQuitaActivos, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    // agrega los activos a la responsiva existente
+                    string sqlInsertaActivos =
+                        "insert into activos_responsivasdetalle (idactivo, idresponsiva, status) " +
+                        "values (@idActivo, @idRespon, 'A')";
+
+                    foreach (Modelos.Activos act in activosTraspaso)
+                    {
+                        cmd.Parameters.Clear();
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@idRespon", idRespTraspaso);
+                        cmd.Parameters.AddWithValue("@idActivo", act.idActivo);
+
+                        ManejoSql res1 = Utilerias.EjecutaSQL(sqlInsertaActivos, ref rows, cmd);
+
+                        if (res1.ok)
+                        {
+                            if (rows == 0) result = false;
+                        }
+                        else
+                        {
+                            trans.Rollback();
+                            throw new Exception(res1.numErr + ": " + res1.descErr);
+                        }
+                    }
+
+                    // actualiza los activos
+                    string sqlUpdateActivos =
+                        "update activos_activos set idarea = @idArea " +
+                        "where idactivo = @idActivo";
+
+                    foreach (Modelos.Activos act in activosTraspaso)
+                    {
+                        cmd.Parameters.Clear();
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@idArea", act.idArea);
+                        cmd.Parameters.AddWithValue("@idActivo", act.idActivo);
+
+                        ManejoSql res1 = Utilerias.EjecutaSQL(sqlUpdateActivos, ref rows, cmd);
+
+                        if (res1.ok)
+                        {
+                            if (rows == 0) result = false;
+                        }
+                        else
+                        {
+                            trans.Rollback();
+                            throw new Exception(res1.numErr + ": " + res1.descErr);
+                        }
+                    }
+
+                    trans.Commit();
+                }
+            }
+
+            return result;
+        }
+
+        // crea una responsiva y le asocia los activos nuevos
+        // y quita activos a la responsiva anterior
+        public bool traspasoCreaResp(List<Modelos.Activos> activosTraspaso, int? idResponsiva, string observaciones, int? idUsuario, int idUsCrea)
+        {
+            MySqlTransaction trans;
+
+            bool result = true;
+
+            int rows = 0;
+            string error = string.Empty;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+
+                    trans = conn.BeginTransaction();
+
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    cmd.Parameters.Clear();
+
+                    string ids = string.Join(",", activosTraspaso.Select(s => s.idActivo).ToList());
+
+                    // quitar activos de responsiva anterior
+                    string sqlQuitaActivos =
+                        "update activos_responsivasdetalle set status = 'B' " +
+                        "where idresponsiva = @idResp and FIND_IN_SET(idactivo, @parameter) != 0 and status = 'A'";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idResp", idResponsiva);
+                    cmd.Parameters.AddWithValue("@parameter", ids);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sqlQuitaActivos, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    // crear la responsiva
+                    long idResp = 0;
+
+                    string sqlCreaResponsiva =
+                        "insert into activos_responsivas (idusuario, idusuariocrea, observaciones, status) " +
+                        "values (@idusuario, @idUsCrea, @observ, 'A')";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idusuario", idUsuario);
+                    cmd.Parameters.AddWithValue("@idUsCrea", idUsCrea);
+                    cmd.Parameters.AddWithValue("@observ", observaciones);
+
+                    res = Utilerias.EjecutaSQL(sqlCreaResponsiva, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                        else idResp = cmd.LastInsertedId;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+
+                    // agrega los activos a la responsiva creada
+                    string sqlInsertaActivos =
+                        "insert into activos_responsivasdetalle (idactivo, idresponsiva, status) " +
+                        "values (@idActivo, @idRespon, 'A')";
+
+                    foreach (Modelos.Activos act in activosTraspaso)
+                    {
+                        cmd.Parameters.Clear();
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@idRespon", idResp);
+                        cmd.Parameters.AddWithValue("@idActivo", act.idActivo);
+
+                        ManejoSql res1 = Utilerias.EjecutaSQL(sqlInsertaActivos, ref rows, cmd);
+
+                        if (res1.ok)
+                        {
+                            if (rows == 0) result = false;
+                        }
+                        else
+                        {
+                            trans.Rollback();
+                            throw new Exception(res1.numErr + ": " + res1.descErr);
+                        }
+                    }
+
+                    // actualiza los activos
+                    string sqlUpdateActivos =
+                        "update activos_activos set idarea = @idArea " +
+                        "where idactivo = @idActivo";
+
+                    foreach (Modelos.Activos act in activosTraspaso)
+                    {
+                        cmd.Parameters.Clear();
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@idArea", act.idArea);
+                        cmd.Parameters.AddWithValue("@idActivo", act.idActivo);
+
+                        ManejoSql res1 = Utilerias.EjecutaSQL(sqlUpdateActivos, ref rows, cmd);
+
+                        if (res1.ok)
+                        {
+                            if (rows == 0) result = false;
+                        }
+                        else
+                        {
+                            trans.Rollback();
+                            throw new Exception(res1.numErr + ": " + res1.descErr);
+                        }
+                    }
+
+                    trans.Commit();
+                }
+            }
+
+            return result;
+        }
+
+        // baja a la responsiva seleccionada
+        public bool bajaResponsiva(int? idResponsiva, string motivo)
+        {
+            MySqlTransaction trans;
+
+            bool result = true;
+
+            int rows = 0;
+            string error = string.Empty;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+
+                    trans = conn.BeginTransaction();
+
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    cmd.Parameters.Clear();
+
+                    string sqlRD =
+                        "UPDATE activos_responsivasdetalle SET status = 'B' " +
+                        "WHERE idresponsiva = @idResp";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idResp", idResponsiva);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sqlRD, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = true;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    string sqlR =
+                        "UPDATE activos_responsivas SET status = 'B', motivobaja = @motivo, fechabaja = NOW() " +
+                        "WHERE idresponsiva = @idResp";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@motivo", motivo);
+                    cmd.Parameters.AddWithValue("@idResp", idResponsiva);
+
+                    res = Utilerias.EjecutaSQL(sqlR, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+                   
+                    trans.Commit();
                 }
             }
 

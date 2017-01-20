@@ -168,10 +168,24 @@ namespace Activos.Datos
                         "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
                         "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
                 "from activos_activos a " +
+                "left join (select idactivo from activos_responsivasdetalle where status = 'A') s on (a.idactivo = s.idactivo) " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "where a.status = @status and s.idactivo is null and a.idtipo = @idTipo and a.nombrecorto like @nombre";
+
+            /*
+             * 
+                string sql =
+                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo, " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
+                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
+                "from activos_activos a " +
                 "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
                 "left join activos_areas ar on (a.idarea = ar.idarea) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
                 "where a.status = @status and rd.idactivo is null and a.idtipo = @idTipo and a.nombrecorto like @nombre";
+
+             * */
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -250,10 +264,10 @@ namespace Activos.Datos
                         "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
                         "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
                 "from activos_activos a " +
-                "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
+                "left join (select idactivo from activos_responsivasdetalle where status = 'A') s on (a.idactivo = s.idactivo) " +
                 "left join activos_areas ar on (a.idarea = ar.idarea) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
-                "where a.status = 'A' and rd.idactivo is null";
+                "where a.status = 'A' and s.idactivo is null";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -337,16 +351,19 @@ namespace Activos.Datos
             Modelos.ActivosDesc ent;
 
             string sql =
-                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area, " +
-                        "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, " +
-                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
-                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
+                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
+                        "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, a.nombrecorto, " +
+                        "a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, a.idusuarioalta, " +
+                        "a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
                 "from activos_activos a " +
-                "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
-                "left join activos_responsivas r on (r.idresponsiva = rd.idresponsiva) " +
-                "left join activos_usuarios u on (r.idusuario = u.idusuario) " +
-                "left join activos_personas p on (u.idpersona = p.idpersona) " +
-                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join  " +
+                "( select idresponsiva, idactivo, status from activos_responsivasdetalle  " +
+                "	where status != 'B' GROUP BY idresponsiva, idactivo, status " +
+                ") sel on (a.idactivo = sel.idactivo) " +
+                "left join activos_responsivas r on (sel.idresponsiva = r.idresponsiva) " +
+                "left join activos_usuarios u on (r.idusuario = u.idusuario)  " +
+                "left join activos_personas p on (u.idpersona = p.idpersona)  " +
+                "left join activos_areas ar on (a.idarea = ar.idarea)  " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
                 "where a.status = @status and a.idtipo = @idTipo and a.nombrecorto like @nombre";
@@ -419,16 +436,19 @@ namespace Activos.Datos
             Modelos.ActivosDesc ent;
 
             string sql =
-                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area, " +
-                        "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, " +
-                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
-                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
+                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
+                        "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, a.nombrecorto, " +
+                        "a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, a.idusuarioalta, " +
+                        "a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
                 "from activos_activos a " +
-                "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
-                "left join activos_responsivas r on (r.idresponsiva = rd.idresponsiva) " +
-                "left join activos_usuarios u on (r.idusuario = u.idusuario) " +
-                "left join activos_personas p on (u.idpersona = p.idpersona) " +
-                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join  " +
+                "( select idresponsiva, idactivo, status from activos_responsivasdetalle  " +
+                "	where status != 'B' GROUP BY idresponsiva, idactivo, status " +
+                ") sel on (a.idactivo = sel.idactivo) " +
+                "left join activos_responsivas r on (sel.idresponsiva = r.idresponsiva) " +
+                "left join activos_usuarios u on (r.idusuario = u.idusuario)  " +
+                "left join activos_personas p on (u.idpersona = p.idpersona)  " +
+                "left join activos_areas ar on (a.idarea = ar.idarea)  " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
                 "where a.status = 'A'";
@@ -510,16 +530,19 @@ namespace Activos.Datos
             Modelos.ActivosDesc ent;
 
             string sql = string.Format(
-                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area, " +
-                        "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, " +
-                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
-                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
+                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
+                        "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, a.nombrecorto, " +
+                        "a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, a.idusuarioalta, " +
+                        "a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
                 "from activos_activos a " +
-                "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
-                "left join activos_responsivas r on (r.idresponsiva = rd.idresponsiva) " +
-                "left join activos_usuarios u on (r.idusuario = u.idusuario) " +
-                "left join activos_personas p on (u.idpersona = p.idpersona) " +
-                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join  " +
+                "( select idresponsiva, idactivo, status from activos_responsivasdetalle  " +
+                "	where status != 'B' GROUP BY idresponsiva, idactivo, status " +
+                ") sel on (a.idactivo = sel.idactivo) " +
+                "left join activos_responsivas r on (sel.idresponsiva = r.idresponsiva) " +
+                "left join activos_usuarios u on (r.idusuario = u.idusuario)  " +
+                "left join activos_personas p on (u.idpersona = p.idpersona)  " +
+                "left join activos_areas ar on (a.idarea = ar.idarea)  " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
                 "where a.status = 'A' and {0} LIKE @usuario order by {0}", busqueda.Equals("usuario") ? "u." + busqueda : "p." + busqueda);
@@ -862,6 +885,26 @@ namespace Activos.Datos
                         }
                         else
                             throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                        // activa la responsiva detalle
+                        string sql2 = "update activos_responsivasdetalle set status = 'A' where idactivo = @idActivo and status = 'R'";
+
+                        cmd.Parameters.Clear();
+
+                        // parametros
+                        cmd.Parameters.AddWithValue("idActivo", idActivo);
+
+                        // actualiza ACTIVOS
+                        res = Utilerias.EjecutaSQL(sql2, ref rows, cmd);
+
+                        if (res.ok)
+                        {
+                            if (rows == 0) result = false;
+                        }
+                        else
+                            throw new Exception(res.numErr + ": " + res.descErr);
+
                     }
 
                 }
@@ -887,6 +930,14 @@ namespace Activos.Datos
                             "update activos_reparacion set fechafin = null, observacionesactivacion = null where idreparacion = @idReparacion",
                             ref rowsAf, cmd);
 
+                        cmd.Parameters.Clear();
+
+                        cmd.Parameters.AddWithValue("idActivo", idActivo);
+
+                        var b = Utilerias.EjecutaSQL(
+                            "UPDATE activos_activos SET status = 'R' WHERE idactivo = @idActivo",
+                            ref rows, cmd);
+
                     }
 
                 }
@@ -903,7 +954,7 @@ namespace Activos.Datos
             List<int> result = new List<int>();
 
             string sql =
-                "select idactivo from activos_responsivasdetalle where idresponsiva = @idRespo";
+                "select idactivo from activos_responsivasdetalle where idresponsiva = @idRespo and status != 'B'";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())

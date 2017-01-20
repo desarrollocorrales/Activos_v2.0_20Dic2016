@@ -20,7 +20,6 @@ namespace Activos.GUIs.Responsivas
         public frmResponsivas()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
             this._catalogosNegocio = new CatalogosNegocio();
             this._responsivasNegocio = new ResponsivasNegocio();
         }
@@ -118,8 +117,29 @@ namespace Activos.GUIs.Responsivas
                 // registrar responsiva
                 bool resultado = this._responsivasNegocio.crearResponsivas(activos, Modelos.Login.idUsuario, this._idUsuario, this.tbObservaciones.Text);
 
-                if(resultado)
+                if (resultado)
+                {
                     MessageBox.Show("La responsiva fue creada correctamente", "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    _idUsuario = null;
+                    this.gcUsuarios.DataSource = null;
+
+                    this.lbPuesto.Text = string.Empty;
+                    this.lbSucursal.Text = string.Empty;
+                    this.lbUsuarios.Text = string.Empty;
+                    
+                    this.gcActivos.DataSource = null;
+                    this.tbObservaciones.Text = string.Empty;
+                    this.tbUsuario.Text = string.Empty;
+
+                    this.rbUsuario.Checked = true;
+                    this.rbNombre.Checked = false;
+
+                }
+                else
+                {
+                    throw new Exception("Problemas en la creación de la responsiva");
+                }
                     
             }
             catch (Exception Ex)

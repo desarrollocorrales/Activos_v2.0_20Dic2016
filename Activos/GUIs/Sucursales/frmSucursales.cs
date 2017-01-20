@@ -17,7 +17,6 @@ namespace Activos.GUIs.Sucursales
         public frmSucursales()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
             this._catalogosNegocio = new CatalogosNegocio();
         }
 

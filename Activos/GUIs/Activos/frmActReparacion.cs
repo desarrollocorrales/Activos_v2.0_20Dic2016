@@ -21,7 +21,6 @@ namespace Activos.GUIs.AltaActivos
         {
             InitializeComponent();
 
-            this.WindowState = FormWindowState.Maximized;
             this._activosNegocio = new ActivosNegocio();
         }
 

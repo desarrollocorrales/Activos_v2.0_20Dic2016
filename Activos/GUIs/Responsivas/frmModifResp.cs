@@ -21,14 +21,13 @@ namespace Activos.GUIs.Responsivas
         {
             InitializeComponent();
             this._responsivasNegocio = new ResponsivasNegocio();
-            this.WindowState = FormWindowState.Maximized;
         }
 
         private void btnBuscaResponsiva_Click(object sender, EventArgs e)
         {
             try
             {
-                frmBuscarResponsiva form = new frmBuscarResponsiva();
+                frmBuscarResponsiva form = new frmBuscarResponsiva("B");
 
                 var result = form.ShowDialog();
 
@@ -164,7 +163,20 @@ namespace Activos.GUIs.Responsivas
                 bool resultado = this._responsivasNegocio.modifResponsiva(this._idResponsiva, this._movimientos);
 
                 if (resultado)
-                    MessageBox.Show("Responsiva modificada correctamente", "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                {
+                    MessageBox.Show("Responsiva modificada correctamente", "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this._idResponsiva = null;
+
+                    this._movimientos = new List<Modelos.Activos>();
+
+                    this.tbPuesto.Text = string.Empty;
+                    this.tbResponsable.Text = string.Empty;
+                    this.tbSucursal.Text = string.Empty;
+
+                    this.gcActivos.DataSource = null;
+                    this.gcPrevMov.DataSource = null;
+                }
                 else
                     throw new Exception("Problemas en la modificación de la responsiva");
 
