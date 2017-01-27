@@ -17,6 +17,8 @@ using Activos.GUIs.AltaActivos;
 using Activos.GUIs.Responsivas;
 using Activos.GUIs.Personas;
 using Activos.GUIs.Traspasos;
+using Activos.GUIs.Grupos;
+using Activos.GUIs;
 
 namespace Activos
 {
@@ -25,6 +27,32 @@ namespace Activos
         public FormPrincipal()
         {
             InitializeComponent();
+        }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                // busca si se tiene seleccionada una impresora de etiquetas
+                if (string.IsNullOrEmpty(Properties.Settings.Default.Impresora))
+                {
+                    DialogResult dialogResult = MessageBox.Show(
+                               "No se tiene ninguna impresora para Etiquetas seleccionada\n" +
+                               "¿Desea seleccionar una ahora?",
+                               "Activos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        frmSelecImpresora form = new frmSelecImpresora();
+
+                        form.ShowDialog();
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         // salir
@@ -476,10 +504,12 @@ namespace Activos
             }
         }
 
+
         //****************************************************************************************************
         //************** G R U P O S *************************************************************************
         //****************************************************************************************************
-        private void gruposToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void altaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -497,5 +527,65 @@ namespace Activos
                 MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void modificaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmModifGrupos child = new frmModifGrupos();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void bajaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmBajaGrupos child = new frmBajaGrupos();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+        //****************************************************************************************************
+        //************** G R U P O S *************************************************************************
+        //****************************************************************************************************
+
+        private void seleccionaImpresoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmSelecImpresora child = new frmSelecImpresora();
+
+                child.ShowDialog();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        
     }
 }

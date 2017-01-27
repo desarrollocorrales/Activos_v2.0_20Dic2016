@@ -30,7 +30,7 @@ namespace Activos.Datos
                 "from activos_usuarios a " +
                 "left join activos_personas pe on (a.idpersona = pe.idpersona)  " +
                 "left join activos_puesto p on (pe.idpuesto = p.idpuesto)  " +
-                "where a.status = @status";
+                "where a.status = @status order by pe.nombrecompleto";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -549,12 +549,19 @@ namespace Activos.Datos
             UsuariosResponsivas ent;
 
             string sql = string.Format(
-                        "SELECT u.idusuario, u.usuario AS usuario, pe.nombrecompleto as nombre_usuario, p.nombre AS puesto, s.nombre AS sucursal " +
-                        "FROM activos_usuarios u " +
-                        "LEFT JOIN activos_personas pe ON (u.idpersona = pe.idpersona) " +
+                        "SELECT q.idusuario, q.usuario AS usuario, pe.nombrecompleto as nombre_usuario, p.nombre AS puesto, s.nombre AS sucursal " +
+                        "FROM activos_personas pe " +
+                        "left join (select idpersona, idusuario, usuario from activos_usuarios where status = 'A') q on (pe.idpersona = q.idpersona) " +
                         "LEFT JOIN activos_puesto p ON (pe.idpuesto = p.idpuesto) " +
                         "LEFT JOIN activos_sucursales s ON (p.idsucursal = s.idsucursal) " +
-                        "WHERE u.status = 'A' and {0} LIKE @usuario order by {0}", busqueda.Equals("usuario") ? "u." + busqueda : "pe." + busqueda);
+                        "WHERE pe.status = 'A' and {0} ", 
+                        busqueda.Equals("usuario")
+                            ? (
+                                string.IsNullOrEmpty(usuario) 
+                                        ? "(q.idusuario is null or q.usuario LIKE @usuario) order by q.usuario"
+                                        : "(q.usuario LIKE @usuario) order by q.usuario"
+                              )
+                            : "pe.nombrecompleto like @usuario order by pe.nombrecompleto");
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -577,10 +584,10 @@ namespace Activos.Datos
                         {
                             ent = new UsuariosResponsivas();
 
-                            ent.idUsuario = Convert.ToInt16(res.reader["idusuario"]);
+                            ent.idUsuario = Convert.ToInt16(res.reader["idusuario"] == DBNull.Value ? 0 : res.reader["idusuario"]);
+                            ent.usuario = Convert.ToString(res.reader["usuario"] == DBNull.Value ? string.Empty : res.reader["usuario"]);
 
                             ent.nomUsuario = Convert.ToString(res.reader["nombre_usuario"]);
-                            ent.usuario = Convert.ToString(res.reader["usuario"]);
                             ent.nomUsuario = ent.nomUsuario.Replace("&", " ");
                             ent.puesto = Convert.ToString(res.reader["puesto"]);
                             ent.sucursal = Convert.ToString(res.reader["sucursal"]);
@@ -605,7 +612,7 @@ namespace Activos.Datos
         {
             bool result = false;
 
-            string sql = "select count(*) from activos_usuarios where trim(usuario) = @usuario";
+            string sql = "select count(*) from activos_usuarios where trim(usuario) = @usuario and status = 'A'";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -648,7 +655,7 @@ namespace Activos.Datos
         {
             bool result = false;
 
-            string sql = "select count(*) from activos_usuarios where correo = @correo";
+            string sql = "select count(*) from activos_usuarios where correo = @correo and status = 'A'";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -975,7 +982,7 @@ namespace Activos.Datos
             List<Areas> result = new List<Areas>();
             Areas ent;
 
-            string sql = "select idarea, nombre from activos_areas where idsucursal = @idsucursal and status = 'A'";
+            string sql = "select idarea, nombre from activos_areas where idsucursal = @idsucursal and status = 'A' order by nombre";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -1166,7 +1173,7 @@ namespace Activos.Datos
             Tipos ent;
 
             string sql = 
-                        "select idtipo, nombre, marca, modelo, color, serie, status from activos_tipo where status = @status";
+                        "select idtipo, nombre, marca, modelo, color, serie, status from activos_tipo where status = @status order by nombre";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -1465,7 +1472,7 @@ namespace Activos.Datos
                         "from activos_personas p " +
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
-                        "where p.nombrecompleto like @nombre and p.status = @status";
+                        "where p.nombrecompleto like @nombre and p.status = @status order by p.nombrecompleto";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -1561,6 +1568,8 @@ namespace Activos.Datos
         // baja a una persona
         public bool bajaPersonas(List<int> seleccionados)
         {
+            MySqlTransaction trans;
+
             string sql = "update activos_personas set status = 'B' where FIND_IN_SET(idpersona, @parameter) != 0";
 
             bool result = true;
@@ -1575,8 +1584,12 @@ namespace Activos.Datos
 
                 using (var cmd = new MySqlCommand())
                 {
-                    cmd.Connection = conn;
+                    trans = conn.BeginTransaction();
 
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    // baja personas
                     // define parametros
                     cmd.Parameters.AddWithValue("@parameter", wherIn);
 
@@ -1587,7 +1600,29 @@ namespace Activos.Datos
                         if (rows == 0) result = false;
                     }
                     else
+                    {
+                        trans.Rollback();
                         throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    // baja usuarios
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@parameter", wherIn);
+
+                    sql = "update activos_usuarios set status = 'B' where FIND_IN_SET(idpersona, @parameter) != 0";
+
+                    res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                    if (!res.ok)
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    trans.Commit();
+
                 }
             }
 
@@ -1642,7 +1677,9 @@ namespace Activos.Datos
                         "left join activos_usuarios a on (p.idpersona = a.idpersona) " +
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
-                        "where a.idusuario is null and p.status = @status";
+                        "where (a.idusuario is null or a.status != 'A') and p.status = @status " +
+                        "group by p.idpersona, p.nombrecompleto, p.idpuesto, p.status, pu.nombre, s.nombre " +
+                        "order by p.nombrecompleto";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -1739,6 +1776,364 @@ namespace Activos.Datos
                     // cerrar el reader
                     res.reader.Close();
 
+                }
+            }
+
+            return result;
+        }
+
+        // agrega un grupo con sus activos
+        public bool agregaGrupos(int idUsuario, int idArea, string nombreG, List<Modelos.Activos> activos)
+        {
+            MySqlTransaction trans;
+
+            bool result = true;
+
+            int rows = 0;
+            string error = string.Empty;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+
+                    trans = conn.BeginTransaction();
+
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    // crea grupo
+                    string sqlG = 
+                        "insert into activos_grupos (idarea, nombre, fecha, idusuariocrea, status) " + 
+                        "values (@idArea, @nombre, now(), @idUs, 'A')";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("idArea", idArea);
+                    cmd.Parameters.AddWithValue("nombre", nombreG);
+                    cmd.Parameters.AddWithValue("idUs", idUsuario);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sqlG, ref rows, cmd);
+
+                    long idGrupo = 0;
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                        else idGrupo = cmd.LastInsertedId;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    // inserta activos
+                    foreach (Modelos.Activos activo in activos)
+                    {
+
+                        string sql =
+                                "INSERT INTO activos_gruposactivos(idgrupo, idactivo) " +
+                                "VALUES (@idGrupo, @idActivo)";
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@idGrupo", idGrupo);
+                        cmd.Parameters.AddWithValue("@idActivo", activo.idActivo);
+
+                        res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                        if (!res.ok)
+                        {
+                            trans.Rollback();
+                            throw new Exception(res.numErr + ": " + res.descErr);
+                        }
+
+                        cmd.Parameters.Clear();
+                    }
+
+                    trans.Commit();
+                }
+            }
+
+            return result;
+        }
+
+        // busca si el activo ya se encuentra en un grupo
+        public string buscaActivoEnGrupo(int idActivo)
+        {
+            string result = string.Empty;
+
+            string sql =
+                "select g.nombre grupo from activos_gruposactivos ga " +
+                "left join activos_grupos g on (ga.idgrupo = g.idgrupo) " +
+                "where idactivo = @idActivo";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idActivo", idActivo);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                result = Convert.ToString(res.reader["grupo"]);
+                            }
+                        else result = null;
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // busca los grupos
+        public List<Grupos> getGrupos(string grupoNombre)
+        {
+            List<Grupos> result = new List<Grupos>();
+            Grupos ent;
+
+            string sql =
+                        "select g.idgrupo, g.idarea, g.nombre, g.fecha, g.idusuariocrea, g.status, " +
+                               "a.nombre as area, p.nombrecompleto as usuario, a.idsucursal, s.nombre as sucursal " +
+                        "from activos_grupos g " +
+                        "left join activos_areas a on (g.idarea = a.idarea) " +
+                        "left join activos_sucursales s on (a.idsucursal = s.idsucursal) " +
+                        "left join activos_usuarios u on (g.idusuariocrea = u.idusuario) " +
+                        "left join activos_personas p on (u.idpersona = p.idpersona) " +
+                        "where g.nombre like @nombre and g.status = 'A' order by g.nombre";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@nombre", "%" + grupoNombre + "%");
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new Grupos();
+
+                            ent.idGrupo = Convert.ToInt16(res.reader["idgrupo"]);
+                            ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+
+                            ent.area = Convert.ToString(res.reader["area"]);
+                            ent.nombre = Convert.ToString(res.reader["nombre"]);
+                            ent.fecha = Convert.ToString(res.reader["fecha"]);
+
+                            ent.idSucursal = Convert.ToInt16(res.reader["idsucursal"]);
+                            ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+
+                            ent.idUsuarioCrea = Convert.ToInt16(res.reader["idusuariocrea"]);
+                            ent.usuarioCrea = Convert.ToString(res.reader["usuario"]);
+
+                            ent.status = Convert.ToString(res.reader["status"]);
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // modifica un grupo
+        public bool modificaGrupo(int idGrupo, string nombre, List<Modelos.Activos> activos)
+        {
+            MySqlTransaction trans;
+
+            bool result = true;
+
+            int rows = 0;
+            string error = string.Empty;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+
+                    trans = conn.BeginTransaction();
+
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    // elimina los activos actuales del grupo
+                    string sqlElim = "delete from activos_gruposactivos where idgrupo = @idGrupo";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("idGrupo", idGrupo);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sqlElim, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    // inserta activos
+                    foreach (Modelos.Activos activo in activos)
+                    {
+
+                        string sql =
+                                "INSERT INTO activos_gruposactivos(idgrupo, idactivo) " +
+                                "VALUES (@idGrupo, @idActivo)";
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@idGrupo", idGrupo);
+                        cmd.Parameters.AddWithValue("@idActivo", activo.idActivo);
+
+                        res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                        if (!res.ok)
+                        {
+                            trans.Rollback();
+                            throw new Exception(res.numErr + ": " + res.descErr);
+                        }
+
+                        cmd.Parameters.Clear();
+                    }
+
+
+                    // actualiza grupo
+                    string sqlG =
+                        "update activos_grupos set nombre = @nombre " +
+                        "where idgrupo = @idGrupo";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("nombre", nombre);
+                    cmd.Parameters.AddWithValue("idGrupo", idGrupo);
+
+                    res = Utilerias.EjecutaSQL(sqlG, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    cmd.Parameters.Clear();
+
+
+                    trans.Commit();
+                }
+            }
+
+            return result;
+
+        }
+
+        // baja de un grupo y sus activos
+        public bool bajaGrupo(int idGrupo)
+        {
+            MySqlTransaction trans;
+
+            string sql = "delete from ";
+
+            bool result = true;
+
+            int rows = 0;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    trans = conn.BeginTransaction();
+
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    // elimina los activos actuales del grupo
+                    string sqlElim = "delete from activos_gruposactivos where idgrupo = @idGrupo";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("idGrupo", idGrupo);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sqlElim, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    // baja grupo
+                    // elimina los activos actuales del grupo
+                    sqlElim = "delete from activos_grupos where idgrupo = @idGrupo";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("idGrupo", idGrupo);
+
+                    res = Utilerias.EjecutaSQL(sqlElim, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    trans.Commit();
                 }
             }
 

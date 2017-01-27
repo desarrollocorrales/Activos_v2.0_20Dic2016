@@ -124,7 +124,7 @@
             this.colseleccionado.Name = "colseleccionado";
             this.colseleccionado.Visible = true;
             this.colseleccionado.VisibleIndex = 0;
-            this.colseleccionado.Width = 33;
+            this.colseleccionado.Width = 30;
             // 
             // colidTipo
             // 
@@ -208,6 +208,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(602, 370);
             this.Controls.Add(this.gcTipos);
             this.Controls.Add(this.btnActiva);

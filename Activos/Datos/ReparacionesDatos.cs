@@ -34,7 +34,7 @@ namespace Activos.Datos
                 "left join activos_activos a on (r.idactivo = a.idactivo) " +
                 "left join activos_usuarios u on (r.idusuarioresponsable = u.idusuario) " +
                 "left join activos_personas p on (u.idpersona = p.idpersona) " +
-                "where FIND_IN_SET(r.idactivo, @parameter) != 0";
+                "where FIND_IN_SET(r.idactivo, @parameter) != 0 and r.status = 'A' order by a.nombrecorto";
 
             string wherIn = string.Join(",", activosIds);
 

@@ -36,6 +36,11 @@
             this.tbCveActivo = new System.Windows.Forms.TextBox();
             this.btnBuscarPCA = new System.Windows.Forms.Button();
             this.gbPTN = new System.Windows.Forms.GroupBox();
+            this.cmbArea = new System.Windows.Forms.ComboBox();
+            this.cmbSucursal = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnBuscarPTN = new System.Windows.Forms.Button();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,8 +52,8 @@
             this.btnBuscarPU = new System.Windows.Forms.Button();
             this.rbPCA = new System.Windows.Forms.RadioButton();
             this.rbPNE = new System.Windows.Forms.RadioButton();
-            this.rbPTN = new System.Windows.Forms.RadioButton();
             this.rbPN = new System.Windows.Forms.RadioButton();
+            this.rbPU = new System.Windows.Forms.RadioButton();
             this.gcResulBusquedas = new DevExpress.XtraGrid.GridControl();
             this.activosDescBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -85,22 +90,23 @@
             // 
             this.gbPNE.Controls.Add(this.tbNumEtiqueta);
             this.gbPNE.Controls.Add(this.btnBuscarPNE);
-            this.gbPNE.Location = new System.Drawing.Point(12, 203);
+            this.gbPNE.Location = new System.Drawing.Point(319, 286);
             this.gbPNE.Name = "gbPNE";
-            this.gbPNE.Size = new System.Drawing.Size(269, 131);
+            this.gbPNE.Size = new System.Drawing.Size(234, 112);
             this.gbPNE.TabIndex = 3;
             this.gbPNE.TabStop = false;
             // 
             // tbNumEtiqueta
             // 
-            this.tbNumEtiqueta.Location = new System.Drawing.Point(20, 32);
+            this.tbNumEtiqueta.Location = new System.Drawing.Point(18, 29);
             this.tbNumEtiqueta.Name = "tbNumEtiqueta";
-            this.tbNumEtiqueta.Size = new System.Drawing.Size(231, 30);
+            this.tbNumEtiqueta.Size = new System.Drawing.Size(199, 30);
             this.tbNumEtiqueta.TabIndex = 5;
+            this.tbNumEtiqueta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNumEtiqueta_KeyPress);
             // 
             // btnBuscarPNE
             // 
-            this.btnBuscarPNE.Location = new System.Drawing.Point(58, 80);
+            this.btnBuscarPNE.Location = new System.Drawing.Point(34, 65);
             this.btnBuscarPNE.Name = "btnBuscarPNE";
             this.btnBuscarPNE.Size = new System.Drawing.Size(163, 34);
             this.btnBuscarPNE.TabIndex = 4;
@@ -112,22 +118,23 @@
             // 
             this.gbPCA.Controls.Add(this.tbCveActivo);
             this.gbPCA.Controls.Add(this.btnBuscarPCA);
-            this.gbPCA.Location = new System.Drawing.Point(287, 203);
+            this.gbPCA.Location = new System.Drawing.Point(319, 168);
             this.gbPCA.Name = "gbPCA";
-            this.gbPCA.Size = new System.Drawing.Size(266, 131);
+            this.gbPCA.Size = new System.Drawing.Size(234, 112);
             this.gbPCA.TabIndex = 2;
             this.gbPCA.TabStop = false;
             // 
             // tbCveActivo
             // 
-            this.tbCveActivo.Location = new System.Drawing.Point(16, 32);
+            this.tbCveActivo.Location = new System.Drawing.Point(18, 29);
             this.tbCveActivo.Name = "tbCveActivo";
-            this.tbCveActivo.Size = new System.Drawing.Size(231, 30);
+            this.tbCveActivo.Size = new System.Drawing.Size(199, 30);
             this.tbCveActivo.TabIndex = 6;
+            this.tbCveActivo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCveActivo_KeyPress);
             // 
             // btnBuscarPCA
             // 
-            this.btnBuscarPCA.Location = new System.Drawing.Point(48, 80);
+            this.btnBuscarPCA.Location = new System.Drawing.Point(34, 65);
             this.btnBuscarPCA.Name = "btnBuscarPCA";
             this.btnBuscarPCA.Size = new System.Drawing.Size(163, 34);
             this.btnBuscarPCA.TabIndex = 5;
@@ -137,19 +144,72 @@
             // 
             // gbPTN
             // 
+            this.gbPTN.Controls.Add(this.cmbArea);
+            this.gbPTN.Controls.Add(this.cmbSucursal);
+            this.gbPTN.Controls.Add(this.label7);
+            this.gbPTN.Controls.Add(this.label6);
+            this.gbPTN.Controls.Add(this.label3);
             this.gbPTN.Controls.Add(this.btnBuscarPTN);
             this.gbPTN.Controls.Add(this.tbNombre);
             this.gbPTN.Controls.Add(this.label1);
             this.gbPTN.Controls.Add(this.cmbTipo);
             this.gbPTN.Location = new System.Drawing.Point(12, 12);
             this.gbPTN.Name = "gbPTN";
-            this.gbPTN.Size = new System.Drawing.Size(301, 185);
+            this.gbPTN.Size = new System.Drawing.Size(301, 386);
             this.gbPTN.TabIndex = 1;
             this.gbPTN.TabStop = false;
             // 
+            // cmbArea
+            // 
+            this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbArea.DropDownWidth = 400;
+            this.cmbArea.FormattingEnabled = true;
+            this.cmbArea.Location = new System.Drawing.Point(11, 126);
+            this.cmbArea.Name = "cmbArea";
+            this.cmbArea.Size = new System.Drawing.Size(279, 31);
+            this.cmbArea.TabIndex = 8;
+            // 
+            // cmbSucursal
+            // 
+            this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucursal.DropDownWidth = 400;
+            this.cmbSucursal.FormattingEnabled = true;
+            this.cmbSucursal.Location = new System.Drawing.Point(11, 52);
+            this.cmbSucursal.Name = "cmbSucursal";
+            this.cmbSucursal.Size = new System.Drawing.Size(279, 31);
+            this.cmbSucursal.TabIndex = 7;
+            this.cmbSucursal.SelectionChangeCommitted += new System.EventHandler(this.cmbSucursal_SelectionChangeCommitted);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 174);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 23);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Tipo";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 100);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 23);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Área";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 23);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Sucursal";
+            // 
             // btnBuscarPTN
             // 
-            this.btnBuscarPTN.Location = new System.Drawing.Point(71, 134);
+            this.btnBuscarPTN.Location = new System.Drawing.Point(69, 329);
             this.btnBuscarPTN.Name = "btnBuscarPTN";
             this.btnBuscarPTN.Size = new System.Drawing.Size(163, 34);
             this.btnBuscarPTN.TabIndex = 3;
@@ -159,15 +219,16 @@
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(11, 89);
+            this.tbNombre.Location = new System.Drawing.Point(11, 275);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(279, 30);
             this.tbNombre.TabIndex = 2;
+            this.tbNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNombre_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 63);
+            this.label1.Location = new System.Drawing.Point(9, 249);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 23);
             this.label1.TabIndex = 1;
@@ -176,8 +237,9 @@
             // cmbTipo
             // 
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipo.DropDownWidth = 400;
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(11, 29);
+            this.cmbTipo.Location = new System.Drawing.Point(11, 200);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(279, 31);
             this.cmbTipo.TabIndex = 0;
@@ -190,14 +252,14 @@
             this.gbPN.Controls.Add(this.btnBuscarPU);
             this.gbPN.Location = new System.Drawing.Point(319, 12);
             this.gbPN.Name = "gbPN";
-            this.gbPN.Size = new System.Drawing.Size(234, 185);
+            this.gbPN.Size = new System.Drawing.Size(234, 150);
             this.gbPN.TabIndex = 7;
             this.gbPN.TabStop = false;
             // 
             // rbUsuarioPU
             // 
             this.rbUsuarioPU.AutoSize = true;
-            this.rbUsuarioPU.Location = new System.Drawing.Point(123, 79);
+            this.rbUsuarioPU.Location = new System.Drawing.Point(123, 66);
             this.rbUsuarioPU.Name = "rbUsuarioPU";
             this.rbUsuarioPU.Size = new System.Drawing.Size(90, 27);
             this.rbUsuarioPU.TabIndex = 8;
@@ -208,7 +270,7 @@
             // 
             this.rbNombrePU.AutoSize = true;
             this.rbNombrePU.Checked = true;
-            this.rbNombrePU.Location = new System.Drawing.Point(22, 79);
+            this.rbNombrePU.Location = new System.Drawing.Point(22, 66);
             this.rbNombrePU.Name = "rbNombrePU";
             this.rbNombrePU.Size = new System.Drawing.Size(95, 27);
             this.rbNombrePU.TabIndex = 7;
@@ -222,10 +284,11 @@
             this.tbUsuarioPU.Name = "tbUsuarioPU";
             this.tbUsuarioPU.Size = new System.Drawing.Size(199, 30);
             this.tbUsuarioPU.TabIndex = 6;
+            this.tbUsuarioPU.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbUsuarioPU_KeyPress);
             // 
             // btnBuscarPU
             // 
-            this.btnBuscarPU.Location = new System.Drawing.Point(36, 134);
+            this.btnBuscarPU.Location = new System.Drawing.Point(34, 102);
             this.btnBuscarPU.Name = "btnBuscarPU";
             this.btnBuscarPU.Size = new System.Drawing.Size(163, 34);
             this.btnBuscarPU.TabIndex = 5;
@@ -255,35 +318,35 @@
             this.rbPNE.UseVisualStyleBackColor = true;
             this.rbPNE.CheckedChanged += new System.EventHandler(this.rbPNE_CheckedChanged);
             // 
-            // rbPTN
-            // 
-            this.rbPTN.AutoSize = true;
-            this.rbPTN.Location = new System.Drawing.Point(559, 22);
-            this.rbPTN.Name = "rbPTN";
-            this.rbPTN.Size = new System.Drawing.Size(183, 27);
-            this.rbPTN.TabIndex = 8;
-            this.rbPTN.Text = "Por Tipo - Nombre";
-            this.rbPTN.UseVisualStyleBackColor = true;
-            this.rbPTN.CheckedChanged += new System.EventHandler(this.rbPTN_CheckedChanged);
-            // 
             // rbPN
             // 
             this.rbPN.AutoSize = true;
-            this.rbPN.Location = new System.Drawing.Point(559, 86);
+            this.rbPN.Location = new System.Drawing.Point(559, 22);
             this.rbPN.Name = "rbPN";
-            this.rbPN.Size = new System.Drawing.Size(123, 27);
-            this.rbPN.TabIndex = 11;
-            this.rbPN.Text = "Por Usuario";
+            this.rbPN.Size = new System.Drawing.Size(128, 27);
+            this.rbPN.TabIndex = 8;
+            this.rbPN.Text = "Por Nombre";
             this.rbPN.UseVisualStyleBackColor = true;
-            this.rbPN.CheckedChanged += new System.EventHandler(this.rbPN_CheckedChanged);
+            this.rbPN.CheckedChanged += new System.EventHandler(this.rbPTN_CheckedChanged);
+            // 
+            // rbPU
+            // 
+            this.rbPU.AutoSize = true;
+            this.rbPU.Location = new System.Drawing.Point(559, 86);
+            this.rbPU.Name = "rbPU";
+            this.rbPU.Size = new System.Drawing.Size(123, 27);
+            this.rbPU.TabIndex = 11;
+            this.rbPU.Text = "Por Usuario";
+            this.rbPU.UseVisualStyleBackColor = true;
+            this.rbPU.CheckedChanged += new System.EventHandler(this.rbPN_CheckedChanged);
             // 
             // gcResulBusquedas
             // 
             this.gcResulBusquedas.DataSource = this.activosDescBindingSource;
-            this.gcResulBusquedas.Location = new System.Drawing.Point(12, 340);
+            this.gcResulBusquedas.Location = new System.Drawing.Point(12, 404);
             this.gcResulBusquedas.MainView = this.gridView1;
             this.gcResulBusquedas.Name = "gcResulBusquedas";
-            this.gcResulBusquedas.Size = new System.Drawing.Size(541, 141);
+            this.gcResulBusquedas.Size = new System.Drawing.Size(541, 145);
             this.gcResulBusquedas.TabIndex = 12;
             this.gcResulBusquedas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -387,7 +450,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 490);
+            this.label2.Location = new System.Drawing.Point(13, 594);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 23);
             this.label2.TabIndex = 13;
@@ -396,7 +459,7 @@
             // label100
             // 
             this.label100.AutoSize = true;
-            this.label100.Location = new System.Drawing.Point(12, 526);
+            this.label100.Location = new System.Drawing.Point(13, 558);
             this.label100.Name = "label100";
             this.label100.Size = new System.Drawing.Size(63, 23);
             this.label100.TabIndex = 14;
@@ -405,7 +468,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(316, 566);
+            this.label4.Location = new System.Drawing.Point(316, 634);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 23);
             this.label4.TabIndex = 15;
@@ -414,7 +477,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 566);
+            this.label5.Location = new System.Drawing.Point(13, 634);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(138, 23);
             this.label5.TabIndex = 16;
@@ -422,7 +485,7 @@
             // 
             // tbResultNombre
             // 
-            this.tbResultNombre.Location = new System.Drawing.Point(95, 487);
+            this.tbResultNombre.Location = new System.Drawing.Point(95, 555);
             this.tbResultNombre.Name = "tbResultNombre";
             this.tbResultNombre.ReadOnly = true;
             this.tbResultNombre.Size = new System.Drawing.Size(444, 30);
@@ -430,7 +493,7 @@
             // 
             // tbResultDesc
             // 
-            this.tbResultDesc.Location = new System.Drawing.Point(95, 523);
+            this.tbResultDesc.Location = new System.Drawing.Point(95, 591);
             this.tbResultDesc.Name = "tbResultDesc";
             this.tbResultDesc.ReadOnly = true;
             this.tbResultDesc.Size = new System.Drawing.Size(444, 30);
@@ -438,7 +501,7 @@
             // 
             // tbResultNumEtiqueta
             // 
-            this.tbResultNumEtiqueta.Location = new System.Drawing.Point(157, 563);
+            this.tbResultNumEtiqueta.Location = new System.Drawing.Point(157, 631);
             this.tbResultNumEtiqueta.Name = "tbResultNumEtiqueta";
             this.tbResultNumEtiqueta.ReadOnly = true;
             this.tbResultNumEtiqueta.Size = new System.Drawing.Size(146, 30);
@@ -448,7 +511,7 @@
             // 
             // tbResultCveActivo
             // 
-            this.tbResultCveActivo.Location = new System.Drawing.Point(430, 563);
+            this.tbResultCveActivo.Location = new System.Drawing.Point(430, 631);
             this.tbResultCveActivo.Name = "tbResultCveActivo";
             this.tbResultCveActivo.ReadOnly = true;
             this.tbResultCveActivo.Size = new System.Drawing.Size(110, 30);
@@ -458,7 +521,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(385, 614);
+            this.btnCancelar.Location = new System.Drawing.Point(385, 682);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 44);
             this.btnCancelar.TabIndex = 21;
@@ -468,7 +531,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(210, 614);
+            this.btnAceptar.Location = new System.Drawing.Point(210, 682);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(169, 44);
             this.btnAceptar.TabIndex = 22;
@@ -480,7 +543,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 669);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(568, 750);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.tbResultCveActivo);
@@ -492,10 +556,10 @@
             this.Controls.Add(this.label100);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.gcResulBusquedas);
-            this.Controls.Add(this.rbPN);
+            this.Controls.Add(this.rbPU);
             this.Controls.Add(this.rbPCA);
             this.Controls.Add(this.rbPNE);
-            this.Controls.Add(this.rbPTN);
+            this.Controls.Add(this.rbPN);
             this.Controls.Add(this.gbPN);
             this.Controls.Add(this.gbPNE);
             this.Controls.Add(this.gbPCA);
@@ -544,8 +608,8 @@
         private System.Windows.Forms.Button btnBuscarPU;
         private System.Windows.Forms.RadioButton rbPCA;
         private System.Windows.Forms.RadioButton rbPNE;
-        private System.Windows.Forms.RadioButton rbPTN;
         private System.Windows.Forms.RadioButton rbPN;
+        private System.Windows.Forms.RadioButton rbPU;
         private DevExpress.XtraGrid.GridControl gcResulBusquedas;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Label label2;
@@ -569,5 +633,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn colcosto;
         private DevExpress.XtraGrid.Columns.GridColumn colnumEtiqueta;
         private DevExpress.XtraGrid.Columns.GridColumn colclaveActivo;
+        private System.Windows.Forms.ComboBox cmbArea;
+        private System.Windows.Forms.ComboBox cmbSucursal;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
     }
 }

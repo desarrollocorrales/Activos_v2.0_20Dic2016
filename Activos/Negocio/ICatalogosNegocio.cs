@@ -94,6 +94,22 @@ namespace Activos.Negocio
 
         List<Modelos.Personas> getPersonasSinUsuario(string status);
 
+
+
+        /* ****** M O T I V O S   B A J A ****** */
         List<Modelos.MotivosBaja> getMotivosBaja();
+
+
+
+        /* ************ G R U P O S ************ */
+        bool agregaGrupo(int idUsuario, int idArea, string nombreG, List<Modelos.Activos> activos);
+
+        string buscaActivoEnGrupo(int idActivo);
+
+        List<Grupos> getGrupos(string grupoNombre);
+
+        bool modificaGrupo(int idGrupo, string nombre, List<Modelos.Activos> activos);
+
+        bool bajaGrupo(int idGrupo);
     }
 }

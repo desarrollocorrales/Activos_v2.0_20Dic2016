@@ -67,9 +67,9 @@ namespace Activos.GUIs.Responsivas
                 }
 
                 // imprime datos
-                this.lbUsuarios.Text = ent.nomUsuario;
-                this.lbSucursal.Text = ent.sucursal;
-                this.lbPuesto.Text = ent.puesto;
+                this.tbUsuarioSelec.Text = ent.nomUsuario;
+                this.tbPuestoSelec.Text = ent.sucursal;
+                this.tbSucursalSelec.Text = ent.puesto;
 
                 this._idUsuario = ent.idUsuario;
 
@@ -84,7 +84,7 @@ namespace Activos.GUIs.Responsivas
         {
             try
             {
-                frmBuscaActivos form = new frmBuscaActivos();
+                frmBuscaActivos form = new frmBuscaActivos(null, null);
 
                 var result = form.ShowDialog();
 
@@ -124,9 +124,9 @@ namespace Activos.GUIs.Responsivas
                     _idUsuario = null;
                     this.gcUsuarios.DataSource = null;
 
-                    this.lbPuesto.Text = string.Empty;
-                    this.lbSucursal.Text = string.Empty;
-                    this.lbUsuarios.Text = string.Empty;
+                    this.tbUsuarioSelec.Text = string.Empty;
+                    this.tbSucursalSelec.Text = string.Empty;
+                    this.tbPuestoSelec.Text = string.Empty;
                     
                     this.gcActivos.DataSource = null;
                     this.tbObservaciones.Text = string.Empty;

@@ -46,6 +46,10 @@
             this.colcausa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.cmbArea = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbSucursal = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gcReparaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reparacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -54,7 +58,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 25);
+            this.label1.Location = new System.Drawing.Point(48, 89);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 23);
             this.label1.TabIndex = 1;
@@ -63,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 62);
+            this.label2.Location = new System.Drawing.Point(17, 126);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 23);
             this.label2.TabIndex = 2;
@@ -72,23 +76,25 @@
             // cmbTipo
             // 
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipo.DropDownWidth = 400;
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(105, 22);
+            this.cmbTipo.Location = new System.Drawing.Point(110, 86);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(282, 31);
             this.cmbTipo.TabIndex = 3;
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(105, 59);
+            this.tbNombre.Location = new System.Drawing.Point(110, 123);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(282, 30);
             this.tbNombre.TabIndex = 4;
+            this.tbNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNombre_KeyPress);
             // 
             // gcReparaciones
             // 
             this.gcReparaciones.DataSource = this.reparacionesBindingSource;
-            this.gcReparaciones.Location = new System.Drawing.Point(16, 108);
+            this.gcReparaciones.Location = new System.Drawing.Point(21, 172);
             this.gcReparaciones.MainView = this.gridView1;
             this.gcReparaciones.Name = "gcReparaciones";
             this.gcReparaciones.Size = new System.Drawing.Size(518, 215);
@@ -193,7 +199,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(402, 35);
+            this.btnBuscar.Location = new System.Drawing.Point(407, 99);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(124, 42);
             this.btnBuscar.TabIndex = 6;
@@ -201,11 +207,55 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // cmbArea
+            // 
+            this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbArea.DropDownWidth = 400;
+            this.cmbArea.FormattingEnabled = true;
+            this.cmbArea.Location = new System.Drawing.Point(110, 49);
+            this.cmbArea.Name = "cmbArea";
+            this.cmbArea.Size = new System.Drawing.Size(421, 31);
+            this.cmbArea.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(46, 52);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 23);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Área";
+            // 
+            // cmbSucursal
+            // 
+            this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucursal.DropDownWidth = 400;
+            this.cmbSucursal.FormattingEnabled = true;
+            this.cmbSucursal.Location = new System.Drawing.Point(110, 12);
+            this.cmbSucursal.Name = "cmbSucursal";
+            this.cmbSucursal.Size = new System.Drawing.Size(421, 31);
+            this.cmbSucursal.TabIndex = 10;
+            this.cmbSucursal.SelectionChangeCommitted += new System.EventHandler(this.cmbSucursal_SelectionChangeCommitted);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 15);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 23);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Sucursal";
+            // 
             // frmBuscaActReparacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 337);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(552, 398);
+            this.Controls.Add(this.cmbSucursal);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cmbArea);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.gcReparaciones);
             this.Controls.Add(this.tbNombre);
@@ -245,5 +295,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colfechaFin;
         private DevExpress.XtraGrid.Columns.GridColumn colcausa;
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
+        private System.Windows.Forms.ComboBox cmbArea;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbSucursal;
+        private System.Windows.Forms.Label label4;
     }
 }

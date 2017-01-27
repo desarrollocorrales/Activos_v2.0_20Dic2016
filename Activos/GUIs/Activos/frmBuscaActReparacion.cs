@@ -36,6 +36,11 @@ namespace Activos.GUIs.AltaActivos
                 this.cmbTipo.DataSource = this._catalogosNegocio.getTipos("A");
                 this.cmbTipo.SelectedIndex = -1;
 
+                // llenar combo de sucursales
+                this.cmbSucursal.DisplayMember = "nombre";
+                this.cmbSucursal.ValueMember = "idSucursal";
+                this.cmbSucursal.DataSource = this._catalogosNegocio.getSucursales("A");
+                this.cmbSucursal.SelectedIndex = -1;
             }
             catch (Exception Ex)
             {
@@ -48,13 +53,21 @@ namespace Activos.GUIs.AltaActivos
             try
             {
                 // validaciones
+                if (this.cmbSucursal.SelectedIndex == -1)
+                    throw new Exception("Seleccione una sucursal");
+
+                if (this.cmbArea.SelectedIndex == -1)
+                    throw new Exception("Seleccione un área");
+
                 if (this.cmbTipo.SelectedIndex == -1)
                     throw new Exception("Seleccione un tipo");
 
+                int idSucursal = (int)this.cmbSucursal.SelectedValue;
+                int idArea = (int)this.cmbArea.SelectedValue;
                 int idTipo = (int)this.cmbTipo.SelectedValue;
                 string nombre = this.tbNombre.Text;
 
-                List<Modelos.Reparaciones> resultado = this._reparacionesNegocio.getBuscaActivosReparacion(idTipo, nombre);
+                List<Modelos.Reparaciones> resultado = this._reparacionesNegocio.getBuscaActivosReparacion(idArea, idTipo, nombre);
 
                 if (resultado.Count == 0)
                 {
@@ -94,6 +107,31 @@ namespace Activos.GUIs.AltaActivos
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void cmbSucursal_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                int idSucursal = (int)this.cmbSucursal.SelectedValue;
+
+                // llenar combo de Tipos
+                this.cmbArea.DataSource = this._catalogosNegocio.getAreas(idSucursal);
+                this.cmbArea.DisplayMember = "nombre";
+                this.cmbArea.ValueMember = "idArea";
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void tbNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscar_Click(null, null);
             }
         }
     }

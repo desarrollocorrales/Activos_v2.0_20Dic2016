@@ -58,6 +58,7 @@
             // 
             // btnActivar
             // 
+            this.btnActivar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnActivar.Font = new System.Drawing.Font("Tahoma", 14F);
             this.btnActivar.Location = new System.Drawing.Point(100, 490);
             this.btnActivar.Name = "btnActivar";
@@ -69,6 +70,7 @@
             // 
             // btnElimSel
             // 
+            this.btnElimSel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnElimSel.Font = new System.Drawing.Font("Tahoma", 14F);
             this.btnElimSel.Location = new System.Drawing.Point(295, 490);
             this.btnElimSel.Name = "btnElimSel";
@@ -80,6 +82,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox1.Controls.Add(this.cbSerie);
             this.groupBox1.Controls.Add(this.cbColor);
             this.groupBox1.Controls.Add(this.cbModelo);
@@ -138,6 +141,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 14F);
             this.label5.Location = new System.Drawing.Point(12, 24);
@@ -148,6 +152,7 @@
             // 
             // tbNombreTipo
             // 
+            this.tbNombreTipo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombreTipo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombreTipo.Font = new System.Drawing.Font("Tahoma", 14F);
             this.tbNombreTipo.Location = new System.Drawing.Point(102, 21);
@@ -158,6 +163,7 @@
             // 
             // gcTipos
             // 
+            this.gcTipos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcTipos.DataSource = this.tiposBindingSource;
             this.gcTipos.Font = new System.Drawing.Font("Tahoma", 14F);
             this.gcTipos.Location = new System.Drawing.Point(16, 233);
@@ -280,6 +286,7 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.Location = new System.Drawing.Point(190, 176);
             this.btnAgregar.Name = "btnAgregar";
@@ -293,6 +300,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(566, 550);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.gcTipos);

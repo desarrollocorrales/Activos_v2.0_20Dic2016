@@ -9,11 +9,11 @@ namespace Activos.Negocio
     {
         bool guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int p);
 
-        List<Modelos.Activos> getBuscaActivos(int idTipo, string nombre, string status);
+        List<Modelos.Activos> getBuscaActivos(int idArea, int idTipo, string nombre, string status);
 
         List<Modelos.Activos> getBuscaActivos(string parametro, string tipoBq);
 
-        List<Modelos.ActivosDesc> getBuscaActivosResp(int idTipo, string nombre, string status);
+        List<Modelos.ActivosDesc> getBuscaActivosResp(int idArea, int idTipo, string nombre, string status);
 
         List<Modelos.ActivosDesc> getBuscaActivosResp(string parametro, string tipoBus);
 
@@ -26,5 +26,7 @@ namespace Activos.Negocio
         bool actActivoReparacion(int? idReparacion, string observAct, string fechaFin, int? idActivo);
 
         List<Modelos.Activos> getBuscaActivos(int idResponsiva);
+
+        List<Modelos.Activos> getBuscaActivosGrupo(int idGrupo);
     }
 }

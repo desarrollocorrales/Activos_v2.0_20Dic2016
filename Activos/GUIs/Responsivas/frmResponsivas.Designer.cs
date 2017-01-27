@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lbSucursal = new System.Windows.Forms.Label();
-            this.lbPuesto = new System.Windows.Forms.Label();
-            this.lbUsuarios = new System.Windows.Forms.Label();
+            this.tbSucursalSelec = new System.Windows.Forms.TextBox();
+            this.tbPuestoSelec = new System.Windows.Forms.TextBox();
+            this.tbUsuarioSelec = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,6 +51,8 @@
             this.tbUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbObservaciones = new System.Windows.Forms.TextBox();
             this.btnCreaResp = new System.Windows.Forms.Button();
             this.gcActivos = new DevExpress.XtraGrid.GridControl();
             this.activosBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -72,8 +74,6 @@
             this.colclaveActivo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnBuscaActivos = new System.Windows.Forms.Button();
-            this.tbObservaciones = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuariosResponsivasBindingSource)).BeginInit();
@@ -87,9 +87,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lbSucursal);
-            this.groupBox1.Controls.Add(this.lbPuesto);
-            this.groupBox1.Controls.Add(this.lbUsuarios);
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox1.Controls.Add(this.tbSucursalSelec);
+            this.groupBox1.Controls.Add(this.tbPuestoSelec);
+            this.groupBox1.Controls.Add(this.tbUsuarioSelec);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -104,32 +105,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Usuarios";
             // 
-            // lbSucursal
+            // tbSucursalSelec
             // 
-            this.lbSucursal.AutoSize = true;
-            this.lbSucursal.Location = new System.Drawing.Point(104, 410);
-            this.lbSucursal.Name = "lbSucursal";
-            this.lbSucursal.Size = new System.Drawing.Size(17, 23);
-            this.lbSucursal.TabIndex = 9;
-            this.lbSucursal.Text = "-";
+            this.tbSucursalSelec.Location = new System.Drawing.Point(107, 406);
+            this.tbSucursalSelec.Name = "tbSucursalSelec";
+            this.tbSucursalSelec.ReadOnly = true;
+            this.tbSucursalSelec.Size = new System.Drawing.Size(440, 30);
+            this.tbSucursalSelec.TabIndex = 9;
             // 
-            // lbPuesto
+            // tbPuestoSelec
             // 
-            this.lbPuesto.AutoSize = true;
-            this.lbPuesto.Location = new System.Drawing.Point(104, 362);
-            this.lbPuesto.Name = "lbPuesto";
-            this.lbPuesto.Size = new System.Drawing.Size(17, 23);
-            this.lbPuesto.TabIndex = 8;
-            this.lbPuesto.Text = "-";
+            this.tbPuestoSelec.Location = new System.Drawing.Point(107, 359);
+            this.tbPuestoSelec.Name = "tbPuestoSelec";
+            this.tbPuestoSelec.ReadOnly = true;
+            this.tbPuestoSelec.Size = new System.Drawing.Size(440, 30);
+            this.tbPuestoSelec.TabIndex = 8;
             // 
-            // lbUsuarios
+            // tbUsuarioSelec
             // 
-            this.lbUsuarios.AutoSize = true;
-            this.lbUsuarios.Location = new System.Drawing.Point(104, 310);
-            this.lbUsuarios.Name = "lbUsuarios";
-            this.lbUsuarios.Size = new System.Drawing.Size(17, 23);
-            this.lbUsuarios.TabIndex = 7;
-            this.lbUsuarios.Text = "-";
+            this.tbUsuarioSelec.Location = new System.Drawing.Point(107, 307);
+            this.tbUsuarioSelec.Name = "tbUsuarioSelec";
+            this.tbUsuarioSelec.ReadOnly = true;
+            this.tbUsuarioSelec.Size = new System.Drawing.Size(440, 30);
+            this.tbUsuarioSelec.TabIndex = 7;
             // 
             // label4
             // 
@@ -296,6 +294,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.tbObservaciones);
             this.groupBox2.Controls.Add(this.btnCreaResp);
@@ -307,6 +306,25 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Responsivas";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 291);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(130, 23);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Observaciones";
+            // 
+            // tbObservaciones
+            // 
+            this.tbObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbObservaciones.Location = new System.Drawing.Point(12, 317);
+            this.tbObservaciones.MaxLength = 250;
+            this.tbObservaciones.Multiline = true;
+            this.tbObservaciones.Name = "tbObservaciones";
+            this.tbObservaciones.Size = new System.Drawing.Size(546, 75);
+            this.tbObservaciones.TabIndex = 10;
             // 
             // btnCreaResp
             // 
@@ -482,29 +500,11 @@
             this.btnBuscaActivos.UseVisualStyleBackColor = true;
             this.btnBuscaActivos.Click += new System.EventHandler(this.btnBuscaActivos_Click);
             // 
-            // tbObservaciones
-            // 
-            this.tbObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbObservaciones.Location = new System.Drawing.Point(12, 317);
-            this.tbObservaciones.MaxLength = 250;
-            this.tbObservaciones.Multiline = true;
-            this.tbObservaciones.Name = "tbObservaciones";
-            this.tbObservaciones.Size = new System.Drawing.Size(546, 75);
-            this.tbObservaciones.TabIndex = 10;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 291);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 23);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Observaciones";
-            // 
             // frmResponsivas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1157, 473);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -553,9 +553,6 @@
         private DevExpress.XtraGrid.GridControl gcActivos;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private System.Windows.Forms.Button btnBuscaActivos;
-        private System.Windows.Forms.Label lbSucursal;
-        private System.Windows.Forms.Label lbPuesto;
-        private System.Windows.Forms.Label lbUsuarios;
         private System.Windows.Forms.BindingSource activosBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colseleccionado;
         private DevExpress.XtraGrid.Columns.GridColumn colidActivo;
@@ -575,5 +572,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbObservaciones;
+        private System.Windows.Forms.TextBox tbSucursalSelec;
+        private System.Windows.Forms.TextBox tbPuestoSelec;
+        private System.Windows.Forms.TextBox tbUsuarioSelec;
     }
 }

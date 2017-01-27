@@ -66,6 +66,7 @@
             // 
             // tbUsuario
             // 
+            this.tbUsuario.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbUsuario.Location = new System.Drawing.Point(13, 348);
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.ReadOnly = true;
@@ -74,6 +75,7 @@
             // 
             // tbArea
             // 
+            this.tbArea.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbArea.Location = new System.Drawing.Point(105, 119);
             this.tbArea.Name = "tbArea";
             this.tbArea.ReadOnly = true;
@@ -82,6 +84,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(44, 122);
             this.label8.Name = "label8";
@@ -91,6 +94,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(30, 322);
             this.label1.Name = "label1";
@@ -100,6 +104,7 @@
             // 
             // tbDescripcion
             // 
+            this.tbDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbDescripcion.Location = new System.Drawing.Point(236, 286);
             this.tbDescripcion.MaxLength = 500;
@@ -112,6 +117,7 @@
             // 
             // tbColor
             // 
+            this.tbColor.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbColor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbColor.Location = new System.Drawing.Point(15, 286);
             this.tbColor.MaxLength = 70;
@@ -122,6 +128,7 @@
             // 
             // tbNumSerie
             // 
+            this.tbNumSerie.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNumSerie.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNumSerie.Location = new System.Drawing.Point(455, 224);
             this.tbNumSerie.MaxLength = 70;
@@ -132,6 +139,7 @@
             // 
             // tbModelo
             // 
+            this.tbModelo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbModelo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbModelo.Location = new System.Drawing.Point(235, 224);
             this.tbModelo.MaxLength = 70;
@@ -142,6 +150,7 @@
             // 
             // tbMarca
             // 
+            this.tbMarca.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbMarca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbMarca.Location = new System.Drawing.Point(15, 224);
             this.tbMarca.MaxLength = 70;
@@ -152,6 +161,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(251, 260);
             this.label7.Name = "label7";
@@ -161,6 +171,7 @@
             // 
             // lColor
             // 
+            this.lColor.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lColor.AutoSize = true;
             this.lColor.Location = new System.Drawing.Point(30, 260);
             this.lColor.Name = "lColor";
@@ -170,6 +181,7 @@
             // 
             // lNumSerie
             // 
+            this.lNumSerie.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lNumSerie.AutoSize = true;
             this.lNumSerie.Location = new System.Drawing.Point(470, 198);
             this.lNumSerie.Name = "lNumSerie";
@@ -179,6 +191,7 @@
             // 
             // lModelo
             // 
+            this.lModelo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lModelo.AutoSize = true;
             this.lModelo.Location = new System.Drawing.Point(250, 198);
             this.lModelo.Name = "lModelo";
@@ -188,6 +201,7 @@
             // 
             // lMarca
             // 
+            this.lMarca.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lMarca.AutoSize = true;
             this.lMarca.Location = new System.Drawing.Point(30, 198);
             this.lMarca.Name = "lMarca";
@@ -197,6 +211,7 @@
             // 
             // tbSucursal
             // 
+            this.tbSucursal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbSucursal.Location = new System.Drawing.Point(105, 83);
             this.tbSucursal.Name = "tbSucursal";
             this.tbSucursal.ReadOnly = true;
@@ -205,6 +220,7 @@
             // 
             // tbTipo
             // 
+            this.tbTipo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbTipo.Location = new System.Drawing.Point(105, 47);
             this.tbTipo.Name = "tbTipo";
             this.tbTipo.ReadOnly = true;
@@ -213,6 +229,7 @@
             // 
             // tbNombre
             // 
+            this.tbNombre.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombre.Location = new System.Drawing.Point(105, 11);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.ReadOnly = true;
@@ -221,6 +238,7 @@
             // 
             // lbCveActivo
             // 
+            this.lbCveActivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbCveActivo.AutoSize = true;
             this.lbCveActivo.Location = new System.Drawing.Point(523, 163);
             this.lbCveActivo.Name = "lbCveActivo";
@@ -230,6 +248,7 @@
             // 
             // lbNumetiqueta
             // 
+            this.lbNumetiqueta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lbNumetiqueta.AutoSize = true;
             this.lbNumetiqueta.Location = new System.Drawing.Point(227, 163);
             this.lbNumetiqueta.Name = "lbNumetiqueta";
@@ -239,6 +258,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(408, 163);
             this.label9.Name = "label9";
@@ -248,6 +268,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(90, 163);
             this.label5.Name = "label5";
@@ -257,6 +278,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(9, 86);
             this.label4.Name = "label4";
@@ -266,6 +288,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(44, 50);
             this.label3.Name = "label3";
@@ -275,6 +298,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 14);
             this.label2.Name = "label2";
@@ -284,6 +308,7 @@
             // 
             // btnBusqAct
             // 
+            this.btnBusqAct.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBusqAct.Location = new System.Drawing.Point(475, 62);
             this.btnBusqAct.Name = "btnBusqAct";
             this.btnBusqAct.Size = new System.Drawing.Size(194, 38);
@@ -294,6 +319,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnRealizaMto);
@@ -379,6 +405,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1117, 389);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tbUsuario);

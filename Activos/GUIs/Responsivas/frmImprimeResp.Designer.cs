@@ -56,12 +56,14 @@
             this.btnImprimir = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpFechaImpr = new System.Windows.Forms.DateTimePicker();
+            this.btnImprEtiquetas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gcActivos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tbPuesto
             // 
+            this.tbPuesto.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbPuesto.Location = new System.Drawing.Point(142, 101);
             this.tbPuesto.Name = "tbPuesto";
             this.tbPuesto.ReadOnly = true;
@@ -70,6 +72,7 @@
             // 
             // tbSucursal
             // 
+            this.tbSucursal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbSucursal.Location = new System.Drawing.Point(142, 60);
             this.tbSucursal.Name = "tbSucursal";
             this.tbSucursal.ReadOnly = true;
@@ -78,6 +81,7 @@
             // 
             // tbResponsable
             // 
+            this.tbResponsable.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbResponsable.Location = new System.Drawing.Point(142, 19);
             this.tbResponsable.Name = "tbResponsable";
             this.tbResponsable.ReadOnly = true;
@@ -86,6 +90,7 @@
             // 
             // gcActivos
             // 
+            this.gcActivos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcActivos.Location = new System.Drawing.Point(25, 204);
             this.gcActivos.MainView = this.gridView1;
             this.gcActivos.Name = "gcActivos";
@@ -240,6 +245,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(71, 104);
             this.label3.Name = "label3";
@@ -249,6 +255,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(55, 63);
             this.label2.Name = "label2";
@@ -258,6 +265,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(21, 22);
             this.label1.Name = "label1";
@@ -267,6 +275,7 @@
             // 
             // btnBuscaResponsiva
             // 
+            this.btnBuscaResponsiva.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscaResponsiva.Location = new System.Drawing.Point(532, 54);
             this.btnBuscaResponsiva.Name = "btnBuscaResponsiva";
             this.btnBuscaResponsiva.Size = new System.Drawing.Size(198, 43);
@@ -277,16 +286,18 @@
             // 
             // btnImprimir
             // 
-            this.btnImprimir.Location = new System.Drawing.Point(536, 478);
+            this.btnImprimir.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnImprimir.Location = new System.Drawing.Point(480, 478);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(169, 43);
+            this.btnImprimir.Size = new System.Drawing.Size(226, 43);
             this.btnImprimir.TabIndex = 22;
-            this.btnImprimir.Text = "Vista Previa";
+            this.btnImprimir.Text = "Vista Previa Responsiva";
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(97, 159);
             this.label4.Name = "label4";
@@ -296,16 +307,29 @@
             // 
             // dtpFechaImpr
             // 
+            this.dtpFechaImpr.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dtpFechaImpr.Location = new System.Drawing.Point(292, 153);
             this.dtpFechaImpr.Name = "dtpFechaImpr";
             this.dtpFechaImpr.Size = new System.Drawing.Size(359, 30);
             this.dtpFechaImpr.TabIndex = 24;
             // 
+            // btnImprEtiquetas
+            // 
+            this.btnImprEtiquetas.Location = new System.Drawing.Point(261, 478);
+            this.btnImprEtiquetas.Name = "btnImprEtiquetas";
+            this.btnImprEtiquetas.Size = new System.Drawing.Size(203, 43);
+            this.btnImprEtiquetas.TabIndex = 25;
+            this.btnImprEtiquetas.Text = "Imprimir Etiquetas";
+            this.btnImprEtiquetas.UseVisualStyleBackColor = true;
+            this.btnImprEtiquetas.Click += new System.EventHandler(this.btnImprEtiquetas_Click);
+            // 
             // frmImprimeResp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(749, 544);
+            this.Controls.Add(this.btnImprEtiquetas);
             this.Controls.Add(this.dtpFechaImpr);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnImprimir);
@@ -358,5 +382,6 @@
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpFechaImpr;
+        private System.Windows.Forms.Button btnImprEtiquetas;
     }
 }

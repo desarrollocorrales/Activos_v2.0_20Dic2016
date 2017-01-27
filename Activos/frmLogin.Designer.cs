@@ -75,6 +75,7 @@
             this.tbUsuario.TabIndex = 3;
             this.tbUsuario.Text = "desarrollo";
             this.tbUsuario.Enter += new System.EventHandler(this.tbUsuario_Enter);
+            this.tbUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbUsuario_KeyPress);
             // 
             // tbPass
             // 

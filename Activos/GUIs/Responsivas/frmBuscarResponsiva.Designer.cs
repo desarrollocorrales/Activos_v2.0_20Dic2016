@@ -82,7 +82,7 @@
             // cmbSucursal
             // 
             this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSucursal.DropDownWidth = 350;
+            this.cmbSucursal.DropDownWidth = 400;
             this.cmbSucursal.FormattingEnabled = true;
             this.cmbSucursal.Location = new System.Drawing.Point(16, 49);
             this.cmbSucursal.Name = "cmbSucursal";
@@ -402,6 +402,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(527, 687);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbRespDe);

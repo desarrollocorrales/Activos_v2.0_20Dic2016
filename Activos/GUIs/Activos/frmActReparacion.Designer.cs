@@ -46,6 +46,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(31, 29);
             this.label1.Name = "label1";
@@ -55,6 +56,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(18, 73);
             this.label2.Name = "label2";
@@ -64,6 +66,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(53, 127);
             this.label3.Name = "label3";
@@ -73,6 +76,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(294, 127);
             this.label4.Name = "label4";
@@ -82,6 +86,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(31, 166);
             this.label5.Name = "label5";
@@ -91,6 +96,7 @@
             // 
             // tbActivo
             // 
+            this.tbActivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbActivo.Location = new System.Drawing.Point(96, 26);
             this.tbActivo.Name = "tbActivo";
             this.tbActivo.ReadOnly = true;
@@ -99,6 +105,7 @@
             // 
             // tbUsuario
             // 
+            this.tbUsuario.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbUsuario.Location = new System.Drawing.Point(96, 70);
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.ReadOnly = true;
@@ -107,6 +114,7 @@
             // 
             // tbFechaIni
             // 
+            this.tbFechaIni.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbFechaIni.Location = new System.Drawing.Point(170, 124);
             this.tbFechaIni.Name = "tbFechaIni";
             this.tbFechaIni.ReadOnly = true;
@@ -117,6 +125,7 @@
             // 
             // dtpFechaFin
             // 
+            this.dtpFechaFin.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dtpFechaFin.CustomFormat = "dd-MM-yyyy";
             this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaFin.Location = new System.Drawing.Point(405, 121);
@@ -126,6 +135,7 @@
             // 
             // tbCausa
             // 
+            this.tbCausa.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbCausa.Location = new System.Drawing.Point(23, 192);
             this.tbCausa.Multiline = true;
             this.tbCausa.Name = "tbCausa";
@@ -135,6 +145,7 @@
             // 
             // btnBuscaActivo
             // 
+            this.btnBuscaActivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscaActivo.Location = new System.Drawing.Point(425, 43);
             this.btnBuscaActivo.Name = "btnBuscaActivo";
             this.btnBuscaActivo.Size = new System.Drawing.Size(152, 39);
@@ -145,6 +156,7 @@
             // 
             // btnActivar
             // 
+            this.btnActivar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnActivar.Location = new System.Drawing.Point(385, 405);
             this.btnActivar.Name = "btnActivar";
             this.btnActivar.Size = new System.Drawing.Size(193, 39);
@@ -155,6 +167,7 @@
             // 
             // tbObservAct
             // 
+            this.tbObservAct.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbObservAct.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbObservAct.Location = new System.Drawing.Point(22, 310);
             this.tbObservAct.MaxLength = 250;
@@ -165,6 +178,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(31, 284);
             this.label6.Name = "label6";
@@ -176,6 +190,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(590, 460);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbObservAct);

@@ -51,6 +51,7 @@
             // 
             // gcUsuariosBaja
             // 
+            this.gcUsuariosBaja.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcUsuariosBaja.DataSource = this.usuariosBindingSource;
             this.gcUsuariosBaja.Font = new System.Drawing.Font("Tahoma", 16F);
             this.gcUsuariosBaja.Location = new System.Drawing.Point(12, 62);
@@ -176,6 +177,7 @@
             // 
             // btnBaja
             // 
+            this.btnBaja.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBaja.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBaja.Location = new System.Drawing.Point(399, 337);
             this.btnBaja.Margin = new System.Windows.Forms.Padding(5);
@@ -188,6 +190,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 16F);
             this.label1.Location = new System.Drawing.Point(14, 22);
@@ -201,12 +204,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(750, 398);
             this.Controls.Add(this.gcUsuariosBaja);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.label1);
             this.Name = "frmBajaUsuarios";
-            this.Text = "frmBajaUsuarios";
+            this.Text = "Baja Usuarios";
             this.Load += new System.EventHandler(this.frmBajaUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuariosBaja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuariosBindingSource)).EndInit();

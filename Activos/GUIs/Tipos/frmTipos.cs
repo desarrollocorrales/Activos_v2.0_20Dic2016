@@ -68,8 +68,6 @@ namespace Activos.GUIs.Tipos
 
                 // actualizar grid
                 this.gcTipos.DataSource = this._catalogosNegocio.getTipos("A");
-
-                this.gcTipos.ShowPrintPreview();
             }
             catch (Exception Ex)
             {

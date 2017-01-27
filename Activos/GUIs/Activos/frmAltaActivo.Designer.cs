@@ -51,6 +51,7 @@
             // 
             // btnGuardar
             // 
+            this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnGuardar.Location = new System.Drawing.Point(198, 384);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(340, 56);
@@ -61,6 +62,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 29);
             this.label1.Name = "label1";
@@ -70,6 +72,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(379, 29);
             this.label2.Name = "label2";
@@ -79,6 +82,7 @@
             // 
             // lMarca
             // 
+            this.lMarca.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lMarca.AutoSize = true;
             this.lMarca.Location = new System.Drawing.Point(25, 97);
             this.lMarca.Name = "lMarca";
@@ -88,6 +92,7 @@
             // 
             // lModelo
             // 
+            this.lModelo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lModelo.AutoSize = true;
             this.lModelo.Location = new System.Drawing.Point(264, 97);
             this.lModelo.Name = "lModelo";
@@ -97,6 +102,7 @@
             // 
             // lNumSerie
             // 
+            this.lNumSerie.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lNumSerie.AutoSize = true;
             this.lNumSerie.Location = new System.Drawing.Point(496, 97);
             this.lNumSerie.Name = "lNumSerie";
@@ -106,6 +112,7 @@
             // 
             // lColor
             // 
+            this.lColor.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lColor.AutoSize = true;
             this.lColor.Location = new System.Drawing.Point(25, 165);
             this.lColor.Name = "lColor";
@@ -115,6 +122,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(264, 165);
             this.label7.Name = "label7";
@@ -124,6 +132,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(25, 233);
             this.label8.Name = "label8";
@@ -133,6 +142,7 @@
             // 
             // tbNombre
             // 
+            this.tbNombre.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombre.Location = new System.Drawing.Point(19, 55);
             this.tbNombre.MaxLength = 40;
@@ -142,6 +152,7 @@
             // 
             // tbMarca
             // 
+            this.tbMarca.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbMarca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbMarca.Location = new System.Drawing.Point(19, 123);
             this.tbMarca.MaxLength = 70;
@@ -151,6 +162,7 @@
             // 
             // tbModelo
             // 
+            this.tbModelo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbModelo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbModelo.Location = new System.Drawing.Point(253, 123);
             this.tbModelo.MaxLength = 70;
@@ -160,6 +172,7 @@
             // 
             // tbNumSerie
             // 
+            this.tbNumSerie.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNumSerie.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNumSerie.Location = new System.Drawing.Point(487, 123);
             this.tbNumSerie.MaxLength = 70;
@@ -169,6 +182,7 @@
             // 
             // tbColor
             // 
+            this.tbColor.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbColor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbColor.Location = new System.Drawing.Point(19, 191);
             this.tbColor.MaxLength = 70;
@@ -178,6 +192,7 @@
             // 
             // tbDescripcion
             // 
+            this.tbDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbDescripcion.Location = new System.Drawing.Point(253, 191);
             this.tbDescripcion.MaxLength = 500;
@@ -189,7 +204,9 @@
             // 
             // cmbTipo
             // 
+            this.cmbTipo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipo.DropDownWidth = 400;
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Location = new System.Drawing.Point(370, 55);
             this.cmbTipo.Name = "cmbTipo";
@@ -199,7 +216,9 @@
             // 
             // cmbSucursal
             // 
+            this.cmbSucursal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucursal.DropDownWidth = 400;
             this.cmbSucursal.FormattingEnabled = true;
             this.cmbSucursal.Location = new System.Drawing.Point(19, 259);
             this.cmbSucursal.Name = "cmbSucursal";
@@ -209,7 +228,9 @@
             // 
             // cmbArea
             // 
+            this.cmbArea.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbArea.DropDownWidth = 400;
             this.cmbArea.FormattingEnabled = true;
             this.cmbArea.Location = new System.Drawing.Point(19, 332);
             this.cmbArea.Name = "cmbArea";
@@ -218,6 +239,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(25, 306);
             this.label9.Name = "label9";
@@ -229,6 +251,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(737, 459);
             this.Controls.Add(this.cmbArea);
             this.Controls.Add(this.label9);

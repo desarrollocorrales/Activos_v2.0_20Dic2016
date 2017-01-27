@@ -69,5 +69,14 @@ namespace Activos
             this.tbUsuario.SelectAll();
         }
 
+        private void tbUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.ActiveControl = this.tbPass;
+                this.tbPass.SelectAll();
+            }
+        }
+
     }
 }

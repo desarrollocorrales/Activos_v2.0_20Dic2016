@@ -92,7 +92,7 @@ namespace Activos.GUIs.Responsivas
         {
             try
             {
-                frmBuscaActivos form = new frmBuscaActivos();
+                frmBuscaActivos form = new frmBuscaActivos(null, null);
 
                 var result = form.ShowDialog();
 

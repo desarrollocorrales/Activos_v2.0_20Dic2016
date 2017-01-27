@@ -31,14 +31,7 @@ namespace Activos.GUIs.Usuarios
                 this.cmbSelecUsuario.DisplayMember = "nombre";
                 this.cmbSelecUsuario.ValueMember = "idUsuario";
                 this.cmbSelecUsuario.SelectedIndex = -1;
-
-
-                // llena el catalogo de puestos disponibles
-                this.cmbPuesto.DataSource = this._catalogosNegocio.getPuestos("A");
-                this.cmbPuesto.DisplayMember = "nom_suc";
-                this.cmbPuesto.ValueMember = "idPuesto";
-                this.cmbPuesto.SelectedIndex = -1;
-
+                
             }
             catch (Exception Ex)
             {
@@ -52,7 +45,7 @@ namespace Activos.GUIs.Usuarios
             {
                 if (this.cmbSelecUsuario.SelectedIndex == -1)
                 {
-                    this.cmbPuesto.SelectedIndex = -1;
+                    this.tbPuesto.Text = string.Empty;
 
                     this.tbNombre.Text = string.Empty;
                     this.tbCorreo.Text = string.Empty;
@@ -65,7 +58,7 @@ namespace Activos.GUIs.Usuarios
                 this.tbNombre.Text = ((Modelos.Usuarios)this.cmbSelecUsuario.SelectedItem).nombre;
                 this.tbCorreo.Text = ((Modelos.Usuarios)this.cmbSelecUsuario.SelectedItem).correo;
                 this.dtpFechaIngreso.Text = ((Modelos.Usuarios)this.cmbSelecUsuario.SelectedItem).fechaIngreso;
-                this.cmbPuesto.SelectedValue = ((Modelos.Usuarios)this.cmbSelecUsuario.SelectedItem).idPuesto;
+                this.tbPuesto.Text = ((Modelos.Usuarios)this.cmbSelecUsuario.SelectedItem).puesto;
 
             }
             catch (Exception Ex)

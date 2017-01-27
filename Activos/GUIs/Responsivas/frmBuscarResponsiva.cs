@@ -99,7 +99,7 @@ namespace Activos.GUIs.Responsivas
 
                     this._responsiva = (Modelos.Responsivas)dr1;
                 }
-
+                
                 this._activos = this._activosNegocio.getBuscaActivos(this._responsiva.idResponsiva);
 
                 this.tbRespDe.Text = this._responsiva.responsable;

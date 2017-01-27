@@ -16,8 +16,10 @@ namespace Activos.GUIs.Responsivas
         IActivosNegocio _activosNegocio;
 
         public List<Modelos.Activos> _listaAgregados;
+        private int? _idArea = null;
+        private int? _idSucursal = null;
 
-        public frmBuscaActivos()
+        public frmBuscaActivos(int? idArea, int? idSucursal)
         {
             InitializeComponent();
 
@@ -29,7 +31,13 @@ namespace Activos.GUIs.Responsivas
             // inicializa variables
             this._catalogosNegocio = new CatalogosNegocio();
             this._activosNegocio = new ActivosNegocio();
+
+
+            // TODO: Complete member initialization
+            this._idArea = idArea;
+            this._idSucursal = idSucursal;
         }
+
 
         private void frmBuscaActivos_Load(object sender, EventArgs e)
         {
@@ -40,6 +48,24 @@ namespace Activos.GUIs.Responsivas
                 this.cmbTipo.ValueMember = "idTipo";
                 this.cmbTipo.DataSource = this._catalogosNegocio.getTipos("A");
                 this.cmbTipo.SelectedIndex = -1;
+
+                // llenar combo de sucursales
+                this.cmbSucursal.DisplayMember = "nombre";
+                this.cmbSucursal.ValueMember = "idSucursal";
+                this.cmbSucursal.DataSource = this._catalogosNegocio.getSucursales("A");
+                this.cmbSucursal.SelectedIndex = -1;
+
+                if (this._idArea != null)
+                {
+                    this.cmbSucursal.SelectedValue = this._idSucursal;
+
+                    this.cmbSucursal_SelectionChangeCommitted(null, null);
+
+                    this.cmbArea.SelectedValue = this._idArea;
+
+                    this.cmbSucursal.Enabled = false;
+                    this.cmbArea.Enabled = false;
+                }
 
                 // define radios activos
                 this.rbPTN.Checked = true;
@@ -85,6 +111,12 @@ namespace Activos.GUIs.Responsivas
             this.tbNombre.Text = string.Empty;
             this.cmbTipo.SelectedIndex = -1;
 
+            if (this._idArea == null)
+            {
+                this.cmbSucursal.SelectedIndex = -1;
+                this.cmbArea.DataSource = null;
+            }
+
             this.tbNumEtiqueta.Text = string.Empty;
 
             this.tbCveActivo.Text = string.Empty;
@@ -97,13 +129,20 @@ namespace Activos.GUIs.Responsivas
             try
             {
                 // validaciones
+                if (this.cmbSucursal.SelectedIndex == -1)
+                    throw new Exception("Seleccione una sucursal");
+
+                if (this.cmbArea.SelectedIndex == -1)
+                    throw new Exception("Seleccione un área");
+
                 if (this.cmbTipo.SelectedIndex == -1)
                     throw new Exception("Seleccione un tipo");
 
+                int idArea = (int)this.cmbArea.SelectedValue;
                 int idTipo = (int)this.cmbTipo.SelectedValue;
                 string nombre = this.tbNombre.Text;
 
-                List<Modelos.Activos> resultado = this._activosNegocio.getBuscaActivos(idTipo, nombre, "A");
+                List<Modelos.Activos> resultado = this._activosNegocio.getBuscaActivos(idArea, idTipo, nombre, "A");
 
                 if (resultado.Count==0)
                 {
@@ -112,7 +151,22 @@ namespace Activos.GUIs.Responsivas
                     this.tbNombre.SelectAll();
                     throw new Exception("Sin resultados");
                 }
+                
+                if (this._idArea != null)
+                {
+                    List<Modelos.Activos> activos = new List<Modelos.Activos>();
 
+                    if (this._idArea != null)
+                        activos = resultado.Where(w => w.idArea == this._idArea).ToList();
+
+                    if(activos.Count == 0)
+                        throw new Exception("Sin resultados");
+
+                    this.gcResulBusquedas.DataSource = activos;
+
+                    return;
+                }
+                
                 this.gcResulBusquedas.DataSource = resultado;
             }
             catch (Exception Ex)
@@ -135,6 +189,21 @@ namespace Activos.GUIs.Responsivas
                     this.ActiveControl = this.tbNumEtiqueta;
                     this.tbNumEtiqueta.SelectAll();
                     throw new Exception("Sin resultados");
+                }
+
+                if (this._idArea != null)
+                {
+                    List<Modelos.Activos> activos = new List<Modelos.Activos>();
+
+                    if (this._idArea != null)
+                        activos = resultado.Where(w => w.idArea == this._idArea).ToList();
+
+                    if (activos.Count == 0)
+                        throw new Exception("Sin resultados");
+
+                    this.gcResulBusquedas.DataSource = activos;
+
+                    return;
                 }
 
                 this.gcResulBusquedas.DataSource = resultado;
@@ -161,6 +230,21 @@ namespace Activos.GUIs.Responsivas
                     throw new Exception("Sin resultados");
                 }
 
+                if (this._idArea != null)
+                {
+                    List<Modelos.Activos> activos = new List<Modelos.Activos>();
+
+                    if (this._idArea != null)
+                        activos = resultado.Where(w => w.idArea == this._idArea).ToList();
+
+                    if (activos.Count == 0)
+                        throw new Exception("Sin resultados");
+
+                    this.gcResulBusquedas.DataSource = activos;
+
+                    return;
+                }
+
                 this.gcResulBusquedas.DataSource = resultado;
             }
             catch (Exception Ex)
@@ -173,14 +257,33 @@ namespace Activos.GUIs.Responsivas
         {
             try
             {
+                string activosGpos = string.Empty;
+
                 List<Modelos.Activos> activos = ((List<Modelos.Activos>)this.gridView1.DataSource).Where(w => w.seleccionado == true).Select(s => s).ToList();
 
                 if (activos.Count == 0)
                     throw new Exception("No se ha seleccionado ningun activo");
 
                 foreach (Modelos.Activos ac in activos)
+                {
+                    // en caso de agregar activos para grupos
+                    // validar si el activo que se intenta agregar 
+                    // ya existe en un grupo
+                    if (this._idArea != null)
+                    {
 
-                    if (this._listaAgregados.Where(w=>w.idActivo == ac.idActivo).ToList().Count == 0)
+                        string actGrupo = this._catalogosNegocio.buscaActivoEnGrupo(ac.idActivo);
+
+                        if (!string.IsNullOrEmpty(actGrupo))
+                        {
+                            activosGpos += "El activo " + ac.nombreCorto + " pertenece al grupo '" +actGrupo + "'\n";
+
+                            continue;
+                        }
+                    }
+
+
+                    if (this._listaAgregados.Where(w => w.idActivo == ac.idActivo).ToList().Count == 0)
                     {
                         this._listaAgregados.Add(new Modelos.Activos
                         {
@@ -202,10 +305,13 @@ namespace Activos.GUIs.Responsivas
                             tipo = ac.tipo
                         });
                     }
-
+                }
                 this.gcSeleccionados.DataSource = null;
 
                 this.gcSeleccionados.DataSource = this._listaAgregados;
+
+                if (!string.IsNullOrEmpty(activosGpos))
+                    throw new Exception(activosGpos);
             }
             catch (Exception Ex)
             {
@@ -264,6 +370,47 @@ namespace Activos.GUIs.Responsivas
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
+
+        private void tbNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarPTN_Click(null, null);
+            }
+        }
+
+        private void tbNumEtiqueta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarPNE_Click(null, null);
+            }
+        }
+
+        private void tbCveActivo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarPCA_Click(null, null);
+            }
+        }
+
+        private void cmbSucursal_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                int idSucursal = (int)this.cmbSucursal.SelectedValue;
+
+                // llenar combo de Tipos
+                this.cmbArea.DataSource = this._catalogosNegocio.getAreas(idSucursal);
+                this.cmbArea.DisplayMember = "nombre";
+                this.cmbArea.ValueMember = "idArea";
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

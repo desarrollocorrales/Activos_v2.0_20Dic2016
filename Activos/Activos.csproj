@@ -50,6 +50,12 @@
       <HintPath>packages\MySql.Data.6.9.9\lib\net40\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Sofbr.Layers">
+      <HintPath>Lib\Sofbr.Layers.dll</HintPath>
+    </Reference>
+    <Reference Include="Sofbr.Utils">
+      <HintPath>Lib\Sofbr.Utils.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -143,6 +149,36 @@
     </Compile>
     <Compile Include="GUIs\Ejemplos QR\EjemploQR.Designer.cs">
       <DependentUpon>EjemploQR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmSelecImpresora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmSelecImpresora.Designer.cs">
+      <DependentUpon>frmSelecImpresora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Grupos\frmAltaGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Grupos\frmAltaGrupos.Designer.cs">
+      <DependentUpon>frmAltaGrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Grupos\frmBajaGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Grupos\frmBajaGrupos.Designer.cs">
+      <DependentUpon>frmBajaGrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Grupos\frmBuscaGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Grupos\frmBuscaGrupos.Designer.cs">
+      <DependentUpon>frmBuscaGrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Grupos\frmModifGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Grupos\frmModifGrupos.Designer.cs">
+      <DependentUpon>frmModifGrupos.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Personas\frmPersonas.cs">
       <SubType>Form</SubType>
@@ -303,7 +339,9 @@
     <Compile Include="Modelos\Activos.cs" />
     <Compile Include="Modelos\Areas.cs" />
     <Compile Include="Modelos\Conexion.cs" />
+    <Compile Include="Modelos\Grupos.cs" />
     <Compile Include="Modelos\IConexion.cs" />
+    <Compile Include="Modelos\Impresora.cs" />
     <Compile Include="Modelos\ManejoSql.cs" />
     <Compile Include="Modelos\MotivosBaja.cs" />
     <Compile Include="Modelos\Personas.cs" />
@@ -360,6 +398,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Ejemplos QR\EjemploQR.resx">
       <DependentUpon>EjemploQR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmSelecImpresora.resx">
+      <DependentUpon>frmSelecImpresora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Grupos\frmAltaGrupos.resx">
+      <DependentUpon>frmAltaGrupos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Grupos\frmBajaGrupos.resx">
+      <DependentUpon>frmBajaGrupos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Grupos\frmBuscaGrupos.resx">
+      <DependentUpon>frmBuscaGrupos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Grupos\frmModifGrupos.resx">
+      <DependentUpon>frmModifGrupos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Personas\frmPersonas.resx">
       <DependentUpon>frmPersonas.cs</DependentUpon>
@@ -457,6 +510,8 @@
     <None Include="Properties\DataSources\Activos.Modelos.Activos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.ActivosDesc.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Areas.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Grupos.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Impresora.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Personas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Puestos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Reparaciones.datasource" />

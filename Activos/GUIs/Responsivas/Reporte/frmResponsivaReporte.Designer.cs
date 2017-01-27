@@ -31,12 +31,20 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.ResponsivasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ActivosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.ResponsivasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ActivosBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ResponsivasBindingSource
+            // 
+            this.ResponsivasBindingSource.DataSource = typeof(Activos.Modelos.Responsivas);
+            // 
+            // ActivosBindingSource
+            // 
+            this.ActivosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
             // 
             // reportViewer1
             // 
@@ -53,14 +61,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(712, 689);
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.PrintingBegin += new Microsoft.Reporting.WinForms.ReportPrintEventHandler(this.reportViewer1_PrintingBegin);
-            // 
-            // ResponsivasBindingSource
-            // 
-            this.ResponsivasBindingSource.DataSource = typeof(Activos.Modelos.Responsivas);
-            // 
-            // ActivosBindingSource
-            // 
-            this.ActivosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
             // 
             // frmResponsivaReporte
             // 

@@ -45,6 +45,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label2.Location = new System.Drawing.Point(35, 21);
@@ -55,6 +56,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label3.Location = new System.Drawing.Point(17, 58);
             this.label3.Name = "label3";
@@ -65,6 +67,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label4.Location = new System.Drawing.Point(46, 128);
@@ -75,6 +78,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label5.Location = new System.Drawing.Point(39, 169);
@@ -85,6 +89,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label6.Location = new System.Drawing.Point(57, 210);
@@ -95,6 +100,7 @@
             // 
             // btnCrear
             // 
+            this.btnCrear.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnCrear.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCrear.Location = new System.Drawing.Point(445, 189);
             this.btnCrear.Name = "btnCrear";
@@ -106,6 +112,7 @@
             // 
             // tbCorreo
             // 
+            this.tbCorreo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbCorreo.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.tbCorreo.Location = new System.Drawing.Point(136, 125);
             this.tbCorreo.MaxLength = 255;
@@ -115,6 +122,7 @@
             // 
             // tbUsuario
             // 
+            this.tbUsuario.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbUsuario.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.tbUsuario.Location = new System.Drawing.Point(136, 166);
             this.tbUsuario.MaxLength = 20;
@@ -124,6 +132,7 @@
             // 
             // tbClave
             // 
+            this.tbClave.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbClave.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.tbClave.Location = new System.Drawing.Point(136, 207);
             this.tbClave.MaxLength = 20;
@@ -135,6 +144,7 @@
             // 
             // cmbPersona
             // 
+            this.cmbPersona.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbPersona.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbPersona.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbPersona.DropDownWidth = 600;
@@ -147,6 +157,7 @@
             // 
             // dtpFechaIngreso
             // 
+            this.dtpFechaIngreso.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dtpFechaIngreso.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.dtpFechaIngreso.Location = new System.Drawing.Point(136, 68);
             this.dtpFechaIngreso.Name = "dtpFechaIngreso";
@@ -155,6 +166,7 @@
             // 
             // tbConfirmClave
             // 
+            this.tbConfirmClave.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbConfirmClave.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.tbConfirmClave.Location = new System.Drawing.Point(136, 251);
             this.tbConfirmClave.MaxLength = 20;
@@ -166,6 +178,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label1.Location = new System.Drawing.Point(19, 240);
             this.label1.Name = "label1";
@@ -178,6 +191,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(583, 303);
             this.Controls.Add(this.tbConfirmClave);
             this.Controls.Add(this.label1);

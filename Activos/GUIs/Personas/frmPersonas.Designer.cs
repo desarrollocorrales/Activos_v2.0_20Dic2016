@@ -120,6 +120,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 14);
             this.label1.Name = "label1";
@@ -129,14 +130,17 @@
             // 
             // tbNombreBusqModif
             // 
+            this.tbNombreBusqModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombreBusqModif.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombreBusqModif.Location = new System.Drawing.Point(95, 11);
             this.tbNombreBusqModif.Name = "tbNombreBusqModif";
             this.tbNombreBusqModif.Size = new System.Drawing.Size(274, 30);
             this.tbNombreBusqModif.TabIndex = 1;
+            this.tbNombreBusqModif.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNombreBusqModif_KeyPress);
             // 
             // btnBuscarModif
             // 
+            this.btnBuscarModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscarModif.Location = new System.Drawing.Point(375, 8);
             this.btnBuscarModif.Name = "btnBuscarModif";
             this.btnBuscarModif.Size = new System.Drawing.Size(99, 34);
@@ -147,6 +151,7 @@
             // 
             // gcModif
             // 
+            this.gcModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcModif.DataSource = this.personasBindingSource;
             this.gcModif.Location = new System.Drawing.Point(16, 58);
             this.gcModif.MainView = this.gridView1;
@@ -251,6 +256,7 @@
             // 
             // btnBajaSeleccBaja
             // 
+            this.btnBajaSeleccBaja.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBajaSeleccBaja.Location = new System.Drawing.Point(258, 318);
             this.btnBajaSeleccBaja.Name = "btnBajaSeleccBaja";
             this.btnBajaSeleccBaja.Size = new System.Drawing.Size(220, 40);
@@ -294,7 +300,9 @@
             // 
             // cmbPuestoAlta
             // 
+            this.cmbPuestoAlta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbPuestoAlta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPuestoAlta.DropDownWidth = 750;
             this.cmbPuestoAlta.FormattingEnabled = true;
             this.cmbPuestoAlta.Location = new System.Drawing.Point(16, 160);
             this.cmbPuestoAlta.Name = "cmbPuestoAlta";
@@ -303,6 +311,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 134);
             this.label6.Name = "label6";
@@ -312,6 +321,7 @@
             // 
             // btnCrearAlta
             // 
+            this.btnCrearAlta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnCrearAlta.Location = new System.Drawing.Point(306, 211);
             this.btnCrearAlta.Name = "btnCrearAlta";
             this.btnCrearAlta.Size = new System.Drawing.Size(149, 40);
@@ -322,6 +332,7 @@
             // 
             // tbApMaternoAlta
             // 
+            this.tbApMaternoAlta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbApMaternoAlta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbApMaternoAlta.Location = new System.Drawing.Point(248, 99);
             this.tbApMaternoAlta.Name = "tbApMaternoAlta";
@@ -330,6 +341,7 @@
             // 
             // tbApPaternoAlta
             // 
+            this.tbApPaternoAlta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbApPaternoAlta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbApPaternoAlta.Location = new System.Drawing.Point(15, 99);
             this.tbApPaternoAlta.Name = "tbApPaternoAlta";
@@ -338,6 +350,7 @@
             // 
             // tbNombreAlta
             // 
+            this.tbNombreAlta.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombreAlta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombreAlta.Location = new System.Drawing.Point(16, 40);
             this.tbNombreAlta.Name = "tbNombreAlta";
@@ -346,6 +359,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(257, 73);
             this.label7.Name = "label7";
@@ -355,6 +369,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(11, 73);
             this.label8.Name = "label8";
@@ -364,6 +379,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(12, 14);
             this.label9.Name = "label9";
@@ -396,6 +412,7 @@
             // 
             // btnModifModif
             // 
+            this.btnModifModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnModifModif.Location = new System.Drawing.Point(303, 471);
             this.btnModifModif.Name = "btnModifModif";
             this.btnModifModif.Size = new System.Drawing.Size(148, 42);
@@ -406,6 +423,7 @@
             // 
             // cmbPuestoModif
             // 
+            this.cmbPuestoModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbPuestoModif.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPuestoModif.Enabled = false;
             this.cmbPuestoModif.FormattingEnabled = true;
@@ -416,6 +434,7 @@
             // 
             // tbApMaternoModif
             // 
+            this.tbApMaternoModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbApMaternoModif.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbApMaternoModif.Location = new System.Drawing.Point(249, 353);
             this.tbApMaternoModif.Name = "tbApMaternoModif";
@@ -425,6 +444,7 @@
             // 
             // tbApPaternoModif
             // 
+            this.tbApPaternoModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbApPaternoModif.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbApPaternoModif.Location = new System.Drawing.Point(16, 353);
             this.tbApPaternoModif.Name = "tbApPaternoModif";
@@ -434,6 +454,7 @@
             // 
             // label10
             // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(260, 327);
             this.label10.Name = "label10";
@@ -443,6 +464,7 @@
             // 
             // label11
             // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(12, 327);
             this.label11.Name = "label11";
@@ -452,6 +474,7 @@
             // 
             // tbNombreModif
             // 
+            this.tbNombreModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombreModif.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombreModif.Location = new System.Drawing.Point(16, 291);
             this.tbNombreModif.Name = "tbNombreModif";
@@ -461,6 +484,7 @@
             // 
             // label12
             // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(12, 389);
             this.label12.Name = "label12";
@@ -470,6 +494,7 @@
             // 
             // label13
             // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(12, 265);
             this.label13.Name = "label13";
@@ -494,6 +519,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 14);
             this.label2.Name = "label2";
@@ -503,14 +529,17 @@
             // 
             // tbNombreBaja
             // 
+            this.tbNombreBaja.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombreBaja.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombreBaja.Location = new System.Drawing.Point(95, 11);
             this.tbNombreBaja.Name = "tbNombreBaja";
             this.tbNombreBaja.Size = new System.Drawing.Size(274, 30);
             this.tbNombreBaja.TabIndex = 17;
+            this.tbNombreBaja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNombreBaja_KeyPress);
             // 
             // btnBuscarBaja
             // 
+            this.btnBuscarBaja.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscarBaja.Location = new System.Drawing.Point(375, 8);
             this.btnBuscarBaja.Name = "btnBuscarBaja";
             this.btnBuscarBaja.Size = new System.Drawing.Size(99, 34);
@@ -521,6 +550,7 @@
             // 
             // gcBaja
             // 
+            this.gcBaja.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcBaja.DataSource = this.personasBindingSource1;
             this.gcBaja.Location = new System.Drawing.Point(16, 58);
             this.gcBaja.MainView = this.gridView2;
@@ -644,6 +674,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 14);
             this.label3.Name = "label3";
@@ -653,14 +684,17 @@
             // 
             // tbNombreActiva
             // 
+            this.tbNombreActiva.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombreActiva.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombreActiva.Location = new System.Drawing.Point(95, 11);
             this.tbNombreActiva.Name = "tbNombreActiva";
             this.tbNombreActiva.Size = new System.Drawing.Size(274, 30);
             this.tbNombreActiva.TabIndex = 22;
+            this.tbNombreActiva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNombreActiva_KeyPress);
             // 
             // btnBuscarActiva
             // 
+            this.btnBuscarActiva.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscarActiva.Location = new System.Drawing.Point(375, 8);
             this.btnBuscarActiva.Name = "btnBuscarActiva";
             this.btnBuscarActiva.Size = new System.Drawing.Size(99, 34);
@@ -671,6 +705,7 @@
             // 
             // gcActiva
             // 
+            this.gcActiva.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcActiva.DataSource = this.personasBindingSource2;
             this.gcActiva.Location = new System.Drawing.Point(16, 58);
             this.gcActiva.MainView = this.gridView3;
@@ -779,6 +814,7 @@
             // 
             // btnActivaSeleccActiva
             // 
+            this.btnActivaSeleccActiva.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnActivaSeleccActiva.Location = new System.Drawing.Point(258, 318);
             this.btnActivaSeleccActiva.Name = "btnActivaSeleccActiva";
             this.btnActivaSeleccActiva.Size = new System.Drawing.Size(220, 40);

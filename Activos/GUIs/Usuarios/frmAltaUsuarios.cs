@@ -56,6 +56,10 @@ namespace Activos.GUIs.Usuarios
                 if (string.IsNullOrEmpty(this.tbCorreo.Text))
                     throw new Exception("Defina un Correo para el usuario");
 
+                if (!this.tbConfirmClave.Text.Equals(this.tbClave.Text))
+                    throw new Exception("La claves no coinciden");
+
+
                 int idPersona = (int)this.cmbPersona.SelectedValue;
                 string correo = this.tbCorreo.Text;
                 string usuario = this.tbUsuario.Text;
@@ -75,6 +79,13 @@ namespace Activos.GUIs.Usuarios
                     this.tbUsuario.Text = string.Empty;
                     this.tbClave.Text = string.Empty;
                     this.tbConfirmClave.Text = string.Empty;
+
+                    this.cmbPersona.DataSource = null;
+
+                    this.cmbPersona.DisplayMember = "nombrecompleto";
+                    this.cmbPersona.ValueMember = "idPersona";
+                    this.cmbPersona.DataSource = this._catalogosNegocio.getPersonasSinUsuario("A");
+                    this.cmbPersona.SelectedIndex = -1;
                 }
                 else
                     throw new Exception(resp.error);

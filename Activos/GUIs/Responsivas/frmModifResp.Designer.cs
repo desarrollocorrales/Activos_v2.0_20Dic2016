@@ -87,6 +87,7 @@
             // 
             // btnBuscaResponsiva
             // 
+            this.btnBuscaResponsiva.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscaResponsiva.Location = new System.Drawing.Point(523, 47);
             this.btnBuscaResponsiva.Name = "btnBuscaResponsiva";
             this.btnBuscaResponsiva.Size = new System.Drawing.Size(198, 43);
@@ -97,6 +98,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 15);
             this.label1.Name = "label1";
@@ -106,6 +108,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(46, 56);
             this.label2.Name = "label2";
@@ -115,6 +118,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(62, 97);
             this.label3.Name = "label3";
@@ -124,6 +128,7 @@
             // 
             // btnAgrega
             // 
+            this.btnAgrega.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAgrega.Location = new System.Drawing.Point(441, 412);
             this.btnAgrega.Name = "btnAgrega";
             this.btnAgrega.Size = new System.Drawing.Size(230, 33);
@@ -134,6 +139,7 @@
             // 
             // btnQuitar
             // 
+            this.btnQuitar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnQuitar.Location = new System.Drawing.Point(38, 412);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(274, 33);
@@ -144,6 +150,7 @@
             // 
             // btnAplicar
             // 
+            this.btnAplicar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAplicar.Location = new System.Drawing.Point(582, 635);
             this.btnAplicar.Name = "btnAplicar";
             this.btnAplicar.Size = new System.Drawing.Size(139, 43);
@@ -153,6 +160,7 @@
             // 
             // gcActivos
             // 
+            this.gcActivos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcActivos.DataSource = this.activosBindingSource;
             this.gcActivos.Location = new System.Drawing.Point(12, 141);
             this.gcActivos.MainView = this.gridView1;
@@ -313,6 +321,7 @@
             // 
             // gcPrevMov
             // 
+            this.gcPrevMov.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcPrevMov.DataSource = this.activosBindingSource;
             this.gcPrevMov.Location = new System.Drawing.Point(16, 466);
             this.gcPrevMov.MainView = this.gridView2;
@@ -457,6 +466,7 @@
             // 
             // tbResponsable
             // 
+            this.tbResponsable.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbResponsable.Location = new System.Drawing.Point(133, 12);
             this.tbResponsable.Name = "tbResponsable";
             this.tbResponsable.ReadOnly = true;
@@ -465,6 +475,7 @@
             // 
             // tbSucursal
             // 
+            this.tbSucursal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbSucursal.Location = new System.Drawing.Point(133, 53);
             this.tbSucursal.Name = "tbSucursal";
             this.tbSucursal.ReadOnly = true;
@@ -473,6 +484,7 @@
             // 
             // tbPuesto
             // 
+            this.tbPuesto.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbPuesto.Location = new System.Drawing.Point(133, 94);
             this.tbPuesto.Name = "tbPuesto";
             this.tbPuesto.ReadOnly = true;
@@ -481,6 +493,7 @@
             // 
             // btnQuitarActivo
             // 
+            this.btnQuitarActivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnQuitarActivo.Location = new System.Drawing.Point(16, 699);
             this.btnQuitarActivo.Name = "btnQuitarActivo";
             this.btnQuitarActivo.Size = new System.Drawing.Size(274, 33);
@@ -491,6 +504,7 @@
             // 
             // btnAplica
             // 
+            this.btnAplica.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAplica.Location = new System.Drawing.Point(523, 699);
             this.btnAplica.Name = "btnAplica";
             this.btnAplica.Size = new System.Drawing.Size(198, 43);
@@ -503,6 +517,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(740, 760);
             this.Controls.Add(this.btnAplica);
             this.Controls.Add(this.btnQuitarActivo);

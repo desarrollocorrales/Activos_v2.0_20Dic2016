@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+<catalog version="0.0.0.1" title="videoviewer addressbook">
+	<item id="2" ip="192.168.0.99" port="81" username="admin" password="admin" transmethod="0" streamformat="255" avoption="1" streamchannel="0" eventsound="0" soundpath="C:\Program Files (x86)\VideoViewer\BMP\alarm.wav" soundtime="3" comment=""/><item id="1" ip="192.168.0.99" port="81" username="admin" password="VIDEO" transmethod="0" streamformat="255" avoption="1" streamchannel="0" eventsound="0" soundpath="C:\Program Files (x86)\VideoViewer\BMP\alarm.wav" soundtime="3" comment=""/></catalog>

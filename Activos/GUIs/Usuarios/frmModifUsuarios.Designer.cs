@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dtpFechaIngreso = new System.Windows.Forms.DateTimePicker();
-            this.cmbPuesto = new System.Windows.Forms.ComboBox();
             this.tbCorreo = new System.Windows.Forms.TextBox();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.btnCrear = new System.Windows.Forms.Button();
@@ -39,10 +38,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbSelecUsuario = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.tbPuesto = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // dtpFechaIngreso
             // 
+            this.dtpFechaIngreso.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dtpFechaIngreso.Enabled = false;
             this.dtpFechaIngreso.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.dtpFechaIngreso.Location = new System.Drawing.Point(155, 180);
@@ -50,20 +51,9 @@
             this.dtpFechaIngreso.Size = new System.Drawing.Size(366, 30);
             this.dtpFechaIngreso.TabIndex = 22;
             // 
-            // cmbPuesto
-            // 
-            this.cmbPuesto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPuesto.DropDownWidth = 600;
-            this.cmbPuesto.Enabled = false;
-            this.cmbPuesto.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.cmbPuesto.FormattingEnabled = true;
-            this.cmbPuesto.Location = new System.Drawing.Point(155, 130);
-            this.cmbPuesto.Name = "cmbPuesto";
-            this.cmbPuesto.Size = new System.Drawing.Size(432, 31);
-            this.cmbPuesto.TabIndex = 21;
-            // 
             // tbCorreo
             // 
+            this.tbCorreo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbCorreo.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.tbCorreo.Location = new System.Drawing.Point(155, 237);
             this.tbCorreo.MaxLength = 255;
@@ -73,6 +63,7 @@
             // 
             // tbNombre
             // 
+            this.tbNombre.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombre.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.tbNombre.Location = new System.Drawing.Point(155, 88);
@@ -84,6 +75,7 @@
             // 
             // btnCrear
             // 
+            this.btnCrear.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnCrear.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCrear.Location = new System.Drawing.Point(433, 284);
             this.btnCrear.Name = "btnCrear";
@@ -95,6 +87,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label4.Location = new System.Drawing.Point(65, 240);
@@ -105,6 +98,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label3.Location = new System.Drawing.Point(36, 170);
             this.label3.Name = "label3";
@@ -115,6 +109,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label2.Location = new System.Drawing.Point(65, 133);
@@ -125,6 +120,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label1.Location = new System.Drawing.Point(53, 91);
@@ -135,6 +131,7 @@
             // 
             // cmbSelecUsuario
             // 
+            this.cmbSelecUsuario.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbSelecUsuario.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbSelecUsuario.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbSelecUsuario.Font = new System.Drawing.Font("Tahoma", 14.25F);
@@ -147,6 +144,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label7.Location = new System.Drawing.Point(27, 29);
@@ -155,15 +153,28 @@
             this.label7.TabIndex = 28;
             this.label7.Text = "Seleccione Usuario";
             // 
+            // tbPuesto
+            // 
+            this.tbPuesto.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbPuesto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbPuesto.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.tbPuesto.Location = new System.Drawing.Point(155, 130);
+            this.tbPuesto.MaxLength = 255;
+            this.tbPuesto.Name = "tbPuesto";
+            this.tbPuesto.ReadOnly = true;
+            this.tbPuesto.Size = new System.Drawing.Size(432, 30);
+            this.tbPuesto.TabIndex = 29;
+            // 
             // frmModifUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(657, 336);
+            this.Controls.Add(this.tbPuesto);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cmbSelecUsuario);
             this.Controls.Add(this.dtpFechaIngreso);
-            this.Controls.Add(this.cmbPuesto);
             this.Controls.Add(this.tbCorreo);
             this.Controls.Add(this.tbNombre);
             this.Controls.Add(this.btnCrear);
@@ -182,7 +193,6 @@
         #endregion
 
         private System.Windows.Forms.DateTimePicker dtpFechaIngreso;
-        private System.Windows.Forms.ComboBox cmbPuesto;
         private System.Windows.Forms.TextBox tbCorreo;
         private System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.Button btnCrear;
@@ -192,5 +202,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbSelecUsuario;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbPuesto;
     }
 }

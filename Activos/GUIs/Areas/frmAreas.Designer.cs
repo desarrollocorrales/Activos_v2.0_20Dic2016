@@ -55,6 +55,7 @@
             // 
             // btnActivaA
             // 
+            this.btnActivaA.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnActivaA.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnActivaA.Location = new System.Drawing.Point(131, 536);
             this.btnActivaA.Name = "btnActivaA";
@@ -66,6 +67,7 @@
             // 
             // btnElimSelecc
             // 
+            this.btnElimSelecc.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnElimSelecc.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnElimSelecc.Location = new System.Drawing.Point(404, 536);
             this.btnElimSelecc.Name = "btnElimSelecc";
@@ -77,6 +79,7 @@
             // 
             // gcAreas
             // 
+            this.gcAreas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcAreas.DataSource = this.areasBindingSource;
             this.gcAreas.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.gcAreas.Location = new System.Drawing.Point(12, 149);
@@ -166,7 +169,9 @@
             // 
             // cmbSucursales
             // 
+            this.cmbSucursales.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbSucursales.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucursales.DropDownWidth = 400;
             this.cmbSucursales.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.cmbSucursales.FormattingEnabled = true;
             this.cmbSucursales.Location = new System.Drawing.Point(131, 95);
@@ -177,6 +182,7 @@
             // 
             // tbNombreAreas
             // 
+            this.tbNombreAreas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombreAreas.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombreAreas.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.tbNombreAreas.Location = new System.Drawing.Point(131, 46);
@@ -188,6 +194,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label3.Location = new System.Drawing.Point(44, 98);
@@ -199,6 +206,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label2.Location = new System.Drawing.Point(44, 49);
@@ -210,6 +218,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 18F);
             this.label1.Location = new System.Drawing.Point(20, 9);
@@ -221,6 +230,7 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAgregar.Location = new System.Drawing.Point(529, 66);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(5);
@@ -235,6 +245,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(680, 587);
             this.Controls.Add(this.btnActivaA);
             this.Controls.Add(this.btnElimSelecc);

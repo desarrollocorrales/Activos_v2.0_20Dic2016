@@ -38,9 +38,9 @@ namespace Activos.Negocio
         }
 
 
-        public List<Modelos.Activos> getBuscaActivos(int idTipo, string nombre, string status)
+        public List<Modelos.Activos> getBuscaActivos(int idArea, int idTipo, string nombre, string status)
         {
-            return this._activosDatos.getBuscaActivos(idTipo, nombre, status);
+            return this._activosDatos.getBuscaActivos(idArea, idTipo, nombre, status);
         }
 
 
@@ -50,9 +50,9 @@ namespace Activos.Negocio
         }
 
 
-        public List<ActivosDesc> getBuscaActivosResp(int idTipo, string nombre, string status)
+        public List<ActivosDesc> getBuscaActivosResp(int idArea, int idTipo, string nombre, string status)
         {
-            return this._activosDatos.getBuscaActivosResp(idTipo, nombre, status);
+            return this._activosDatos.getBuscaActivosResp(idArea, idTipo, nombre, status);
         }
 
 
@@ -102,6 +102,12 @@ namespace Activos.Negocio
             if (idActivos.Count == 0) return new List<Modelos.Activos>();
 
             return this._activosDatos.getBuscaActivos(idActivos);
+        }
+
+
+        public List<Modelos.Activos> getBuscaActivosGrupo(int idGrupo)
+        {
+            return this._activosDatos.getBuscaActivosGrupo(idGrupo);
         }
     }
 }

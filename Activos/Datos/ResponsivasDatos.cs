@@ -25,8 +25,8 @@ namespace Activos.Datos
             long result = 0;
 
             string sql =
-                "INSERT INTO activos_responsivas(idusuario, idusuariocrea, observaciones, status) " +
-                "VALUES (@idUs, @idUsCrea, @observ, 'A')";
+                "INSERT INTO activos_responsivas(idusuario, idusuariocrea, observaciones, fecha, status) " +
+                "VALUES (@idUs, @idUsCrea, @observ, now(), 'A')";
 
             int rows = 0;
 
@@ -143,8 +143,8 @@ namespace Activos.Datos
                         "left join activos_responsivasdetalle rd on (r.idresponsiva = rd.idresponsiva) " +
                         "where s.idsucursal = @isSucursal and p.nombrecompleto LIKE @nomb and rd.status != @status and r.status != 'B' " +
                         "group by r.idresponsiva, r.idusuario, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
-                        "p.nombrecompleto, pu.nombre, s.nombre";
-
+                        "p.nombrecompleto, pu.nombre, s.nombre order by p.nombrecompleto ";
+            
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
             {
@@ -632,6 +632,47 @@ namespace Activos.Datos
                     }
                    
                     trans.Commit();
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene el comando de una etiqueta
+        public string getBuscaComandoEt(string etiqueta)
+        {
+            string result = string.Empty;
+
+            string sql = "select comando from activos_comandosetiquetas where etiqueta = @etiqueta";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@etiqueta", etiqueta);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            result = Convert.ToString(res.reader["comando"]);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
                 }
             }
 

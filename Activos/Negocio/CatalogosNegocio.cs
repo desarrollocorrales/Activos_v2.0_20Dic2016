@@ -298,5 +298,35 @@ namespace Activos.Negocio
         {
             return this._catalogosDatos.getMotivosBaja();
         }
+
+
+        public bool agregaGrupo(int idUsuario, int idArea, string nombreG, List<Modelos.Activos> activos)
+        {
+            return this._catalogosDatos.agregaGrupos(idUsuario, idArea, nombreG, activos);
+        }
+
+
+        public string buscaActivoEnGrupo(int idActivo)
+        {
+            return this._catalogosDatos.buscaActivoEnGrupo(idActivo);
+        }
+
+
+        public List<Grupos> getGrupos(string grupoNombre)
+        {
+            return this._catalogosDatos.getGrupos(grupoNombre);
+        }
+
+
+        public bool modificaGrupo(int idGrupo, string nombre, List<Modelos.Activos> activos)
+        {
+            return this._catalogosDatos.modificaGrupo(idGrupo, nombre, activos);
+        }
+
+
+        public bool bajaGrupo(int idGrupo)
+        {
+            return this._catalogosDatos.bajaGrupo(idGrupo);
+        }
     }
 }

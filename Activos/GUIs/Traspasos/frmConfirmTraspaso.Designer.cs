@@ -347,6 +347,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(688, 638);
             this.Controls.Add(this.cbArea);
             this.Controls.Add(this.gbArea);

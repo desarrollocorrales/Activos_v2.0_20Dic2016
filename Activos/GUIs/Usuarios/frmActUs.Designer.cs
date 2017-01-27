@@ -51,6 +51,7 @@
             // 
             // gcUsuariosBaja
             // 
+            this.gcUsuariosBaja.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcUsuariosBaja.DataSource = this.usuariosBindingSource;
             this.gcUsuariosBaja.Font = new System.Drawing.Font("Tahoma", 16F);
             this.gcUsuariosBaja.Location = new System.Drawing.Point(12, 61);
@@ -176,6 +177,7 @@
             // 
             // btnActiva
             // 
+            this.btnActiva.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnActiva.Font = new System.Drawing.Font("Tahoma", 14F);
             this.btnActiva.Location = new System.Drawing.Point(488, 336);
             this.btnActiva.Margin = new System.Windows.Forms.Padding(5);
@@ -188,6 +190,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 16F);
             this.label1.Location = new System.Drawing.Point(14, 21);
@@ -201,6 +204,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(754, 409);
             this.Controls.Add(this.gcUsuariosBaja);
             this.Controls.Add(this.btnActiva);

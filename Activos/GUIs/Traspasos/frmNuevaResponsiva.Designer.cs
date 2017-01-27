@@ -330,6 +330,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(529, 557);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);

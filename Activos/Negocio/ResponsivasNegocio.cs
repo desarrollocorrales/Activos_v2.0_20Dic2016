@@ -59,5 +59,11 @@ namespace Activos.Negocio
         {
             return this._responsivasDatos.bajaResponsiva(idResponsiva, motivo);
         }
+
+
+        public string getBuscaComandoEt(string etiqueta)
+        {
+            return this._responsivasDatos.getBuscaComandoEt(etiqueta);
+        }
     }
 }

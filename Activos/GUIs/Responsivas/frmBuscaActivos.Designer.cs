@@ -30,6 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gbPTN = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbArea = new System.Windows.Forms.ComboBox();
+            this.cmbSucursal = new System.Windows.Forms.ComboBox();
             this.btnBuscarPTN = new System.Windows.Forms.Button();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -97,19 +102,73 @@
             // 
             // gbPTN
             // 
+            this.gbPTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gbPTN.Controls.Add(this.label4);
+            this.gbPTN.Controls.Add(this.label3);
+            this.gbPTN.Controls.Add(this.label2);
+            this.gbPTN.Controls.Add(this.cmbArea);
+            this.gbPTN.Controls.Add(this.cmbSucursal);
             this.gbPTN.Controls.Add(this.btnBuscarPTN);
             this.gbPTN.Controls.Add(this.tbNombre);
             this.gbPTN.Controls.Add(this.label1);
             this.gbPTN.Controls.Add(this.cmbTipo);
             this.gbPTN.Location = new System.Drawing.Point(12, 12);
             this.gbPTN.Name = "gbPTN";
-            this.gbPTN.Size = new System.Drawing.Size(364, 185);
+            this.gbPTN.Size = new System.Drawing.Size(536, 313);
             this.gbPTN.TabIndex = 0;
             this.gbPTN.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 146);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 23);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Tipo";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 23);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Sucursal";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 23);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Área";
+            // 
+            // cmbArea
+            // 
+            this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbArea.DropDownWidth = 400;
+            this.cmbArea.FormattingEnabled = true;
+            this.cmbArea.Location = new System.Drawing.Point(20, 112);
+            this.cmbArea.Name = "cmbArea";
+            this.cmbArea.Size = new System.Drawing.Size(493, 31);
+            this.cmbArea.TabIndex = 5;
+            // 
+            // cmbSucursal
+            // 
+            this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucursal.DropDownWidth = 400;
+            this.cmbSucursal.FormattingEnabled = true;
+            this.cmbSucursal.Location = new System.Drawing.Point(20, 52);
+            this.cmbSucursal.Name = "cmbSucursal";
+            this.cmbSucursal.Size = new System.Drawing.Size(493, 31);
+            this.cmbSucursal.TabIndex = 4;
+            this.cmbSucursal.SelectionChangeCommitted += new System.EventHandler(this.cmbSucursal_SelectionChangeCommitted);
+            // 
             // btnBuscarPTN
             // 
-            this.btnBuscarPTN.Location = new System.Drawing.Point(101, 134);
+            this.btnBuscarPTN.Location = new System.Drawing.Point(171, 268);
             this.btnBuscarPTN.Name = "btnBuscarPTN";
             this.btnBuscarPTN.Size = new System.Drawing.Size(163, 34);
             this.btnBuscarPTN.TabIndex = 3;
@@ -119,15 +178,16 @@
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(20, 89);
+            this.tbNombre.Location = new System.Drawing.Point(20, 232);
             this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(331, 30);
+            this.tbNombre.Size = new System.Drawing.Size(493, 30);
             this.tbNombre.TabIndex = 2;
+            this.tbNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNombre_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 63);
+            this.label1.Location = new System.Drawing.Point(16, 206);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 23);
             this.label1.TabIndex = 1;
@@ -136,30 +196,33 @@
             // cmbTipo
             // 
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipo.DropDownWidth = 400;
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(20, 29);
+            this.cmbTipo.Location = new System.Drawing.Point(20, 172);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(331, 31);
+            this.cmbTipo.Size = new System.Drawing.Size(493, 31);
             this.cmbTipo.TabIndex = 0;
             // 
             // rbPTN
             // 
+            this.rbPTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rbPTN.AutoSize = true;
-            this.rbPTN.Location = new System.Drawing.Point(14, 353);
+            this.rbPTN.Location = new System.Drawing.Point(14, 481);
             this.rbPTN.Name = "rbPTN";
-            this.rbPTN.Size = new System.Drawing.Size(183, 27);
+            this.rbPTN.Size = new System.Drawing.Size(128, 27);
             this.rbPTN.TabIndex = 1;
-            this.rbPTN.Text = "Por Tipo - Nombre";
+            this.rbPTN.Text = "Por Nombre";
             this.rbPTN.UseVisualStyleBackColor = true;
             this.rbPTN.CheckedChanged += new System.EventHandler(this.rbPTN_CheckedChanged);
             // 
             // gbPNE
             // 
+            this.gbPNE.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gbPNE.Controls.Add(this.tbNumEtiqueta);
             this.gbPNE.Controls.Add(this.btnBuscarPNE);
-            this.gbPNE.Location = new System.Drawing.Point(382, 12);
+            this.gbPNE.Location = new System.Drawing.Point(554, 12);
             this.gbPNE.Name = "gbPNE";
-            this.gbPNE.Size = new System.Drawing.Size(269, 185);
+            this.gbPNE.Size = new System.Drawing.Size(369, 152);
             this.gbPNE.TabIndex = 0;
             this.gbPNE.TabStop = false;
             // 
@@ -167,12 +230,13 @@
             // 
             this.tbNumEtiqueta.Location = new System.Drawing.Point(20, 51);
             this.tbNumEtiqueta.Name = "tbNumEtiqueta";
-            this.tbNumEtiqueta.Size = new System.Drawing.Size(231, 30);
+            this.tbNumEtiqueta.Size = new System.Drawing.Size(330, 30);
             this.tbNumEtiqueta.TabIndex = 5;
+            this.tbNumEtiqueta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNumEtiqueta_KeyPress);
             // 
             // btnBuscarPNE
             // 
-            this.btnBuscarPNE.Location = new System.Drawing.Point(58, 99);
+            this.btnBuscarPNE.Location = new System.Drawing.Point(103, 99);
             this.btnBuscarPNE.Name = "btnBuscarPNE";
             this.btnBuscarPNE.Size = new System.Drawing.Size(163, 34);
             this.btnBuscarPNE.TabIndex = 4;
@@ -182,8 +246,9 @@
             // 
             // rbPNE
             // 
+            this.rbPNE.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rbPNE.AutoSize = true;
-            this.rbPNE.Location = new System.Drawing.Point(14, 374);
+            this.rbPNE.Location = new System.Drawing.Point(14, 502);
             this.rbPNE.Name = "rbPNE";
             this.rbPNE.Size = new System.Drawing.Size(182, 27);
             this.rbPNE.TabIndex = 2;
@@ -193,11 +258,12 @@
             // 
             // gbPCA
             // 
+            this.gbPCA.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gbPCA.Controls.Add(this.tbCveActivo);
             this.gbPCA.Controls.Add(this.btnBuscarPCA);
-            this.gbPCA.Location = new System.Drawing.Point(657, 12);
+            this.gbPCA.Location = new System.Drawing.Point(554, 173);
             this.gbPCA.Name = "gbPCA";
-            this.gbPCA.Size = new System.Drawing.Size(266, 185);
+            this.gbPCA.Size = new System.Drawing.Size(369, 152);
             this.gbPCA.TabIndex = 0;
             this.gbPCA.TabStop = false;
             // 
@@ -205,12 +271,13 @@
             // 
             this.tbCveActivo.Location = new System.Drawing.Point(16, 51);
             this.tbCveActivo.Name = "tbCveActivo";
-            this.tbCveActivo.Size = new System.Drawing.Size(231, 30);
+            this.tbCveActivo.Size = new System.Drawing.Size(334, 30);
             this.tbCveActivo.TabIndex = 6;
+            this.tbCveActivo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCveActivo_KeyPress);
             // 
             // btnBuscarPCA
             // 
-            this.btnBuscarPCA.Location = new System.Drawing.Point(48, 99);
+            this.btnBuscarPCA.Location = new System.Drawing.Point(103, 99);
             this.btnBuscarPCA.Name = "btnBuscarPCA";
             this.btnBuscarPCA.Size = new System.Drawing.Size(163, 34);
             this.btnBuscarPCA.TabIndex = 5;
@@ -220,8 +287,9 @@
             // 
             // rbPCA
             // 
+            this.rbPCA.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rbPCA.AutoSize = true;
-            this.rbPCA.Location = new System.Drawing.Point(14, 395);
+            this.rbPCA.Location = new System.Drawing.Point(14, 523);
             this.rbPCA.Name = "rbPCA";
             this.rbPCA.Size = new System.Drawing.Size(160, 27);
             this.rbPCA.TabIndex = 3;
@@ -231,8 +299,9 @@
             // 
             // gcResulBusquedas
             // 
+            this.gcResulBusquedas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcResulBusquedas.DataSource = this.activosBindingSource;
-            this.gcResulBusquedas.Location = new System.Drawing.Point(12, 203);
+            this.gcResulBusquedas.Location = new System.Drawing.Point(12, 331);
             this.gcResulBusquedas.MainView = this.gridView1;
             this.gcResulBusquedas.Name = "gcResulBusquedas";
             this.gcResulBusquedas.Size = new System.Drawing.Size(911, 153);
@@ -397,7 +466,8 @@
             // 
             // btnAgrega
             // 
-            this.btnAgrega.Location = new System.Drawing.Point(163, 374);
+            this.btnAgrega.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAgrega.Location = new System.Drawing.Point(163, 502);
             this.btnAgrega.Name = "btnAgrega";
             this.btnAgrega.Size = new System.Drawing.Size(179, 41);
             this.btnAgrega.TabIndex = 2;
@@ -407,7 +477,8 @@
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(378, 374);
+            this.btnQuitar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnQuitar.Location = new System.Drawing.Point(378, 502);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(179, 41);
             this.btnQuitar.TabIndex = 3;
@@ -417,7 +488,8 @@
             // 
             // btnQuitarTodos
             // 
-            this.btnQuitarTodos.Location = new System.Drawing.Point(593, 374);
+            this.btnQuitarTodos.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnQuitarTodos.Location = new System.Drawing.Point(593, 502);
             this.btnQuitarTodos.Name = "btnQuitarTodos";
             this.btnQuitarTodos.Size = new System.Drawing.Size(179, 41);
             this.btnQuitarTodos.TabIndex = 4;
@@ -427,7 +499,8 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(531, 602);
+            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAceptar.Location = new System.Drawing.Point(531, 730);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(179, 41);
             this.btnAceptar.TabIndex = 6;
@@ -437,7 +510,8 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(725, 602);
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCancelar.Location = new System.Drawing.Point(725, 730);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(179, 41);
             this.btnCancelar.TabIndex = 7;
@@ -447,8 +521,9 @@
             // 
             // gcSeleccionados
             // 
+            this.gcSeleccionados.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcSeleccionados.DataSource = this.activosBindingSource;
-            this.gcSeleccionados.Location = new System.Drawing.Point(12, 428);
+            this.gcSeleccionados.Location = new System.Drawing.Point(12, 556);
             this.gcSeleccionados.MainView = this.gridView2;
             this.gcSeleccionados.Name = "gcSeleccionados";
             this.gcSeleccionados.Size = new System.Drawing.Size(911, 156);
@@ -611,7 +686,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 658);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(935, 787);
             this.Controls.Add(this.gcSeleccionados);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.rbPCA);
@@ -628,7 +704,6 @@
             this.Font = new System.Drawing.Font("Tahoma", 14F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.MaximizeBox = false;
             this.Name = "frmBuscaActivos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Busca Activos";
@@ -707,5 +782,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbArea;
+        private System.Windows.Forms.ComboBox cmbSucursal;
     }
 }

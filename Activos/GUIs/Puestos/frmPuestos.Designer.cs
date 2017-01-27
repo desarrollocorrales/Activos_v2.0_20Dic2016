@@ -55,6 +55,7 @@
             // 
             // btnActivaP
             // 
+            this.btnActivaP.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnActivaP.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnActivaP.Location = new System.Drawing.Point(198, 526);
             this.btnActivaP.Name = "btnActivaP";
@@ -66,6 +67,7 @@
             // 
             // btnElimSelecc
             // 
+            this.btnElimSelecc.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnElimSelecc.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnElimSelecc.Location = new System.Drawing.Point(388, 526);
             this.btnElimSelecc.Name = "btnElimSelecc";
@@ -77,6 +79,7 @@
             // 
             // gcPuestos
             // 
+            this.gcPuestos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcPuestos.DataSource = this.puestosBindingSource;
             this.gcPuestos.Location = new System.Drawing.Point(12, 155);
             this.gcPuestos.MainView = this.gridView1;
@@ -165,7 +168,9 @@
             // 
             // cmbSucursal
             // 
+            this.cmbSucursal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucursal.DropDownWidth = 400;
             this.cmbSucursal.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.cmbSucursal.FormattingEnabled = true;
             this.cmbSucursal.Location = new System.Drawing.Point(131, 101);
@@ -176,6 +181,7 @@
             // 
             // tbNombrePuesto
             // 
+            this.tbNombrePuesto.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombrePuesto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombrePuesto.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.tbNombrePuesto.Location = new System.Drawing.Point(131, 52);
@@ -187,6 +193,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label3.Location = new System.Drawing.Point(44, 104);
@@ -198,6 +205,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label2.Location = new System.Drawing.Point(44, 55);
@@ -209,6 +217,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 18F);
             this.label1.Location = new System.Drawing.Point(20, 15);
@@ -220,6 +229,7 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAgregar.Location = new System.Drawing.Point(486, 72);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(5);
@@ -234,6 +244,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(665, 580);
             this.Controls.Add(this.btnActivaP);
             this.Controls.Add(this.btnElimSelecc);

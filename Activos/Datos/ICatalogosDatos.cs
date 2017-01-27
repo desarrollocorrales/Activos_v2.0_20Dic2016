@@ -20,6 +20,7 @@ namespace Activos.Datos
 
         bool activaSucursales(List<int> seleccionados);
 
+
         /* ************* P U E S T O S ************* */
         List<Puestos> getPuestos(string status);
 
@@ -31,6 +32,7 @@ namespace Activos.Datos
 
         bool modificaPuesto(string puestoNom, int idSuc, int idPuesto);
 
+
         /* ********** U S U A R I O  S ************* */
         Usuarios validaAcceso(string usuario, string pass);
 
@@ -40,7 +42,7 @@ namespace Activos.Datos
 
         bool buscaUsuario(string usuario);
 
-        bool buscaCorreo(string p);
+        bool buscaCorreo(string correo);
 
         bool insertaUsuario(int idPersona, string fecha, string correo, string usuario, string clave);
 
@@ -53,6 +55,7 @@ namespace Activos.Datos
         bool validaClave(string clave, int idUsuario);
 
         bool actualizaClave(string clave, int idUsuario);
+
         
         /* ************* A R E A S *************** */
         List<Areas> getAreas(string status);
@@ -66,6 +69,7 @@ namespace Activos.Datos
         bool bajaAreas(List<int> seleccionados);
 
         bool modificaArea(string areaNom, int idSuc, int idArea);
+
 
         /* ************* T I P O S *************** */
         List<Tipos> getTipos(string status);
@@ -98,5 +102,17 @@ namespace Activos.Datos
 
         /* ****** M O T I V O S   B A J A ****** */
         List<MotivosBaja> getMotivosBaja();
+
+
+        /* ************ G R U P O S ************ */
+        bool agregaGrupos(int idUsuario, int idArea, string nombreG, List<Modelos.Activos> activos);
+
+        string buscaActivoEnGrupo(int idActivo);
+
+        List<Grupos> getGrupos(string grupoNombre);
+
+        bool modificaGrupo(int idGrupo, string nombre, List<Modelos.Activos> activos);
+
+        bool bajaGrupo(int idGrupo);
     }
 }

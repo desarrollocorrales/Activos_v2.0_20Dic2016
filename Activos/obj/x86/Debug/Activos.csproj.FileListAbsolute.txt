@@ -51,3 +51,10 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.Reporte.frmResponsivaReporte.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\RdlCompile.cache
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\RdlCompile.compiled
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Grupos.frmAltaGrupos.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Grupos.frmModifGrupos.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Grupos.frmBuscaGrupos.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Grupos.frmBajaGrupos.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\Sofbr.Layers.dll
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\Sofbr.Utils.dll
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.frmSelecImpresora.resources

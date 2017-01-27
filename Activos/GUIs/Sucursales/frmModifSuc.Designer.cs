@@ -87,6 +87,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(682, 256);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbResponsable);

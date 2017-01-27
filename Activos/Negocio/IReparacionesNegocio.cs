@@ -7,6 +7,6 @@ namespace Activos.Negocio
 {
     public interface IReparacionesNegocio
     {
-        List<Modelos.Reparaciones> getBuscaActivosReparacion(int idTipo, string nombre);
+        List<Modelos.Reparaciones> getBuscaActivosReparacion(int idArea, int idTipo, string nombre);
     }
 }

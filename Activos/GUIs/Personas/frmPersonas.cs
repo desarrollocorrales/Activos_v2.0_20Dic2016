@@ -116,7 +116,6 @@ namespace Activos.GUIs.Personas
 
         #endregion 
 
-
         #region - M O D I F I C A R - 
 
         private void btnBuscarModif_Click(object sender, EventArgs e)
@@ -125,7 +124,11 @@ namespace Activos.GUIs.Personas
             {
                 // validaciones
                 if (string.IsNullOrEmpty(this.tbNombreBusqModif.Text))
+                {
+                    this.ActiveControl = this.tbNombreBusqModif;
+                    this.tbNombreBusqModif.SelectAll();
                     throw new Exception("Defina nombre para iniciar la búsqueda");
+                }
 
                 string paramBusq = this.tbNombreBusqModif.Text;
 
@@ -230,9 +233,25 @@ namespace Activos.GUIs.Personas
             }
         }
 
+        private void tbNombreBusqModif_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarModif_Click(null, null);
+            }
+        }
+
         #endregion
 
         #region - B A J A S -
+
+        private void tbNombreBaja_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarBaja_Click(null, null);
+            }
+        }
 
         private void btnBuscarBaja_Click(object sender, EventArgs e)
         {
@@ -240,8 +259,11 @@ namespace Activos.GUIs.Personas
             {
                 // validaciones
                 if (string.IsNullOrEmpty(this.tbNombreBaja.Text))
+                {
+                    this.ActiveControl = this.tbNombreBaja;
+                    this.tbNombreBaja.SelectAll();
                     throw new Exception("Defina nombre para iniciar la búsqueda");
-
+                }
                 this._paramBusq = this.tbNombreBaja.Text;
 
                 List<Modelos.Personas> personas = this._catalogosNegocio.getPersonas(this._paramBusq, "A");
@@ -288,7 +310,15 @@ namespace Activos.GUIs.Personas
 
         #endregion
 
+        #region - A C T I V A R -
 
+        private void tbNombreActiva_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarActiva_Click(null, null);
+            }
+        }
 
         private void btnBuscarActiva_Click(object sender, EventArgs e)
         {
@@ -296,8 +326,11 @@ namespace Activos.GUIs.Personas
             {
                 // validaciones
                 if (string.IsNullOrEmpty(this.tbNombreActiva.Text))
+                {
+                    this.ActiveControl = this.tbNombreActiva;
+                    this.tbNombreActiva.SelectAll();
                     throw new Exception("Defina nombre para iniciar la búsqueda");
-
+                }
                 this._paramBusq = this.tbNombreActiva.Text;
 
                 List<Modelos.Personas> personas = this._catalogosNegocio.getPersonas(this._paramBusq, "B");
@@ -342,6 +375,6 @@ namespace Activos.GUIs.Personas
             }
         }
 
-
+        #endregion
     }
 }

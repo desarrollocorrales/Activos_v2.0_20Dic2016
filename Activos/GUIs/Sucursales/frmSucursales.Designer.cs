@@ -55,6 +55,7 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAgregar.Location = new System.Drawing.Point(656, 75);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(5);
             this.btnAgregar.Name = "btnAgregar";
@@ -66,6 +67,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 18F);
             this.label1.Location = new System.Drawing.Point(20, 16);
@@ -77,6 +79,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(44, 56);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -87,6 +90,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(44, 105);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -97,6 +101,7 @@
             // 
             // tbNombreSuc
             // 
+            this.tbNombreSuc.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombreSuc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombreSuc.Location = new System.Drawing.Point(164, 53);
             this.tbNombreSuc.Margin = new System.Windows.Forms.Padding(5);
@@ -107,6 +112,7 @@
             // 
             // cmbResponsable
             // 
+            this.cmbResponsable.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbResponsable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbResponsable.FormattingEnabled = true;
             this.cmbResponsable.Location = new System.Drawing.Point(164, 102);
@@ -186,6 +192,7 @@
             // 
             // gcSucursales
             // 
+            this.gcSucursales.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcSucursales.DataSource = this.sucursalesBindingSource;
             this.gcSucursales.Location = new System.Drawing.Point(12, 156);
             this.gcSucursales.MainView = this.gridView1;
@@ -204,6 +211,7 @@
             // 
             // btnElimSelecc
             // 
+            this.btnElimSelecc.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnElimSelecc.Location = new System.Drawing.Point(531, 536);
             this.btnElimSelecc.Name = "btnElimSelecc";
             this.btnElimSelecc.Size = new System.Drawing.Size(250, 39);
@@ -214,6 +222,7 @@
             // 
             // btnActivaS
             // 
+            this.btnActivaS.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnActivaS.Location = new System.Drawing.Point(258, 536);
             this.btnActivaS.Name = "btnActivaS";
             this.btnActivaS.Size = new System.Drawing.Size(250, 39);
@@ -226,6 +235,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(812, 592);
             this.Controls.Add(this.btnActivaS);
             this.Controls.Add(this.btnElimSelecc);

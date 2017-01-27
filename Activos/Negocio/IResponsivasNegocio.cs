@@ -21,5 +21,7 @@ namespace Activos.Negocio
         bool traspasoCreaResp(List<Modelos.Activos> activosTraspaso, int? idResponsiva, string observaciones, int? idUsuario, int idUsCrea);
 
         bool bajaResponsiva(int? idResponsiva, string motivo);
+
+        string getBuscaComandoEt(string etiqueta);
     }
 }

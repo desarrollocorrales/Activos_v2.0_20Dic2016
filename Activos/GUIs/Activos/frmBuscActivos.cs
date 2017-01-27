@@ -24,8 +24,8 @@ namespace Activos.GUIs.AltaActivos
             InitializeComponent();
             
             // acomoda radios
-            this.rbPTN.Location = new Point(this.gbPTN.Location.X + 13, this.gbPTN.Location.Y - 1);
-            this.rbPN.Location = new Point(this.gbPN.Location.X + 13, this.gbPN.Location.Y - 1);
+            this.rbPN.Location = new Point(this.gbPTN.Location.X + 13, this.gbPTN.Location.Y - 1);
+            this.rbPU.Location = new Point(this.gbPN.Location.X + 13, this.gbPN.Location.Y - 1);
             this.rbPNE.Location = new Point(this.gbPNE.Location.X + 13, this.gbPNE.Location.Y - 1);
             this.rbPCA.Location = new Point(this.gbPCA.Location.X + 13, this.gbPCA.Location.Y - 1);
 
@@ -50,8 +50,14 @@ namespace Activos.GUIs.AltaActivos
                 this.cmbTipo.DataSource = this._catalogosNegocio.getTipos("A");
                 this.cmbTipo.SelectedIndex = -1;
 
+                // llenar combo de sucursales
+                this.cmbSucursal.DisplayMember = "nombre";
+                this.cmbSucursal.ValueMember = "idSucursal";
+                this.cmbSucursal.DataSource = this._catalogosNegocio.getSucursales("A");
+                this.cmbSucursal.SelectedIndex = -1;
+
                 // define radios activos
-                this.rbPTN.Checked = true;
+                this.rbPN.Checked = true;
 
             }
             catch (Exception Ex)
@@ -104,6 +110,8 @@ namespace Activos.GUIs.AltaActivos
         {
             this.tbNombre.Text = string.Empty;
             this.cmbTipo.SelectedIndex = -1;
+            this.cmbSucursal.SelectedIndex = -1;
+            this.cmbArea.DataSource = null;
 
             this.tbUsuarioPU.Text = string.Empty;
             this.rbNombrePU.Checked = true;
@@ -145,13 +153,21 @@ namespace Activos.GUIs.AltaActivos
             try
             {
                 // validaciones
+                if (this.cmbSucursal.SelectedIndex == -1)
+                    throw new Exception("Seleccione una sucursal");
+
+                if (this.cmbArea.SelectedIndex == -1)
+                    throw new Exception("Seleccione un área");
+
                 if (this.cmbTipo.SelectedIndex == -1)
                     throw new Exception("Seleccione un tipo");
 
+                int idSucursal = (int)this.cmbSucursal.SelectedValue;
+                int idArea = (int)this.cmbArea.SelectedValue;
                 int idTipo = (int)this.cmbTipo.SelectedValue;
                 string nombre = this.tbNombre.Text;
 
-                List<Modelos.ActivosDesc> resultado = this._activosNegocio.getBuscaActivosResp(idTipo, nombre, "A");
+                List<Modelos.ActivosDesc> resultado = this._activosNegocio.getBuscaActivosResp(idArea, idTipo, nombre, "A");
 
                 if (resultado.Count == 0)
                 {
@@ -298,6 +314,55 @@ namespace Activos.GUIs.AltaActivos
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void cmbSucursal_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                int idSucursal = (int)this.cmbSucursal.SelectedValue;
+
+                // llenar combo de Tipos
+                this.cmbArea.DataSource = this._catalogosNegocio.getAreas(idSucursal);
+                this.cmbArea.DisplayMember = "nombre";
+                this.cmbArea.ValueMember = "idArea";
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void tbNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarPTN_Click(null, null);
+            }
+        }
+
+        private void tbUsuarioPU_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarPU_Click(null, null);
+            }
+        }
+
+        private void tbCveActivo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarPCA_Click(null, null);
+            }
+        }
+
+        private void tbNumEtiqueta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarPNE_Click(null, null);
             }
         }
 
