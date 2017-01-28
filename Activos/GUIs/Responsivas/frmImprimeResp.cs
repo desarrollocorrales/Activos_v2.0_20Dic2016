@@ -133,12 +133,11 @@ namespace Activos.GUIs.Responsivas
                 if (string.IsNullOrEmpty(comando))
                     throw new Exception("No se encotró un comando para la etiqueta");
 
-                foreach(Modelos.Activos ac in this._activos)
+                foreach (Modelos.Activos ac in this._activos)
                 {
                     string comEtiqueta = comando;
 
-                    // comEtiqueta = comEtiqueta.Replace("|sucursal|", this._responsiva.sucursal);
-                    comEtiqueta = comEtiqueta.Replace("|sucursal|", @"ABASTESEDORA DE CARNES LOS CORRALES S.A. DE C.V.");
+                    comEtiqueta = comEtiqueta.Replace("|sucursal|", this._responsiva.sucursal);
                     comEtiqueta = comEtiqueta.Replace("|area|", ac.area);
                     comEtiqueta = comEtiqueta.Replace("|cveActivo|", ac.claveActivo);
                     comEtiqueta = comEtiqueta.Replace("|nombrecorto|", ac.nombreCorto);

@@ -109,7 +109,7 @@ namespace Activos.Datos
 
                     // define parametros
                     cmd.Parameters.AddWithValue("@usuario", usuario);
-                    cmd.Parameters.AddWithValue("@clave", pass);
+                    cmd.Parameters.AddWithValue("@clave", Utilerias.Base64Encode(pass));
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
 
@@ -712,12 +712,14 @@ namespace Activos.Datos
                 {
                     cmd.Connection = conn;
 
+                    string claveBase64 = Utilerias.Base64Encode(clave);
+
                     // define parametros
                     cmd.Parameters.AddWithValue("@idPersona", idPersona);
                     cmd.Parameters.AddWithValue("@fecha", fecha);
                     cmd.Parameters.AddWithValue("@correo", correo);
                     cmd.Parameters.AddWithValue("@usuario", usuario);
-                    cmd.Parameters.AddWithValue("@clave", clave);
+                    cmd.Parameters.AddWithValue("@clave", claveBase64);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 
@@ -859,7 +861,7 @@ namespace Activos.Datos
                     cmd.Connection = conn;
 
                     // define parametros
-                    cmd.Parameters.AddWithValue("@clave", clave);
+                    cmd.Parameters.AddWithValue("@clave", Utilerias.Base64Encode(clave));
                     cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
@@ -903,7 +905,7 @@ namespace Activos.Datos
                     cmd.Connection = conn;
 
                     // define parametros
-                    cmd.Parameters.AddWithValue("@clave", clave);
+                    cmd.Parameters.AddWithValue("@clave", Utilerias.Base64Encode(clave));
                     cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
