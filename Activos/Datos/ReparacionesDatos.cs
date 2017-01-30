@@ -16,7 +16,7 @@ namespace Activos.Datos
         public ReparacionesDatos()
         {
             // Establece la cadena de conexión
-            _conexion = new Conexion(ConfigurationManager.AppSettings["ConnectionString"].ToString());
+            _conexion = new Conexion(Modelos.ConectionString.conn);
         }
 
 

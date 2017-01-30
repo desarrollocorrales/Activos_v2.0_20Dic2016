@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace Activos.Modelos
 {
@@ -27,9 +28,61 @@ namespace Activos.Modelos
         public static string usuario;
     }
 
+    public static class ConectionString
+    {
+        public static string conn { get; set; }
+    }
 
     public static class Utilerias
     {
+        public static bool esIp(string cadena)
+        {
+            bool result = false;
+
+            Match match = Regex.Match(cadena, @"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}");
+
+            if (match.Success) result = true;
+                
+                return result;
+        }
+
+        /// <summary>
+        /// Performs the ROT13 character rotation.
+        /// </summary>
+        public static string Transform(string value)
+        {
+            char[] array = value.ToCharArray();
+            for (int i = 0; i < array.Length; i++)
+            {
+                int number = (int)array[i];
+
+                if (number >= 'a' && number <= 'z')
+                {
+                    if (number > 'm')
+                    {
+                        number -= 13;
+                    }
+                    else
+                    {
+                        number += 13;
+                    }
+                }
+                else if (number >= 'A' && number <= 'Z')
+                {
+                    if (number > 'M')
+                    {
+                        number -= 13;
+                    }
+                    else
+                    {
+                        number += 13;
+                    }
+                }
+                array[i] = (char)number;
+            }
+            return new string(array);
+        }
+
         // Codificar cadena a Base64
         public static string Base64Encode(string plainText)
         {

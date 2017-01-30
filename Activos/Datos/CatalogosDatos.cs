@@ -16,7 +16,7 @@ namespace Activos.Datos
         public CatalogosDatos()
         {
             // Establece la cadena de conexión
-            _conexion = new Conexion(ConfigurationManager.AppSettings["ConnectionString"].ToString());
+            _conexion = new Conexion(Modelos.ConectionString.conn);
         }
 
         // obtiene una lista de todos los usuarios ACTIVOS

@@ -58,3 +58,5 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Grupos.frmBa
 G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\Sofbr.Layers.dll
 G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\Sofbr.Utils.dll
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.frmSelecImpresora.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\FEncrypt.dll
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.frmConfiguracion.resources
