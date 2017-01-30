@@ -6,10 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Gma.QrCodeNet.Encoding;
 using System.Drawing.Imaging;
 using System.IO;
-using Gma.QrCodeNet.Encoding.Windows.Render;
 
 namespace Activos.GUIs.Ejemplos_QR
 {
@@ -20,51 +18,7 @@ namespace Activos.GUIs.Ejemplos_QR
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string url = this.textBox1.Text;
-
-            string tipo = this.textBox2.Text;
-
-            QrEncoder qrEncoder = null;
-
-
-            if (this.radioButton1.Checked)
-                qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
-
-
-            if (this.radioButton2.Checked)
-                qrEncoder = new QrEncoder(ErrorCorrectionLevel.L);
-
-
-            if (this.radioButton3.Checked)
-                qrEncoder = new QrEncoder(ErrorCorrectionLevel.Q);
-
-
-            if (this.radioButton4.Checked)
-                qrEncoder = new QrEncoder(ErrorCorrectionLevel.M);
-
-
-
-            var qrCode = qrEncoder.Encode(url);
-
-            var renderer = new GraphicsRenderer(new FixedModuleSize(5, QuietZoneModules.Two), Brushes.Black, Brushes.White);
-            /*
-            using (var stream = new FileStream("qrcode.png", FileMode.Create))
-                renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, stream);
-            */
-
-            MemoryStream ms = new MemoryStream();
-
-            renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, ms);
-
-            var imageTemp = new Bitmap(ms);
-
-            var image = new Bitmap(imageTemp);
-
-            pictureBox1.Image = image;
-        }
-
+        
         private void button2_Click(object sender, EventArgs e)
         {
 

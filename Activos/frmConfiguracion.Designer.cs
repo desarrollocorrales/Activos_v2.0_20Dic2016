@@ -52,7 +52,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(236, 473);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(96, 30);
-            this.btnGuardar.TabIndex = 0;
+            this.btnGuardar.TabIndex = 7;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -63,7 +63,7 @@
             this.btnTestConn.Location = new System.Drawing.Point(106, 226);
             this.btnTestConn.Name = "btnTestConn";
             this.btnTestConn.Size = new System.Drawing.Size(116, 23);
-            this.btnTestConn.TabIndex = 1;
+            this.btnTestConn.TabIndex = 5;
             this.btnTestConn.Text = "Probar Conexión";
             this.btnTestConn.UseVisualStyleBackColor = true;
             this.btnTestConn.Click += new System.EventHandler(this.btnTestConn_Click);
@@ -125,7 +125,8 @@
             this.tbEmpresa.Multiline = true;
             this.tbEmpresa.Name = "tbEmpresa";
             this.tbEmpresa.Size = new System.Drawing.Size(329, 64);
-            this.tbEmpresa.TabIndex = 7;
+            this.tbEmpresa.TabIndex = 0;
+            this.tbEmpresa.TextChanged += new System.EventHandler(this.tbEmpresa_TextChanged);
             // 
             // tbServidor
             // 
@@ -133,7 +134,7 @@
             this.tbServidor.Location = new System.Drawing.Point(19, 43);
             this.tbServidor.Name = "tbServidor";
             this.tbServidor.Size = new System.Drawing.Size(281, 20);
-            this.tbServidor.TabIndex = 8;
+            this.tbServidor.TabIndex = 1;
             // 
             // tbUsuario
             // 
@@ -141,7 +142,7 @@
             this.tbUsuario.Location = new System.Drawing.Point(19, 91);
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.Size = new System.Drawing.Size(281, 20);
-            this.tbUsuario.TabIndex = 9;
+            this.tbUsuario.TabIndex = 2;
             // 
             // tbContrasenia
             // 
@@ -149,7 +150,7 @@
             this.tbContrasenia.Location = new System.Drawing.Point(19, 142);
             this.tbContrasenia.Name = "tbContrasenia";
             this.tbContrasenia.Size = new System.Drawing.Size(281, 20);
-            this.tbContrasenia.TabIndex = 10;
+            this.tbContrasenia.TabIndex = 3;
             this.tbContrasenia.UseSystemPasswordChar = true;
             // 
             // tbBaseDeDatos
@@ -158,7 +159,7 @@
             this.tbBaseDeDatos.Location = new System.Drawing.Point(19, 190);
             this.tbBaseDeDatos.Name = "tbBaseDeDatos";
             this.tbBaseDeDatos.Size = new System.Drawing.Size(281, 20);
-            this.tbBaseDeDatos.TabIndex = 11;
+            this.tbBaseDeDatos.TabIndex = 4;
             // 
             // label6
             // 
@@ -172,10 +173,11 @@
             // 
             // tbLicencia
             // 
+            this.tbLicencia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbLicencia.Location = new System.Drawing.Point(22, 436);
             this.tbLicencia.Name = "tbLicencia";
             this.tbLicencia.Size = new System.Drawing.Size(329, 20);
-            this.tbLicencia.TabIndex = 13;
+            this.tbLicencia.TabIndex = 6;
             // 
             // groupBox1
             // 

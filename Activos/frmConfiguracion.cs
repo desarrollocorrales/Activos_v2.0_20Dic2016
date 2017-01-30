@@ -106,6 +106,14 @@ namespace Activos
 
                 cadena += "L_" + this.tbLicencia.Text;
 
+                // verifica licencia
+                string cifrar = this.tbServidor.Text.Trim().ToUpper() + "-" + this.tbEmpresa.Text.Trim().ToUpper();
+
+                string cifrado = Modelos.Utilerias.Transform(cifrar);
+
+                if (!this.tbLicencia.Text.Equals(cifrado))
+                    throw new Exception("Verifique la Licencia");
+
                 if (!this._empresa)
                 {
                     // avisa sobre la empresa
@@ -132,6 +140,8 @@ namespace Activos
                         this.tbUsuario.Text,
                         this.tbContrasenia.Text,
                         this.tbBaseDeDatos.Text);
+
+                    Modelos.Login.empresa = this.tbEmpresa.Text;
 
                     MessageBox.Show("Se cargó correctamente la información", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this._correcto = true;
@@ -177,8 +187,18 @@ namespace Activos
 
         private void frmConfiguracion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(!this._correcto)
+
+
+            if (!this._correcto)
+            {
+                MessageBox.Show("Operación Cancelada", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Modelos.ConectionString.conn = string.Empty;
+            }
+        }
+
+        private void tbEmpresa_TextChanged(object sender, EventArgs e)
+        {
+            this.tbLicencia.Text = string.Empty;
         }
     }
 }

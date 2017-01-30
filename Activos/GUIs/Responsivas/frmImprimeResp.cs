@@ -111,6 +111,8 @@ namespace Activos.GUIs.Responsivas
                 form._activos = activos;
                 form._responsivas = this._responsiva;
 
+                form._empresa = Modelos.Login.empresa;
+
                 form.ShowDialog();
             }
             catch (Exception Ex)
@@ -143,8 +145,10 @@ namespace Activos.GUIs.Responsivas
                     comEtiqueta = comEtiqueta.Replace("|nombrecorto|", ac.nombreCorto);
                     comEtiqueta = comEtiqueta.Replace("0000000000000", ac.numEtiqueta);
                     comEtiqueta = comEtiqueta.Replace("|url|", ac.url);
+                    comEtiqueta = comEtiqueta.Replace("|empresa|", Modelos.Login.empresa);
 
                     sbComandos.AppendLine(comEtiqueta);
+
                 }
 
                 if (!string.IsNullOrEmpty(Properties.Settings.Default.Impresora))

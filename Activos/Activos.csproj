@@ -44,20 +44,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\FEncrypt.dll</HintPath>
     </Reference>
-    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\QrCode.Net.0.4.0.0\lib\net40\Gma.QrCodeNet.Encoding.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.6.9.9\lib\net40\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sofbr.Layers">
+    <Reference Include="Sofbr.Layers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\Sofbr.Layers.dll</HintPath>
     </Reference>
-    <Reference Include="Sofbr.Utils">
+    <Reference Include="Sofbr.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\Sofbr.Utils.dll</HintPath>
     </Reference>
     <Reference Include="System" />

@@ -20,6 +20,8 @@ namespace Activos.GUIs.Responsivas.Reporte
         public Modelos.Responsivas _responsivas = new Modelos.Responsivas();
         public List<Modelos.Activos> _activos = new List<Modelos.Activos>();
 
+        public string _empresa = string.Empty;
+
         private void frmResponsivaReporte_Load(object sender, EventArgs e)
         {
 
@@ -28,13 +30,22 @@ namespace Activos.GUIs.Responsivas.Reporte
 
             //Limpiemos el DataSource del informe
             reportViewer1.LocalReport.DataSources.Clear();
-
+            //
+            //Establezcamos los parámetros que enviaremos al reporte
+            //recuerde que son dos para el titulo del reporte y para el nombre de la empresa
+            //
+            ReportParameter[] parameters = new ReportParameter[1];
+            parameters[0] = new ReportParameter("pEmpresa", this._empresa);
             //
             //Establezcamos la lista como Datasource del informe
             //
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsResponsiva", dsResponsiva));
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsActivos", this._activos));
-            
+            //
+            //Enviemos la lista de parametros
+            //
+            reportViewer1.LocalReport.SetParameters(parameters);
+
             this.reportViewer1.RefreshReport();
 
         }

@@ -81,57 +81,69 @@ namespace Activos
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
-            string fileName = "config.dat";
-            string pathConfigFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\SisActivos\";
-
-            // si no existe el directorio, lo crea
-            bool exists = System.IO.Directory.Exists(pathConfigFile);
-
-            if (!exists) System.IO.Directory.CreateDirectory(pathConfigFile);
-
-            // busca en el directorio si exite el archivo con el nombre dado
-            var file = Directory.GetFiles(pathConfigFile, fileName, SearchOption.AllDirectories)
-                    .FirstOrDefault();
-
-            if (file == null)
+            try
             {
-                // no existe
-                // abrir el formulario para llenar la configuracion de conexion y licencia
-                frmConfiguracion form = new frmConfiguracion();
-                form.ShowDialog();
-            }
-            else
-            {
-                // si existe
-                // obtener la licencia del archivo y compararla con la que se calcularia
-                // obtener la cadena de conexion del archivo
-                FEncrypt.Respuesta result = FEncrypt.EncryptDncrypt.DecryptFile(file, "milagros");
+                string fileName = "config.dat";
+                string pathConfigFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\SisActivos\";
 
-                if (result.status == FEncrypt.Estatus.ERROR)
-                    throw new Exception(result.error);
+                // si no existe el directorio, lo crea
+                bool exists = System.IO.Directory.Exists(pathConfigFile);
 
-                if (result.status == FEncrypt.Estatus.OK)
+                if (!exists) System.IO.Directory.CreateDirectory(pathConfigFile);
+
+                // busca en el directorio si exite el archivo con el nombre dado
+                var file = Directory.GetFiles(pathConfigFile, fileName, SearchOption.AllDirectories)
+                        .FirstOrDefault();
+
+                if (file == null)
                 {
-                    string[] list = result.resultado.Split(new string[] { "||" }, StringSplitOptions.None);
+                    // no existe
+                    // abrir el formulario para llenar la configuracion de conexion y licencia
+                    frmConfiguracion form = new frmConfiguracion();
+                    form.ShowDialog();
+                }
+                else
+                {
+                    // si existe
+                    // obtener la licencia del archivo y compararla con la que se calcularia
+                    // obtener la cadena de conexion del archivo
+                    FEncrypt.Respuesta result = FEncrypt.EncryptDncrypt.DecryptFile(file, "milagros");
 
-                    string empresa = list[0].Substring(2);      // empresa
-                    string servidor = list[1].Substring(2);     // servidor
-                    string usuario = list[2].Substring(2);      // usuario
-                    string contra = list[3].Substring(2);       // contraseña
-                    string baseDatos = list[4].Substring(2);    // base de datos
-                    string licencia = list[5].Substring(2);     // licencia
+                    if (result.status == FEncrypt.Estatus.ERROR)
+                        throw new Exception(result.error);
 
-                    // verifica licencia (UTILERIAS)
+                    if (result.status == FEncrypt.Estatus.OK)
+                    {
+                        string[] list = result.resultado.Split(new string[] { "||" }, StringSplitOptions.None);
 
+                        string empresa = list[0].Substring(2);      // empresa
+                        string servidor = list[1].Substring(2);     // servidor
+                        string usuario = list[2].Substring(2);      // usuario
+                        string contra = list[3].Substring(2);       // contraseña
+                        string baseDatos = list[4].Substring(2);    // base de datos
+                        string licencia = list[5].Substring(2);     // licencia
 
-                    // si licencia pasa asigna cadena de conexion
-                    Modelos.ConectionString.conn = string.Format(
-                        "server={0};User Id={1};password={2};database={3}",
-                        servidor, usuario, contra, baseDatos);
+                        // verifica licencia (UTILERIAS)
+                        string cifrar = servidor.Trim().ToUpper() + "-" + empresa.Trim().ToUpper();
+
+                        string cifrado = Modelos.Utilerias.Transform(cifrar);
+
+                        if (!licencia.Equals(cifrado))
+                            throw new Exception("Licencia Inválida\nNo puede usar el sistema");
+
+                        // si licencia pasa asigna cadena de conexion
+                        Modelos.ConectionString.conn = string.Format(
+                            "server={0};User Id={1};password={2};database={3}",
+                            servidor, usuario, contra, baseDatos);
+
+                        Modelos.Login.empresa = empresa;
+                    }
                 }
             }
-
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Login", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
