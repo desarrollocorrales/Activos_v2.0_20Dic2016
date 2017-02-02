@@ -24,9 +24,12 @@ namespace Activos.Modelos
     public static class Login
     {
         public static int idUsuario;
+        public static int? idSucursal;
         public static string nombre;
         public static string usuario;
         public static string empresa;
+
+        public static bool admin;
 
         public static List<int> permisos;
     }

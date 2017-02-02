@@ -71,13 +71,13 @@
             // 
             // colidUsuario
             // 
-            this.colidUsuario.FieldName = "idUsuario";
+            this.colidUsuario.FieldName = "idPersona";
             this.colidUsuario.Name = "colidUsuario";
             // 
             // colnomUsuario
             // 
             this.colnomUsuario.Caption = "Nombre";
-            this.colnomUsuario.FieldName = "nomUsuario";
+            this.colnomUsuario.FieldName = "nombre";
             this.colnomUsuario.Name = "colnomUsuario";
             this.colnomUsuario.OptionsColumn.AllowEdit = false;
             this.colnomUsuario.OptionsColumn.AllowMove = false;

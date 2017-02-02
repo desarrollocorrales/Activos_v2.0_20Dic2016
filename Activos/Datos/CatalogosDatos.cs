@@ -30,7 +30,10 @@ namespace Activos.Datos
                 "from activos_usuarios a " +
                 "left join activos_personas pe on (a.idpersona = pe.idpersona)  " +
                 "left join activos_puesto p on (pe.idpuesto = p.idpuesto)  " +
-                "where a.status = @status order by pe.nombrecompleto";
+                "left join activos_sucursales s on (p.idsucursal = s.idsucursal)  " +
+                "where a.status = @status" +
+                (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) + 
+                " order by pe.nombrecompleto";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -95,7 +98,15 @@ namespace Activos.Datos
         {
             Usuarios result = null;
 
-            string sql = "select idusuario, usuario from activos_usuarios where usuario = @usuario and clave = @clave";
+            // string sql = "select idusuario, usuario from activos_usuarios where usuario = @usuario and clave = @clave";
+
+            string sql =
+                        "select u.idusuario, u.usuario, p.nombrecompleto as persona, pu.idpuesto, pu.nombre as puesto, s.nombre as sucursal, s.idsucursal " +
+                        "from activos_usuarios u " +
+                        "left join activos_personas p on (u.idpersona = p.idpersona) " +
+                        "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                        "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                        "where usuario = @usuario and clave = @clave and u.status = 'A'";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -121,8 +132,13 @@ namespace Activos.Datos
                                 result = new Usuarios();
 
                                 result.idUsuario = Convert.ToInt16(res.reader["idusuario"]);
+                                result.idSucursal = Convert.ToInt16(res.reader["idsucursal"]);
+                                result.idPuesto = Convert.ToInt16(res.reader["idpuesto"]);
 
                                 result.usuario = Convert.ToString(res.reader["usuario"]);
+                                result.nombre = Convert.ToString(res.reader["persona"]);
+                                result.sucursal = Convert.ToString(res.reader["sucursal"]);
+                                result.puesto = Convert.ToString(res.reader["puesto"]);
 
                             }
                         else result = null;
@@ -149,7 +165,8 @@ namespace Activos.Datos
                         "select s.idsucursal, s.nombre, s.idresponsable, p.nombrecompleto as responsable, s.status " +
                         "from activos_sucursales s  " +
                         "left join activos_personas p on (s.idresponsable = p.idpersona)  " +
-                        "where s.status = @status order by s.nombre";
+                        "where s.status = @status" + (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) + 
+                        " order by s.nombre";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -351,7 +368,9 @@ namespace Activos.Datos
                         "select p.idpuesto, p.nombre, p.idsucursal, s.nombre as sucursal, p.status   " +
                         "from activos_puesto p  " +
                         "left join activos_sucursales s on (p.idsucursal = s.idsucursal)  " +
-                        "where p.status = @status order by p.idsucursal, p.nombre";
+                        "where p.status = @status" +
+                (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) + 
+                " order by p.idsucursal, p.nombre";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -553,7 +572,7 @@ namespace Activos.Datos
                         "FROM activos_personas pe " +
                         "LEFT JOIN activos_puesto p ON (pe.idpuesto = p.idpuesto) " +
                         "LEFT JOIN activos_sucursales s ON (p.idsucursal = s.idsucursal) " +
-                        "WHERE pe.status = 'A' and pe.nombrecompleto like @nombre " +
+                        "WHERE pe.status = 'A' and pe.nombrecompleto like @nombre " + (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal + " " : string.Empty) +
                         "order by pe.nombrecompleto ";
 
             // define conexion con la cadena de conexion
@@ -1529,7 +1548,9 @@ namespace Activos.Datos
                         "from activos_personas p " +
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
-                        "where p.nombrecompleto like @nombre and p.status = @status order by p.nombrecompleto";
+                        "where p.nombrecompleto like @nombre and p.status = @status" +
+                (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) + 
+                " order by p.nombrecompleto";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -1735,7 +1756,8 @@ namespace Activos.Datos
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
                         "where (a.idusuario is null or a.status != 'A') and p.status = @status " +
-                        "group by p.idpersona, p.nombrecompleto, p.idpuesto, p.status, pu.nombre, s.nombre " +
+                (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) +
+                        " group by p.idpersona, p.nombrecompleto, p.idpuesto, p.status, pu.nombre, s.nombre " +
                         "order by p.nombrecompleto";
 
             // define conexion con la cadena de conexion
@@ -1977,7 +1999,9 @@ namespace Activos.Datos
                         "left join activos_sucursales s on (a.idsucursal = s.idsucursal) " +
                         "left join activos_usuarios u on (g.idusuariocrea = u.idusuario) " +
                         "left join activos_personas p on (u.idpersona = p.idpersona) " +
-                        "where g.nombre like @nombre and g.status = 'A' order by g.nombre";
+                        "where g.nombre like @nombre and g.status = 'A' " +
+                (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) + 
+                " order by g.nombre";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -2209,7 +2233,8 @@ namespace Activos.Datos
                         "left join activos_personas p on (a.idpersona = p.idpersona) " +
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
-                        "WHERE pe.status = 'A' and pe.nombrecompleto like @nombre ";
+                        "WHERE p.status = 'A' and p.nombrecompleto like @nombre "+
+                (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty);
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -2234,7 +2259,7 @@ namespace Activos.Datos
 
                             ent.idPersona = Convert.ToInt16(res.reader["idpersona"] == DBNull.Value ? 0 : res.reader["idpersona"]);
 
-                            ent.nombre = Convert.ToString(res.reader["nombrecompleto"]);
+                            ent.nombre = Convert.ToString(res.reader["nombre"]);
                             ent.nombre = ent.nombre.Replace("&", " ");
                             ent.puesto = Convert.ToString(res.reader["puesto"]);
                             ent.sucursal = Convert.ToString(res.reader["sucursal"]);

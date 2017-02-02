@@ -72,3 +72,4 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraGrid.v11.1.xml
 G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraLayout.v11.1.xml
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.frmAcceso.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmAgregaResponsables.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmModificaResponsables.resources

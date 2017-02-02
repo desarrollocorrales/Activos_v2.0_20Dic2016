@@ -162,16 +162,16 @@ namespace Activos.GUIs.Responsivas
 
                 List<int> idsResp = new List<int>();
 
-                frmModificaResponsables form = new frmModificaResponsables();
+                frmModificaResponsables form = new frmModificaResponsables(this._idResponsiva);
 
                 var result = form.ShowDialog();
 
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
-
+                    idsResp = form._listaAgregados.Select(s => s.idPersona).ToList();
                 }
 
-                bool resultado = this._responsivasNegocio.modifResponsiva(this._idResponsiva, this._movimientos);
+                bool resultado = this._responsivasNegocio.modifResponsiva(this._idResponsiva, this._movimientos, idsResp);
 
                 if (resultado)
                 {

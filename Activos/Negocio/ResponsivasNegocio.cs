@@ -31,9 +31,9 @@ namespace Activos.Negocio
         }
 
 
-        public bool modifResponsiva(int? idResponsiva, List<Modelos.Activos> activosMtos)
+        public bool modifResponsiva(int? idResponsiva, List<Modelos.Activos> activosMtos, List<int> idsResp)
         {
-            return this._responsivasDatos.modifResponsiva(idResponsiva, activosMtos);
+            return this._responsivasDatos.modifResponsiva(idResponsiva, activosMtos, idsResp);
         }
 
 

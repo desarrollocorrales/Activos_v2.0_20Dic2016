@@ -83,6 +83,9 @@ namespace Activos.GUIs.Responsivas
             {
                 frmBuscaActivos form = new frmBuscaActivos(null, null);
 
+                if(!Modelos.Login.admin)
+                    form = new frmBuscaActivos(null, Modelos.Login.idSucursal);
+
                 var result = form.ShowDialog();
 
                 if (result == DialogResult.OK)

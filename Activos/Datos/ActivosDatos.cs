@@ -273,8 +273,9 @@ namespace Activos.Datos
                 "from activos_activos a " +
                 "left join (select idactivo from activos_responsivasdetalle where status = 'A') s on (a.idactivo = s.idactivo) " +
                 "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
-                "where a.status = 'A' and s.idactivo is null";
+                "where a.status = 'A' and s.idactivo is null " + (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty);
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -464,7 +465,8 @@ namespace Activos.Datos
                 "left join activos_areas ar on (a.idarea = ar.idarea)  " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
-                "where a.status = 'A'";
+                "where a.status = 'A'" + 
+                (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty);
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -561,7 +563,9 @@ namespace Activos.Datos
                 "left join activos_areas ar on (a.idarea = ar.idarea)  " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
-                "where a.status = 'A' and {0} LIKE @usuario order by {0}", busqueda.Equals("usuario") ? "u." + busqueda : "p." + busqueda);
+                "where a.status = 'A' and {0}" +
+                (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) + 
+                " LIKE @usuario order by {0}", busqueda.Equals("usuario") ? "u." + busqueda : "p." + busqueda);
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())

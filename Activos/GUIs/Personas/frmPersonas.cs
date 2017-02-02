@@ -112,7 +112,7 @@ namespace Activos.GUIs.Personas
                     throw new Exception("Defina un apellido paterno para la Persona");
 
                 if (this.cmbPuestoAlta.SelectedIndex == -1)
-                    throw new Exception("seleccione un puesto");
+                    throw new Exception("Seleccione un puesto");
 
                 string nombre = this.tbNombreAlta.Text + "&" + this.tbApPaternoAlta.Text + "&" + this.tbApMaternoAlta.Text;
 

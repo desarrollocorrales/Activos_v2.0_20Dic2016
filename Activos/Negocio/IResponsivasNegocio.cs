@@ -12,7 +12,7 @@ namespace Activos.Negocio
 
         List<Modelos.Responsivas> buscaResponsiva(string responsable, int idSuc, string tipoCons);
 
-        bool modifResponsiva(int? idResponsiva, List<Modelos.Activos> activosMtos);
+        bool modifResponsiva(int? idResponsiva, List<Modelos.Activos> activosMtos, List<int> idsResp);
 
         List<Modelos.Responsivas> buscaResponsiva(int idUsuario);
 

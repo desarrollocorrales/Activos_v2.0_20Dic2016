@@ -46,8 +46,13 @@ namespace Activos
                     Modelos.Login.idUsuario = resp.usuario.idUsuario;
                     Modelos.Login.nombre = resp.usuario.nombre;
                     Modelos.Login.usuario = resp.usuario.usuario;
+                    Modelos.Login.idSucursal = resp.usuario.idSucursal;
 
                     Modelos.Login.permisos = this._permisosNegocio.getPermisosUsuario(Modelos.Login.idUsuario);
+
+                    if (Modelos.Login.permisos.Contains(49))
+                        Modelos.Login.admin = true;
+                    else Modelos.Login.admin = false;
 
                     this.Hide();
                     new FormPrincipal().ShowDialog();

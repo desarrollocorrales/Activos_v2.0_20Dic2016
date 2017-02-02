@@ -508,6 +508,9 @@
     <EmbeddedResource Include="GUIs\Responsivas\frmImprimeResp.resx">
       <DependentUpon>frmImprimeResp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmModificaResponsables.resx">
+      <DependentUpon>frmModificaResponsables.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmModifResp.resx">
       <DependentUpon>frmModifResp.cs</DependentUpon>
     </EmbeddedResource>

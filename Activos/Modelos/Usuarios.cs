@@ -12,8 +12,12 @@ namespace Activos.Modelos
 
         public int? idPersona { get; set; }
         public string nombre { get; set; }
+
         public int? idPuesto { get; set; }
         public string puesto { get; set; }
+
+        public int? idSucursal { get; set; }
+        public string sucursal { get; set; }
 
         public string fechaIngreso { get; set; }
         public string correo { get; set; }

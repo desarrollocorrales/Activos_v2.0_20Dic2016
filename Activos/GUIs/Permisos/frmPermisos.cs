@@ -137,10 +137,11 @@ namespace Activos.GUIs.Permisos
 
                         this.tvPermisos.Nodes.Add(nodo);
                     }
+
+                    this.tvPermisos.ExpandAll();
+                    this.tvPermisos.Nodes[0].EnsureVisible();
                 }
 
-                this.tvPermisos.ExpandAll();
-                this.tvPermisos.Nodes[0].EnsureVisible();
             }
             catch (Exception Ex)
             {
