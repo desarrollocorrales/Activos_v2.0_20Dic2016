@@ -61,11 +61,15 @@ namespace Activos.GUIs.AltaActivos
                     this.tbModelo.Text = array[1];
                     this.tbNumSerie.Text = array[2];
                     this.tbColor.Text = array[3];
-                    this.tbDescripcion.Text = array[4];
+                    this.tbCosto.Text = array[4];
+                    this.tbFactura.Text = array[5];
+                    this.tbDescripcion.Text = array[6];
                     this.tbUsuario.Text = activo.usuario;
 
                     this.lbNumetiqueta.Text = activo.numEtiqueta;
                     this.lbCveActivo.Text = activo.claveActivo;
+
+                    this.dtpFechaConsulta.Text = activo.fecha;
 
                     this._idActivo = activo.idActivo;
 
@@ -124,6 +128,9 @@ namespace Activos.GUIs.AltaActivos
                     this.tbModelo.Text = string.Empty;
                     this.tbNumSerie.Text = string.Empty;
                     this.tbColor.Text = string.Empty;
+                    this.tbFactura.Text = string.Empty;
+                    this.tbCosto.Text = string.Empty;
+
                     this.tbDescripcion.Text = string.Empty;
                     this.tbUsuario.Text = string.Empty;
 

@@ -60,6 +60,12 @@ namespace Activos.GUIs.Grupos
                 if (this._grupo == null)
                     throw new Exception("Seleccione un grupo");
 
+                DialogResult dialogResult = MessageBox.Show(
+                                "¿Desea eliminar el grupo seleccionado?",
+                                "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.No) return;
+
                 bool resultado = this._catalogosNegocio.bajaGrupo(this._grupo.idGrupo);
 
                 if (resultado)

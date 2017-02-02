@@ -54,6 +54,12 @@
             this.tbArea = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tbUsuario = new System.Windows.Forms.TextBox();
+            this.tbFactura = new System.Windows.Forms.TextBox();
+            this.tbCosto = new System.Windows.Forms.TextBox();
+            this.lbFactura = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // btnBusqAct
@@ -170,13 +176,13 @@
             // 
             this.tbDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbDescripcion.Location = new System.Drawing.Point(287, 329);
+            this.tbDescripcion.Location = new System.Drawing.Point(286, 401);
             this.tbDescripcion.MaxLength = 500;
             this.tbDescripcion.Multiline = true;
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.ReadOnly = true;
             this.tbDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDescripcion.Size = new System.Drawing.Size(516, 102);
+            this.tbDescripcion.Size = new System.Drawing.Size(516, 70);
             this.tbDescripcion.TabIndex = 122;
             // 
             // tbColor
@@ -227,7 +233,7 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(302, 303);
+            this.label7.Location = new System.Drawing.Point(301, 375);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(106, 23);
             this.label7.TabIndex = 113;
@@ -286,7 +292,7 @@
             // btnModificar
             // 
             this.btnModificar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnModificar.Location = new System.Drawing.Point(297, 465);
+            this.btnModificar.Location = new System.Drawing.Point(296, 499);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(233, 51);
             this.btnModificar.TabIndex = 125;
@@ -322,12 +328,81 @@
             this.tbUsuario.Size = new System.Drawing.Size(257, 30);
             this.tbUsuario.TabIndex = 128;
             // 
+            // tbFactura
+            // 
+            this.tbFactura.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbFactura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbFactura.Location = new System.Drawing.Point(548, 329);
+            this.tbFactura.MaxLength = 70;
+            this.tbFactura.Name = "tbFactura";
+            this.tbFactura.ReadOnly = true;
+            this.tbFactura.Size = new System.Drawing.Size(255, 30);
+            this.tbFactura.TabIndex = 132;
+            // 
+            // tbCosto
+            // 
+            this.tbCosto.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbCosto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbCosto.Location = new System.Drawing.Point(287, 329);
+            this.tbCosto.MaxLength = 70;
+            this.tbCosto.Name = "tbCosto";
+            this.tbCosto.ReadOnly = true;
+            this.tbCosto.Size = new System.Drawing.Size(255, 30);
+            this.tbCosto.TabIndex = 131;
+            // 
+            // lbFactura
+            // 
+            this.lbFactura.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbFactura.AutoSize = true;
+            this.lbFactura.Location = new System.Drawing.Point(563, 303);
+            this.lbFactura.Name = "lbFactura";
+            this.lbFactura.Size = new System.Drawing.Size(73, 23);
+            this.lbFactura.TabIndex = 130;
+            this.lbFactura.Text = "Factura";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(302, 303);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(55, 23);
+            this.label10.TabIndex = 129;
+            this.label10.Text = "Costo";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(40, 447);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 23);
+            this.label6.TabIndex = 135;
+            this.label6.Text = "Fecha";
+            // 
+            // dtpFecha
+            // 
+            this.dtpFecha.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dtpFecha.CustomFormat = "dd-MM-yyyy";
+            this.dtpFecha.Enabled = false;
+            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFecha.Location = new System.Drawing.Point(106, 441);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(137, 30);
+            this.dtpFecha.TabIndex = 137;
+            // 
             // frmModifActivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(825, 531);
+            this.ClientSize = new System.Drawing.Size(825, 571);
+            this.Controls.Add(this.dtpFecha);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.tbFactura);
+            this.Controls.Add(this.tbCosto);
+            this.Controls.Add(this.lbFactura);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.tbUsuario);
             this.Controls.Add(this.tbArea);
             this.Controls.Add(this.label8);
@@ -392,5 +467,11 @@
         private System.Windows.Forms.TextBox tbArea;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbUsuario;
+        private System.Windows.Forms.TextBox tbFactura;
+        private System.Windows.Forms.TextBox tbCosto;
+        private System.Windows.Forms.Label lbFactura;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker dtpFecha;
     }
 }

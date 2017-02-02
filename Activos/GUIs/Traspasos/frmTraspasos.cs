@@ -58,7 +58,7 @@ namespace Activos.GUIs.Traspasos
                     this.tbSucursal.Text = form._responsiva.sucursal;
 
                     this._idResponsiva = form._responsiva.idResponsiva;
-                    this._idUsuario = form._responsiva.idUsuario;
+                    this._idUsuario = form._responsiva.idPersona;
 
                     // llena el grid con los puestos disponibles
                     this.gcActivos.DataSource = form._activos;
@@ -86,13 +86,13 @@ namespace Activos.GUIs.Traspasos
                 if (result == DialogResult.OK)
                 {
                     
-                    this.tbResponsableT.Text = form._usuario.nomUsuario;
+                    this.tbResponsableT.Text = form._usuario.nombre;
                     this.tbPuestoT.Text = form._usuario.puesto;
                     this.tbSucursalT.Text = form._usuario.sucursal;
 
                     this._nuevaResp = form._nuevaResp;
                     this._respSelec = form._respSelec;
-                    this._idUsuarioT = form._usuario.idUsuario;
+                    this._idUsuarioT = form._usuario.idPersona;
 
                     this.gcActivosT.DataSource = null;
                     this._activosT = new List<Modelos.Activos>();
@@ -110,6 +110,11 @@ namespace Activos.GUIs.Traspasos
                         this._activosT = form._activos;
 
                         this._countListTraspaso = this._activosT.Count;
+                    }
+                    else
+                    {
+                        this._idResponsivaT = null;
+                        this._activosT = new List<Modelos.Activos>();
                     }
                 }
 
@@ -131,11 +136,11 @@ namespace Activos.GUIs.Traspasos
 
                 // si ya se selecciono un usuario para traspaso
                 if (this._idUsuarioT == null)
-                    throw new Exception("Seleccione un usuario para traspaso");
+                    throw new Exception("Seleccione una persona para traspaso");
 
                 // que no sean el mismo usuario ni la misma responsiva
                 if (this._idResponsiva == this._idResponsivaT && this._idUsuario == this._idUsuarioT)
-                    throw new Exception("No se permite el movimiento ya que es el mismo usuario y la misma responsiva");
+                    throw new Exception("No se permite el movimiento ya que es la misma persona y la misma responsiva");
 
                 if (this.gridView1.GetSelectedRows().Count() == 0)
                     throw new Exception("Seleccione un activo a traspasar");
@@ -144,7 +149,7 @@ namespace Activos.GUIs.Traspasos
                 if (!this._movimiento)
                 {
                     DialogResult dialogResult = MessageBox.Show(
-                                "Una vez que comience a realizar movimientos de traspasos no podrá seleccionar otra responsiva u otro usuario\n" +
+                                "Una vez que comience a realizar movimientos de traspasos no podrá seleccionar otra responsiva u otra persona\n" +
                                 "¿Desea continuar con el movimiento?",
                                 "Responsivas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 

@@ -9,7 +9,7 @@ namespace Activos.Datos
     {
         long crearResponsivas(int idUsuarioCreador, int? idUsuario, string observaciones);
 
-        bool creaRespDet(long idResult, List<Modelos.Activos> activos);
+        bool creaRespDet(long idResult, List<Modelos.Activos> activos, List<Modelos.PersonaResponsivas> responsables);
 
         List<Modelos.Responsivas> buscaResponsiva(string responsable, int idSuc, string tipoCons);
 
@@ -24,5 +24,7 @@ namespace Activos.Datos
         bool bajaResponsiva(int? idResponsiva, string motivo);
 
         string getBuscaComandoEt(string etiqueta);
+
+        List<Modelos.PersonaResponsivas> obtieneResponsables(int idResponsiva);
     }
 }

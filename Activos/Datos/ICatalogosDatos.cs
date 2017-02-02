@@ -38,7 +38,9 @@ namespace Activos.Datos
 
         List<Usuarios> getPersonas(string status);
 
-        List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda);
+        List<PersonaResponsivas> busquedaResponsables(string persona);
+
+        List<PersonaResponsivas> busquedaResponsables(string persona, int idSucursal);
 
         bool buscaUsuario(string usuario);
 
@@ -114,5 +116,8 @@ namespace Activos.Datos
         bool modificaGrupo(int idGrupo, string nombre, List<Modelos.Activos> activos);
 
         bool bajaGrupo(int idGrupo);
+
+
+        List<PersonaResponsivas> busquedaUsuario(string usuario);
     }
 }

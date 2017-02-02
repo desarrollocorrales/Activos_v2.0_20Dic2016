@@ -296,6 +296,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(500, 533);
             this.tabPage1.TabIndex = 0;
+            this.tabPage1.Tag = "36";
             this.tabPage1.Text = "Alta";
             // 
             // cmbPuestoAlta
@@ -408,6 +409,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(500, 533);
             this.tabPage2.TabIndex = 1;
+            this.tabPage2.Tag = "37";
             this.tabPage2.Text = "Modificar";
             // 
             // btnModifModif
@@ -515,6 +517,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(500, 533);
             this.tabPage3.TabIndex = 2;
+            this.tabPage3.Tag = "38";
             this.tabPage3.Text = "Baja";
             // 
             // label2
@@ -670,6 +673,7 @@
             this.TabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.TabPage4.Size = new System.Drawing.Size(500, 533);
             this.TabPage4.TabIndex = 3;
+            this.TabPage4.Tag = "39";
             this.TabPage4.Text = "Activar";
             // 
             // label3

@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Activos.Modelos
 {
-    public class UsuariosResponsivas
+    public class PersonaResponsivas
     {
-        public int idUsuario { get; set; }
-        public string nomUsuario { get; set; }
+        public bool seleccionado { get; set; }
+        public int idPersona { get; set; }
+        public string nombre { get; set; }
         public string puesto { get; set; }
         public string sucursal { get; set; }
-        public string usuario { get; set; }
     }
 }

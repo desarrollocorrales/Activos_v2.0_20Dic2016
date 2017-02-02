@@ -542,26 +542,19 @@ namespace Activos.Datos
             return result;
         }
 
-        // busquedas usuarios
-        public List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda)
+        // busquedas personas
+        public List<PersonaResponsivas> busquedaResponsables(string persona)
         {
-            List<UsuariosResponsivas> result = new List<UsuariosResponsivas>();
-            UsuariosResponsivas ent;
+            List<PersonaResponsivas> result = new List<PersonaResponsivas>();
+            PersonaResponsivas ent;
 
-            string sql = string.Format(
-                        "SELECT q.idusuario, q.usuario AS usuario, pe.nombrecompleto as nombre_usuario, p.nombre AS puesto, s.nombre AS sucursal " +
+            string sql =
+                        "SELECT pe.idpersona, pe.nombrecompleto as nombre_usuario, p.idpuesto, p.nombre AS puesto, s.idsucursal, s.nombre AS sucursal " +
                         "FROM activos_personas pe " +
-                        "left join (select idpersona, idusuario, usuario from activos_usuarios where status = 'A') q on (pe.idpersona = q.idpersona) " +
                         "LEFT JOIN activos_puesto p ON (pe.idpuesto = p.idpuesto) " +
                         "LEFT JOIN activos_sucursales s ON (p.idsucursal = s.idsucursal) " +
-                        "WHERE pe.status = 'A' and {0} ", 
-                        busqueda.Equals("usuario")
-                            ? (
-                                string.IsNullOrEmpty(usuario) 
-                                        ? "(q.idusuario is null or q.usuario LIKE @usuario) order by q.usuario"
-                                        : "(q.usuario LIKE @usuario) order by q.usuario"
-                              )
-                            : "pe.nombrecompleto like @usuario order by pe.nombrecompleto");
+                        "WHERE pe.status = 'A' and pe.nombrecompleto like @nombre " +
+                        "order by pe.nombrecompleto ";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -574,7 +567,7 @@ namespace Activos.Datos
                     cmd.Connection = conn;
 
                     // define parametros
-                    cmd.Parameters.AddWithValue("@usuario", "%" + usuario + "%");
+                    cmd.Parameters.AddWithValue("@nombre", "%" + persona + "%");
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
 
@@ -582,13 +575,70 @@ namespace Activos.Datos
                     {
                         while (res.reader.Read())
                         {
-                            ent = new UsuariosResponsivas();
+                            ent = new PersonaResponsivas();
 
-                            ent.idUsuario = Convert.ToInt16(res.reader["idusuario"] == DBNull.Value ? 0 : res.reader["idusuario"]);
-                            ent.usuario = Convert.ToString(res.reader["usuario"] == DBNull.Value ? string.Empty : res.reader["usuario"]);
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"] == DBNull.Value ? 0 : res.reader["idpersona"]);
 
-                            ent.nomUsuario = Convert.ToString(res.reader["nombre_usuario"]);
-                            ent.nomUsuario = ent.nomUsuario.Replace("&", " ");
+                            ent.nombre = Convert.ToString(res.reader["nombre_usuario"]);
+                            ent.nombre = ent.nombre.Replace("&", " ");
+                            ent.puesto = Convert.ToString(res.reader["puesto"]);
+                            ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // busquedas personas por sucursal
+        public List<PersonaResponsivas> busquedaResponsables(string persona, int idSucursal)
+        {
+            List<PersonaResponsivas> result = new List<PersonaResponsivas>();
+            PersonaResponsivas ent;
+
+            string sql =
+                        "SELECT pe.idpersona, pe.nombrecompleto as nombre_usuario, p.idpuesto, p.nombre AS puesto, s.idsucursal, s.nombre AS sucursal " +
+                        "FROM activos_personas pe " +
+                        "LEFT JOIN activos_puesto p ON (pe.idpuesto = p.idpuesto) " +
+                        "LEFT JOIN activos_sucursales s ON (p.idsucursal = s.idsucursal) " +
+                        "WHERE pe.status = 'A' and pe.nombrecompleto like @nombre and s.idsucursal = @idSucursal " +
+                        "order by pe.nombrecompleto ";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@nombre", "%" + persona + "%");
+                    cmd.Parameters.AddWithValue("@idSucursal", idSucursal);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new PersonaResponsivas();
+
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"] == DBNull.Value ? 0 : res.reader["idpersona"]);
+
+                            ent.nombre = Convert.ToString(res.reader["nombre_usuario"]);
+                            ent.nombre = ent.nombre.Replace("&", " ");
                             ent.puesto = Convert.ToString(res.reader["puesto"]);
                             ent.sucursal = Convert.ToString(res.reader["sucursal"]);
 
@@ -1175,7 +1225,8 @@ namespace Activos.Datos
             Tipos ent;
 
             string sql = 
-                        "select idtipo, nombre, marca, modelo, color, serie, status from activos_tipo where status = @status order by nombre";
+                        "select idtipo, nombre, marca, modelo, color, serie, costo, factura, status " 
+                      + "from activos_tipo where status = @status order by nombre";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -1205,6 +1256,8 @@ namespace Activos.Datos
                             ent.modelo = Convert.ToString(res.reader["modelo"]).Equals("0") ? "NO" : "SI";
                             ent.serie = Convert.ToString(res.reader["serie"]).Equals("0") ? "NO" : "SI";
                             ent.color = Convert.ToString(res.reader["color"]).Equals("0") ? "NO" : "SI";
+                            ent.factura = Convert.ToString(res.reader["factura"]).Equals("0") ? "NO" : "SI";
+                            ent.costo = Convert.ToString(res.reader["costo"]).Equals("0") ? "NO" : "SI";
 
                             ent.status = Convert.ToString(res.reader["status"]);
                             result.Add(ent);
@@ -1227,7 +1280,7 @@ namespace Activos.Datos
         {
             Tipos result = new Tipos();
 
-            string sql = "select idtipo, nombre, marca, modelo, color, serie, status from activos_tipo where idtipo = @idtipo";
+            string sql = "select idtipo, nombre, marca, modelo, color, serie, costo, factura, status from activos_tipo where idtipo = @idtipo";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -1257,6 +1310,8 @@ namespace Activos.Datos
                             result.modelo = Convert.ToString(res.reader["modelo"]).Equals("0") ? "NO" : "SI";
                             result.serie = Convert.ToString(res.reader["serie"]).Equals("0") ? "NO" : "SI";
                             result.color = Convert.ToString(res.reader["color"]).Equals("0") ? "NO" : "SI";
+                            result.factura = Convert.ToString(res.reader["factura"]).Equals("0") ? "NO" : "SI";
+                            result.costo = Convert.ToString(res.reader["costo"]).Equals("0") ? "NO" : "SI";
 
                             result.status = Convert.ToString(res.reader["status"]);
                         }
@@ -2136,6 +2191,63 @@ namespace Activos.Datos
                     cmd.Parameters.Clear();
 
                     trans.Commit();
+                }
+            }
+
+            return result;
+        }
+
+
+        public List<PersonaResponsivas> busquedaUsuario(string usuario)
+        {
+            List<PersonaResponsivas> result = new List<PersonaResponsivas>();
+            PersonaResponsivas ent;
+
+            string sql =
+                        "select a.idusuario as idpersona, p.nombrecompleto as nombre, pu.nombre as puesto, s.nombre as sucursal " +
+                        "from activos_usuarios a " +
+                        "left join activos_personas p on (a.idpersona = p.idpersona) " +
+                        "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                        "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                        "WHERE pe.status = 'A' and pe.nombrecompleto like @nombre ";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@nombre", "%" + usuario + "%");
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new PersonaResponsivas();
+
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"] == DBNull.Value ? 0 : res.reader["idpersona"]);
+
+                            ent.nombre = Convert.ToString(res.reader["nombrecompleto"]);
+                            ent.nombre = ent.nombre.Replace("&", " ");
+                            ent.puesto = Convert.ToString(res.reader["puesto"]);
+                            ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
                 }
             }
 

@@ -296,7 +296,7 @@
             // 
             // colidUsuario
             // 
-            this.colidUsuario.FieldName = "idUsuario";
+            this.colidUsuario.FieldName = "idPersona";
             this.colidUsuario.Name = "colidUsuario";
             // 
             // colidUsuarioCrea

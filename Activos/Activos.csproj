@@ -34,12 +34,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v11.1.Core, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraEditors.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGrid.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v11.1.Core, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FEncrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\FEncrypt.dll</HintPath>
@@ -76,8 +88,10 @@
     <Compile Include="Datos\CatalogosDatos.cs" />
     <Compile Include="Datos\IActivosDatos.cs" />
     <Compile Include="Datos\ICatalogosDatos.cs" />
+    <Compile Include="Datos\IPermisosDatos.cs" />
     <Compile Include="Datos\IReparacionesDatos.cs" />
     <Compile Include="Datos\IResponsivasDatos.cs" />
+    <Compile Include="Datos\PermisosDatos.cs" />
     <Compile Include="Datos\ReparacionesDatos.cs" />
     <Compile Include="Datos\ResponsivasDatos.cs" />
     <Compile Include="FormPrincipal.cs">
@@ -85,6 +99,12 @@
     </Compile>
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAcceso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAcceso.Designer.cs">
+      <DependentUpon>frmAcceso.cs</DependentUpon>
     </Compile>
     <Compile Include="frmConfiguracion.cs">
       <SubType>Form</SubType>
@@ -188,6 +208,18 @@
     <Compile Include="GUIs\Grupos\frmModifGrupos.Designer.cs">
       <DependentUpon>frmModifGrupos.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Permisos\frmBuscaUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Permisos\frmBuscaUsuario.Designer.cs">
+      <DependentUpon>frmBuscaUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Permisos\frmPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Permisos\frmPermisos.Designer.cs">
+      <DependentUpon>frmPermisos.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Personas\frmPersonas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +244,12 @@
     <Compile Include="GUIs\Puestos\frmPuestos.Designer.cs">
       <DependentUpon>frmPuestos.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Responsivas\frmAgregaResponsables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmAgregaResponsables.Designer.cs">
+      <DependentUpon>frmAgregaResponsables.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Responsivas\frmBajaResponsiva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +273,12 @@
     </Compile>
     <Compile Include="GUIs\Responsivas\frmImprimeResp.Designer.cs">
       <DependentUpon>frmImprimeResp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmModificaResponsables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmModificaResponsables.Designer.cs">
+      <DependentUpon>frmModificaResponsables.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Responsivas\frmModifResp.cs">
       <SubType>Form</SubType>
@@ -352,6 +396,7 @@
     <Compile Include="Modelos\Impresora.cs" />
     <Compile Include="Modelos\ManejoSql.cs" />
     <Compile Include="Modelos\MotivosBaja.cs" />
+    <Compile Include="Modelos\Permisos.cs" />
     <Compile Include="Modelos\Personas.cs" />
     <Compile Include="Modelos\Puestos.cs" />
     <Compile Include="Modelos\Reparaciones.cs" />
@@ -365,14 +410,19 @@
     <Compile Include="Negocio\CatalogosNegocio.cs" />
     <Compile Include="Negocio\IActivosNegocio.cs" />
     <Compile Include="Negocio\ICatalogosNegocio.cs" />
+    <Compile Include="Negocio\IPermisosNegocio.cs" />
     <Compile Include="Negocio\IReparacionesNegocio.cs" />
     <Compile Include="Negocio\IResponsivasNegocio.cs" />
+    <Compile Include="Negocio\PermisosNegocio.cs" />
     <Compile Include="Negocio\ReparacionesNegocio.cs" />
     <Compile Include="Negocio\ResponsivasNegocio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAcceso.resx">
+      <DependentUpon>frmAcceso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConfiguracion.resx">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
@@ -425,6 +475,12 @@
     <EmbeddedResource Include="GUIs\Grupos\frmModifGrupos.resx">
       <DependentUpon>frmModifGrupos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Permisos\frmBuscaUsuario.resx">
+      <DependentUpon>frmBuscaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Permisos\frmPermisos.resx">
+      <DependentUpon>frmPermisos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Personas\frmPersonas.resx">
       <DependentUpon>frmPersonas.cs</DependentUpon>
     </EmbeddedResource>
@@ -436,6 +492,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Puestos\frmPuestos.resx">
       <DependentUpon>frmPuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmAgregaResponsables.resx">
+      <DependentUpon>frmAgregaResponsables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmBajaResponsiva.resx">
       <DependentUpon>frmBajaResponsiva.cs</DependentUpon>
@@ -525,6 +584,7 @@
     <None Include="Properties\DataSources\Activos.Modelos.Areas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Grupos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Impresora.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.PersonaResponsivas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Personas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Puestos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Reparaciones.datasource" />

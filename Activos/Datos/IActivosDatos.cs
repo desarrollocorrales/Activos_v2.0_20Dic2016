@@ -7,7 +7,7 @@ namespace Activos.Datos
 {
     public interface IActivosDatos
     {
-        long guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string claveActivo);
+        long guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string claveActivo, string fecha);
 
         string obtConsecTipo(int idTipo);
 
@@ -23,7 +23,7 @@ namespace Activos.Datos
 
         List<Modelos.ActivosDesc> busquedaUsuariosResponsiva(string usuario, string busqueda);
 
-        bool modificActivo(int? idActivo, string nombre, string descripcion);
+        bool modificActivo(int? idActivo, string nombre, string descripcion, string fechaIng);
 
         long bajaActivo(int? idActivo, int idMotivo, string motivo, string detalle, string fecha, int idUsuario);
 

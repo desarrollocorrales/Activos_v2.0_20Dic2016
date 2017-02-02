@@ -115,9 +115,14 @@ namespace Activos.Negocio
             return this._catalogosDatos.getPersonas(status);
         }
 
-        public List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda)
+        public List<PersonaResponsivas> busquedaResponsables(string persona)
         {
-            return this._catalogosDatos.busquedaUsuarios(usuario, busqueda);
+            return this._catalogosDatos.busquedaResponsables(persona);
+        }
+
+        public List<PersonaResponsivas> busquedaResponsables(string persona, int idSucursal)
+        {
+            return this._catalogosDatos.busquedaResponsables(persona, idSucursal);
         }
 
         public Response creaUsuario(int idPersona, string fecha, string correo, string usuario, string clave)
@@ -327,6 +332,12 @@ namespace Activos.Negocio
         public bool bajaGrupo(int idGrupo)
         {
             return this._catalogosDatos.bajaGrupo(idGrupo);
+        }
+
+
+        public List<PersonaResponsivas> busquedaUsuarios(string usuario)
+        {
+            return this._catalogosDatos.busquedaUsuario(usuario);
         }
     }
 }

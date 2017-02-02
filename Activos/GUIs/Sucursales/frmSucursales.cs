@@ -24,6 +24,18 @@ namespace Activos.GUIs.Sucursales
         {
             try
             {
+                // permisos
+                foreach (Control x in this.Controls)
+                {
+                    if (x is Button)
+                    {
+                        int tag = Convert.ToInt16(((Button)x).Tag);
+
+                        if (!Modelos.Login.permisos.Contains(tag))
+                            ((Button)x).Enabled = false;
+                    }
+                }
+
                 // llena el catalogo de responsables (usuarios) disponibles
                 this.cmbResponsable.DataSource = this._catalogosNegocio.getPersonas("", "A");
                 this.cmbResponsable.DisplayMember = "nombreCompleto";
@@ -93,6 +105,12 @@ namespace Activos.GUIs.Sucursales
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ninguna sucursal");
+
+                DialogResult dialogResult = MessageBox.Show(
+                                "¿Desea eliminar las sucursales seleccionadas?",
+                                "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
                 bool resultado = this._catalogosNegocio.bajaSucursalas(seleccionados);

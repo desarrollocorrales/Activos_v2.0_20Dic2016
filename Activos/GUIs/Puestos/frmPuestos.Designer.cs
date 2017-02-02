@@ -61,6 +61,7 @@
             this.btnActivaP.Name = "btnActivaP";
             this.btnActivaP.Size = new System.Drawing.Size(184, 39);
             this.btnActivaP.TabIndex = 18;
+            this.btnActivaP.Tag = "31";
             this.btnActivaP.Text = "A&ctivar Puestos";
             this.btnActivaP.UseVisualStyleBackColor = true;
             this.btnActivaP.Click += new System.EventHandler(this.btnActivaP_Click);
@@ -73,6 +74,7 @@
             this.btnElimSelecc.Name = "btnElimSelecc";
             this.btnElimSelecc.Size = new System.Drawing.Size(223, 39);
             this.btnElimSelecc.TabIndex = 17;
+            this.btnElimSelecc.Tag = "32";
             this.btnElimSelecc.Text = "&Eliminar seleccionado(s)";
             this.btnElimSelecc.UseVisualStyleBackColor = true;
             this.btnElimSelecc.Click += new System.EventHandler(this.btnElimSelecc_Click);
@@ -236,6 +238,7 @@
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(125, 41);
             this.btnAgregar.TabIndex = 10;
+            this.btnAgregar.Tag = "30";
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);

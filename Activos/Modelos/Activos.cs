@@ -19,7 +19,7 @@ namespace Activos.Modelos
         public string descripcion { get; set; }
         public string fechaAlta { get; set; }
 
-        public int idUsuarioAlta { get; set; }
+        public int? idUsuarioAlta { get; set; }
 
         public string fechaModificacion { get; set; }
 
@@ -49,6 +49,7 @@ namespace Activos.Modelos
         public string sucursal { get; set; }
 
         public string usuario { get; set; }
+        public string fecha { get; set; }
 
         public decimal? costo { get; set; }
 

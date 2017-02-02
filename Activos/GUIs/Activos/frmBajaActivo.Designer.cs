@@ -61,6 +61,12 @@
             this.label10 = new System.Windows.Forms.Label();
             this.tbDetalles = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.tbFactura = new System.Windows.Forms.TextBox();
+            this.tbCosto = new System.Windows.Forms.TextBox();
+            this.lbFactura = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.dtpFechaConsulta = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,13 +112,13 @@
             // 
             this.tbDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbDescripcion.Location = new System.Drawing.Point(236, 286);
+            this.tbDescripcion.Location = new System.Drawing.Point(235, 348);
             this.tbDescripcion.MaxLength = 500;
             this.tbDescripcion.Multiline = true;
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.ReadOnly = true;
             this.tbDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDescripcion.Size = new System.Drawing.Size(433, 92);
+            this.tbDescripcion.Size = new System.Drawing.Size(433, 79);
             this.tbDescripcion.TabIndex = 149;
             // 
             // tbColor
@@ -163,7 +169,7 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(251, 260);
+            this.label7.Location = new System.Drawing.Point(250, 322);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(106, 23);
             this.label7.TabIndex = 144;
@@ -331,12 +337,12 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Location = new System.Drawing.Point(675, 14);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(431, 364);
+            this.panel1.Size = new System.Drawing.Size(431, 412);
             this.panel1.TabIndex = 154;
             // 
             // btnRealizaMto
             // 
-            this.btnRealizaMto.Location = new System.Drawing.Point(133, 266);
+            this.btnRealizaMto.Location = new System.Drawing.Point(133, 306);
             this.btnRealizaMto.Name = "btnRealizaMto";
             this.btnRealizaMto.Size = new System.Drawing.Size(162, 64);
             this.btnRealizaMto.TabIndex = 158;
@@ -346,7 +352,7 @@
             // 
             // dtpFecha
             // 
-            this.dtpFecha.Location = new System.Drawing.Point(79, 206);
+            this.dtpFecha.Location = new System.Drawing.Point(79, 256);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(337, 30);
             this.dtpFecha.TabIndex = 157;
@@ -354,7 +360,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(13, 210);
+            this.label11.Location = new System.Drawing.Point(13, 260);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(60, 23);
             this.label11.TabIndex = 156;
@@ -389,7 +395,7 @@
             this.tbDetalles.Multiline = true;
             this.tbDetalles.Name = "tbDetalles";
             this.tbDetalles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDetalles.Size = new System.Drawing.Size(400, 85);
+            this.tbDetalles.Size = new System.Drawing.Size(400, 126);
             this.tbDetalles.TabIndex = 1;
             // 
             // label6
@@ -401,12 +407,81 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Motivo";
             // 
+            // tbFactura
+            // 
+            this.tbFactura.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbFactura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbFactura.Location = new System.Drawing.Point(455, 286);
+            this.tbFactura.MaxLength = 70;
+            this.tbFactura.Name = "tbFactura";
+            this.tbFactura.ReadOnly = true;
+            this.tbFactura.Size = new System.Drawing.Size(214, 30);
+            this.tbFactura.TabIndex = 158;
+            // 
+            // tbCosto
+            // 
+            this.tbCosto.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbCosto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbCosto.Location = new System.Drawing.Point(235, 286);
+            this.tbCosto.MaxLength = 70;
+            this.tbCosto.Name = "tbCosto";
+            this.tbCosto.ReadOnly = true;
+            this.tbCosto.Size = new System.Drawing.Size(214, 30);
+            this.tbCosto.TabIndex = 157;
+            // 
+            // lbFactura
+            // 
+            this.lbFactura.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbFactura.AutoSize = true;
+            this.lbFactura.Location = new System.Drawing.Point(471, 260);
+            this.lbFactura.Name = "lbFactura";
+            this.lbFactura.Size = new System.Drawing.Size(73, 23);
+            this.lbFactura.TabIndex = 156;
+            this.lbFactura.Text = "Factura";
+            // 
+            // label12
+            // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(250, 260);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(55, 23);
+            this.label12.TabIndex = 155;
+            this.label12.Text = "Costo";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(18, 403);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(60, 23);
+            this.label13.TabIndex = 159;
+            this.label13.Text = "Fecha";
+            // 
+            // dtpFechaConsulta
+            // 
+            this.dtpFechaConsulta.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dtpFechaConsulta.CustomFormat = "dd-MM-yyyy";
+            this.dtpFechaConsulta.Enabled = false;
+            this.dtpFechaConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaConsulta.Location = new System.Drawing.Point(84, 397);
+            this.dtpFechaConsulta.Name = "dtpFechaConsulta";
+            this.dtpFechaConsulta.Size = new System.Drawing.Size(137, 30);
+            this.dtpFechaConsulta.TabIndex = 160;
+            // 
             // frmBajaActivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1117, 389);
+            this.ClientSize = new System.Drawing.Size(1117, 439);
+            this.Controls.Add(this.dtpFechaConsulta);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.tbFactura);
+            this.Controls.Add(this.tbCosto);
+            this.Controls.Add(this.lbFactura);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tbUsuario);
             this.Controls.Add(this.tbArea);
@@ -480,5 +555,11 @@
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbMotivo;
+        private System.Windows.Forms.TextBox tbFactura;
+        private System.Windows.Forms.TextBox tbCosto;
+        private System.Windows.Forms.Label lbFactura;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DateTimePicker dtpFechaConsulta;
     }
 }

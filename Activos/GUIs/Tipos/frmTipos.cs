@@ -24,6 +24,18 @@ namespace Activos.GUIs.Tipos
         {
             try
             {
+                // permisos
+                foreach (Control x in this.Controls)
+                {
+                    if (x is Button)
+                    {
+                        int tag = Convert.ToInt16(((Button)x).Tag);
+
+                        if (!Modelos.Login.permisos.Contains(tag))
+                            ((Button)x).Enabled = false;
+                    }
+                }
+
                 // llena el grid con los puestos disponibles
                 this.gcTipos.DataSource = this._catalogosNegocio.getTipos("A");
 
@@ -106,6 +118,12 @@ namespace Activos.GUIs.Tipos
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ningun tipo");
+
+                DialogResult dialogResult = MessageBox.Show(
+                                "¿Desea eliminar los tipos seleccionados?",
+                                "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
                 bool resultado = this._catalogosNegocio.bajaTipos(seleccionados);

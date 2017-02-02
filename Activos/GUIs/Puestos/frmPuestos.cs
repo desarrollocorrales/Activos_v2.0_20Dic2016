@@ -24,6 +24,18 @@ namespace Activos.GUIs.Puestos
         {
             try
             {
+                // permisos
+                foreach (Control x in this.Controls)
+                {
+                    if (x is Button)
+                    {
+                        int tag = Convert.ToInt16(((Button)x).Tag);
+
+                        if (!Modelos.Login.permisos.Contains(tag))
+                            ((Button)x).Enabled = false;
+                    }
+                }
+
                 // llena el catalogo de sucursales disponibles
                 this.cmbSucursal.DataSource = this._catalogosNegocio.getSucursales("A");
                 this.cmbSucursal.DisplayMember = "nombre";
@@ -108,6 +120,12 @@ namespace Activos.GUIs.Puestos
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ningun puesto");
+
+                DialogResult dialogResult = MessageBox.Show(
+                                "¿Desea eliminar los puestos seleccionadas?",
+                                "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
                 bool resultado = this._catalogosNegocio.bajaPuestos(seleccionados);

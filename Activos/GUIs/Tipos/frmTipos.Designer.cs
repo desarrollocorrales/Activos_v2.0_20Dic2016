@@ -32,6 +32,8 @@
             this.btnActivar = new System.Windows.Forms.Button();
             this.btnElimSel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.cbSerie = new System.Windows.Forms.CheckBox();
             this.cbColor = new System.Windows.Forms.CheckBox();
             this.cbModelo = new System.Windows.Forms.CheckBox();
@@ -50,6 +52,8 @@
             this.colserie = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.colcosto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colfactura = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcTipos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tiposBindingSource)).BeginInit();
@@ -60,10 +64,11 @@
             // 
             this.btnActivar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnActivar.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.btnActivar.Location = new System.Drawing.Point(100, 490);
+            this.btnActivar.Location = new System.Drawing.Point(100, 556);
             this.btnActivar.Name = "btnActivar";
             this.btnActivar.Size = new System.Drawing.Size(186, 41);
             this.btnActivar.TabIndex = 0;
+            this.btnActivar.Tag = "44";
             this.btnActivar.Text = "Activar Tipos";
             this.btnActivar.UseVisualStyleBackColor = true;
             this.btnActivar.Click += new System.EventHandler(this.btnActivar_Click);
@@ -72,10 +77,11 @@
             // 
             this.btnElimSel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnElimSel.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.btnElimSel.Location = new System.Drawing.Point(295, 490);
+            this.btnElimSel.Location = new System.Drawing.Point(295, 556);
             this.btnElimSel.Name = "btnElimSel";
             this.btnElimSel.Size = new System.Drawing.Size(239, 41);
             this.btnElimSel.TabIndex = 1;
+            this.btnElimSel.Tag = "45";
             this.btnElimSel.Text = "Eliminar seleccionado(s)";
             this.btnElimSel.UseVisualStyleBackColor = true;
             this.btnElimSel.Click += new System.EventHandler(this.btnElimSel_Click);
@@ -83,6 +89,8 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.cbSerie);
             this.groupBox1.Controls.Add(this.cbColor);
             this.groupBox1.Controls.Add(this.cbModelo);
@@ -90,10 +98,32 @@
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 14F);
             this.groupBox1.Location = new System.Drawing.Point(27, 67);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(507, 103);
+            this.groupBox1.Size = new System.Drawing.Size(507, 157);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Obligatorios";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.checkBox2.Location = new System.Drawing.Point(121, 106);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(103, 31);
+            this.checkBox2.TabIndex = 9;
+            this.checkBox2.Text = "Factura";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.checkBox1.Location = new System.Drawing.Point(15, 106);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(85, 31);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "Costo";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // cbSerie
             // 
@@ -166,7 +196,7 @@
             this.gcTipos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcTipos.DataSource = this.tiposBindingSource;
             this.gcTipos.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.gcTipos.Location = new System.Drawing.Point(16, 233);
+            this.gcTipos.Location = new System.Drawing.Point(16, 299);
             this.gcTipos.MainView = this.gridView1;
             this.gcTipos.Name = "gcTipos";
             this.gcTipos.Size = new System.Drawing.Size(535, 242);
@@ -189,7 +219,9 @@
             this.colmodelo,
             this.colcolor,
             this.colserie,
-            this.colstatus});
+            this.colstatus,
+            this.colcosto,
+            this.colfactura});
             this.gridView1.GridControl = this.gcTipos;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
@@ -288,20 +320,45 @@
             // 
             this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(190, 176);
+            this.btnAgregar.Location = new System.Drawing.Point(190, 242);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(186, 41);
             this.btnAgregar.TabIndex = 6;
+            this.btnAgregar.Tag = "43";
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // colcosto
+            // 
+            this.colcosto.Caption = "Costo";
+            this.colcosto.FieldName = "costo";
+            this.colcosto.Name = "colcosto";
+            this.colcosto.OptionsColumn.AllowEdit = false;
+            this.colcosto.OptionsColumn.AllowMove = false;
+            this.colcosto.OptionsColumn.ReadOnly = true;
+            this.colcosto.Visible = true;
+            this.colcosto.VisibleIndex = 6;
+            this.colcosto.Width = 40;
+            // 
+            // colfactura
+            // 
+            this.colfactura.Caption = "Factura";
+            this.colfactura.FieldName = "factura";
+            this.colfactura.Name = "colfactura";
+            this.colfactura.OptionsColumn.AllowEdit = false;
+            this.colfactura.OptionsColumn.AllowMove = false;
+            this.colfactura.OptionsColumn.ReadOnly = true;
+            this.colfactura.Visible = true;
+            this.colfactura.VisibleIndex = 7;
+            this.colfactura.Width = 40;
             // 
             // frmTipos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(566, 550);
+            this.ClientSize = new System.Drawing.Size(566, 628);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.gcTipos);
             this.Controls.Add(this.tbNombreTipo);
@@ -345,5 +402,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colcolor;
         private DevExpress.XtraGrid.Columns.GridColumn colserie;
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private DevExpress.XtraGrid.Columns.GridColumn colcosto;
+        private DevExpress.XtraGrid.Columns.GridColumn colfactura;
     }
 }

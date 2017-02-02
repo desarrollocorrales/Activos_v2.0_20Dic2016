@@ -16,14 +16,14 @@ namespace Activos.Negocio
             this._activosDatos = new ActivosDatos();
         }
 
-        public bool guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario)
+        public bool guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string fecha)
         {
             // define clave de activo
             string consec = this._activosDatos.obtConsecTipo(idTipo);
 
             string claveActivo = idTipo.ToString().PadLeft(2, '0') + consec;
             
-            long idActivo = this._activosDatos.guardaActivo(nombre, descripcion, idArea, idTipo, idUsuario, claveActivo);
+            long idActivo = this._activosDatos.guardaActivo(nombre, descripcion, idArea, idTipo, idUsuario, claveActivo, fecha);
 
             // define el numero de etiqueta
             string numEtiqueta =
@@ -68,9 +68,9 @@ namespace Activos.Negocio
         }
 
 
-        public bool modifActivo(int? idActivo, string nombre, string descripcion)
+        public bool modifActivo(int? idActivo, string nombre, string descripcion, string fechaIng)
         {
-            return this._activosDatos.modificActivo(idActivo, nombre, descripcion);
+            return this._activosDatos.modificActivo(idActivo, nombre, descripcion, fechaIng);
         }
 
 

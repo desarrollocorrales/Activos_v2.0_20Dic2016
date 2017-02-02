@@ -61,6 +61,7 @@
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(125, 41);
             this.btnAgregar.TabIndex = 1;
+            this.btnAgregar.Tag = "27";
             this.btnAgregar.Text = "&Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -216,6 +217,7 @@
             this.btnElimSelecc.Name = "btnElimSelecc";
             this.btnElimSelecc.Size = new System.Drawing.Size(250, 39);
             this.btnElimSelecc.TabIndex = 8;
+            this.btnElimSelecc.Tag = "29";
             this.btnElimSelecc.Text = "&Eliminar seleccionado (s)";
             this.btnElimSelecc.UseVisualStyleBackColor = true;
             this.btnElimSelecc.Click += new System.EventHandler(this.btnElimSelecc_Click);
@@ -227,6 +229,7 @@
             this.btnActivaS.Name = "btnActivaS";
             this.btnActivaS.Size = new System.Drawing.Size(250, 39);
             this.btnActivaS.TabIndex = 9;
+            this.btnActivaS.Tag = "28";
             this.btnActivaS.Text = "A&ctivar Sucursales";
             this.btnActivaS.UseVisualStyleBackColor = true;
             this.btnActivaS.Click += new System.EventHandler(this.btnActivaS_Click);

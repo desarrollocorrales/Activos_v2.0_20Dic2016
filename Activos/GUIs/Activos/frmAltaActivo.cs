@@ -28,6 +28,7 @@ namespace Activos.GUIs.AltaActivos
             this._activosNegocio = new ActivosNegocio();
 
             this._idUsuario = idUsuario;
+
         }
 
         private void frmAltaActivo_Load(object sender, EventArgs e)
@@ -108,11 +109,15 @@ namespace Activos.GUIs.AltaActivos
                     this.tbModelo.Text + "&" +
                     this.tbNumSerie.Text + "&" +
                     this.tbColor.Text + "&" +
+                    this.tbCosto.Text + "&" +
+                    this.tbFactura.Text + "&" +
                     this.tbDescripcion.Text;
+
+                string fecIng = this.dtpFecha.Value.ToString("yyyy-MM-dd");
 
                 int idArea = (int)this.cmbArea.SelectedValue;
 
-                bool result = this._activosNegocio.guardaActivo(nombre, descripcion, idArea, idTipo, this._idUsuario);
+                bool result = this._activosNegocio.guardaActivo(nombre, descripcion, idArea, idTipo, this._idUsuario, fecIng);
 
                 if (result)
                 {
@@ -123,6 +128,9 @@ namespace Activos.GUIs.AltaActivos
                     this.tbNumSerie.Text = string.Empty;
                     this.tbColor.Text = string.Empty;
                     this.tbDescripcion.Text = string.Empty;
+
+                    this.tbCosto.Text = string.Empty;
+                    this.tbFactura.Text = string.Empty;
 
                     this.cmbArea.DataSource = null;
                     this.cmbSucursal.SelectedIndex = -1;
@@ -155,6 +163,8 @@ namespace Activos.GUIs.AltaActivos
             this.lModelo.Text = "Modelo";
             this.lNumSerie.Text = "Núm. de Serie";
             this.lColor.Text = "Color";
+            this.lbCosto.Text = "Costo";
+            this.lbFactura.Text = "Factura";
 
             // MARCA
             if (this._tipos.marca.Equals("SI") && string.IsNullOrEmpty(this.tbMarca.Text))
@@ -185,6 +195,22 @@ namespace Activos.GUIs.AltaActivos
             {
                 this.lColor.Text = "Color*";
                 this.lColor.ForeColor = System.Drawing.Color.Red;
+                result = false;
+            }
+
+            // COSTO
+            if (this._tipos.costo.Equals("SI") && string.IsNullOrEmpty(this.tbCosto.Text))
+            {
+                this.lbCosto.Text = "Costo*";
+                this.lbCosto.ForeColor = System.Drawing.Color.Red;
+                result = false;
+            }
+
+            // FACTURA
+            if (this._tipos.factura.Equals("SI") && string.IsNullOrEmpty(this.tbFactura.Text))
+            {
+                this.lbFactura.Text = "Factura*";
+                this.lbFactura.ForeColor = System.Drawing.Color.Red;
                 result = false;
             }
 

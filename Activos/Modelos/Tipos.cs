@@ -14,6 +14,8 @@ namespace Activos.Modelos
         public string modelo { get; set; }
         public string color { get; set; }
         public string serie { get; set; }
+        public string costo { get; set; }
+        public string factura { get; set; }
         public string status { get; set; }
     }
 }

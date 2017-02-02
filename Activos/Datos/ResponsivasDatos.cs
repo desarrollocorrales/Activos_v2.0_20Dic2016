@@ -25,7 +25,7 @@ namespace Activos.Datos
             long result = 0;
 
             string sql =
-                "INSERT INTO activos_responsivas(idusuario, idusuariocrea, observaciones, fecha, status) " +
+                "INSERT INTO activos_responsivas(idpersona, idusuariocrea, observaciones, fecha, status) " +
                 "VALUES (@idUs, @idUsCrea, @observ, now(), 'A')";
 
             int rows = 0;
@@ -59,7 +59,7 @@ namespace Activos.Datos
         }
 
         // crea la responsiva
-        public bool creaRespDet(long idResp, List<Modelos.Activos> activos)
+        public bool creaRespDet(long idResp, List<Modelos.Activos> activos, List<Modelos.PersonaResponsivas> responsables)
         {
             bool result = false;
 
@@ -98,6 +98,32 @@ namespace Activos.Datos
                             error = res.numErr + ": " + res.descErr;
                             break;
                         }
+
+                        cmd.Parameters.Clear();
+                    }
+                }
+
+                sql = 
+                    "insert into activos_resposivaresponsables (idpersona, idresponsiva)" + 
+                    "values (@idpersona, @idResp)";
+
+                foreach (Modelos.PersonaResponsivas pr in responsables)
+                {
+                    using (var cmd = new MySqlCommand())
+                    {
+                        cmd.Connection = conn;
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@idResp", idResp);
+                        cmd.Parameters.AddWithValue("@idpersona", pr.idPersona);
+
+                        ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                        if (!res.ok)
+                        {
+                            error = res.numErr + ": " + res.descErr;
+                            break;
+                        }
                     }
                 }
 
@@ -107,6 +133,7 @@ namespace Activos.Datos
                     {
                         string sqlD = string.Format("delete from activos_responsivasdetalle where idresposivadet in ({0})", (ids.Count == 0 ? "0" : string.Join(",", ids)));
                         string sqlR = string.Format("delete from activos_responsivas where idresponsiva = {0}", idResp);
+                        string sqlR2 = string.Format("delete from activos_resposivaresponsables where idresponsiva = {0}", idResp);
                         cmd.Connection = conn;
 
                         int rows2 = 0;
@@ -114,6 +141,8 @@ namespace Activos.Datos
                         Utilerias.EjecutaSQL(sqlD, ref rows2, cmd);
 
                         Utilerias.EjecutaSQL(sqlR, ref rows2, cmd);
+
+                        Utilerias.EjecutaSQL(sqlR2, ref rows2, cmd);
 
                     }
 
@@ -131,18 +160,18 @@ namespace Activos.Datos
             Responsivas ent;
 
             string sql =
-                        "select r.idresponsiva, r.idusuario, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
+                        "select r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
                         "p.nombrecompleto, " +
                         "pu.nombre as puesto, " +
                         "s.nombre as sucursal " +
                         "from activos_responsivas r " +
-                        "left join activos_usuarios u on (r.idusuario = u.idusuario) " +
-                        "left join activos_personas p on (u.idpersona = p.idpersona) " +
+                        "left join activos_personas p on (r.idpersona = p.idpersona) " +
+                        "left join activos_usuarios u on (p.idpersona = u.idpersona) " +
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
                         "left join activos_responsivasdetalle rd on (r.idresponsiva = rd.idresponsiva) " +
                         "where s.idsucursal = @isSucursal and p.nombrecompleto LIKE @nomb and rd.status != @status and r.status != 'B' " +
-                        "group by r.idresponsiva, r.idusuario, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
+                        "group by r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
                         "p.nombrecompleto, pu.nombre, s.nombre order by p.nombrecompleto ";
             
             // define conexion con la cadena de conexion
@@ -169,7 +198,7 @@ namespace Activos.Datos
                             ent = new Responsivas();
 
                             ent.idResponsiva = Convert.ToInt16(res.reader["idresponsiva"]);
-                            ent.idUsuario = Convert.ToInt16(res.reader["idusuario"]);
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
                             ent.idUsuarioCrea = Convert.ToInt16(res.reader["idusuariocrea"]);
                             
                             ent.fecha = Convert.ToString(res.reader["fecha"]);
@@ -275,10 +304,10 @@ namespace Activos.Datos
             Responsivas ent;
 
             string sql =
-                        "select r.idresponsiva, r.idusuario, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status " +
+                        "select r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status " +
                         "from activos_responsivas r " +
-                        "left join activos_usuarios u on (r.idusuario = u.idusuario) " +
-                        "where u.idusuario = @idUs and r.status != 'B'";
+                        "left join activos_personas u on (r.idpersona = u.idpersona) " +
+                        "where u.idpersona = @idUs and r.status != 'B'";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -302,7 +331,7 @@ namespace Activos.Datos
                             ent = new Responsivas();
 
                             ent.idResponsiva = Convert.ToInt16(res.reader["idresponsiva"]);
-                            ent.idUsuario = Convert.ToInt16(res.reader["idusuario"]);
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
                             ent.idUsuarioCrea = Convert.ToInt16(res.reader["idusuariocrea"]);
 
                             DateTime dt = DateTime.Parse(Convert.ToString(res.reader["fecha"]));
@@ -486,7 +515,7 @@ namespace Activos.Datos
                     long idResp = 0;
 
                     string sqlCreaResponsiva =
-                        "insert into activos_responsivas (idusuario, idusuariocrea, observaciones, status) " +
+                        "insert into activos_responsivas (idpersona, idusuariocrea, observaciones, status) " +
                         "values (@idusuario, @idUsCrea, @observ, 'A')";
 
                     // define parametros
@@ -665,6 +694,56 @@ namespace Activos.Datos
                         while (res.reader.Read())
                         {
                             result = Convert.ToString(res.reader["comando"]);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene los responsables segun una responsiva
+        public List<PersonaResponsivas> obtieneResponsables(int idResponsiva)
+        {
+            List<PersonaResponsivas> result = new List<PersonaResponsivas>();
+            PersonaResponsivas ent;
+
+            string sql =
+                        "select r.idpersona, p.nombrecompleto as nombre from activos_resposivaresponsables r " +
+                        "left join activos_personas p on (r.idpersona = p.idpersona) " +
+                        "where r.idresponsiva = @idresp";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idresp", idResponsiva);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new PersonaResponsivas();
+
+                            ent.nombre = Convert.ToString(res.reader["nombre"]);
+                            ent.nombre = ent.nombre.Replace("&", " ");
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
+                            result.Add(ent);
                         }
                     }
                     else

@@ -54,7 +54,10 @@ namespace Activos.GUIs.AltaActivos
             this.tbModelo.ReadOnly = false;
             this.tbNumSerie.ReadOnly = false;
             this.tbColor.ReadOnly = false;
+            this.tbCosto.ReadOnly = false;
+            this.tbFactura.ReadOnly = false;
             this.tbDescripcion.ReadOnly = false;
+            this.dtpFecha.Enabled = true;
         }
 
         private void btnBusqAct_Click(object sender, EventArgs e)
@@ -85,8 +88,12 @@ namespace Activos.GUIs.AltaActivos
                     this.tbModelo.Text = array[1];
                     this.tbNumSerie.Text = array[2];
                     this.tbColor.Text = array[3];
-                    this.tbDescripcion.Text = array[4];
+                    this.tbCosto.Text = array[4];
+                    this.tbFactura.Text = array[5];
+                    this.tbDescripcion.Text = array[6];
                     this.tbUsuario.Text = activo.usuario;
+
+                    this.dtpFecha.Text = activo.fecha;
 
                     this.lbNumetiqueta.Text = activo.numEtiqueta;
                     this.lbCveActivo.Text = activo.claveActivo;
@@ -104,7 +111,10 @@ namespace Activos.GUIs.AltaActivos
                         this.tbModelo.ReadOnly = true;
                         this.tbNumSerie.ReadOnly = true;
                         this.tbColor.ReadOnly = true;
+                        this.tbCosto.ReadOnly = true;
+                        this.tbFactura.ReadOnly = true;
                         this.tbDescripcion.ReadOnly = true;
+                        this.dtpFecha.Enabled = false;
                     }
 
                     MessageBox.Show("Operación Cancelada", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -138,9 +148,13 @@ namespace Activos.GUIs.AltaActivos
                     this.tbModelo.Text + "&" +
                     this.tbNumSerie.Text + "&" +
                     this.tbColor.Text + "&" +
+                    this.tbCosto.Text + "&" +
+                    this.tbFactura.Text + "&" +
                     this.tbDescripcion.Text;
 
-                bool res = this._activosNegocio.modifActivo(this._idActivo, nombre, descripcion);
+                string fecIng = this.dtpFecha.Value.ToString("yyyy-MM-dd");
+
+                bool res = this._activosNegocio.modifActivo(this._idActivo, nombre, descripcion, fecIng);
 
                 if (res) MessageBox.Show("Datos modificados correctamente", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 

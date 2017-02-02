@@ -59,7 +59,9 @@ namespace Activos.GUIs.Traspasos
                 this.tbModelo.Text = array[1];
                 this.tbNumSerie.Text = array[2];
                 this.tbColor.Text = array[3];
-                this.tbDescripcion.Text = array[4];
+                this.tbFactura.Text = array[4];
+                this.tbCosto.Text = array[5];
+                this.tbDescripcion.Text = array[6];
 
                 this.tbUsuario.Text = _usuario;
             }

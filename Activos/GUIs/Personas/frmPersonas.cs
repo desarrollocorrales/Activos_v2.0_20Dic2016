@@ -26,6 +26,32 @@ namespace Activos.GUIs.Personas
         {
             try
             {
+                // permisos
+                // ALTAS
+                int tag1 = Convert.ToInt16(this.tabPage1.Tag);
+                if (!Modelos.Login.permisos.Contains(tag1))
+                    foreach (Control ctrl in this.tabPage1.Controls)
+                        ctrl.Enabled = false;
+
+                // MODIFICACIONES
+                int tag2 = Convert.ToInt16(this.tabPage2.Tag);
+                if (!Modelos.Login.permisos.Contains(tag2))
+                    foreach (Control ctrl in this.tabPage2.Controls)
+                        ctrl.Enabled = false;
+
+                // BAJAS
+                int tag3 = Convert.ToInt16(this.tabPage3.Tag);
+                if (!Modelos.Login.permisos.Contains(tag3))
+                    foreach (Control ctrl in this.tabPage3.Controls)
+                        ctrl.Enabled = false;
+
+                // ACTIVAR
+                int tag4 = Convert.ToInt16(this.TabPage4.Tag);
+                if (!Modelos.Login.permisos.Contains(tag4))
+                    foreach (Control ctrl in this.TabPage4.Controls)
+                        ctrl.Enabled = false;
+
+
                 List<Modelos.Puestos> puestos = this._catalogosNegocio.getPuestos("A");
 
                 // llena el catalogo de sucursales disponibles
@@ -292,6 +318,12 @@ namespace Activos.GUIs.Personas
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ninguna persona");
+
+                DialogResult dialogResult = MessageBox.Show(
+                                "¿Desea dar de baja las personas seleccionadas?",
+                                "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
                 bool resultado = this._catalogosNegocio.bajaPersonas(seleccionados);

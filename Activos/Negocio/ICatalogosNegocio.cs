@@ -37,7 +37,9 @@ namespace Activos.Negocio
 
         List<Usuarios> getPersonas(string status);
 
-        List<UsuariosResponsivas> busquedaUsuarios(string usuario, string busqueda);
+        List<PersonaResponsivas> busquedaResponsables(string persona);
+
+        List<PersonaResponsivas> busquedaResponsables(string persona, int idsucursal);
 
         Response creaUsuario(int idPersona, string fecha, string correo, string usuario, string clave);
 
@@ -111,5 +113,8 @@ namespace Activos.Negocio
         bool modificaGrupo(int idGrupo, string nombre, List<Modelos.Activos> activos);
 
         bool bajaGrupo(int idGrupo);
+
+
+        List<PersonaResponsivas> busquedaUsuarios(string usuario);
     }
 }

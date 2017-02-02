@@ -34,5 +34,17 @@ namespace Activos.Properties {
                 this["Impresora"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string accesoConfig {
+            get {
+                return ((string)(this["accesoConfig"]));
+            }
+            set {
+                this["accesoConfig"] = value;
+            }
+        }
     }
 }

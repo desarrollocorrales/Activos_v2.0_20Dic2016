@@ -27,6 +27,8 @@ namespace Activos.Modelos
         public static string nombre;
         public static string usuario;
         public static string empresa;
+
+        public static List<int> permisos;
     }
 
     public static class ConectionString

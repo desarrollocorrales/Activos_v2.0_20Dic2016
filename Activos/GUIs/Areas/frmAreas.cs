@@ -24,6 +24,18 @@ namespace Activos.GUIs.Areas
         {
             try
             {
+                // permisos
+                foreach (Control x in this.Controls)
+                {
+                    if (x is Button)
+                    {
+                        int tag = Convert.ToInt16(((Button)x).Tag);
+
+                        if (!Modelos.Login.permisos.Contains(tag))
+                            ((Button)x).Enabled = false;
+                    }
+                }
+
                 // llena el catalogo de sucursales disponibles
                 this.cmbSucursales.DataSource = this._catalogosNegocio.getSucursales("A");
                 this.cmbSucursales.DisplayMember = "nombre";
@@ -109,6 +121,12 @@ namespace Activos.GUIs.Areas
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ningun área");
+
+                DialogResult dialogResult = MessageBox.Show(
+                                "¿Desea eliminar las áreas seleccionadas?",
+                                "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
                 bool resultado = this._catalogosNegocio.bajaAreas(seleccionados);

@@ -8,7 +8,7 @@ namespace Activos.Negocio
     public interface IResponsivasNegocio
     {
 
-        bool crearResponsivas(List<Modelos.Activos> activos, int idUsuarioCreador, int? idUsuario, string observaciones);
+        bool crearResponsivas(List<Modelos.Activos> activos, int idUsuarioCreador, int? idUsuario, string observaciones, List<Modelos.PersonaResponsivas> responsables);
 
         List<Modelos.Responsivas> buscaResponsiva(string responsable, int idSuc, string tipoCons);
 
@@ -23,5 +23,7 @@ namespace Activos.Negocio
         bool bajaResponsiva(int? idResponsiva, string motivo);
 
         string getBuscaComandoEt(string etiqueta);
+
+        List<Modelos.PersonaResponsivas> obtieneResponsables(int idResponsiva);
     }
 }

@@ -8,7 +8,7 @@ namespace Activos.Modelos
     public class Responsivas
     {
         public int idResponsiva { get; set; }
-        public int idUsuario { get; set; }
+        public int idPersona { get; set; }
         public int idUsuarioCrea { get; set; }
 
         public string fecha { get; set; }

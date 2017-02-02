@@ -160,6 +160,17 @@ namespace Activos.GUIs.Responsivas
                 if (this._idResponsiva == null)
                     throw new Exception("Seleccione una responsiva");
 
+                List<int> idsResp = new List<int>();
+
+                frmModificaResponsables form = new frmModificaResponsables();
+
+                var result = form.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+
+                }
+
                 bool resultado = this._responsivasNegocio.modifResponsiva(this._idResponsiva, this._movimientos);
 
                 if (resultado)

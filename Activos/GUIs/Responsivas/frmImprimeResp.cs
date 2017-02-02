@@ -108,6 +108,11 @@ namespace Activos.GUIs.Responsivas
                     });
                 }
 
+                // obtiene responsables
+                List<Modelos.PersonaResponsivas> responsables = this._responsivasNegocio.obtieneResponsables(this._responsiva.idResponsiva);
+
+
+                form._responsables = responsables;
                 form._activos = activos;
                 form._responsivas = this._responsiva;
 

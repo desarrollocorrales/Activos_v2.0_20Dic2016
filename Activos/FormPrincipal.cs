@@ -18,6 +18,7 @@ using Activos.GUIs.Responsivas;
 using Activos.GUIs.Personas;
 using Activos.GUIs.Traspasos;
 using Activos.GUIs.Grupos;
+using Activos.GUIs.Permisos;
 using Activos.GUIs;
 
 namespace Activos
@@ -33,6 +34,23 @@ namespace Activos
         {
             try
             {
+                // privilegios
+                List<ToolStripMenuItem> allItems = new List<ToolStripMenuItem>();
+                foreach (ToolStripMenuItem toolItem in this.menuStrip1.Items)
+                {
+                    allItems.Add(toolItem);
+                    //add sub items
+                    allItems.AddRange(GetItems(toolItem));
+                }
+
+                foreach (ToolStripMenuItem item in allItems)
+                {
+                    int tag = Convert.ToInt16(item.Tag);
+
+                    if (!Modelos.Login.permisos.Contains(tag))
+                        item.Enabled = false;
+                }
+
                 // busca si se tiene seleccionada una impresora de etiquetas
                 if (string.IsNullOrEmpty(Properties.Settings.Default.Impresora))
                 {
@@ -52,6 +70,19 @@ namespace Activos
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private IEnumerable<ToolStripMenuItem> GetItems(ToolStripMenuItem item)
+        {
+            foreach (ToolStripMenuItem dropDownItem in item.DropDownItems)
+            {
+                if (dropDownItem.HasDropDownItems)
+                {
+                    foreach (ToolStripMenuItem subItem in GetItems(dropDownItem))
+                        yield return subItem;
+                }
+                yield return dropDownItem;
             }
         }
 
@@ -568,7 +599,7 @@ namespace Activos
 
 
         //****************************************************************************************************
-        //************** G R U P O S *************************************************************************
+        //************** I M P R E S O R A S *****************************************************************
         //****************************************************************************************************
 
         private void seleccionaImpresoraToolStripMenuItem_Click(object sender, EventArgs e)
@@ -578,6 +609,30 @@ namespace Activos
                 frmSelecImpresora child = new frmSelecImpresora();
 
                 child.ShowDialog();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+        //****************************************************************************************************
+        //************** P E R M I S O S *********************************************************************
+        //****************************************************************************************************
+
+        private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmPermisos child = new frmPermisos();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
 
             }
             catch (Exception Ex)

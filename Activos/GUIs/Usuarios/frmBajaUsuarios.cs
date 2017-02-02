@@ -42,6 +42,12 @@ namespace Activos.GUIs.Usuarios
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ningun Usuario");
 
+                DialogResult dialogResult = MessageBox.Show(
+                                "¿Desea eliminar los usuarios seleccionados?",
+                                "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.No) return;
+
                 // dar de baja los seleccionados
                 bool resultado = this._catalogosNegocio.bajaUsuarios(seleccionados);
 

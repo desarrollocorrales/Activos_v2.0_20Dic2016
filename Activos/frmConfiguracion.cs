@@ -187,12 +187,9 @@ namespace Activos
 
         private void frmConfiguracion_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-
             if (!this._correcto)
             {
                 MessageBox.Show("Operación Cancelada", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                Modelos.ConectionString.conn = string.Empty;
             }
         }
 

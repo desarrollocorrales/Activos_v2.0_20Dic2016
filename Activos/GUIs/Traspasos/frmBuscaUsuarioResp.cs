@@ -20,7 +20,7 @@ namespace Activos.GUIs.Traspasos
         public bool _respSelec = false;
 
         public Modelos.Responsivas _responsiva;
-        public Modelos.UsuariosResponsivas _usuario;
+        public Modelos.PersonaResponsivas _usuario;
         public List<Modelos.Activos> _activos;
 
         public frmBuscaUsuarioResp()
@@ -35,11 +35,8 @@ namespace Activos.GUIs.Traspasos
         {
             try
             {
-                // valida radio
-                string busqueda = this.rbUsuario.Checked ? "usuario" : "nombrecompleto";
-
                 // busqueda de usuarios
-                List<Modelos.UsuariosResponsivas> usuarios = this._catalogosNegocio.busquedaUsuarios(this.tbUsuario.Text, busqueda);
+                List<Modelos.PersonaResponsivas> usuarios = this._catalogosNegocio.busquedaResponsables(this.tbUsuario.Text);
 
                 if (usuarios.Count == 0)
                 {
@@ -53,7 +50,7 @@ namespace Activos.GUIs.Traspasos
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Taspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(Ex.Message, "Traspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -65,19 +62,19 @@ namespace Activos.GUIs.Traspasos
                 this._responsiva = null;
 
                 if (this.gridView1.GetSelectedRows().Count() == 0)
-                    throw new Exception("No a seleccionado un usuario");
+                    throw new Exception("No a seleccionado una persona");
 
-                this._usuario = new Modelos.UsuariosResponsivas();
+                this._usuario = new Modelos.PersonaResponsivas();
 
                 foreach (int i in this.gridView1.GetSelectedRows())
                 {
                     var dr1 = this.gridView1.GetRow(i);
 
-                    this._usuario = (Modelos.UsuariosResponsivas)dr1;
+                    this._usuario = (Modelos.PersonaResponsivas)dr1;
                 }
 
                 // busca responsivas segun un usuario
-                List<Modelos.Responsivas> responsivas = this._responsivasNegocio.buscaResponsiva(this._usuario.idUsuario);
+                List<Modelos.Responsivas> responsivas = this._responsivasNegocio.buscaResponsiva(this._usuario.idPersona);
 
                 if (responsivas.Count == 0)
                 {
@@ -85,14 +82,14 @@ namespace Activos.GUIs.Traspasos
                     this.gcActivos.DataSource = null;
                     throw new Exception("El usuario no tiene responsivas");
                 }
-                this.tbUsuarioSeleccionado.Text = this._usuario.nomUsuario;
+                this.tbUsuarioSeleccionado.Text = this._usuario.nombre;
 
                 this.gcResponsivas.DataSource = responsivas;
                 this.gcActivos.DataSource = null;
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Taspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(Ex.Message, "Traspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -119,7 +116,7 @@ namespace Activos.GUIs.Traspasos
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Taspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(Ex.Message, "Traspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -128,7 +125,7 @@ namespace Activos.GUIs.Traspasos
             try
             {
                 if (this._usuario == null)
-                    throw new Exception("Seleccione un usuario");
+                    throw new Exception("Seleccione una persona");
 
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
 
@@ -139,7 +136,7 @@ namespace Activos.GUIs.Traspasos
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Taspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(Ex.Message, "Traspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -158,7 +155,7 @@ namespace Activos.GUIs.Traspasos
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Taspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(Ex.Message, "Traspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

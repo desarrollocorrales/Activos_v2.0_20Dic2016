@@ -15,6 +15,7 @@ namespace Activos
     public partial class frmLogin : Form
     {
         ICatalogosNegocio _catalogosNegocio;
+        IPermisosNegocio _permisosNegocio;
 
         public frmLogin()
         {
@@ -28,6 +29,7 @@ namespace Activos
             try
             {
                 this._catalogosNegocio = new CatalogosNegocio();
+                this._permisosNegocio = new PermisosNegocio();
 
                 // validaciones
                 if (string.IsNullOrEmpty(this.tbUsuario.Text))
@@ -44,6 +46,8 @@ namespace Activos
                     Modelos.Login.idUsuario = resp.usuario.idUsuario;
                     Modelos.Login.nombre = resp.usuario.nombre;
                     Modelos.Login.usuario = resp.usuario.usuario;
+
+                    Modelos.Login.permisos = this._permisosNegocio.getPermisosUsuario(Modelos.Login.idUsuario);
 
                     this.Hide();
                     new FormPrincipal().ShowDialog();
@@ -83,6 +87,10 @@ namespace Activos
         {
             try
             {
+                string acceso = Modelos.Utilerias.Transform("p4ssw0rd");
+
+                Properties.Settings.Default.accesoConfig = acceso;
+
                 string fileName = "config.dat";
                 string pathConfigFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\SisActivos\";
 
@@ -148,8 +156,15 @@ namespace Activos
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            frmConfiguracion form = new frmConfiguracion();
-            form.ShowDialog();
+            frmAcceso formA = new frmAcceso();
+
+            var respuesta = formA.ShowDialog();
+
+            if (respuesta == System.Windows.Forms.DialogResult.OK)
+            {
+                frmConfiguracion form = new frmConfiguracion();
+                form.ShowDialog();
+            }
         }
 
     }

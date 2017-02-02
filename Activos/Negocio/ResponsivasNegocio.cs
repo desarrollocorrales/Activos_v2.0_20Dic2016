@@ -15,13 +15,13 @@ namespace Activos.Negocio
             this._responsivasDatos = new ResponsivasDatos();
         }
 
-        public bool crearResponsivas(List<Modelos.Activos> activos, int idUsuarioCreador, int? idUsuario, string observaciones)
+        public bool crearResponsivas(List<Modelos.Activos> activos, int idUsuarioCreador, int? idUsuario, string observaciones, List<Modelos.PersonaResponsivas> responsables)
         {
             long idResult = this._responsivasDatos.crearResponsivas(idUsuarioCreador, idUsuario, observaciones);
 
             if(idResult == 0) return false;
 
-            return this._responsivasDatos.creaRespDet(idResult, activos);
+            return this._responsivasDatos.creaRespDet(idResult, activos, responsables);
         }
 
 
@@ -64,6 +64,12 @@ namespace Activos.Negocio
         public string getBuscaComandoEt(string etiqueta)
         {
             return this._responsivasDatos.getBuscaComandoEt(etiqueta);
+        }
+
+
+        public List<Modelos.PersonaResponsivas> obtieneResponsables(int idResponsiva)
+        {
+            return this._responsivasDatos.obtieneResponsables(idResponsiva);
         }
     }
 }

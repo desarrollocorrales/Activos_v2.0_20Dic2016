@@ -21,11 +21,11 @@ namespace Activos.Datos
         }
 
         // guarda un activo
-        public long guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string claveActivo)
+        public long guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string claveActivo, string fecha)
         {
             string sql = 
-                "INSERT INTO activos_activos(nombrecorto, descripcion, idarea, idtipo, idusuarioalta, claveactivo, fechaalta, status) " + 
-                "VALUES (@nombre, @descrip, @idArea, @idTipo, @idUs, @cveAct, now(), 'A')";
+                "INSERT INTO activos_activos(nombrecorto, descripcion, idarea, idtipo, idusuarioalta, claveactivo, fechaalta, status, costo) " + 
+                "VALUES (@nombre, @descrip, @idArea, @idTipo, @idUs, @cveAct, @fecha, 'A', @costo)";
 
             long result = 0;
 
@@ -38,6 +38,8 @@ namespace Activos.Datos
                 using (var cmd = new MySqlCommand())
                 {
                     cmd.Connection = conn;
+                    
+                    decimal costo = Convert.ToDecimal(descripcion.Split('&')[4]);
 
                     // define parametros
                     cmd.Parameters.AddWithValue("@nombre", nombre);
@@ -46,6 +48,8 @@ namespace Activos.Datos
                     cmd.Parameters.AddWithValue("@idTipo", idTipo);
                     cmd.Parameters.AddWithValue("@idUs", idUsuario);
                     cmd.Parameters.AddWithValue("@cveAct", claveActivo);
+                    cmd.Parameters.AddWithValue("@fecha", string.IsNullOrEmpty(fecha) ? "now()" : fecha);
+                    cmd.Parameters.AddWithValue("@costo", costo);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 
@@ -227,7 +231,8 @@ namespace Activos.Datos
                                 ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
                                 ent.claveActivo= Convert.ToString(res.reader["claveactivo"]);
 
-                                ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+                                if (res.reader["idusuarioalta"] is DBNull) ent.idUsuarioAlta = null;
+                                else ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
 
                                 if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
                                 else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
@@ -319,7 +324,8 @@ namespace Activos.Datos
                                 ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
                                 ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
 
-                                ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+                                if (res.reader["idusuarioalta"] is DBNull) ent.idUsuarioAlta = null;
+                                else ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
 
                                 if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
                                 else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
@@ -354,7 +360,7 @@ namespace Activos.Datos
             Modelos.ActivosDesc ent;
 
             string sql =
-                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
+                "select a.idactivo, r.idpersona, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
                         "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, a.nombrecorto, " +
                         "a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, a.idusuarioalta, " +
                         "a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
@@ -364,8 +370,8 @@ namespace Activos.Datos
                 "	where status != 'B' GROUP BY idresponsiva, idactivo, status " +
                 ") sel on (a.idactivo = sel.idactivo) " +
                 "left join activos_responsivas r on (sel.idresponsiva = r.idresponsiva) " +
-                "left join activos_usuarios u on (r.idusuario = u.idusuario)  " +
-                "left join activos_personas p on (u.idpersona = p.idpersona)  " +
+                "left join activos_personas p on (r.idpersona = p.idpersona)  " +
+                "left join activos_usuarios u on (p.idpersona = u.idpersona)  " +
                 "left join activos_areas ar on (a.idarea = ar.idarea)  " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
@@ -416,6 +422,8 @@ namespace Activos.Datos
                                 ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
                                 ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
 
+                                ent.fecha = Convert.ToString(res.reader["fechaalta"]);
+
                                 if (res.reader["costo"] is DBNull) ent.costo = null;
                                 else ent.costo = Convert.ToDecimal(res.reader["costo"]);
 
@@ -441,7 +449,7 @@ namespace Activos.Datos
             Modelos.ActivosDesc ent;
 
             string sql =
-                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
+                "select a.idactivo, r.idpersona, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
                         "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, a.nombrecorto, " +
                         "a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, a.idusuarioalta, " +
                         "a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
@@ -451,8 +459,8 @@ namespace Activos.Datos
                 "	where status != 'B' GROUP BY idresponsiva, idactivo, status " +
                 ") sel on (a.idactivo = sel.idactivo) " +
                 "left join activos_responsivas r on (sel.idresponsiva = r.idresponsiva) " +
-                "left join activos_usuarios u on (r.idusuario = u.idusuario)  " +
-                "left join activos_personas p on (u.idpersona = p.idpersona)  " +
+                "left join activos_personas p on (r.idpersona = p.idpersona)  " +
+                "left join activos_usuarios u on (p.idpersona = u.idpersona)  " +
                 "left join activos_areas ar on (a.idarea = ar.idarea)  " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
@@ -511,6 +519,8 @@ namespace Activos.Datos
                                 ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
                                 ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
 
+                                ent.fecha = Convert.ToString(res.reader["fechaalta"]);
+
                                 if (res.reader["costo"] is DBNull) ent.costo = null;
                                 else ent.costo = Convert.ToDecimal(res.reader["costo"]);
 
@@ -536,7 +546,7 @@ namespace Activos.Datos
             Modelos.ActivosDesc ent;
 
             string sql = string.Format(
-                "select a.idactivo, r.idusuario, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
+                "select a.idactivo, r.idpersona, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
                         "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, a.nombrecorto, " +
                         "a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, a.idusuarioalta, " +
                         "a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
@@ -546,8 +556,8 @@ namespace Activos.Datos
                 "	where status != 'B' GROUP BY idresponsiva, idactivo, status " +
                 ") sel on (a.idactivo = sel.idactivo) " +
                 "left join activos_responsivas r on (sel.idresponsiva = r.idresponsiva) " +
-                "left join activos_usuarios u on (r.idusuario = u.idusuario)  " +
-                "left join activos_personas p on (u.idpersona = p.idpersona)  " +
+                "left join activos_personas p on (r.idpersona = p.idpersona)  " +
+                "left join activos_usuarios u on (p.idpersona = u.idpersona)  " +
                 "left join activos_areas ar on (a.idarea = ar.idarea)  " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
@@ -594,6 +604,8 @@ namespace Activos.Datos
                                 ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
                                 ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
 
+                                ent.fecha = Convert.ToString(res.reader["fechaalta"]);
+
                                 if (res.reader["costo"] is DBNull) ent.costo = null;
                                 else ent.costo = Convert.ToDecimal(res.reader["costo"]);
 
@@ -613,10 +625,10 @@ namespace Activos.Datos
         }
 
         // modifica un activo
-        public bool modificActivo(int? idActivo, string nombre, string descripcion)
+        public bool modificActivo(int? idActivo, string nombre, string descripcion, string fechaIng)
         {
             string sql =
-                "UPDATE activos_activos SET nombrecorto = @nombre, descripcion = @desc, idusuariomodifica = @idUsModif, fechamodificacion = now() " +
+                "UPDATE activos_activos SET nombrecorto = @nombre, descripcion = @desc, idusuariomodifica = @idUsModif, fechamodificacion = now(), fechaalta = @fecha " +
                 "where idactivo = @idActivo";
 
             bool result = true;
@@ -633,6 +645,7 @@ namespace Activos.Datos
 
                     // define parametros
                     cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@fecha", fechaIng);
                     cmd.Parameters.AddWithValue("@desc", descripcion);
                     cmd.Parameters.AddWithValue("@idActivo", idActivo);
                     cmd.Parameters.AddWithValue("@idUsModif", Login.idUsuario);
@@ -1048,7 +1061,8 @@ namespace Activos.Datos
                                 ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
                                 ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
 
-                                ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+                                if (res.reader["idusuarioalta"] is DBNull) ent.idUsuarioAlta = null;
+                                else ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
 
                                 if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
                                 else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
@@ -1131,7 +1145,8 @@ namespace Activos.Datos
                                 ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
                                 ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
 
-                                ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+                                if (res.reader["idusuarioalta"] is DBNull) ent.idUsuarioAlta = null;
+                                else ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
 
                                 if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
                                 else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);

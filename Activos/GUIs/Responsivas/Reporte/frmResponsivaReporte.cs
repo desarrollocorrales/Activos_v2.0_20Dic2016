@@ -19,6 +19,7 @@ namespace Activos.GUIs.Responsivas.Reporte
 
         public Modelos.Responsivas _responsivas = new Modelos.Responsivas();
         public List<Modelos.Activos> _activos = new List<Modelos.Activos>();
+        public List<Modelos.PersonaResponsivas> _responsables = new List<Modelos.PersonaResponsivas>();
 
         public string _empresa = string.Empty;
 
@@ -41,6 +42,7 @@ namespace Activos.GUIs.Responsivas.Reporte
             //
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsResponsiva", dsResponsiva));
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsActivos", this._activos));
+            reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsResponsables", this._responsables));
             //
             //Enviemos la lista de parametros
             //
