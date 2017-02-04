@@ -109,5 +109,17 @@ namespace Activos.Negocio
         {
             return this._activosDatos.getBuscaActivosGrupo(idGrupo);
         }
+
+
+        public List<Modelos.Activos> getBuscaActivosPersona(int idPersona, bool isBaja, bool isRepara)
+        {
+            return this._activosDatos.getBuscaActivosPersona(idPersona, isBaja, isRepara);
+        }
+
+
+        public List<Cambios> getCambios(int idActivo)
+        {
+            return this._activosDatos.getCambios(idActivo);
+        }
     }
 }

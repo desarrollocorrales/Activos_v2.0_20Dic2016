@@ -16,14 +16,16 @@ namespace Activos.Negocio
 
         List<Modelos.Responsivas> buscaResponsiva(int idUsuario);
 
-        bool traspasoRespExist(List<Modelos.Activos> activosTraspaso, int? idRespTraspaso, int? idResponsiva);
+        bool traspasoRespExist(List<Modelos.Activos> activosAnterior, int? idUsuarioN, int? idUsuarioA, string motivo, List<Modelos.Activos> activosTraspaso, int? idRespTraspaso, int? idResponsiva);
 
-        bool traspasoCreaResp(List<Modelos.Activos> activosTraspaso, int? idResponsiva, string observaciones, int? idUsuario, int idUsCrea);
+        bool traspasoCreaResp(List<Modelos.Activos> activosAnterior, int? idUsuarioA, string motivo, List<Modelos.Activos> activosTraspaso, int? idResponsiva, string observaciones, int? idUsuario, int idUsCrea);
 
         bool bajaResponsiva(int? idResponsiva, string motivo);
 
         string getBuscaComandoEt(string etiqueta);
 
         List<Modelos.PersonaResponsivas> obtieneResponsables(int idResponsiva);
+
+        List<Modelos.PersonaResponsivas> buscaResponsiva(string responsable, int idSuc);
     }
 }

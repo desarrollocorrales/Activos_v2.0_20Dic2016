@@ -83,7 +83,9 @@ namespace Activos.GUIs.Responsivas
                                   (!string.IsNullOrEmpty(array[1]) ? " Modelo: " + array[1] + ";" : string.Empty) +
                                   (!string.IsNullOrEmpty(array[2]) ? " Núm. Serie: " + array[2] + ";" : string.Empty) +
                                   (!string.IsNullOrEmpty(array[3]) ? " Color: " + array[3] + ";" : string.Empty) +
-                                  (!string.IsNullOrEmpty(array[4]) ? " \nDetalles: " + array[4] + ";" : string.Empty);
+                                  (!string.IsNullOrEmpty(array[4]) ? " Costo: " + array[4] + ";" : string.Empty) +
+                                  (!string.IsNullOrEmpty(array[5]) ? " Factura: " + array[5] + ";" : string.Empty) +
+                                  (!string.IsNullOrEmpty(array[6]) ? " \nDetalles: " + array[6] + ";" : string.Empty);
 
                     activos.Add(new Modelos.Activos
                     {

@@ -43,15 +43,15 @@ namespace Activos.Negocio
         }
 
 
-        public bool traspasoRespExist(List<Modelos.Activos> activosTraspaso, int? idRespTraspaso, int? idResponsiva)
+        public bool traspasoRespExist(List<Modelos.Activos> activosAnterior, int? idUsuarioN, int? idUsuarioA, string motivo, List<Modelos.Activos> activosTraspaso, int? idRespTraspaso, int? idResponsiva)
         {
-            return this._responsivasDatos.traspasoRespExist(activosTraspaso, idRespTraspaso, idResponsiva);
+            return this._responsivasDatos.traspasoRespExist(activosAnterior, idUsuarioN, idUsuarioA, motivo,  activosTraspaso, idRespTraspaso, idResponsiva);
         }
 
 
-        public bool traspasoCreaResp(List<Modelos.Activos> activosTraspaso, int? idResponsiva, string observaciones, int? idUsuario, int idUsCrea)
+        public bool traspasoCreaResp(List<Modelos.Activos> activosAnterior, int? idUsuarioA, string motivo, List<Modelos.Activos> activosTraspaso, int? idResponsiva, string observaciones, int? idUsuario, int idUsCrea)
         {
-            return this._responsivasDatos.traspasoCreaResp(activosTraspaso, idResponsiva, observaciones, idUsuario, idUsCrea);
+            return this._responsivasDatos.traspasoCreaResp(activosAnterior, idUsuarioA, motivo, activosTraspaso, idResponsiva, observaciones, idUsuario, idUsCrea);
         }
 
 
@@ -70,6 +70,12 @@ namespace Activos.Negocio
         public List<Modelos.PersonaResponsivas> obtieneResponsables(int idResponsiva)
         {
             return this._responsivasDatos.obtieneResponsables(idResponsiva);
+        }
+
+
+        public List<Modelos.PersonaResponsivas> buscaResponsiva(string responsable, int idSuc)
+        {
+            return this._responsivasDatos.buscaResponsiva(responsable, idSuc);
         }
     }
 }

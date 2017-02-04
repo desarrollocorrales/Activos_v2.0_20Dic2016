@@ -1175,5 +1175,158 @@ namespace Activos.Datos
 
             return result;
         }
+
+
+        public List<Modelos.Activos> getBuscaActivosPersona(int idPersona, bool isBaja, bool isRepara)
+        {
+            List<Modelos.Activos> result = new List<Modelos.Activos>();
+            Modelos.Activos ent;
+
+            string whereStatus = "rd.status = 'A'";
+
+            if (isBaja) whereStatus += " or rd.status = 'B'";
+
+            if (isRepara) whereStatus += " or rd.status = 'R'";
+
+            string sql = string.Format(
+                "select r.idresponsiva, r.idpersona, m.motivo as estatus, p.nombrecompleto as persona, " +
+                        "s.nombre as sucursal, pu.nombre as puesto, a.idactivo, " +
+                        "a.nombrecorto as activo, ar.nombre as area, a.descripcion, a.numetiqueta, a.claveactivo " +
+                "from activos_responsivas r " +
+                "left join activos_personas p on (r.idpersona = p.idpersona) " +
+                "left join activos_responsivasdetalle rd on (r.idresponsiva = rd.idresponsiva) " +
+                "left join activos_activos a on (rd.idactivo = a.idactivo) " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_motivosbaja m on (rd.status = m.clave) " +
+                "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                "where r.idpersona = @idPers  and ({0}) " +
+                "order by r.idresponsiva", whereStatus);
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idPers", idPersona);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Activos();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.nombreCorto = Convert.ToString(res.reader["activo"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---").Trim();
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
+
+                                ent.status = Convert.ToString(res.reader["estatus"]);
+
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+
+        public List<Cambios> getCambios(int idActivo)
+        {
+            List<Modelos.Cambios> result = new List<Modelos.Cambios>();
+            Modelos.Cambios ent;
+
+            string sql =
+                "select c.idcambio, c.idpersonaant, pa.nombrecompleto as personaAnt,  " +
+                        "c.idareaanterior, aa.nombre as areaAnt, " +
+                        "c.idpersonanuevo, pn.nombrecompleto as personaNuevo, " +
+                        "c.idareanueva, an.nombre as areaNueva, " +
+                        "c.fecha, c.motivo, c.idactivo " +
+                "from activos_cambio c " +
+                "left join activos_personas pa on (c.idpersonaant = pa.idpersona) " +
+                "left join activos_areas aa on (c.idareaanterior = aa.idarea) " +
+                "left join activos_personas pn on (c.idpersonanuevo = pn.idpersona) " +
+                "left join activos_areas an on (c.idareanueva = an.idarea) " +
+                "where c.idactivo = @idPers " +
+                "order by 3";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idPers", idActivo);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Cambios();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+                                ent.idcambio = Convert.ToInt16(res.reader["idcambio"]);
+
+                                ent.idPersonaAnt = Convert.ToInt16(res.reader["idpersonaant"]);
+                                ent.idAreaAnterior = Convert.ToInt16(res.reader["idareaanterior"]);
+                                ent.idPersonaNuevo = Convert.ToInt16(res.reader["idpersonanuevo"]);
+                                ent.idAreaNueva = Convert.ToInt16(res.reader["idareanueva"]);
+
+                                ent.personaAnt = Convert.ToString(res.reader["personaAnt"]);
+                                ent.personaAnt = ent.personaAnt.Replace("&", " ");
+
+                                ent.areaanterior = Convert.ToString(res.reader["areaAnt"]);
+
+                                ent.personaNuevo = Convert.ToString(res.reader["personaNuevo"]);
+                                ent.personaNuevo = ent.personaNuevo.Replace("&", " ");
+                                
+                                ent.areaNueva = Convert.ToString(res.reader["areaNueva"]);
+
+                                ent.fecha = Convert.ToString(res.reader["fecha"]);
+                                ent.motivo = Convert.ToString(res.reader["motivo"]);
+
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
     }
 }

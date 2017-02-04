@@ -8,24 +8,23 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 
-namespace Activos.GUIs.Responsivas.Reporte
+namespace Activos.GUIs.Reportes
 {
-    public partial class frmResponsivaReporte : Form
+    public partial class frmReporteActivosPersona : Form
     {
-        public frmResponsivaReporte()
-        {
-            InitializeComponent();
-        }
-
         public Modelos.Responsivas _responsivas = new Modelos.Responsivas();
         public List<Modelos.Activos> _activos = new List<Modelos.Activos>();
         public List<Modelos.PersonaResponsivas> _responsables = new List<Modelos.PersonaResponsivas>();
 
         public string _empresa = string.Empty;
 
-        private void frmResponsivaReporte_Load(object sender, EventArgs e)
+        public frmReporteActivosPersona()
         {
+            InitializeComponent();
+        }
 
+        private void frmReporteActivosPersona_Load(object sender, EventArgs e)
+        {
             List<Modelos.Responsivas> dsResponsiva = new List<Modelos.Responsivas>();
             dsResponsiva.Add(this._responsivas);
 
@@ -51,15 +50,9 @@ namespace Activos.GUIs.Responsivas.Reporte
             this.reportViewer1.RefreshReport();
         }
 
-        private void frmResponsivaReporte_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmReporteActivosPersona_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.reportViewer1.LocalReport.ReleaseSandboxAppDomain();
         }
-
-        private void reportViewer1_PrintingBegin(object sender, ReportPrintEventArgs e)
-        {
-            MessageBox.Show("se imprimio");
-        }
-
     }
 }

@@ -46,7 +46,6 @@
             this.bajasToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirResponsivaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ejemploQRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.catálogosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sucursalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.puestoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +62,8 @@
             this.modificaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.responsivasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.activosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -192,7 +193,7 @@
             // nuevaToolStripMenuItem
             // 
             this.nuevaToolStripMenuItem.Name = "nuevaToolStripMenuItem";
-            this.nuevaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevaToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.nuevaToolStripMenuItem.Tag = "16";
             this.nuevaToolStripMenuItem.Text = "Nueva";
             this.nuevaToolStripMenuItem.Click += new System.EventHandler(this.nuevaToolStripMenuItem_Click);
@@ -200,7 +201,7 @@
             // modificarToolStripMenuItem
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.modificarToolStripMenuItem.Tag = "17";
             this.modificarToolStripMenuItem.Text = "Modificar";
             this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
@@ -208,7 +209,7 @@
             // bajasToolStripMenuItem2
             // 
             this.bajasToolStripMenuItem2.Name = "bajasToolStripMenuItem2";
-            this.bajasToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.bajasToolStripMenuItem2.Size = new System.Drawing.Size(138, 22);
             this.bajasToolStripMenuItem2.Tag = "18";
             this.bajasToolStripMenuItem2.Text = "Bajas";
             this.bajasToolStripMenuItem2.Click += new System.EventHandler(this.bajasToolStripMenuItem2_Click);
@@ -216,7 +217,7 @@
             // imprimirResponsivaToolStripMenuItem
             // 
             this.imprimirResponsivaToolStripMenuItem.Name = "imprimirResponsivaToolStripMenuItem";
-            this.imprimirResponsivaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.imprimirResponsivaToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.imprimirResponsivaToolStripMenuItem.Tag = "19";
             this.imprimirResponsivaToolStripMenuItem.Text = "Impresiones";
             this.imprimirResponsivaToolStripMenuItem.Click += new System.EventHandler(this.imprimirResponsivaToolStripMenuItem_Click);
@@ -224,18 +225,12 @@
             // consultasToolStripMenuItem
             // 
             this.consultasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ejemploQRToolStripMenuItem});
+            this.responsivasToolStripMenuItem1,
+            this.activosToolStripMenuItem1});
             this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
             this.consultasToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.consultasToolStripMenuItem.Tag = "5";
             this.consultasToolStripMenuItem.Text = "Consultas";
-            // 
-            // ejemploQRToolStripMenuItem
-            // 
-            this.ejemploQRToolStripMenuItem.Name = "ejemploQRToolStripMenuItem";
-            this.ejemploQRToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.ejemploQRToolStripMenuItem.Text = "Ejemplo QR";
-            this.ejemploQRToolStripMenuItem.Click += new System.EventHandler(this.ejemploQRToolStripMenuItem_Click);
             // 
             // catálogosToolStripMenuItem
             // 
@@ -350,7 +345,7 @@
             // altaToolStripMenuItem1
             // 
             this.altaToolStripMenuItem1.Name = "altaToolStripMenuItem1";
-            this.altaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.altaToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
             this.altaToolStripMenuItem1.Tag = "46";
             this.altaToolStripMenuItem1.Text = "Alta";
             this.altaToolStripMenuItem1.Click += new System.EventHandler(this.altaToolStripMenuItem1_Click);
@@ -358,7 +353,7 @@
             // modificaciónToolStripMenuItem
             // 
             this.modificaciónToolStripMenuItem.Name = "modificaciónToolStripMenuItem";
-            this.modificaciónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modificaciónToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.modificaciónToolStripMenuItem.Tag = "47";
             this.modificaciónToolStripMenuItem.Text = "Modificación";
             this.modificaciónToolStripMenuItem.Click += new System.EventHandler(this.modificaciónToolStripMenuItem_Click);
@@ -366,7 +361,7 @@
             // bajaToolStripMenuItem
             // 
             this.bajaToolStripMenuItem.Name = "bajaToolStripMenuItem";
-            this.bajaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bajaToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.bajaToolStripMenuItem.Tag = "48";
             this.bajaToolStripMenuItem.Text = "Baja";
             this.bajaToolStripMenuItem.Click += new System.EventHandler(this.bajaToolStripMenuItem_Click);
@@ -378,6 +373,22 @@
             this.statusStrip1.Size = new System.Drawing.Size(1164, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // responsivasToolStripMenuItem1
+            // 
+            this.responsivasToolStripMenuItem1.Name = "responsivasToolStripMenuItem1";
+            this.responsivasToolStripMenuItem1.Size = new System.Drawing.Size(179, 22);
+            this.responsivasToolStripMenuItem1.Tag = "50";
+            this.responsivasToolStripMenuItem1.Text = "Activos por Persona";
+            this.responsivasToolStripMenuItem1.Click += new System.EventHandler(this.responsivasToolStripMenuItem1_Click);
+            // 
+            // activosToolStripMenuItem1
+            // 
+            this.activosToolStripMenuItem1.Name = "activosToolStripMenuItem1";
+            this.activosToolStripMenuItem1.Size = new System.Drawing.Size(179, 22);
+            this.activosToolStripMenuItem1.Tag = "51";
+            this.activosToolStripMenuItem1.Text = "Activos";
+            this.activosToolStripMenuItem1.Click += new System.EventHandler(this.activosToolStripMenuItem1_Click);
             // 
             // FormPrincipal
             // 
@@ -419,7 +430,6 @@
         private System.Windows.Forms.ToolStripMenuItem activarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cambiaClaveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tipoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ejemploQRToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem activosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificacionesToolStripMenuItem1;
@@ -437,6 +447,8 @@
         private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seleccionaImpresoraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem responsivasToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem activosToolStripMenuItem1;
     }
 }
 

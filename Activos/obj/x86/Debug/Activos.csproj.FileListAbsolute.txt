@@ -13,7 +13,6 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.AltaActivos.
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Areas.frmActAreas.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Areas.frmAreas.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Areas.frmModifArea.resources
-G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Ejemplos_QR.EjemploQR.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Personas.frmPersonas.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Puestos.frmActPuestos.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Puestos.frmModifPuestos.resources
@@ -73,3 +72,6 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraLayout.v11.1.x
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.frmAcceso.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmAgregaResponsables.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmModificaResponsables.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Reportes.frmActivosPersona.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Reportes.frmReporteActivosPersona.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Reportes.frmMovimientosActivos.resources

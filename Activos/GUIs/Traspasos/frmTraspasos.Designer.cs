@@ -86,6 +86,8 @@
             this.btnAgrega = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbMotivo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gcActivos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -97,7 +99,7 @@
             // tbPuesto
             // 
             this.tbPuesto.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbPuesto.Location = new System.Drawing.Point(133, 95);
+            this.tbPuesto.Location = new System.Drawing.Point(131, 85);
             this.tbPuesto.Name = "tbPuesto";
             this.tbPuesto.ReadOnly = true;
             this.tbPuesto.Size = new System.Drawing.Size(363, 30);
@@ -106,7 +108,7 @@
             // tbSucursal
             // 
             this.tbSucursal.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbSucursal.Location = new System.Drawing.Point(133, 54);
+            this.tbSucursal.Location = new System.Drawing.Point(131, 49);
             this.tbSucursal.Name = "tbSucursal";
             this.tbSucursal.ReadOnly = true;
             this.tbSucursal.Size = new System.Drawing.Size(363, 30);
@@ -115,7 +117,7 @@
             // tbResponsable
             // 
             this.tbResponsable.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbResponsable.Location = new System.Drawing.Point(133, 13);
+            this.tbResponsable.Location = new System.Drawing.Point(131, 13);
             this.tbResponsable.Name = "tbResponsable";
             this.tbResponsable.ReadOnly = true;
             this.tbResponsable.Size = new System.Drawing.Size(363, 30);
@@ -125,10 +127,10 @@
             // 
             this.gcActivos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcActivos.DataSource = this.activosBindingSource;
-            this.gcActivos.Location = new System.Drawing.Point(12, 142);
+            this.gcActivos.Location = new System.Drawing.Point(10, 121);
             this.gcActivos.MainView = this.gridView1;
             this.gcActivos.Name = "gcActivos";
-            this.gcActivos.Size = new System.Drawing.Size(705, 202);
+            this.gcActivos.Size = new System.Drawing.Size(705, 163);
             this.gcActivos.TabIndex = 18;
             this.gcActivos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -302,7 +304,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(62, 98);
+            this.label3.Location = new System.Drawing.Point(60, 88);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 23);
             this.label3.TabIndex = 17;
@@ -312,7 +314,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 57);
+            this.label2.Location = new System.Drawing.Point(44, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 23);
             this.label2.TabIndex = 16;
@@ -322,7 +324,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 16);
+            this.label1.Location = new System.Drawing.Point(10, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 23);
             this.label1.TabIndex = 15;
@@ -331,7 +333,7 @@
             // btnBuscaResponsiva
             // 
             this.btnBuscaResponsiva.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnBuscaResponsiva.Location = new System.Drawing.Point(523, 48);
+            this.btnBuscaResponsiva.Location = new System.Drawing.Point(521, 42);
             this.btnBuscaResponsiva.Name = "btnBuscaResponsiva";
             this.btnBuscaResponsiva.Size = new System.Drawing.Size(198, 43);
             this.btnBuscaResponsiva.TabIndex = 14;
@@ -350,16 +352,16 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.btnBuscaUsuario);
-            this.groupBox1.Location = new System.Drawing.Point(12, 412);
+            this.groupBox1.Location = new System.Drawing.Point(10, 330);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(709, 391);
+            this.groupBox1.Size = new System.Drawing.Size(709, 325);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Responsiva Traspaso";
             // 
             // tbPuestoT
             // 
-            this.tbPuestoT.Location = new System.Drawing.Point(135, 122);
+            this.tbPuestoT.Location = new System.Drawing.Point(135, 112);
             this.tbPuestoT.Name = "tbPuestoT";
             this.tbPuestoT.ReadOnly = true;
             this.tbPuestoT.Size = new System.Drawing.Size(349, 30);
@@ -367,7 +369,7 @@
             // 
             // tbSucursalT
             // 
-            this.tbSucursalT.Location = new System.Drawing.Point(135, 81);
+            this.tbSucursalT.Location = new System.Drawing.Point(135, 76);
             this.tbSucursalT.Name = "tbSucursalT";
             this.tbSucursalT.ReadOnly = true;
             this.tbSucursalT.Size = new System.Drawing.Size(349, 30);
@@ -384,10 +386,10 @@
             // gcActivosT
             // 
             this.gcActivosT.DataSource = this.activosBindingSource;
-            this.gcActivosT.Location = new System.Drawing.Point(14, 169);
+            this.gcActivosT.Location = new System.Drawing.Point(14, 148);
             this.gcActivosT.MainView = this.gridView2;
             this.gcActivosT.Name = "gcActivosT";
-            this.gcActivosT.Size = new System.Drawing.Size(674, 202);
+            this.gcActivosT.Size = new System.Drawing.Size(674, 165);
             this.gcActivosT.TabIndex = 26;
             this.gcActivosT.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -563,7 +565,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(64, 125);
+            this.label4.Location = new System.Drawing.Point(64, 115);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 23);
             this.label4.TabIndex = 25;
@@ -572,7 +574,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(48, 84);
+            this.label5.Location = new System.Drawing.Point(48, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 23);
             this.label5.TabIndex = 24;
@@ -589,7 +591,7 @@
             // 
             // btnBuscaUsuario
             // 
-            this.btnBuscaUsuario.Location = new System.Drawing.Point(525, 75);
+            this.btnBuscaUsuario.Location = new System.Drawing.Point(525, 69);
             this.btnBuscaUsuario.Name = "btnBuscaUsuario";
             this.btnBuscaUsuario.Size = new System.Drawing.Size(163, 43);
             this.btnBuscaUsuario.TabIndex = 22;
@@ -600,7 +602,7 @@
             // btnGuardaCambios
             // 
             this.btnGuardaCambios.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnGuardaCambios.Location = new System.Drawing.Point(251, 820);
+            this.btnGuardaCambios.Location = new System.Drawing.Point(250, 794);
             this.btnGuardaCambios.Name = "btnGuardaCambios";
             this.btnGuardaCambios.Size = new System.Drawing.Size(210, 52);
             this.btnGuardaCambios.TabIndex = 23;
@@ -611,7 +613,7 @@
             // btnAgrega
             // 
             this.btnAgrega.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAgrega.Location = new System.Drawing.Point(226, 362);
+            this.btnAgrega.Location = new System.Drawing.Point(224, 290);
             this.btnAgrega.Name = "btnAgrega";
             this.btnAgrega.Size = new System.Drawing.Size(102, 34);
             this.btnAgrega.TabIndex = 24;
@@ -622,7 +624,7 @@
             // btnQuitar
             // 
             this.btnQuitar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnQuitar.Location = new System.Drawing.Point(415, 362);
+            this.btnQuitar.Location = new System.Drawing.Point(413, 290);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(102, 34);
             this.btnQuitar.TabIndex = 25;
@@ -633,7 +635,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnCancelar.Location = new System.Drawing.Point(479, 820);
+            this.btnCancelar.Location = new System.Drawing.Point(478, 794);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(210, 52);
             this.btnCancelar.TabIndex = 26;
@@ -641,12 +643,33 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 673);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 23);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "Motivo";
+            // 
+            // tbMotivo
+            // 
+            this.tbMotivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbMotivo.Location = new System.Drawing.Point(10, 699);
+            this.tbMotivo.Multiline = true;
+            this.tbMotivo.Name = "tbMotivo";
+            this.tbMotivo.Size = new System.Drawing.Size(705, 78);
+            this.tbMotivo.TabIndex = 28;
+            // 
             // frmTraspasos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(743, 891);
+            this.ClientSize = new System.Drawing.Size(739, 860);
+            this.Controls.Add(this.tbMotivo);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.btnAgrega);
@@ -735,5 +758,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colstatus1;
         private DevExpress.XtraGrid.Columns.GridColumn colAccion;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbMotivo;
     }
 }

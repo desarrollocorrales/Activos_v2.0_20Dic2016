@@ -28,5 +28,9 @@ namespace Activos.Negocio
         List<Modelos.Activos> getBuscaActivos(int idResponsiva);
 
         List<Modelos.Activos> getBuscaActivosGrupo(int idGrupo);
+
+        List<Modelos.Activos> getBuscaActivosPersona(int idPersona, bool isBaja, bool isRepara);
+
+        List<Modelos.Cambios> getCambios(int idActivo);
     }
 }

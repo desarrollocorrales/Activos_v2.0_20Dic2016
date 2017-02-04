@@ -52,6 +52,7 @@
     <Reference Include="DevExpress.XtraLayout.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v11.1, Version=11.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="FEncrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\FEncrypt.dll</HintPath>
@@ -172,12 +173,6 @@
     <Compile Include="GUIs\Areas\frmModifArea.Designer.cs">
       <DependentUpon>frmModifArea.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\Ejemplos QR\EjemploQR.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUIs\Ejemplos QR\EjemploQR.Designer.cs">
-      <DependentUpon>EjemploQR.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUIs\frmSelecImpresora.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +238,24 @@
     </Compile>
     <Compile Include="GUIs\Puestos\frmPuestos.Designer.cs">
       <DependentUpon>frmPuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmActivosPersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmActivosPersona.Designer.cs">
+      <DependentUpon>frmActivosPersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmMovimientosActivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmMovimientosActivos.Designer.cs">
+      <DependentUpon>frmMovimientosActivos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmReporteActivosPersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmReporteActivosPersona.Designer.cs">
+      <DependentUpon>frmReporteActivosPersona.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Responsivas\frmAgregaResponsables.cs">
       <SubType>Form</SubType>
@@ -390,6 +403,7 @@
     </Compile>
     <Compile Include="Modelos\Activos.cs" />
     <Compile Include="Modelos\Areas.cs" />
+    <Compile Include="Modelos\Cambios.cs" />
     <Compile Include="Modelos\Conexion.cs" />
     <Compile Include="Modelos\Grupos.cs" />
     <Compile Include="Modelos\IConexion.cs" />
@@ -457,9 +471,6 @@
     <EmbeddedResource Include="GUIs\Areas\frmModifArea.resx">
       <DependentUpon>frmModifArea.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Ejemplos QR\EjemploQR.resx">
-      <DependentUpon>EjemploQR.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\frmSelecImpresora.resx">
       <DependentUpon>frmSelecImpresora.cs</DependentUpon>
     </EmbeddedResource>
@@ -492,6 +503,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Puestos\frmPuestos.resx">
       <DependentUpon>frmPuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Reportes\frmActivosPersona.resx">
+      <DependentUpon>frmActivosPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Reportes\frmMovimientosActivos.resx">
+      <DependentUpon>frmMovimientosActivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Reportes\frmReporteActivosPersona.resx">
+      <DependentUpon>frmReporteActivosPersona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmAgregaResponsables.resx">
       <DependentUpon>frmAgregaResponsables.cs</DependentUpon>
@@ -575,6 +595,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reportes\infActivosPersona.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\infResponsivas.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -585,6 +608,7 @@
     <None Include="Properties\DataSources\Activos.Modelos.Activos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.ActivosDesc.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Areas.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Cambios.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Grupos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Impresora.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.PersonaResponsivas.datasource" />

@@ -263,10 +263,15 @@ namespace Activos.GUIs.Traspasos
                     if (this._countListTraspaso == this._activosT.Count)
                         throw new Exception("No se han realizado modificaciones");
 
+                    if (string.IsNullOrEmpty(this.tbMotivo.Text))
+                        throw new Exception("Defina un motivo del traspaso");
+
+                    string motivo = this.tbMotivo.Text;
+
                     // agrega a la responsiva existente los nuevos activos
                     // y cambia el estatus a los anteriores
                     // y las areas de los activos
-                    resultado = this._responsivasNegocio.traspasoRespExist(
+                    resultado = this._responsivasNegocio.traspasoRespExist( this._activos, this._idUsuarioT, this._idUsuario, motivo,
                         this._activosT.Where(w => !string.IsNullOrEmpty(w.accion)).ToList(),
                         this._idResponsivaT, this._idResponsiva);
                     
@@ -280,6 +285,11 @@ namespace Activos.GUIs.Traspasos
                     string sucursal = this.tbSucursalT.Text;
                     string puesto = this.tbPuestoT.Text;
 
+                    if (string.IsNullOrEmpty(this.tbMotivo.Text))
+                        throw new Exception("Defina un motivo del traspaso");
+
+                    string motivo = this.tbMotivo.Text;
+
                     // abre formulario para la creacion de la nueva responsiva
                     frmNuevaResponsiva form = new frmNuevaResponsiva(this._activosT, responsable, sucursal, puesto);
 
@@ -291,7 +301,7 @@ namespace Activos.GUIs.Traspasos
 
                         // crea nueva responsiva
                         // y cambia el estatus a los anteriores
-                        resultado = this._responsivasNegocio.traspasoCreaResp(
+                        resultado = this._responsivasNegocio.traspasoCreaResp(this._activos, this._idUsuario, motivo,
                             this._activosT.Where(w => !string.IsNullOrEmpty(w.accion)).ToList(),
                             this._idResponsiva, observaciones, this._idUsuarioT, Modelos.Login.idUsuario);
                     }
@@ -413,6 +423,8 @@ namespace Activos.GUIs.Traspasos
             this._respSelec = false;
 
             this._movimiento = false;
+
+            this.tbMotivo.Text = string.Empty;
 
             this.tbResponsable.Text = string.Empty;
             this.tbResponsableT.Text = string.Empty;
