@@ -123,7 +123,7 @@ namespace Activos.GUIs.Areas
                     throw new Exception("No se ha seleccionado ningun área");
 
                 DialogResult dialogResult = MessageBox.Show(
-                                "¿Desea eliminar las áreas seleccionadas?",
+                                "¿Desea dar de baja las áreas seleccionadas?",
                                 "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dialogResult == DialogResult.No) return;
@@ -132,7 +132,7 @@ namespace Activos.GUIs.Areas
                 bool resultado = this._catalogosNegocio.bajaAreas(seleccionados);
 
                 if (resultado)
-                    MessageBox.Show("Áreas(s) eliminada(s) correctamente", "Áreas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Áreas(s) dada(s) de baja correctamente", "Áreas", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // llena el grid con las areas disponibles
                 this.gcAreas.DataSource = this._catalogosNegocio.getAreas("A");
@@ -147,6 +147,10 @@ namespace Activos.GUIs.Areas
         {
             try
             {
+                // PERMISOS
+                if (!Modelos.Login.permisos.Contains(55))
+                    return;
+
                 if (this.gridView1.GetSelectedRows().Count() == 0)
                     throw new Exception("No a seleccionado un área");
 

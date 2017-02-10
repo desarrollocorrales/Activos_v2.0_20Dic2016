@@ -143,9 +143,12 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             // 
             // colseleccionado
             // 
+            this.colseleccionado.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.colseleccionado.AppearanceCell.Options.UseBackColor = true;
             this.colseleccionado.Caption = " ";
             this.colseleccionado.FieldName = "seleccionado";
             this.colseleccionado.Name = "colseleccionado";
@@ -218,7 +221,7 @@
             this.btnElimSelecc.Size = new System.Drawing.Size(250, 39);
             this.btnElimSelecc.TabIndex = 8;
             this.btnElimSelecc.Tag = "29";
-            this.btnElimSelecc.Text = "&Eliminar seleccionado (s)";
+            this.btnElimSelecc.Text = "Baja seleccionado (s)";
             this.btnElimSelecc.UseVisualStyleBackColor = true;
             this.btnElimSelecc.Click += new System.EventHandler(this.btnElimSelecc_Click);
             // 

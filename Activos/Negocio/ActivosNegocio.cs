@@ -121,5 +121,11 @@ namespace Activos.Negocio
         {
             return this._activosDatos.getCambios(idActivo);
         }
+
+
+        public List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea)
+        {
+            return this._activosDatos.getBuscaActivos(idSucursal, idArea);
+        }
     }
 }

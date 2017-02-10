@@ -924,5 +924,224 @@ namespace Activos.Datos
 
             return result;
         }
+
+        // baja la responsiva (con motivo y fecha)
+        // baja a los activos de la responsiva
+        // bitacora del cambio de activos
+        // crear una nueva responsiva para la nueva persona con los activos
+        // agrega los activos a la responsiva
+        public bool traspasoResponsiva(int? idResponsiva, int? idPersonaAnt, int? idPersonaNueva, List<Modelos.Activos> activos, string motivo)
+        {
+            MySqlTransaction trans;
+
+            bool result = true;
+
+            int rows = 0;
+            string error = string.Empty;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+
+                    trans = conn.BeginTransaction();
+
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    // baja activos de responsiva
+                    string sqlBRD = 
+                                "UPDATE activos_responsivasdetalle SET status = 'B' " +
+                                "WHERE idresponsiva = @idResp ";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idResp", idResponsiva);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sqlBRD, ref rows, cmd);
+
+                    if (!res.ok)
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    // baja responsiva con motivo y fecha
+                    string sqlBR =
+                                "UPDATE activos_responsivas SET status = 'B', fechabaja = now(), motivobaja = @motivo " +
+                                "WHERE idresponsiva = @idResp ";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idResp", idResponsiva);
+                    cmd.Parameters.AddWithValue("@motivo", motivo);
+
+                    res = Utilerias.EjecutaSQL(sqlBR, ref rows, cmd);
+
+                    if (!res.ok)
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    // craer la responiva
+                    long idResp = 0;
+                    
+                    string sqlCR =
+                            "insert into activos_responsivas (idpersona, fecha, idusuariocrea, observaciones, status)" +
+                            "values (@idpersona, now(), @idUs, @observ, 'A')";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idpersona", idPersonaNueva);
+                    cmd.Parameters.AddWithValue("@idUs", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@observ", "Traspaso: " + motivo);
+
+                    res = Utilerias.EjecutaSQL(sqlCR, ref rows, cmd);
+
+                    if (!res.ok)
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+                    else
+                        idResp = cmd.LastInsertedId;
+
+                    cmd.Parameters.Clear();
+
+                    // agregar activos a responsiva creada
+                    foreach (Modelos.Activos activo in activos)
+                    {
+                        decimal costo = Convert.ToDecimal(activo.descripcion.Replace("---", "&").Split('&')[4]);
+
+                        string sql =
+                            "INSERT INTO activos_responsivasdetalle(idresponsiva, idactivo, costo, status) " +
+                            "VALUES (@idResp, @idActivo, @costo, 'A')";
+                            
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@idResp", idResp);
+                        cmd.Parameters.AddWithValue("@idActivo", activo.idActivo);
+                        cmd.Parameters.AddWithValue("@costo", costo);
+
+                        res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                        if (!res.ok)
+                        {
+                            trans.Rollback();
+                            throw new Exception(res.numErr + ": " + res.descErr);
+                        }
+
+                        cmd.Parameters.Clear();
+
+                        // bitacora de cambio
+                        sql =
+                            "INSERT INTO activos_cambio(idpersonaant, idareaanterior, idpersonanuevo, idareanueva, fecha, motivo, idactivo) " +
+                            "VALUES (@idPerAnt, @idAreaAnt, @idPerNueva, @idAreaNueva, now(), @motivo, @idActivo)";
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@idPerAnt", idPersonaAnt);
+                        cmd.Parameters.AddWithValue("@idAreaAnt", activo.idArea);
+                        cmd.Parameters.AddWithValue("@idPerNueva", idPersonaNueva);
+                        cmd.Parameters.AddWithValue("@idAreaNueva", activo.idArea);
+                        cmd.Parameters.AddWithValue("@motivo", "Traspaso: " + motivo);
+                        cmd.Parameters.AddWithValue("@idActivo", activo.idActivo);
+
+                        res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                        if (!res.ok)
+                        {
+                            trans.Rollback();
+                            throw new Exception(res.numErr + ": " + res.descErr);
+                        }
+
+                        cmd.Parameters.Clear();
+
+                    }
+
+                    trans.Commit();
+                }
+            }
+
+            return result;
+        }
+
+
+        public Responsivas getRespXFolio(int folio)
+        {
+            List<Responsivas> result = new List<Responsivas>();
+            Responsivas ent;
+
+            string sql =
+                        "select r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
+                            "p.nombrecompleto, " +
+                            "pu.nombre as puesto, " +
+                            "s.nombre as sucursal " +
+
+                        "from activos_responsivas r " +
+                        "left join activos_personas p on (r.idpersona = p.idpersona) " +
+                        "left join activos_usuarios u on (p.idpersona = u.idpersona) " +
+                        "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                        "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                        "left join activos_responsivasdetalle rd on (r.idresponsiva = rd.idresponsiva) " +
+
+                        "where r.idresponsiva = @folio and rd.status != 'B' and r.status != 'B'" +
+
+                        "group by r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
+                        "p.nombrecompleto, pu.nombre, s.nombre order by p.nombrecompleto ";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@folio", folio);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new Responsivas();
+
+                            ent.idResponsiva = Convert.ToInt16(res.reader["idresponsiva"]);
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
+                            ent.idUsuarioCrea = Convert.ToInt16(res.reader["idusuariocrea"]);
+
+                            ent.fecha = Convert.ToString(res.reader["fecha"]);
+                            ent.observaciones = Convert.ToString(res.reader["observaciones"]);
+                            ent.fechaBaja = Convert.ToString(res.reader["fechabaja"]);
+                            ent.status = Convert.ToString(res.reader["status"]);
+
+                            ent.puesto = Convert.ToString(res.reader["puesto"]);
+                            ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+                            ent.responsable = Convert.ToString(res.reader["nombrecompleto"]).Replace("&", " ").Trim();
+
+                            ent.status = string.Empty;
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+
+
+            return result.Count > 0 ? result[0] : null;
+        }
     }
 }

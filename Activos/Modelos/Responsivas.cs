@@ -23,18 +23,9 @@ namespace Activos.Modelos
         public string fechaImpresion { get; set; }
     }
 
-    public partial class RespDetalle
+    public partial class RespPorFolio
     {
-        public int idResponsivaDet { get; set; }
-        public int idResponsiva { get; set; }
-
-        public int idActivo { get; set; }
-        public string activo { get; set; }
-        public string numEtiqueta { get; set; }
-        public string claveActivo { get; set; }
-
-        public decimal? costo { get; set; }
-        public string status { get; set; }
-
+        public Responsivas responsiva { get; set; }
+        public List<Modelos.Activos> activos { get; set; }
     }
 }

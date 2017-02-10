@@ -78,13 +78,15 @@ namespace Activos.Datos
 
         Tipos getTipos(int idTipo);
 
-        bool agregaTipo(string nombre, int marca, int modelo, int serie, int color);
+        bool agregaTipo(string nombre, int marca, int modelo, int serie, int color, int costo, int factura);
 
         bool activaTipos(List<int> seleccionados);
 
         bool bajaTipos(List<int> seleccionados);
 
-        bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color);
+        bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color, int costo, int factura);
+
+        string existeTipo(string nombre);
 
 
         /* ********** P E R S O N A S *********** */
@@ -119,5 +121,6 @@ namespace Activos.Datos
 
 
         List<PersonaResponsivas> busquedaUsuario(string usuario);
+
     }
 }

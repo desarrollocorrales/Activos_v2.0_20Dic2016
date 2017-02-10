@@ -38,9 +38,9 @@
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.btnGuardar.Location = new System.Drawing.Point(201, 162);
+            this.btnGuardar.Location = new System.Drawing.Point(186, 142);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(189, 74);
+            this.btnGuardar.Size = new System.Drawing.Size(189, 46);
             this.btnGuardar.TabIndex = 16;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -52,16 +52,16 @@
             this.cmbSucursal.DropDownWidth = 400;
             this.cmbSucursal.Font = new System.Drawing.Font("Tahoma", 16F);
             this.cmbSucursal.FormattingEnabled = true;
-            this.cmbSucursal.Location = new System.Drawing.Point(142, 99);
+            this.cmbSucursal.Location = new System.Drawing.Point(124, 83);
             this.cmbSucursal.Name = "cmbSucursal";
-            this.cmbSucursal.Size = new System.Drawing.Size(398, 33);
+            this.cmbSucursal.Size = new System.Drawing.Size(425, 33);
             this.cmbSucursal.TabIndex = 15;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label3.Location = new System.Drawing.Point(30, 102);
+            this.label3.Location = new System.Drawing.Point(12, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 27);
             this.label3.TabIndex = 14;
@@ -71,7 +71,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.label2.Location = new System.Drawing.Point(30, 38);
+            this.label2.Location = new System.Drawing.Point(12, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 27);
             this.label2.TabIndex = 13;
@@ -81,10 +81,10 @@
             // 
             this.tbNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombre.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.tbNombre.Location = new System.Drawing.Point(142, 35);
+            this.tbNombre.Location = new System.Drawing.Point(124, 34);
             this.tbNombre.MaxLength = 250;
             this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(398, 33);
+            this.tbNombre.Size = new System.Drawing.Size(425, 33);
             this.tbNombre.TabIndex = 12;
             // 
             // frmModifArea
@@ -92,7 +92,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(561, 255);
+            this.ClientSize = new System.Drawing.Size(561, 202);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbSucursal);
             this.Controls.Add(this.label3);

@@ -57,7 +57,7 @@
             // 
             this.btnActivaP.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnActivaP.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnActivaP.Location = new System.Drawing.Point(198, 526);
+            this.btnActivaP.Location = new System.Drawing.Point(204, 526);
             this.btnActivaP.Name = "btnActivaP";
             this.btnActivaP.Size = new System.Drawing.Size(184, 39);
             this.btnActivaP.TabIndex = 18;
@@ -70,12 +70,12 @@
             // 
             this.btnElimSelecc.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnElimSelecc.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnElimSelecc.Location = new System.Drawing.Point(388, 526);
+            this.btnElimSelecc.Location = new System.Drawing.Point(394, 526);
             this.btnElimSelecc.Name = "btnElimSelecc";
             this.btnElimSelecc.Size = new System.Drawing.Size(223, 39);
             this.btnElimSelecc.TabIndex = 17;
             this.btnElimSelecc.Tag = "32";
-            this.btnElimSelecc.Text = "&Eliminar seleccionado(s)";
+            this.btnElimSelecc.Text = "Baja seleccionado (s)";
             this.btnElimSelecc.UseVisualStyleBackColor = true;
             this.btnElimSelecc.Click += new System.EventHandler(this.btnElimSelecc_Click);
             // 
@@ -83,7 +83,7 @@
             // 
             this.gcPuestos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcPuestos.DataSource = this.puestosBindingSource;
-            this.gcPuestos.Location = new System.Drawing.Point(12, 155);
+            this.gcPuestos.Location = new System.Drawing.Point(18, 155);
             this.gcPuestos.MainView = this.gridView1;
             this.gcPuestos.Name = "gcPuestos";
             this.gcPuestos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -156,6 +156,8 @@
             // 
             // colseleccionado
             // 
+            this.colseleccionado.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.colseleccionado.AppearanceCell.Options.UseBackColor = true;
             this.colseleccionado.Caption = " ";
             this.colseleccionado.FieldName = "seleccionado";
             this.colseleccionado.Name = "colseleccionado";
@@ -175,7 +177,7 @@
             this.cmbSucursal.DropDownWidth = 400;
             this.cmbSucursal.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.cmbSucursal.FormattingEnabled = true;
-            this.cmbSucursal.Location = new System.Drawing.Point(131, 101);
+            this.cmbSucursal.Location = new System.Drawing.Point(137, 101);
             this.cmbSucursal.Margin = new System.Windows.Forms.Padding(5);
             this.cmbSucursal.Name = "cmbSucursal";
             this.cmbSucursal.Size = new System.Drawing.Size(333, 31);
@@ -186,7 +188,7 @@
             this.tbNombrePuesto.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbNombrePuesto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombrePuesto.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.tbNombrePuesto.Location = new System.Drawing.Point(131, 52);
+            this.tbNombrePuesto.Location = new System.Drawing.Point(137, 52);
             this.tbNombrePuesto.Margin = new System.Windows.Forms.Padding(5);
             this.tbNombrePuesto.MaxLength = 250;
             this.tbNombrePuesto.Name = "tbNombrePuesto";
@@ -198,7 +200,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.label3.Location = new System.Drawing.Point(44, 104);
+            this.label3.Location = new System.Drawing.Point(50, 104);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 23);
@@ -210,7 +212,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.label2.Location = new System.Drawing.Point(44, 55);
+            this.label2.Location = new System.Drawing.Point(50, 55);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 23);
@@ -222,7 +224,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 18F);
-            this.label1.Location = new System.Drawing.Point(20, 15);
+            this.label1.Location = new System.Drawing.Point(26, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 29);
@@ -233,7 +235,7 @@
             // 
             this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnAgregar.Location = new System.Drawing.Point(486, 72);
+            this.btnAgregar.Location = new System.Drawing.Point(492, 72);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(5);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(125, 41);

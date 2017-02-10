@@ -41,6 +41,7 @@ namespace Activos.Modelos
 
     public static class Utilerias
     {
+        // valida si es ip una cadena
         public static bool esIp(string cadena)
         {
             bool result = false;
@@ -103,9 +104,10 @@ namespace Activos.Modelos
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
 
+        // Cálculo del dígito de control EAN
         public static string getCheckDigit(string barcode)
         {
-            // Cálculo del dígito de control EAN
+            
             int iSum = 0;
             int iSumInpar = 0;
             int iDigit = 0;

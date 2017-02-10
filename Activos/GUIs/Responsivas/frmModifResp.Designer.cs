@@ -35,7 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnAgrega = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
-            this.btnAplicar = new System.Windows.Forms.Button();
             this.gcActivos = new DevExpress.XtraGrid.GridControl();
             this.activosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -88,7 +87,7 @@
             // btnBuscaResponsiva
             // 
             this.btnBuscaResponsiva.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnBuscaResponsiva.Location = new System.Drawing.Point(523, 47);
+            this.btnBuscaResponsiva.Location = new System.Drawing.Point(531, 47);
             this.btnBuscaResponsiva.Name = "btnBuscaResponsiva";
             this.btnBuscaResponsiva.Size = new System.Drawing.Size(198, 43);
             this.btnBuscaResponsiva.TabIndex = 0;
@@ -100,7 +99,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
+            this.label1.Location = new System.Drawing.Point(20, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 23);
             this.label1.TabIndex = 1;
@@ -110,7 +109,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 56);
+            this.label2.Location = new System.Drawing.Point(54, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 23);
             this.label2.TabIndex = 2;
@@ -120,7 +119,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(62, 97);
+            this.label3.Location = new System.Drawing.Point(70, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 23);
             this.label3.TabIndex = 3;
@@ -129,7 +128,7 @@
             // btnAgrega
             // 
             this.btnAgrega.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAgrega.Location = new System.Drawing.Point(441, 412);
+            this.btnAgrega.Location = new System.Drawing.Point(445, 374);
             this.btnAgrega.Name = "btnAgrega";
             this.btnAgrega.Size = new System.Drawing.Size(230, 33);
             this.btnAgrega.TabIndex = 6;
@@ -140,7 +139,7 @@
             // btnQuitar
             // 
             this.btnQuitar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnQuitar.Location = new System.Drawing.Point(38, 412);
+            this.btnQuitar.Location = new System.Drawing.Point(42, 374);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(274, 33);
             this.btnQuitar.TabIndex = 7;
@@ -148,24 +147,14 @@
             this.btnQuitar.UseVisualStyleBackColor = true;
             this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
-            // btnAplicar
-            // 
-            this.btnAplicar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAplicar.Location = new System.Drawing.Point(582, 635);
-            this.btnAplicar.Name = "btnAplicar";
-            this.btnAplicar.Size = new System.Drawing.Size(139, 43);
-            this.btnAplicar.TabIndex = 8;
-            this.btnAplicar.Text = "Aplicar";
-            this.btnAplicar.UseVisualStyleBackColor = true;
-            // 
             // gcActivos
             // 
             this.gcActivos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcActivos.DataSource = this.activosBindingSource;
-            this.gcActivos.Location = new System.Drawing.Point(12, 141);
+            this.gcActivos.Location = new System.Drawing.Point(20, 141);
             this.gcActivos.MainView = this.gridView1;
             this.gcActivos.Name = "gcActivos";
-            this.gcActivos.Size = new System.Drawing.Size(705, 255);
+            this.gcActivos.Size = new System.Drawing.Size(705, 215);
             this.gcActivos.TabIndex = 9;
             this.gcActivos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -323,10 +312,10 @@
             // 
             this.gcPrevMov.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcPrevMov.DataSource = this.activosBindingSource;
-            this.gcPrevMov.Location = new System.Drawing.Point(16, 466);
+            this.gcPrevMov.Location = new System.Drawing.Point(20, 428);
             this.gcPrevMov.MainView = this.gridView2;
             this.gcPrevMov.Name = "gcPrevMov";
-            this.gcPrevMov.Size = new System.Drawing.Size(705, 212);
+            this.gcPrevMov.Size = new System.Drawing.Size(705, 184);
             this.gcPrevMov.TabIndex = 10;
             this.gcPrevMov.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -467,7 +456,7 @@
             // tbResponsable
             // 
             this.tbResponsable.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbResponsable.Location = new System.Drawing.Point(133, 12);
+            this.tbResponsable.Location = new System.Drawing.Point(141, 12);
             this.tbResponsable.Name = "tbResponsable";
             this.tbResponsable.ReadOnly = true;
             this.tbResponsable.Size = new System.Drawing.Size(363, 30);
@@ -476,7 +465,7 @@
             // tbSucursal
             // 
             this.tbSucursal.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbSucursal.Location = new System.Drawing.Point(133, 53);
+            this.tbSucursal.Location = new System.Drawing.Point(141, 53);
             this.tbSucursal.Name = "tbSucursal";
             this.tbSucursal.ReadOnly = true;
             this.tbSucursal.Size = new System.Drawing.Size(363, 30);
@@ -485,7 +474,7 @@
             // tbPuesto
             // 
             this.tbPuesto.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbPuesto.Location = new System.Drawing.Point(133, 94);
+            this.tbPuesto.Location = new System.Drawing.Point(141, 94);
             this.tbPuesto.Name = "tbPuesto";
             this.tbPuesto.ReadOnly = true;
             this.tbPuesto.Size = new System.Drawing.Size(363, 30);
@@ -494,18 +483,18 @@
             // btnQuitarActivo
             // 
             this.btnQuitarActivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnQuitarActivo.Location = new System.Drawing.Point(16, 699);
+            this.btnQuitarActivo.Location = new System.Drawing.Point(42, 631);
             this.btnQuitarActivo.Name = "btnQuitarActivo";
             this.btnQuitarActivo.Size = new System.Drawing.Size(274, 33);
             this.btnQuitarActivo.TabIndex = 14;
-            this.btnQuitarActivo.Text = "Quitar Activo (s)";
+            this.btnQuitarActivo.Text = "Deshacer Cambio en Activo (s)";
             this.btnQuitarActivo.UseVisualStyleBackColor = true;
             this.btnQuitarActivo.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnAplica
             // 
             this.btnAplica.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAplica.Location = new System.Drawing.Point(523, 699);
+            this.btnAplica.Location = new System.Drawing.Point(509, 673);
             this.btnAplica.Name = "btnAplica";
             this.btnAplica.Size = new System.Drawing.Size(198, 43);
             this.btnAplica.TabIndex = 15;
@@ -518,7 +507,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(740, 760);
+            this.ClientSize = new System.Drawing.Size(745, 733);
             this.Controls.Add(this.btnAplica);
             this.Controls.Add(this.btnQuitarActivo);
             this.Controls.Add(this.tbPuesto);
@@ -526,7 +515,6 @@
             this.Controls.Add(this.tbResponsable);
             this.Controls.Add(this.gcPrevMov);
             this.Controls.Add(this.gcActivos);
-            this.Controls.Add(this.btnAplicar);
             this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.btnAgrega);
             this.Controls.Add(this.label3);
@@ -555,7 +543,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAgrega;
         private System.Windows.Forms.Button btnQuitar;
-        private System.Windows.Forms.Button btnAplicar;
         private DevExpress.XtraGrid.GridControl gcActivos;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.GridControl gcPrevMov;

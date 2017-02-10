@@ -12,6 +12,7 @@ using Activos.Negocio;
 using Sofbr.Utils.Impresoras;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using System.Configuration;
 
 namespace Activos.GUIs.Responsivas
 {
@@ -22,7 +23,6 @@ namespace Activos.GUIs.Responsivas
         private List<Modelos.Activos> _activos = new List<Modelos.Activos>();
 
         IResponsivasNegocio _responsivasNegocio;
-
 
         public frmImprimeResp()
         {
@@ -142,6 +142,8 @@ namespace Activos.GUIs.Responsivas
                 if (string.IsNullOrEmpty(comando))
                     throw new Exception("No se encotró un comando para la etiqueta");
 
+                string url = ConfigurationManager.AppSettings["url"];
+
                 foreach (Modelos.Activos ac in this._activos)
                 {
                     string comEtiqueta = comando;
@@ -151,7 +153,8 @@ namespace Activos.GUIs.Responsivas
                     comEtiqueta = comEtiqueta.Replace("|cveActivo|", ac.claveActivo);
                     comEtiqueta = comEtiqueta.Replace("|nombrecorto|", ac.nombreCorto);
                     comEtiqueta = comEtiqueta.Replace("0000000000000", ac.numEtiqueta);
-                    comEtiqueta = comEtiqueta.Replace("|url|", ac.url);
+                    // comEtiqueta = comEtiqueta.Replace("|url|", ac.url);
+                    comEtiqueta = comEtiqueta.Replace("|url|", string.Format(url, ac.idActivo));
                     comEtiqueta = comEtiqueta.Replace("|empresa|", Modelos.Login.empresa);
 
                     sbComandos.AppendLine(comEtiqueta);
@@ -182,6 +185,61 @@ namespace Activos.GUIs.Responsivas
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnBusFolio_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // validacion
+                if (string.IsNullOrEmpty(this.tbFolio.Text))
+                    throw new Exception("Defina un folio");
+
+                int folio = Convert.ToInt16(this.tbFolio.Text);
+
+                // obtiene responsables
+                Modelos.RespPorFolio respFolio = this._responsivasNegocio.obtieneRespXFolio(folio);
+
+                if (respFolio == null)
+                {
+                    this.gcActivos.DataSource = null;
+                    this.ActiveControl = this.tbFolio;
+                    this.tbFolio.SelectAll();
+
+                    this.tbResponsable.Text = string.Empty;
+                    this.tbPuesto.Text = string.Empty;
+                    this.tbSucursal.Text = string.Empty;
+
+                    throw new Exception("Sin resultados");
+                }
+
+                this.gcActivos.DataSource = null;
+                this.ActiveControl = this.tbFolio;
+                this.tbFolio.SelectAll();
+
+                this.tbResponsable.Text = respFolio.responsiva.responsable;
+                this.tbPuesto.Text = respFolio.responsiva.puesto;
+                this.tbSucursal.Text = respFolio.responsiva.sucursal;
+
+                this._responsiva = respFolio.responsiva;
+
+                // llena el grid con los puestos disponibles
+                this.gcActivos.DataSource = respFolio.activos;
+                this._activos = respFolio.activos;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+        }
+
+        private void tbFolio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBusFolio_Click(null, null);
             }
         }
 

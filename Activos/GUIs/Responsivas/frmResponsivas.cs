@@ -111,6 +111,18 @@ namespace Activos.GUIs.Responsivas
                 if(this.gridView2.DataRowCount == 0)
                     throw new Exception("Añada al menos un activo para asignarlo a la persona");
 
+                if (this.tbObservaciones.Text.Trim().Length < 10)
+                {
+                    this.lbObservaciones.ForeColor = System.Drawing.Color.Red;
+                    this.lbObservaciones.Text = "Observaciones*";
+                    throw new Exception("La longitud miníma permitida para las observaciones es de 10 carácteres");
+                }
+                else
+                {
+                    this.lbObservaciones.ForeColor = System.Drawing.Color.Black;
+                    this.lbObservaciones.Text = "Observaciones";
+                }
+
                 List<Modelos.PersonaResponsivas> responsables = new List<Modelos.PersonaResponsivas>();
 
                 if (this.cbAgregaResp.Checked)
@@ -159,6 +171,18 @@ namespace Activos.GUIs.Responsivas
             {
                 MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.CadetBlue;
+                e.Appearance.ForeColor = Color.White;
+            }
+        
         }
     }
 }

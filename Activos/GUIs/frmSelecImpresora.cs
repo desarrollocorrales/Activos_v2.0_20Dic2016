@@ -84,7 +84,7 @@ namespace Activos.GUIs
             {
 
                 if (this.gridView1.GetSelectedRows().Count() == 0)
-                    throw new Exception("Seleecione una impresora");
+                    throw new Exception("Seleccione una impresora");
 
                 Modelos.Impresora impresora = new Modelos.Impresora();
 
@@ -110,6 +110,17 @@ namespace Activos.GUIs
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.CadetBlue;
+                e.Appearance.ForeColor = Color.White;
+            }
         }
 
     }

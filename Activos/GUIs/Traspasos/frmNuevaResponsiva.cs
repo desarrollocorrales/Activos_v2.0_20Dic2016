@@ -45,11 +45,30 @@ namespace Activos.GUIs.Traspasos
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            this.observaciones = this.tbObservacion.Text;
+            try
+            {
+                if (this.tbObservacion.Text.Trim().Length < 10)
+                {
+                    this.tbObservacion.ForeColor = System.Drawing.Color.Red;
+                    this.tbObservacion.Text = "Observaciones*";
+                    throw new Exception("La longitud miníma permitida para las observaciones es de 10 carácteres");
+                }
+                else
+                {
+                    this.tbObservacion.ForeColor = System.Drawing.Color.Black;
+                    this.tbObservacion.Text = "Observaciones";
+                }
 
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.observaciones = this.tbObservacion.Text;
 
-            this.Close();
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Traspasos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -305,6 +305,7 @@
             // 
             // dtpFecha
             // 
+            this.dtpFecha.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dtpFecha.Location = new System.Drawing.Point(91, 388);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(357, 30);

@@ -63,6 +63,9 @@ namespace Activos.GUIs.Sucursales
                 if (string.IsNullOrEmpty(this.tbNombreSuc.Text))
                     throw new Exception("Llene el nombre de la sucursal");
 
+                if (this.cmbResponsable.SelectedIndex == -1)
+                    throw new Exception("Seleccione un responsable");
+
                 string sucNom = this.tbNombreSuc.Text;
 
                 int? idResp = null;
@@ -107,7 +110,7 @@ namespace Activos.GUIs.Sucursales
                     throw new Exception("No se ha seleccionado ninguna sucursal");
 
                 DialogResult dialogResult = MessageBox.Show(
-                                "¿Desea eliminar las sucursales seleccionadas?",
+                                "¿Desea dar de baja las sucursales seleccionadas?",
                                 "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dialogResult == DialogResult.No) return;
@@ -116,7 +119,7 @@ namespace Activos.GUIs.Sucursales
                 bool resultado = this._catalogosNegocio.bajaSucursalas(seleccionados);
 
                 if(resultado)
-                    MessageBox.Show("Sucursal(es) eliminada(s) correctamente", "Sucursales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Sucursal(es) dada(s) de baja correctamente", "Sucursales", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // llena el grid con las sucursales disponibles
                 this.gcSucursales.DataSource = this._catalogosNegocio.getSucursales("A");
@@ -131,6 +134,10 @@ namespace Activos.GUIs.Sucursales
         {
             try
             {
+                // PERMISOS
+                if (!Modelos.Login.permisos.Contains(53))
+                    return;
+
                 if (this.gridView1.GetSelectedRows().Count() == 0)
                     throw new Exception("No a seleccionado una sucursal");
 
@@ -178,6 +185,10 @@ namespace Activos.GUIs.Sucursales
             {
                 MessageBox.Show(Ex.Message, "Sucursales", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
         }
     }
 }

@@ -122,7 +122,7 @@ namespace Activos.GUIs.Puestos
                     throw new Exception("No se ha seleccionado ningun puesto");
 
                 DialogResult dialogResult = MessageBox.Show(
-                                "¿Desea eliminar los puestos seleccionadas?",
+                                "¿Desea dar de baja los puestos seleccionadas?",
                                 "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dialogResult == DialogResult.No) return;
@@ -131,7 +131,7 @@ namespace Activos.GUIs.Puestos
                 bool resultado = this._catalogosNegocio.bajaPuestos(seleccionados);
 
                 if (resultado)
-                    MessageBox.Show("Puesto(s) eliminado(s) correctamente", "Puestos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Puesto(s) dado(s) de baja correctamente", "Puestos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // llena el grid con los puestos disponibles
                 this.gcPuestos.DataSource = this._catalogosNegocio.getPuestos("A");
@@ -146,6 +146,10 @@ namespace Activos.GUIs.Puestos
         {
             try
             {
+                // PERMISOS
+                if (!Modelos.Login.permisos.Contains(54))
+                    return;
+
                 if (this.gridView1.GetSelectedRows().Count() == 0)
                     throw new Exception("No a seleccionado un puesto");
 

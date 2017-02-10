@@ -92,9 +92,16 @@ namespace Activos
         {
             try
             {
-                string acceso = Modelos.Utilerias.Transform("p4ssw0rd");
+                // valida si ya tiene alguna clave guardada para el archivo
+                string cveActual = Properties.Settings.Default.accesoConfig;
 
-                Properties.Settings.Default.accesoConfig = acceso;
+                if (string.IsNullOrEmpty(cveActual))
+                {
+                    string acceso = Modelos.Utilerias.Transform("p4ssw0rd");
+
+                    Properties.Settings.Default.accesoConfig = acceso;
+                    Properties.Settings.Default.Save();
+                }
 
                 string fileName = "config.dat";
                 string pathConfigFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\SisActivos\";

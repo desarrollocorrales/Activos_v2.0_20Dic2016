@@ -75,7 +75,7 @@
             this.btnElimSelecc.Size = new System.Drawing.Size(250, 39);
             this.btnElimSelecc.TabIndex = 17;
             this.btnElimSelecc.Tag = "35";
-            this.btnElimSelecc.Text = "&Eliminar seleccionado (s)";
+            this.btnElimSelecc.Text = "Baja seleccionado (s)";
             this.btnElimSelecc.UseVisualStyleBackColor = true;
             this.btnElimSelecc.Click += new System.EventHandler(this.btnElimSelecc_Click);
             // 
@@ -118,6 +118,8 @@
             // 
             // colseleccionado
             // 
+            this.colseleccionado.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.colseleccionado.AppearanceCell.Options.UseBackColor = true;
             this.colseleccionado.Caption = " ";
             this.colseleccionado.FieldName = "seleccionado";
             this.colseleccionado.Name = "colseleccionado";

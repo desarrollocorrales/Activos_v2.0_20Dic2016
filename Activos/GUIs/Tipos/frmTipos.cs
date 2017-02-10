@@ -59,12 +59,14 @@ namespace Activos.GUIs.Tipos
                 int modelo = this.cbModelo.Checked ? 1 : 0;
                 int serie = this.cbSerie.Checked ? 1 : 0;
                 int color = this.cbColor.Checked ? 1 : 0;
+                int costo = this.cbCosto.Checked ? 1 : 0;
+                int factura = this.cbFactura.Checked ? 1 : 0;
 
                 // guardado de informacion
                 bool resultado =
                     this._catalogosNegocio.agregaTipo(
                         this.tbNombreTipo.Text,
-                        marca, modelo, serie, color);
+                        marca, modelo, serie, color, costo, factura);
 
 
                 if (resultado)
@@ -76,6 +78,10 @@ namespace Activos.GUIs.Tipos
                     this.cbModelo.Checked = false;
                     this.cbSerie.Checked = false;
                     this.cbColor.Checked = false;
+                    this.cbColor.Checked = false;
+                    this.cbColor.Checked = false;
+                    this.cbCosto.Checked = false;
+                    this.cbFactura.Checked = false;
                 }
 
                 // actualizar grid
@@ -120,7 +126,7 @@ namespace Activos.GUIs.Tipos
                     throw new Exception("No se ha seleccionado ningun tipo");
 
                 DialogResult dialogResult = MessageBox.Show(
-                                "¿Desea eliminar los tipos seleccionados?",
+                                "¿Desea dar de baja los tipos seleccionados?",
                                 "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dialogResult == DialogResult.No) return;
@@ -129,7 +135,7 @@ namespace Activos.GUIs.Tipos
                 bool resultado = this._catalogosNegocio.bajaTipos(seleccionados);
 
                 if (resultado)
-                    MessageBox.Show("Tipo(s) eliminado(s) correctamente", "Tipos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tipo(s) dado(s) de baja correctamente", "Tipos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // llena el grid con los puestos disponibles
                 this.gcTipos.DataSource = this._catalogosNegocio.getTipos("A");
@@ -144,6 +150,10 @@ namespace Activos.GUIs.Tipos
         {
             try
             {
+                // PERMISOS
+                if (!Modelos.Login.permisos.Contains(56))
+                    return;
+
                 if (this.gridView1.GetSelectedRows().Count() == 0)
                     throw new Exception("No a seleccionado un puesto");
 
@@ -160,7 +170,9 @@ namespace Activos.GUIs.Tipos
                     ent.marca.Equals("NO") ? false : true,
                     ent.modelo.Equals("NO") ? false : true,
                     ent.serie.Equals("NO") ? false : true,
-                    ent.color.Equals("NO") ? false : true
+                    ent.color.Equals("NO") ? false : true,
+                    ent.costo.Equals("NO") ? false : true,
+                    ent.factura.Equals("NO") ? false : true
                     );
 
                 var result = form.ShowDialog();

@@ -1348,11 +1348,11 @@ namespace Activos.Datos
         }
 
         // agrega tipo
-        public bool agregaTipo(string nombre, int marca, int modelo, int serie, int color)
+        public bool agregaTipo(string nombre, int marca, int modelo, int serie, int color, int costo, int factura)
         {
-            string sql = 
-                "INSERT INTO activos_tipo (nombre, marca, modelo, color, serie, status) " + 
-                "VALUES (@nombre, @marca, @modelo, @color, @serie, 'A')";
+            string sql =
+                "INSERT INTO activos_tipo (nombre, marca, modelo, color, serie, costo, factura, status) " +
+                "VALUES (@nombre, @marca, @modelo, @color, @serie, @costo, @factura, 'A')";
 
             bool result = true;
 
@@ -1372,6 +1372,8 @@ namespace Activos.Datos
                     cmd.Parameters.AddWithValue("@modelo", modelo);
                     cmd.Parameters.AddWithValue("@color", color);
                     cmd.Parameters.AddWithValue("@serie", serie);
+                    cmd.Parameters.AddWithValue("@costo", costo);
+                    cmd.Parameters.AddWithValue("@factura", factura);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 
@@ -1460,12 +1462,14 @@ namespace Activos.Datos
         }
 
         // modifica tipos
-        public bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color)
+        public bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color, int costo, int factura)
         {
 
             string sql = 
-                "UPDATE activos_tipo " + 
-                "SET nombre = @nombre, marca = @marca, modelo = @modelo, color = @color, serie = @serie WHERE idtipo = @idTipo";
+                "UPDATE activos_tipo " +
+                "SET nombre = @nombre, marca = @marca, modelo = @modelo, color = @color, serie = @serie, " +
+                "costo = @costo, factura = @factura " + 
+                "WHERE idtipo = @idTipo";
 
             bool result = true;
 
@@ -1486,6 +1490,8 @@ namespace Activos.Datos
                     cmd.Parameters.AddWithValue("@color", color);
                     cmd.Parameters.AddWithValue("@serie", serie);
                     cmd.Parameters.AddWithValue("@idTipo", idTipo);
+                    cmd.Parameters.AddWithValue("@costo", costo);
+                    cmd.Parameters.AddWithValue("@factura", factura);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 
@@ -2221,7 +2227,7 @@ namespace Activos.Datos
             return result;
         }
 
-
+        // busqueda de usuario
         public List<PersonaResponsivas> busquedaUsuario(string usuario)
         {
             List<PersonaResponsivas> result = new List<PersonaResponsivas>();
@@ -2274,6 +2280,55 @@ namespace Activos.Datos
                     res.reader.Close();
 
                 }
+            }
+
+            return result;
+        }
+
+        // buscar si ya existe un tipo
+        public string existeTipo(string nombre)
+        {
+            string result = string.Empty;
+
+            string sql = "select status from activos_tipo where nombre = @nombre";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@nombre", nombre.Trim());
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            result = Convert.ToString(res.reader[0]);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (result.Equals("B"))
+                    result = "El tipo ya existe pero se encuentra dado de baja";
+                else
+                    result = "El tipo ya existe";
             }
 
             return result;

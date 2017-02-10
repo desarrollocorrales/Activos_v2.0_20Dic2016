@@ -88,6 +88,8 @@
             // 
             // colseleccionado
             // 
+            this.colseleccionado.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.colseleccionado.AppearanceCell.Options.UseBackColor = true;
             this.colseleccionado.Caption = " ";
             this.colseleccionado.FieldName = "seleccionado";
             this.colseleccionado.Name = "colseleccionado";
@@ -184,7 +186,7 @@
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(326, 51);
             this.btnBaja.TabIndex = 11;
-            this.btnBaja.Text = "&Eliminar Seleccionado(s)";
+            this.btnBaja.Text = "Baja Seleccionado (s)";
             this.btnBaja.UseVisualStyleBackColor = true;
             this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
             // 

@@ -63,17 +63,19 @@
             this.colnomUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colpuesto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsucursal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.gcActivos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcResponsables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(268, 9);
+            this.label2.Location = new System.Drawing.Point(262, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 23);
             this.label2.TabIndex = 15;
@@ -82,7 +84,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 9);
+            this.label1.Location = new System.Drawing.Point(15, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 23);
             this.label1.TabIndex = 14;
@@ -90,7 +92,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(191, 75);
+            this.btnBuscar.Location = new System.Drawing.Point(506, 56);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(136, 43);
             this.btnBuscar.TabIndex = 13;
@@ -100,7 +102,7 @@
             // 
             // tbResp
             // 
-            this.tbResp.Location = new System.Drawing.Point(262, 35);
+            this.tbResp.Location = new System.Drawing.Point(256, 63);
             this.tbResp.Name = "tbResp";
             this.tbResp.Size = new System.Drawing.Size(244, 30);
             this.tbResp.TabIndex = 12;
@@ -110,15 +112,16 @@
             this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSucursal.DropDownWidth = 400;
             this.cmbSucursal.FormattingEnabled = true;
-            this.cmbSucursal.Location = new System.Drawing.Point(12, 35);
+            this.cmbSucursal.Location = new System.Drawing.Point(6, 63);
             this.cmbSucursal.Name = "cmbSucursal";
             this.cmbSucursal.Size = new System.Drawing.Size(244, 31);
             this.cmbSucursal.TabIndex = 11;
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 367);
+            this.label3.Location = new System.Drawing.Point(30, 367);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 23);
             this.label3.TabIndex = 19;
@@ -126,18 +129,20 @@
             // 
             // tbRespDe
             // 
-            this.tbRespDe.Location = new System.Drawing.Point(136, 364);
+            this.tbRespDe.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbRespDe.Location = new System.Drawing.Point(158, 364);
             this.tbRespDe.Name = "tbRespDe";
             this.tbRespDe.ReadOnly = true;
-            this.tbRespDe.Size = new System.Drawing.Size(370, 30);
+            this.tbRespDe.Size = new System.Drawing.Size(497, 30);
             this.tbRespDe.TabIndex = 18;
             // 
             // gcActivos
             // 
+            this.gcActivos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcActivos.Location = new System.Drawing.Point(12, 409);
             this.gcActivos.MainView = this.gridView2;
             this.gcActivos.Name = "gcActivos";
-            this.gcActivos.Size = new System.Drawing.Size(494, 167);
+            this.gcActivos.Size = new System.Drawing.Size(661, 182);
             this.gcActivos.TabIndex = 17;
             this.gcActivos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -263,7 +268,8 @@
             // 
             // btnVistaPrevia
             // 
-            this.btnVistaPrevia.Location = new System.Drawing.Point(336, 597);
+            this.btnVistaPrevia.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVistaPrevia.Location = new System.Drawing.Point(496, 597);
             this.btnVistaPrevia.Name = "btnVistaPrevia";
             this.btnVistaPrevia.Size = new System.Drawing.Size(158, 43);
             this.btnVistaPrevia.TabIndex = 20;
@@ -293,21 +299,23 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox1.Controls.Add(this.cbBajas);
             this.groupBox1.Controls.Add(this.cbReparacion);
-            this.groupBox1.Location = new System.Drawing.Point(12, 266);
+            this.groupBox1.Location = new System.Drawing.Point(92, 134);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(494, 79);
+            this.groupBox1.Size = new System.Drawing.Size(500, 79);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Incluir Activos:";
             // 
             // gcResponsables
             // 
-            this.gcResponsables.Location = new System.Drawing.Point(12, 124);
+            this.gcResponsables.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gcResponsables.Location = new System.Drawing.Point(12, 219);
             this.gcResponsables.MainView = this.gridView1;
             this.gcResponsables.Name = "gcResponsables";
-            this.gcResponsables.Size = new System.Drawing.Size(494, 136);
+            this.gcResponsables.Size = new System.Drawing.Size(661, 136);
             this.gcResponsables.TabIndex = 24;
             this.gcResponsables.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -323,6 +331,7 @@
             this.gridView1.GridControl = this.gcResponsables;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             // 
             // colidUsuario
             // 
@@ -362,22 +371,33 @@
             this.colsucursal.Visible = true;
             this.colsucursal.VisibleIndex = 2;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.cmbSucursal);
+            this.groupBox2.Controls.Add(this.tbResp);
+            this.groupBox2.Controls.Add(this.btnBuscar);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Location = new System.Drawing.Point(12, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(661, 116);
+            this.groupBox2.TabIndex = 25;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Búsqueda";
+            // 
             // frmActivosPersona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 658);
+            this.ClientSize = new System.Drawing.Size(685, 648);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gcResponsables);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnVistaPrevia);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbRespDe);
             this.Controls.Add(this.gcActivos);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.tbResp);
-            this.Controls.Add(this.cmbSucursal);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmActivosPersona";
@@ -389,6 +409,8 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcResponsables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,6 +453,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colnomUsuario;
         private DevExpress.XtraGrid.Columns.GridColumn colpuesto;
         private DevExpress.XtraGrid.Columns.GridColumn colsucursal;
+        private System.Windows.Forms.GroupBox groupBox2;
 
     }
 }

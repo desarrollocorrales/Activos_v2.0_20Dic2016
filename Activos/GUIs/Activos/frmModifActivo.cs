@@ -139,7 +139,7 @@ namespace Activos.GUIs.AltaActivos
                 bool resultado = validaciones();
 
                 if (!resultado)
-                    throw new Exception("Campos incompletos.\nPor favor verifique.");
+                    throw new Exception("Campos incompletos o valores inválidos.\nPor favor verifique.");
 
                 string nombre = this.tbNombre.Text;
 
@@ -213,6 +213,30 @@ namespace Activos.GUIs.AltaActivos
             {
                 this.lColor.Text = "Color*";
                 this.lColor.ForeColor = System.Drawing.Color.Red;
+                result = false;
+            }
+            // COSTO
+            if (this._tipos.costo.Equals("SI") && string.IsNullOrEmpty(this.tbCosto.Text))
+            {
+                this.lbCosto.Text = "Costo*";
+                this.lbCosto.ForeColor = System.Drawing.Color.Red;
+                result = false;
+            }
+
+            // COSTO valor numerico
+            decimal costo = 0;
+            if (!decimal.TryParse(this.tbCosto.Text, out costo))
+            {
+                this.lbCosto.Text = "Costo*";
+                this.lbCosto.ForeColor = System.Drawing.Color.Red;
+                result = false;
+            }
+
+            // FACTURA
+            if (this._tipos.factura.Equals("SI") && string.IsNullOrEmpty(this.tbFactura.Text))
+            {
+                this.lbFactura.Text = "Factura*";
+                this.lbFactura.ForeColor = System.Drawing.Color.Red;
                 result = false;
             }
 

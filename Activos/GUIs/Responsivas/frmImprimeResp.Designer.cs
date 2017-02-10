@@ -57,8 +57,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dtpFechaImpr = new System.Windows.Forms.DateTimePicker();
             this.btnImprEtiquetas = new System.Windows.Forms.Button();
+            this.tbFolio = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBusFolio = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gcActivos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbPuesto
@@ -91,7 +96,7 @@
             // gcActivos
             // 
             this.gcActivos.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.gcActivos.Location = new System.Drawing.Point(25, 204);
+            this.gcActivos.Location = new System.Drawing.Point(23, 338);
             this.gcActivos.MainView = this.gridView1;
             this.gcActivos.Name = "gcActivos";
             this.gcActivos.Size = new System.Drawing.Size(705, 255);
@@ -280,14 +285,14 @@
             this.btnBuscaResponsiva.Name = "btnBuscaResponsiva";
             this.btnBuscaResponsiva.Size = new System.Drawing.Size(198, 43);
             this.btnBuscaResponsiva.TabIndex = 14;
-            this.btnBuscaResponsiva.Text = "Buscar Responsiva";
+            this.btnBuscaResponsiva.Text = "Buscar Detallada";
             this.btnBuscaResponsiva.UseVisualStyleBackColor = true;
             this.btnBuscaResponsiva.Click += new System.EventHandler(this.btnBuscaResponsiva_Click);
             // 
             // btnImprimir
             // 
             this.btnImprimir.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnImprimir.Location = new System.Drawing.Point(480, 478);
+            this.btnImprimir.Location = new System.Drawing.Point(478, 612);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(226, 43);
             this.btnImprimir.TabIndex = 22;
@@ -299,7 +304,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(97, 159);
+            this.label4.Location = new System.Drawing.Point(95, 293);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(177, 23);
             this.label4.TabIndex = 23;
@@ -308,14 +313,15 @@
             // dtpFechaImpr
             // 
             this.dtpFechaImpr.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dtpFechaImpr.Location = new System.Drawing.Point(292, 153);
+            this.dtpFechaImpr.Location = new System.Drawing.Point(290, 287);
             this.dtpFechaImpr.Name = "dtpFechaImpr";
             this.dtpFechaImpr.Size = new System.Drawing.Size(359, 30);
             this.dtpFechaImpr.TabIndex = 24;
             // 
             // btnImprEtiquetas
             // 
-            this.btnImprEtiquetas.Location = new System.Drawing.Point(261, 478);
+            this.btnImprEtiquetas.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnImprEtiquetas.Location = new System.Drawing.Point(259, 612);
             this.btnImprEtiquetas.Name = "btnImprEtiquetas";
             this.btnImprEtiquetas.Size = new System.Drawing.Size(203, 43);
             this.btnImprEtiquetas.TabIndex = 25;
@@ -323,12 +329,55 @@
             this.btnImprEtiquetas.UseVisualStyleBackColor = true;
             this.btnImprEtiquetas.Click += new System.EventHandler(this.btnImprEtiquetas_Click);
             // 
+            // tbFolio
+            // 
+            this.tbFolio.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbFolio.Location = new System.Drawing.Point(74, 37);
+            this.tbFolio.Name = "tbFolio";
+            this.tbFolio.Size = new System.Drawing.Size(363, 30);
+            this.tbFolio.TabIndex = 27;
+            this.tbFolio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFolio_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(20, 40);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 23);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Folio";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnBusFolio);
+            this.panel1.Controls.Add(this.tbFolio);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Location = new System.Drawing.Point(35, 156);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(678, 100);
+            this.panel1.TabIndex = 28;
+            // 
+            // btnBusFolio
+            // 
+            this.btnBusFolio.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnBusFolio.Location = new System.Drawing.Point(460, 30);
+            this.btnBusFolio.Name = "btnBusFolio";
+            this.btnBusFolio.Size = new System.Drawing.Size(198, 43);
+            this.btnBusFolio.TabIndex = 28;
+            this.btnBusFolio.Text = "Buscar por Folio";
+            this.btnBusFolio.UseVisualStyleBackColor = true;
+            this.btnBusFolio.Click += new System.EventHandler(this.btnBusFolio_Click);
+            // 
             // frmImprimeResp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(749, 544);
+            this.ClientSize = new System.Drawing.Size(749, 680);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnImprEtiquetas);
             this.Controls.Add(this.dtpFechaImpr);
             this.Controls.Add(this.label4);
@@ -347,6 +396,8 @@
             this.Text = "Imprime Responsiva";
             ((System.ComponentModel.ISupportInitialize)(this.gcActivos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -383,5 +434,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpFechaImpr;
         private System.Windows.Forms.Button btnImprEtiquetas;
+        private System.Windows.Forms.TextBox tbFolio;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnBusFolio;
     }
 }

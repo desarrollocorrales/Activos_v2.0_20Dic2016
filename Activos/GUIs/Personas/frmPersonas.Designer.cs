@@ -182,6 +182,7 @@
             this.gridView1.GridControl = this.gcModif;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             // 
             // colseleccionado
             // 
@@ -587,6 +588,8 @@
             // 
             // colseleccionado1
             // 
+            this.colseleccionado1.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.colseleccionado1.AppearanceCell.Options.UseBackColor = true;
             this.colseleccionado1.Caption = " ";
             this.colseleccionado1.FieldName = "seleccionado";
             this.colseleccionado1.Name = "colseleccionado1";
@@ -743,6 +746,8 @@
             // 
             // colseleccionado2
             // 
+            this.colseleccionado2.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.colseleccionado2.AppearanceCell.Options.UseBackColor = true;
             this.colseleccionado2.Caption = " ";
             this.colseleccionado2.FieldName = "seleccionado";
             this.colseleccionado2.Name = "colseleccionado2";

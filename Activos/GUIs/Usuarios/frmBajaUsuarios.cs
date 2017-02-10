@@ -43,7 +43,7 @@ namespace Activos.GUIs.Usuarios
                     throw new Exception("No se ha seleccionado ningun Usuario");
 
                 DialogResult dialogResult = MessageBox.Show(
-                                "¿Desea eliminar los usuarios seleccionados?",
+                                "¿Desea dar de baja los usuarios seleccionados?",
                                 "Áreas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dialogResult == DialogResult.No) return;
@@ -52,7 +52,7 @@ namespace Activos.GUIs.Usuarios
                 bool resultado = this._catalogosNegocio.bajaUsuarios(seleccionados);
 
                 if (resultado)
-                    MessageBox.Show("Usuario(s) eliminado(s) correctamente", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Usuario(s) dado(s) de baja correctamente", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // llena el grid con las sucursales disponibles
                 this.gcUsuariosBaja.DataSource = this._catalogosNegocio.getPersonas("A");

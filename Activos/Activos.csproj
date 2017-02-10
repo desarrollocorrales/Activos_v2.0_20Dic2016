@@ -257,11 +257,17 @@
     <Compile Include="GUIs\Reportes\frmReporteActivosPersona.Designer.cs">
       <DependentUpon>frmReporteActivosPersona.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\Reportes\frmReporteBajas.cs">
+    <Compile Include="GUIs\Reportes\frmActivosSinResp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\Reportes\frmReporteBajas.Designer.cs">
-      <DependentUpon>frmReporteBajas.cs</DependentUpon>
+    <Compile Include="GUIs\Reportes\frmActivosSinResp.Designer.cs">
+      <DependentUpon>frmActivosSinResp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmBuscaPersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmBuscaPersona.Designer.cs">
+      <DependentUpon>frmBuscaPersona.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Responsivas\frmAgregaResponsables.cs">
       <SubType>Form</SubType>
@@ -269,11 +275,11 @@
     <Compile Include="GUIs\Responsivas\frmAgregaResponsables.Designer.cs">
       <DependentUpon>frmAgregaResponsables.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\Responsivas\frmBajaResponsiva.cs">
+    <Compile Include="GUIs\Responsivas\frmTraspasarResponsiva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\Responsivas\frmBajaResponsiva.Designer.cs">
-      <DependentUpon>frmBajaResponsiva.cs</DependentUpon>
+    <Compile Include="GUIs\Responsivas\frmTraspasarResponsiva.Designer.cs">
+      <DependentUpon>frmTraspasarResponsiva.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Responsivas\frmBuscaActivos.cs">
       <SubType>Form</SubType>
@@ -519,17 +525,20 @@
     <EmbeddedResource Include="GUIs\Reportes\frmReporteActivosPersona.resx">
       <DependentUpon>frmReporteActivosPersona.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Reportes\frmReporteBajas.resx">
-      <DependentUpon>frmReporteBajas.cs</DependentUpon>
+    <EmbeddedResource Include="GUIs\Reportes\frmActivosSinResp.resx">
+      <DependentUpon>frmActivosSinResp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmAgregaResponsables.resx">
       <DependentUpon>frmAgregaResponsables.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Responsivas\frmBajaResponsiva.resx">
-      <DependentUpon>frmBajaResponsiva.cs</DependentUpon>
+    <EmbeddedResource Include="GUIs\Responsivas\frmTraspasarResponsiva.resx">
+      <DependentUpon>frmTraspasarResponsiva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmBuscaActivos.resx">
       <DependentUpon>frmBuscaActivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmBuscaPersona.resx">
+      <DependentUpon>frmBuscaPersona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmBuscarResponsiva.resx">
       <DependentUpon>frmBuscarResponsiva.cs</DependentUpon>

@@ -9,6 +9,7 @@ namespace Activos.Negocio
     public class ResponsivasNegocio : IResponsivasNegocio
     {
         IResponsivasDatos _responsivasDatos;
+        IActivosDatos _activosDatos;
 
         public ResponsivasNegocio()
         {
@@ -76,6 +77,33 @@ namespace Activos.Negocio
         public List<Modelos.PersonaResponsivas> buscaResponsiva(string responsable, int idSuc)
         {
             return this._responsivasDatos.buscaResponsiva(responsable, idSuc);
+        }
+
+
+        public bool traspasoResponsiva(int? idResponsiva, int? idPersonaAnt, int? idPersonaNueva, List<Modelos.Activos> activos, string motivo)
+        {
+            return this._responsivasDatos.traspasoResponsiva(idResponsiva, idPersonaAnt, idPersonaNueva, activos, motivo);
+        }
+
+
+        public Modelos.RespPorFolio obtieneRespXFolio(int folio)
+        {
+
+            Modelos.RespPorFolio result = new Modelos.RespPorFolio();
+
+            result.responsiva = this._responsivasDatos.getRespXFolio(folio);
+
+            if (result.responsiva == null) return null;
+
+            this._activosDatos = new ActivosDatos();
+
+            List<int> idActivos = this._activosDatos.getActivosIdsRespon(result.responsiva.idResponsiva);
+
+            if (idActivos.Count == 0) return null;
+            
+            result.activos = this._activosDatos.getBuscaActivos(idActivos);
+
+            return result;
         }
     }
 }

@@ -42,5 +42,7 @@ namespace Activos.Datos
         List<Modelos.Activos> getBuscaActivosPersona(int idPersona, bool isBaja, bool isRepara);
 
         List<Modelos.Cambios> getCambios(int idActivo);
+
+        List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea);
     }
 }

@@ -57,7 +57,7 @@
             this.tbFactura = new System.Windows.Forms.TextBox();
             this.tbCosto = new System.Windows.Forms.TextBox();
             this.lbFactura = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lbCosto = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
@@ -360,15 +360,15 @@
             this.lbFactura.TabIndex = 130;
             this.lbFactura.Text = "Factura";
             // 
-            // label10
+            // lbCosto
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(302, 303);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(55, 23);
-            this.label10.TabIndex = 129;
-            this.label10.Text = "Costo";
+            this.lbCosto.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbCosto.AutoSize = true;
+            this.lbCosto.Location = new System.Drawing.Point(302, 303);
+            this.lbCosto.Name = "lbCosto";
+            this.lbCosto.Size = new System.Drawing.Size(55, 23);
+            this.lbCosto.TabIndex = 129;
+            this.lbCosto.Text = "Costo";
             // 
             // label6
             // 
@@ -402,7 +402,7 @@
             this.Controls.Add(this.tbFactura);
             this.Controls.Add(this.tbCosto);
             this.Controls.Add(this.lbFactura);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lbCosto);
             this.Controls.Add(this.tbUsuario);
             this.Controls.Add(this.tbArea);
             this.Controls.Add(this.label8);
@@ -470,7 +470,7 @@
         private System.Windows.Forms.TextBox tbFactura;
         private System.Windows.Forms.TextBox tbCosto;
         private System.Windows.Forms.Label lbFactura;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lbCosto;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dtpFecha;
     }

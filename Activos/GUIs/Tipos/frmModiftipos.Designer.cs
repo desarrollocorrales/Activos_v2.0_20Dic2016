@@ -32,6 +32,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbFactura = new System.Windows.Forms.CheckBox();
+            this.cbCosto = new System.Windows.Forms.CheckBox();
             this.cbSerie = new System.Windows.Forms.CheckBox();
             this.cbColor = new System.Windows.Forms.CheckBox();
             this.cbModelo = new System.Windows.Forms.CheckBox();
@@ -42,9 +44,9 @@
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.btnGuardar.Location = new System.Drawing.Point(180, 202);
+            this.btnGuardar.Location = new System.Drawing.Point(180, 252);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(189, 74);
+            this.btnGuardar.Size = new System.Drawing.Size(189, 44);
             this.btnGuardar.TabIndex = 16;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -72,6 +74,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbFactura);
+            this.groupBox1.Controls.Add(this.cbCosto);
             this.groupBox1.Controls.Add(this.cbSerie);
             this.groupBox1.Controls.Add(this.cbColor);
             this.groupBox1.Controls.Add(this.cbModelo);
@@ -79,10 +83,32 @@
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 14F);
             this.groupBox1.Location = new System.Drawing.Point(24, 81);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(507, 103);
+            this.groupBox1.Size = new System.Drawing.Size(507, 154);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Obligatorios";
+            // 
+            // cbFactura
+            // 
+            this.cbFactura.AutoSize = true;
+            this.cbFactura.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.cbFactura.Location = new System.Drawing.Point(121, 102);
+            this.cbFactura.Name = "cbFactura";
+            this.cbFactura.Size = new System.Drawing.Size(103, 31);
+            this.cbFactura.TabIndex = 11;
+            this.cbFactura.Text = "Factura";
+            this.cbFactura.UseVisualStyleBackColor = true;
+            // 
+            // cbCosto
+            // 
+            this.cbCosto.AutoSize = true;
+            this.cbCosto.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.cbCosto.Location = new System.Drawing.Point(15, 102);
+            this.cbCosto.Name = "cbCosto";
+            this.cbCosto.Size = new System.Drawing.Size(85, 31);
+            this.cbCosto.TabIndex = 10;
+            this.cbCosto.Text = "Costo";
+            this.cbCosto.UseVisualStyleBackColor = true;
             // 
             // cbSerie
             // 
@@ -133,7 +159,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(549, 289);
+            this.ClientSize = new System.Drawing.Size(549, 316);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label2);
@@ -162,5 +188,7 @@
         private System.Windows.Forms.CheckBox cbColor;
         private System.Windows.Forms.CheckBox cbModelo;
         private System.Windows.Forms.CheckBox cbMarca;
+        private System.Windows.Forms.CheckBox cbFactura;
+        private System.Windows.Forms.CheckBox cbCosto;
     }
 }

@@ -92,6 +92,9 @@
             this.colsucursal.Caption = "Sucursal";
             this.colsucursal.FieldName = "sucursal";
             this.colsucursal.Name = "colsucursal";
+            this.colsucursal.OptionsColumn.AllowEdit = false;
+            this.colsucursal.OptionsColumn.AllowMove = false;
+            this.colsucursal.OptionsColumn.ReadOnly = true;
             this.colsucursal.Visible = true;
             this.colsucursal.VisibleIndex = 2;
             this.colsucursal.Width = 200;
@@ -101,6 +104,9 @@
             this.colnombre.Caption = "Nombre";
             this.colnombre.FieldName = "nombre";
             this.colnombre.Name = "colnombre";
+            this.colnombre.OptionsColumn.AllowEdit = false;
+            this.colnombre.OptionsColumn.AllowMove = false;
+            this.colnombre.OptionsColumn.ReadOnly = true;
             this.colnombre.Visible = true;
             this.colnombre.VisibleIndex = 1;
             this.colnombre.Width = 300;
@@ -112,6 +118,8 @@
             // 
             // colseleccionado
             // 
+            this.colseleccionado.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.colseleccionado.AppearanceCell.Options.UseBackColor = true;
             this.colseleccionado.Caption = " ";
             this.colseleccionado.FieldName = "seleccionado";
             this.colseleccionado.Name = "colseleccionado";

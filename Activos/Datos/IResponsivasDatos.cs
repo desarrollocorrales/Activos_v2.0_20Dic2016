@@ -28,5 +28,9 @@ namespace Activos.Datos
         List<Modelos.PersonaResponsivas> obtieneResponsables(int idResponsiva);
 
         List<Modelos.PersonaResponsivas> buscaResponsiva(string responsable, int idSuc);
+
+        bool traspasoResponsiva(int? idResponsiva, int? idPersonaAnt, int? idPersonaNueva, List<Modelos.Activos> activos, string motivo);
+
+        Modelos.Responsivas getRespXFolio(int folio);
     }
 }

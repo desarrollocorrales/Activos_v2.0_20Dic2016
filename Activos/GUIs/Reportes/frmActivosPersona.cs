@@ -134,13 +134,13 @@ namespace Activos.GUIs.Reportes
                     string descripcion = ac.descripcion.Replace("---", ";");
                     string[] array = descripcion.Split(';');
 
-                    descripcion = (!string.IsNullOrEmpty(array[0]) ? " Marca: " + array[0] + ";" : string.Empty) +
-                                  (!string.IsNullOrEmpty(array[1]) ? " Modelo: " + array[1] + ";" : string.Empty) +
-                                  (!string.IsNullOrEmpty(array[2]) ? " Núm. Serie: " + array[2] + ";" : string.Empty) +
-                                  (!string.IsNullOrEmpty(array[3]) ? " Color: " + array[3] + ";" : string.Empty) +
-                                  (!string.IsNullOrEmpty(array[4]) ? " Costo: " + array[4] + ";" : string.Empty) +
-                                  (!string.IsNullOrEmpty(array[5]) ? " Factura: " + array[5] + ";" : string.Empty) +
-                                  (!string.IsNullOrEmpty(array[6]) ? " \nDetalles: " + array[6] + ";" : string.Empty);
+                    descripcion = (!string.IsNullOrEmpty(array[0]) ? "Marca: " + array[0] + "; " : string.Empty) +
+                                  (!string.IsNullOrEmpty(array[1]) ? "Modelo: " + array[1] + ";\n" : string.Empty) +
+                                  (!string.IsNullOrEmpty(array[2]) ? "Núm. Serie: " + array[2] + ";\n" : string.Empty) +
+                                  (!string.IsNullOrEmpty(array[3]) ? "Color: " + array[3] + "; " : string.Empty) +
+                                  (!string.IsNullOrEmpty(array[4]) ? "Costo: " + array[4] + "; " : string.Empty) +
+                                  (!string.IsNullOrEmpty(array[5]) ? "Factura: " + array[5] + ";\n" : string.Empty) +
+                                  (!string.IsNullOrEmpty(array[6]) ? "Detalles: " + array[6] + ";\n" : string.Empty);
 
                     activos.Add(new Modelos.Activos
                     {
@@ -181,5 +181,17 @@ namespace Activos.GUIs.Reportes
                 MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.CadetBlue;
+                e.Appearance.ForeColor = Color.White;
+            }
+        }
+        
     }
 }

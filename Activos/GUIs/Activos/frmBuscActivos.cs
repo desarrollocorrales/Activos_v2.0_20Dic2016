@@ -366,5 +366,16 @@ namespace Activos.GUIs.AltaActivos
             }
         }
 
+        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.CadetBlue;
+                e.Appearance.ForeColor = Color.White;
+            }
+        }
+
     }
 }

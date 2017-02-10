@@ -631,8 +631,11 @@ namespace Activos.Datos
         // modifica un activo
         public bool modificActivo(int? idActivo, string nombre, string descripcion, string fechaIng)
         {
+            MySqlTransaction trans;
+
             string sql =
-                "UPDATE activos_activos SET nombrecorto = @nombre, descripcion = @desc, idusuariomodifica = @idUsModif, fechamodificacion = now(), fechaalta = @fecha " +
+                "UPDATE activos_activos SET nombrecorto = @nombre, descripcion = @desc, costo = @costo, " + 
+                "idusuariomodifica = @idUsModif, fechamodificacion = now(), fechaalta = @fecha " +
                 "where idactivo = @idActivo";
 
             bool result = true;
@@ -645,13 +648,19 @@ namespace Activos.Datos
 
                 using (var cmd = new MySqlCommand())
                 {
+                    trans = conn.BeginTransaction();
+
                     cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    decimal costo = Convert.ToDecimal(descripcion.Split('&')[4]);
 
                     // define parametros
                     cmd.Parameters.AddWithValue("@nombre", nombre);
                     cmd.Parameters.AddWithValue("@fecha", fechaIng);
                     cmd.Parameters.AddWithValue("@desc", descripcion);
                     cmd.Parameters.AddWithValue("@idActivo", idActivo);
+                    cmd.Parameters.AddWithValue("@costo", costo);
                     cmd.Parameters.AddWithValue("@idUsModif", Login.idUsuario);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
@@ -661,7 +670,12 @@ namespace Activos.Datos
                         if (rows == 0) result = false;
                     }
                     else
+                    {
+                        trans.Rollback();
                         throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    trans.Commit();
                 }
             }
 
@@ -1018,7 +1032,7 @@ namespace Activos.Datos
 
             string sql =
                 "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo, " +
-                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, a.url, " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
                         "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, m.motivo as status " +
                 "from activos_activos a " +
                 "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
@@ -1076,9 +1090,6 @@ namespace Activos.Datos
 
                                 if (res.reader["costo"] is DBNull) ent.costo = null;
                                 else ent.costo = Convert.ToDecimal(res.reader["costo"]);
-
-                                if (res.reader["url"] is DBNull) ent.url = null;
-                                else ent.url = Convert.ToString(res.reader["url"]);
 
                                 ent.status = Convert.ToString(res.reader["status"]);
 
@@ -1176,7 +1187,7 @@ namespace Activos.Datos
             return result;
         }
 
-
+        // busca activos de persona
         public List<Modelos.Activos> getBuscaActivosPersona(int idPersona, bool isBaja, bool isRepara)
         {
             List<Modelos.Activos> result = new List<Modelos.Activos>();
@@ -1251,7 +1262,7 @@ namespace Activos.Datos
             return result;
         }
 
-
+        // obtiene los cambios que ha sufrido un activo
         public List<Cambios> getCambios(int idActivo)
         {
             List<Modelos.Cambios> result = new List<Modelos.Cambios>();
@@ -1314,6 +1325,90 @@ namespace Activos.Datos
                                 ent.fecha = Convert.ToString(res.reader["fecha"]);
                                 ent.motivo = Convert.ToString(res.reader["motivo"]);
 
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // busca todos los activos de una area por sucursal
+        public List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea)
+        {
+            List<Modelos.Activos> result = new List<Modelos.Activos>();
+            Modelos.Activos ent;
+
+            string sql =
+                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo, " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
+                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo " +
+
+                "from activos_activos a " +
+                "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
+                "where s.idsucursal = @idSucu and ar.idarea = @idArea and a.status = 'A' and (rd.status = 'B' or rd.idresponsiva is null) " +
+                "order by ar.nombre, t.nombre, a.nombrecorto ";
+
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idSucu", idSucursal);
+                    cmd.Parameters.AddWithValue("@idArea", idArea);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Activos();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
+                                ent.tipo = Convert.ToString(res.reader["tipo"]);
+
+                                ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---").Trim();
+                                ent.fechaAlta = Convert.ToString(res.reader["fechaalta"]);
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
+
+                                if (res.reader["idusuarioalta"] is DBNull) ent.idUsuarioAlta = null;
+                                else ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+
+                                if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
+                                else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
+
+                                if (res.reader["fechamodificacion"] is DBNull) ent.fechaModificacion = string.Empty;
+                                else ent.fechaModificacion = Convert.ToString(res.reader["fechamodificacion"]);
+
+                                if (res.reader["costo"] is DBNull) ent.costo = null;
+                                else ent.costo = Convert.ToDecimal(res.reader["costo"]);
+                                
                                 result.Add(ent);
                             }
                     }

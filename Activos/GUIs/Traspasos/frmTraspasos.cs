@@ -159,6 +159,8 @@ namespace Activos.GUIs.Traspasos
 
                         this.btnBuscaUsuario.Enabled = false;
                         this.btnBuscaResponsiva.Enabled = false;
+
+                        this.panel1.Enabled = false;
                     }
                     else if (dialogResult == DialogResult.No) return;
 
@@ -265,6 +267,18 @@ namespace Activos.GUIs.Traspasos
 
                     if (string.IsNullOrEmpty(this.tbMotivo.Text))
                         throw new Exception("Defina un motivo del traspaso");
+
+                    if (this.tbMotivo.Text.Trim().Length < 10)
+                    {
+                        this.label7.ForeColor = System.Drawing.Color.Red;
+                        this.label7.Text = "Motivo*";
+                        throw new Exception("La longitud miníma permitida para el Motivo es de 10 carácteres");
+                    }
+                    else
+                    {
+                        this.tbMotivo.ForeColor = System.Drawing.Color.Black;
+                        this.tbMotivo.Text = "Motivo";
+                    }
 
                     string motivo = this.tbMotivo.Text;
 
@@ -439,7 +453,70 @@ namespace Activos.GUIs.Traspasos
             this.btnBuscaResponsiva.Enabled = true;
             this.btnBuscaUsuario.Enabled = true;
 
+            this.panel1.Enabled = true;
+
             this._countListTraspaso = 0;
+        }
+
+        private void tbFolio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBusFolio_Click(null, null);
+            }
+        }
+
+        private void btnBusFolio_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // validacion
+                if (string.IsNullOrEmpty(this.tbFolio.Text))
+                    throw new Exception("Defina un folio");
+
+                int folio = Convert.ToInt16(this.tbFolio.Text);
+
+                // obtiene responsables
+                Modelos.RespPorFolio respFolio = this._responsivasNegocio.obtieneRespXFolio(folio);
+
+                if (respFolio == null)
+                {
+                    this.gcActivos.DataSource = null;
+                    this.ActiveControl = this.tbFolio;
+                    this.tbFolio.SelectAll();
+
+                    this.tbResponsable.Text = string.Empty;
+                    this.tbPuesto.Text = string.Empty;
+                    this.tbSucursal.Text = string.Empty;
+
+                    throw new Exception("Sin resultados");
+                }
+
+                this.gcActivos.DataSource = null;
+                this.ActiveControl = this.tbFolio;
+                this.tbFolio.SelectAll();
+
+
+                this.tbResponsable.Text = respFolio.responsiva.responsable;
+                this.tbPuesto.Text = respFolio.responsiva.puesto;
+                this.tbSucursal.Text = respFolio.responsiva.sucursal;
+
+                this._idResponsiva = respFolio.responsiva.idResponsiva;
+                this._idUsuario = respFolio.responsiva.idPersona;
+
+                // llena el grid con los puestos disponibles
+                this.gcActivos.DataSource = respFolio.activos;
+                this._activos = respFolio.activos;
+
+                if (this.gridView1.RowCount != 0)
+                    this.gridView1.UnselectRow(0);
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Activos.GUIs.Personas
         {
             InitializeComponent();
             this._catalogosNegocio = new CatalogosNegocio();
+
         }
 
         private void frmModifPer_Load(object sender, EventArgs e)
@@ -66,6 +67,11 @@ namespace Activos.GUIs.Personas
                 this.cmbPuestoModif.ValueMember = "idPuesto";
                 this.cmbPuestoModif.DataSource = puestos;
                 this.cmbPuestoModif.SelectedIndex = -1;
+
+
+                this.gcBaja.DataSource = new List<Modelos.Personas>();
+                this.gcActiva.DataSource = new List<Modelos.Personas>();
+
             }
             catch (Exception Ex)
             {
@@ -329,7 +335,7 @@ namespace Activos.GUIs.Personas
                 bool resultado = this._catalogosNegocio.bajaPersonas(seleccionados);
 
                 if (resultado)
-                    MessageBox.Show("Persona (s) eliminada (s) correctamente", "Personas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Persona (s) dada (s) de baja correctamente", "Personas", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // llena el grid con los tipos disponibles
                 this.gcBaja.DataSource = this._catalogosNegocio.getPersonas(this._paramBusq, "A");
@@ -384,6 +390,8 @@ namespace Activos.GUIs.Personas
         {
             try
             {
+                if (this.gridView3.DataSource == null) return;
+
                 List<Modelos.Personas> personas = (List<Modelos.Personas>)this.gridView3.DataSource;
 
                 // obtiene los ids de las personas seleccionadas
@@ -408,5 +416,17 @@ namespace Activos.GUIs.Personas
         }
 
         #endregion
+
+        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.CadetBlue;
+                e.Appearance.ForeColor = Color.White;
+            }
+        }
+        
     }
 }

@@ -143,7 +143,7 @@ namespace Activos
 
                     Modelos.Login.empresa = this.tbEmpresa.Text;
 
-                    MessageBox.Show("Se cargó correctamente la información", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Se cargó correctamente la información", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this._correcto = true;
                     this.Close();
                 }
@@ -173,9 +173,13 @@ namespace Activos
 
                 this._catalogosNegocio = new CatalogosNegocio();
 
+                Modelos.Login.idSucursal = 0; 
+
                 List<Modelos.Sucursales> sucursales = this._catalogosNegocio.getSucursales("A");
 
-                MessageBox.Show("Conexión Exitosa!!!", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Modelos.Login.idSucursal = null;
+
+                MessageBox.Show("Conexión Exitosa!!!", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this._pruebaCon = true;
             }

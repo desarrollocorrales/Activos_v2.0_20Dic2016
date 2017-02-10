@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.tbSucursalSelec = new System.Windows.Forms.TextBox();
             this.tbPuestoSelec = new System.Windows.Forms.TextBox();
             this.tbUsuarioSelec = new System.Windows.Forms.TextBox();
@@ -42,12 +43,11 @@
             this.colnomUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colpuesto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsucursal = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.tbUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbAgregaResp = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbObservaciones = new System.Windows.Forms.Label();
             this.tbObservaciones = new System.Windows.Forms.TextBox();
             this.btnCreaResp = new System.Windows.Forms.Button();
             this.gcActivos = new DevExpress.XtraGrid.GridControl();
@@ -98,6 +98,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Personas";
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(403, 64);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(124, 40);
+            this.btnBuscar.TabIndex = 2;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // tbSucursalSelec
             // 
@@ -171,6 +181,7 @@
             this.gridView1.GridControl = this.gcUsuarios;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             // 
             // colidUsuario
             // 
@@ -210,16 +221,6 @@
             this.colsucursal.Visible = true;
             this.colsucursal.VisibleIndex = 2;
             // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Location = new System.Drawing.Point(403, 64);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(124, 40);
-            this.btnBuscar.TabIndex = 2;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
             // tbUsuario
             // 
             this.tbUsuario.Location = new System.Drawing.Point(24, 70);
@@ -240,7 +241,7 @@
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox2.Controls.Add(this.cbAgregaResp);
-            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.lbObservaciones);
             this.groupBox2.Controls.Add(this.tbObservaciones);
             this.groupBox2.Controls.Add(this.btnCreaResp);
             this.groupBox2.Controls.Add(this.gcActivos);
@@ -255,21 +256,21 @@
             // cbAgregaResp
             // 
             this.cbAgregaResp.AutoSize = true;
-            this.cbAgregaResp.Location = new System.Drawing.Point(79, 409);
+            this.cbAgregaResp.Location = new System.Drawing.Point(21, 408);
             this.cbAgregaResp.Name = "cbAgregaResp";
-            this.cbAgregaResp.Size = new System.Drawing.Size(215, 27);
+            this.cbAgregaResp.Size = new System.Drawing.Size(313, 27);
             this.cbAgregaResp.TabIndex = 12;
-            this.cbAgregaResp.Text = "Agregar Responsables";
+            this.cbAgregaResp.Text = "Agregar Responsables Adicionales";
             this.cbAgregaResp.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // lbObservaciones
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 291);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 23);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Observaciones";
+            this.lbObservaciones.AutoSize = true;
+            this.lbObservaciones.Location = new System.Drawing.Point(8, 291);
+            this.lbObservaciones.Name = "lbObservaciones";
+            this.lbObservaciones.Size = new System.Drawing.Size(130, 23);
+            this.lbObservaciones.TabIndex = 11;
+            this.lbObservaciones.Text = "Observaciones";
             // 
             // tbObservaciones
             // 
@@ -283,7 +284,7 @@
             // 
             // btnCreaResp
             // 
-            this.btnCreaResp.Location = new System.Drawing.Point(300, 400);
+            this.btnCreaResp.Location = new System.Drawing.Point(358, 400);
             this.btnCreaResp.Name = "btnCreaResp";
             this.btnCreaResp.Size = new System.Drawing.Size(186, 41);
             this.btnCreaResp.TabIndex = 2;
@@ -517,7 +518,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colnumEtiqueta;
         private DevExpress.XtraGrid.Columns.GridColumn colclaveActivo;
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbObservaciones;
         private System.Windows.Forms.TextBox tbObservaciones;
         private System.Windows.Forms.TextBox tbSucursalSelec;
         private System.Windows.Forms.TextBox tbPuestoSelec;

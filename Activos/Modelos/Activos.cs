@@ -30,7 +30,6 @@ namespace Activos.Modelos
         public string numEtiqueta { get; set; }
         public string claveActivo { get; set; }
 
-        public string url { get; set; }
         public string status { get; set; }
 
         public string accion { get; set; }

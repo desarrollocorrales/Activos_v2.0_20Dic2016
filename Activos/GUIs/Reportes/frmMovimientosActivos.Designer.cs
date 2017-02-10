@@ -95,7 +95,7 @@
             // tbResultCveActivo
             // 
             this.tbResultCveActivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbResultCveActivo.Location = new System.Drawing.Point(657, 494);
+            this.tbResultCveActivo.Location = new System.Drawing.Point(468, 494);
             this.tbResultCveActivo.Name = "tbResultCveActivo";
             this.tbResultCveActivo.ReadOnly = true;
             this.tbResultCveActivo.Size = new System.Drawing.Size(110, 30);
@@ -106,7 +106,7 @@
             // tbResultNumEtiqueta
             // 
             this.tbResultNumEtiqueta.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbResultNumEtiqueta.Location = new System.Drawing.Point(384, 494);
+            this.tbResultNumEtiqueta.Location = new System.Drawing.Point(195, 494);
             this.tbResultNumEtiqueta.Name = "tbResultNumEtiqueta";
             this.tbResultNumEtiqueta.ReadOnly = true;
             this.tbResultNumEtiqueta.Size = new System.Drawing.Size(146, 30);
@@ -117,7 +117,7 @@
             // tbResultNombre
             // 
             this.tbResultNombre.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbResultNombre.Location = new System.Drawing.Point(322, 454);
+            this.tbResultNombre.Location = new System.Drawing.Point(133, 454);
             this.tbResultNombre.Name = "tbResultNombre";
             this.tbResultNombre.ReadOnly = true;
             this.tbResultNombre.Size = new System.Drawing.Size(444, 30);
@@ -127,7 +127,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(240, 497);
+            this.label5.Location = new System.Drawing.Point(51, 497);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(138, 23);
             this.label5.TabIndex = 33;
@@ -137,7 +137,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(543, 497);
+            this.label4.Location = new System.Drawing.Point(354, 497);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 23);
             this.label4.TabIndex = 32;
@@ -147,7 +147,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(240, 457);
+            this.label2.Location = new System.Drawing.Point(51, 457);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 23);
             this.label2.TabIndex = 30;
@@ -156,7 +156,7 @@
             // gridControl1
             // 
             this.gridControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.gridControl1.Location = new System.Drawing.Point(195, 328);
+            this.gridControl1.Location = new System.Drawing.Point(6, 328);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(614, 116);
@@ -181,6 +181,8 @@
             this.gridView2.GridControl = this.gridControl1;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView2_RowCellClick);
+            this.gridView2.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView2_RowCellStyle);
             // 
             // gridColumn1
             // 
@@ -260,7 +262,7 @@
             // 
             this.rbPCA.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rbPCA.AutoSize = true;
-            this.rbPCA.Location = new System.Drawing.Point(815, 65);
+            this.rbPCA.Location = new System.Drawing.Point(626, 65);
             this.rbPCA.Name = "rbPCA";
             this.rbPCA.Size = new System.Drawing.Size(160, 27);
             this.rbPCA.TabIndex = 27;
@@ -272,7 +274,7 @@
             // 
             this.rbPNE.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rbPNE.AutoSize = true;
-            this.rbPNE.Location = new System.Drawing.Point(815, 44);
+            this.rbPNE.Location = new System.Drawing.Point(626, 44);
             this.rbPNE.Name = "rbPNE";
             this.rbPNE.Size = new System.Drawing.Size(182, 27);
             this.rbPNE.TabIndex = 26;
@@ -284,7 +286,7 @@
             // 
             this.rbPN.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rbPN.AutoSize = true;
-            this.rbPN.Location = new System.Drawing.Point(815, 23);
+            this.rbPN.Location = new System.Drawing.Point(626, 23);
             this.rbPN.Name = "rbPN";
             this.rbPN.Size = new System.Drawing.Size(128, 27);
             this.rbPN.TabIndex = 25;
@@ -297,7 +299,7 @@
             this.gbPNE.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gbPNE.Controls.Add(this.tbNumEtiqueta);
             this.gbPNE.Controls.Add(this.btnBuscarPNE);
-            this.gbPNE.Location = new System.Drawing.Point(505, 210);
+            this.gbPNE.Location = new System.Drawing.Point(316, 210);
             this.gbPNE.Name = "gbPNE";
             this.gbPNE.Size = new System.Drawing.Size(304, 112);
             this.gbPNE.TabIndex = 23;
@@ -326,7 +328,7 @@
             this.gbPCA.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gbPCA.Controls.Add(this.tbCveActivo);
             this.gbPCA.Controls.Add(this.btnBuscarPCA);
-            this.gbPCA.Location = new System.Drawing.Point(195, 210);
+            this.gbPCA.Location = new System.Drawing.Point(6, 210);
             this.gbPCA.Name = "gbPCA";
             this.gbPCA.Size = new System.Drawing.Size(304, 112);
             this.gbPCA.TabIndex = 22;
@@ -362,7 +364,7 @@
             this.gbPTN.Controls.Add(this.tbNombre);
             this.gbPTN.Controls.Add(this.label1);
             this.gbPTN.Controls.Add(this.cmbTipo);
-            this.gbPTN.Location = new System.Drawing.Point(195, 12);
+            this.gbPTN.Location = new System.Drawing.Point(6, 12);
             this.gbPTN.Name = "gbPTN";
             this.gbPTN.Size = new System.Drawing.Size(614, 192);
             this.gbPTN.TabIndex = 21;
@@ -383,7 +385,7 @@
             this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSucursal.DropDownWidth = 400;
             this.cmbSucursal.FormattingEnabled = true;
-            this.cmbSucursal.Location = new System.Drawing.Point(22, 52);
+            this.cmbSucursal.Location = new System.Drawing.Point(20, 53);
             this.cmbSucursal.Name = "cmbSucursal";
             this.cmbSucursal.Size = new System.Drawing.Size(279, 31);
             this.cmbSucursal.TabIndex = 7;
@@ -457,7 +459,7 @@
             // 
             this.gcCambios.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcCambios.DataSource = this.cambiosBindingSource;
-            this.gcCambios.Location = new System.Drawing.Point(195, 535);
+            this.gcCambios.Location = new System.Drawing.Point(6, 535);
             this.gcCambios.MainView = this.gridView1;
             this.gcCambios.Name = "gcCambios";
             this.gcCambios.Size = new System.Drawing.Size(614, 171);
@@ -572,7 +574,8 @@
             // 
             // btnVistaPrevia
             // 
-            this.btnVistaPrevia.Location = new System.Drawing.Point(629, 725);
+            this.btnVistaPrevia.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVistaPrevia.Location = new System.Drawing.Point(440, 723);
             this.btnVistaPrevia.Name = "btnVistaPrevia";
             this.btnVistaPrevia.Size = new System.Drawing.Size(163, 34);
             this.btnVistaPrevia.TabIndex = 39;
@@ -584,7 +587,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 781);
+            this.ClientSize = new System.Drawing.Size(628, 774);
             this.Controls.Add(this.btnVistaPrevia);
             this.Controls.Add(this.rbPNE);
             this.Controls.Add(this.gcCambios);

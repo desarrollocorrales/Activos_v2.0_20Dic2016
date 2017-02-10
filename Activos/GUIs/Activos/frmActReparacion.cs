@@ -70,6 +70,18 @@ namespace Activos.GUIs.AltaActivos
 
                 string fechaFin = this.dtpFechaFin.Value.ToString("yyyy-MM-dd");
 
+                if (this.tbObservAct.Text.Trim().Length < 10)
+                {
+                    this.tbObservAct.ForeColor = System.Drawing.Color.Red;
+                    this.tbObservAct.Text = "Observaciones de la Activación*";
+                    throw new Exception("La longitud miníma permitida para las observaciones es de 10 carácteres");
+                }
+                else
+                {
+                    this.tbObservAct.ForeColor = System.Drawing.Color.Black;
+                    this.tbObservAct.Text = "Observaciones de la Activación";
+                }
+
                 string observAct = this.tbObservAct.Text;
 
                 bool resultado = this._activosNegocio.actActivoReparacion(this._idReparacion, observAct, fechaFin, this._idActivo);

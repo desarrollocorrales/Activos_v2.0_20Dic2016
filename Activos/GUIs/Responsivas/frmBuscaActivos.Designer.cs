@@ -340,6 +340,8 @@
             // 
             // colseleccionado
             // 
+            this.colseleccionado.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.colseleccionado.AppearanceCell.Options.UseBackColor = true;
             this.colseleccionado.Caption = " ";
             this.colseleccionado.FieldName = "seleccionado";
             this.colseleccionado.Name = "colseleccionado";
@@ -558,6 +560,8 @@
             // 
             // gridColumn1
             // 
+            this.gridColumn1.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridColumn1.AppearanceCell.Options.UseBackColor = true;
             this.gridColumn1.Caption = " ";
             this.gridColumn1.FieldName = "seleccionado";
             this.gridColumn1.Name = "gridColumn1";

@@ -38,9 +38,9 @@
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.btnGuardar.Location = new System.Drawing.Point(191, 153);
+            this.btnGuardar.Location = new System.Drawing.Point(191, 127);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(189, 74);
+            this.btnGuardar.Size = new System.Drawing.Size(189, 43);
             this.btnGuardar.TabIndex = 11;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -51,15 +51,15 @@
             this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSucursal.DropDownWidth = 400;
             this.cmbSucursal.FormattingEnabled = true;
-            this.cmbSucursal.Location = new System.Drawing.Point(132, 90);
+            this.cmbSucursal.Location = new System.Drawing.Point(132, 75);
             this.cmbSucursal.Name = "cmbSucursal";
-            this.cmbSucursal.Size = new System.Drawing.Size(398, 33);
+            this.cmbSucursal.Size = new System.Drawing.Size(416, 33);
             this.cmbSucursal.TabIndex = 10;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 93);
+            this.label3.Location = new System.Drawing.Point(20, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 27);
             this.label3.TabIndex = 9;
@@ -80,7 +80,7 @@
             this.tbNombre.Location = new System.Drawing.Point(132, 26);
             this.tbNombre.MaxLength = 250;
             this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(398, 33);
+            this.tbNombre.Size = new System.Drawing.Size(416, 33);
             this.tbNombre.TabIndex = 7;
             // 
             // frmModifPuestos
@@ -88,7 +88,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(571, 251);
+            this.ClientSize = new System.Drawing.Size(571, 190);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbSucursal);
             this.Controls.Add(this.label3);

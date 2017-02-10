@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Activos", "Activos.csproj", "{60573D6D-9CEC-4EF3-869A-45FAC3A962BC}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ActivosSetup", "ActivosSetup\ActivosSetup.vdproj", "{6F205B38-FCF6-4F90-9956-0EE155394572}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,8 @@ Global
 		{60573D6D-9CEC-4EF3-869A-45FAC3A962BC}.Debug|x86.Build.0 = Debug|x86
 		{60573D6D-9CEC-4EF3-869A-45FAC3A962BC}.Release|x86.ActiveCfg = Release|x86
 		{60573D6D-9CEC-4EF3-869A-45FAC3A962BC}.Release|x86.Build.0 = Release|x86
+		{6F205B38-FCF6-4F90-9956-0EE155394572}.Debug|x86.ActiveCfg = Debug
+		{6F205B38-FCF6-4F90-9956-0EE155394572}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

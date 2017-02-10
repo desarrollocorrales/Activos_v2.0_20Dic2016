@@ -434,7 +434,7 @@ namespace Activos
         {
             try
             {
-                frmBajaResponsiva child = new frmBajaResponsiva();
+                frmTraspasarResponsiva child = new frmTraspasarResponsiva();
 
                 this.validaFormsDuplicados(child.GetType());
 
@@ -646,6 +646,25 @@ namespace Activos
             try
             {
                 frmMovimientosActivos child = new frmMovimientosActivos();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void actSinRespToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmActivosSinResp child = new frmActivosSinResp();
 
                 this.validaFormsDuplicados(child.GetType());
 

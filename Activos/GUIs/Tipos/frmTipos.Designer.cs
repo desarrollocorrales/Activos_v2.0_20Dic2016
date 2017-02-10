@@ -32,8 +32,8 @@
             this.btnActivar = new System.Windows.Forms.Button();
             this.btnElimSel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbFactura = new System.Windows.Forms.CheckBox();
+            this.cbCosto = new System.Windows.Forms.CheckBox();
             this.cbSerie = new System.Windows.Forms.CheckBox();
             this.cbColor = new System.Windows.Forms.CheckBox();
             this.cbModelo = new System.Windows.Forms.CheckBox();
@@ -51,9 +51,9 @@
             this.colcolor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colserie = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnAgregar = new System.Windows.Forms.Button();
             this.colcosto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colfactura = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcTipos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tiposBindingSource)).BeginInit();
@@ -82,15 +82,15 @@
             this.btnElimSel.Size = new System.Drawing.Size(239, 41);
             this.btnElimSel.TabIndex = 1;
             this.btnElimSel.Tag = "45";
-            this.btnElimSel.Text = "Eliminar seleccionado(s)";
+            this.btnElimSel.Text = "Baja seleccionado(s)";
             this.btnElimSel.UseVisualStyleBackColor = true;
             this.btnElimSel.Click += new System.EventHandler(this.btnElimSel_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.cbFactura);
+            this.groupBox1.Controls.Add(this.cbCosto);
             this.groupBox1.Controls.Add(this.cbSerie);
             this.groupBox1.Controls.Add(this.cbColor);
             this.groupBox1.Controls.Add(this.cbModelo);
@@ -103,27 +103,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Obligatorios";
             // 
-            // checkBox2
+            // cbFactura
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.checkBox2.Location = new System.Drawing.Point(121, 106);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(103, 31);
-            this.checkBox2.TabIndex = 9;
-            this.checkBox2.Text = "Factura";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cbFactura.AutoSize = true;
+            this.cbFactura.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.cbFactura.Location = new System.Drawing.Point(121, 106);
+            this.cbFactura.Name = "cbFactura";
+            this.cbFactura.Size = new System.Drawing.Size(103, 31);
+            this.cbFactura.TabIndex = 9;
+            this.cbFactura.Text = "Factura";
+            this.cbFactura.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // cbCosto
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.checkBox1.Location = new System.Drawing.Point(15, 106);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(85, 31);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Costo";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbCosto.AutoSize = true;
+            this.cbCosto.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.cbCosto.Location = new System.Drawing.Point(15, 106);
+            this.cbCosto.Name = "cbCosto";
+            this.cbCosto.Size = new System.Drawing.Size(85, 31);
+            this.cbCosto.TabIndex = 8;
+            this.cbCosto.Text = "Costo";
+            this.cbCosto.UseVisualStyleBackColor = true;
             // 
             // cbSerie
             // 
@@ -231,6 +231,8 @@
             // 
             // colseleccionado
             // 
+            this.colseleccionado.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.colseleccionado.AppearanceCell.Options.UseBackColor = true;
             this.colseleccionado.Caption = " ";
             this.colseleccionado.FieldName = "seleccionado";
             this.colseleccionado.Name = "colseleccionado";
@@ -316,19 +318,6 @@
             this.colstatus.FieldName = "status";
             this.colstatus.Name = "colstatus";
             // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(190, 242);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(186, 41);
-            this.btnAgregar.TabIndex = 6;
-            this.btnAgregar.Tag = "43";
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
             // colcosto
             // 
             this.colcosto.Caption = "Costo";
@@ -352,6 +341,19 @@
             this.colfactura.Visible = true;
             this.colfactura.VisibleIndex = 7;
             this.colfactura.Width = 40;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(190, 242);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(186, 41);
+            this.btnAgregar.TabIndex = 6;
+            this.btnAgregar.Tag = "43";
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // frmTipos
             // 
@@ -402,8 +404,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colcolor;
         private DevExpress.XtraGrid.Columns.GridColumn colserie;
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbFactura;
+        private System.Windows.Forms.CheckBox cbCosto;
         private DevExpress.XtraGrid.Columns.GridColumn colcosto;
         private DevExpress.XtraGrid.Columns.GridColumn colfactura;
     }
