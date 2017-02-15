@@ -63,9 +63,6 @@ namespace Activos.GUIs.Sucursales
                 if (string.IsNullOrEmpty(this.tbNombreSuc.Text))
                     throw new Exception("Llene el nombre de la sucursal");
 
-                if (this.cmbResponsable.SelectedIndex == -1)
-                    throw new Exception("Seleccione un responsable");
-
                 string sucNom = this.tbNombreSuc.Text;
 
                 int? idResp = null;

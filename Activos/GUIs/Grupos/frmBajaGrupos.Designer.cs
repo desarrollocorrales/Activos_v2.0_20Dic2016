@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBajaGrupos));
             this.gcActivos = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colseleccionado = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -285,6 +286,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBuscar);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmBajaGrupos";
             this.Text = "Baja Grupos";

@@ -5,6 +5,8 @@ using System.Text;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.IO;
+using System.Drawing;
 
 namespace Activos.Modelos
 {
@@ -41,6 +43,30 @@ namespace Activos.Modelos
 
     public static class Utilerias
     {
+        // convierte en arreglo de bytes una imagen  en un PictureBox
+        public static byte[] ImageToByte(Image img)
+        {
+            MemoryStream ms = new MemoryStream();
+
+            img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            byte[] bytes = ms.ToArray();
+
+            ms.Dispose();
+
+            return ms.ToArray();
+        }
+
+        // convierte una arreglo de bytes en imagen para poder mostrarla en un PictureBox
+        public static Bitmap ByteToImage(byte[] blob)
+        {
+            MemoryStream mStream = new MemoryStream();
+            byte[] pData = blob;
+            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+            Bitmap bm = new Bitmap(mStream, false);
+            mStream.Dispose();
+            return bm;
+        }
+
         // valida si es ip una cadena
         public static bool esIp(string cadena)
         {

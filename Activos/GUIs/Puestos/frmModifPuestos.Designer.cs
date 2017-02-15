@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModifPuestos));
             this.btnGuardar = new System.Windows.Forms.Button();
             this.cmbSucursal = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -96,6 +97,7 @@
             this.Controls.Add(this.tbNombre);
             this.Font = new System.Drawing.Font("Tahoma", 16F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmModifPuestos";
             this.Text = "Modificar Puestos";

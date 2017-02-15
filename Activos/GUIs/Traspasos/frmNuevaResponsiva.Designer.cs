@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevaResponsiva));
             this.tbPuestoT = new System.Windows.Forms.TextBox();
             this.tbSucursalT = new System.Windows.Forms.TextBox();
             this.tbResponsableT = new System.Windows.Forms.TextBox();
@@ -345,6 +346,7 @@
             this.Controls.Add(this.label6);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "frmNuevaResponsiva";

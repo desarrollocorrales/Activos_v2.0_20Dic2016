@@ -169,6 +169,10 @@ namespace Activos.GUIs.Reportes
                 responsiva.responsable = this._responsiva.nombre;
                 responsiva.sucursal = this._responsiva.sucursal;
 
+                // obtiene logo
+                Modelos.Logo logo = this._responsivasNegocio.obtieneLogo("reportes");
+
+                form._logo = logo;
                 form._activos = activos;
                 form._responsivas = responsiva;
 

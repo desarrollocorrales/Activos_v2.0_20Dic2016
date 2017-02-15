@@ -116,5 +116,18 @@ namespace Activos.Negocio
 
 
         List<PersonaResponsivas> busquedaUsuarios(string usuario);
+
+        /* ************ L O G O S ************ */
+        List<Modelos.UsoLogos> getUsosLogos();
+
+        List<Logo> getLogos(int idUso, string status);
+
+        bool seleccionarLogo(int idLogo, UsoLogos uso);
+
+        bool subirLogo(UsoLogos uso, string nombre, string descripcion, string observaciones, bool seleccionar, byte[] logo);
+
+        string getUrl(string clave);
+
+        string getSucursal(int? idPersona);
     }
 }

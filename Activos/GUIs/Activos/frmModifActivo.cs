@@ -242,5 +242,10 @@ namespace Activos.GUIs.AltaActivos
 
             return result;
         }
+
+        private void tbCosto_Leave(object sender, EventArgs e)
+        {
+            this.tbCosto.Text = this.tbCosto.Text.Replace(",", "");
+        }
     }
 }

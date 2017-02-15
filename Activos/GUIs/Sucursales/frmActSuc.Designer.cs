@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActSuc));
             this.bntCerrar = new System.Windows.Forms.Button();
             this.btnActiva = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -167,6 +168,7 @@
             this.Controls.Add(this.bntCerrar);
             this.Font = new System.Drawing.Font("Tahoma", 16F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "frmActSuc";

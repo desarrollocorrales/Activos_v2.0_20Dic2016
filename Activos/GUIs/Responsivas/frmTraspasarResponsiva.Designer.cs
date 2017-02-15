@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTraspasarResponsiva));
             this.tbPuesto = new System.Windows.Forms.TextBox();
             this.tbSucursal = new System.Windows.Forms.TextBox();
             this.tbResponsable = new System.Windows.Forms.TextBox();
@@ -470,6 +471,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBuscaResponsiva);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmTraspasarResponsiva";
             this.Text = "Traspasar Responsiva";

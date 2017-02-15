@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActUs));
             this.gcUsuariosBaja = new DevExpress.XtraGrid.GridControl();
             this.usuariosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -211,6 +212,7 @@
             this.Controls.Add(this.gcUsuariosBaja);
             this.Controls.Add(this.btnActiva);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmActUs";
             this.Text = "Activar Usuarios";
             this.Load += new System.EventHandler(this.frmActUs_Load);

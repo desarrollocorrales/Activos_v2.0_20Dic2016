@@ -181,5 +181,68 @@ namespace Activos.Datos
 
             return result;
         }
+
+
+        public bool guardaUrl(string url, bool nuevaUrl)
+        {
+            MySqlTransaction trans;
+
+            bool result = true;
+
+            string sql = string.Empty;
+
+            int rows = 0;
+            string error = string.Empty;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand())
+                {
+
+                    trans = conn.BeginTransaction();
+
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    if (nuevaUrl)
+                    {
+                        sql = 
+                            "insert into activos_configuracion (descripcion, clave, valor) " +
+                            "values('URL DE IMAGENES EN EL SERVIDOR', 'url', @valor)";
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@valor", url);
+
+                        ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                        if (!res.ok)
+                        {
+                            trans.Rollback();
+                            throw new Exception(res.numErr + ": " + res.descErr);
+                        }
+                    }
+                    else
+                    {
+                        sql = "update activos_configuracion set valor = @valor where clave = 'url' ";
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@valor", url);
+
+                        ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
+
+                        if (!res.ok)
+                        {
+                            trans.Rollback();
+                            throw new Exception(res.numErr + ": " + res.descErr);
+                        }
+                    }
+
+                    trans.Commit();
+                }
+            }
+
+            return result;
+        }
     }
 }

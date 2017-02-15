@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActivosPersona));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -54,8 +55,6 @@
             this.colclaveActivo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colstatus1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnVistaPrevia = new System.Windows.Forms.Button();
-            this.cbBajas = new System.Windows.Forms.CheckBox();
-            this.cbReparacion = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gcResponsables = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -64,6 +63,8 @@
             this.colpuesto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsucursal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbBajas = new System.Windows.Forms.CheckBox();
+            this.cbReparacion = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gcActivos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -277,26 +278,6 @@
             this.btnVistaPrevia.UseVisualStyleBackColor = true;
             this.btnVistaPrevia.Click += new System.EventHandler(this.btnVistaPrevia_Click);
             // 
-            // cbBajas
-            // 
-            this.cbBajas.AutoSize = true;
-            this.cbBajas.Location = new System.Drawing.Point(100, 29);
-            this.cbBajas.Name = "cbBajas";
-            this.cbBajas.Size = new System.Drawing.Size(73, 27);
-            this.cbBajas.TabIndex = 21;
-            this.cbBajas.Text = "Bajas";
-            this.cbBajas.UseVisualStyleBackColor = true;
-            // 
-            // cbReparacion
-            // 
-            this.cbReparacion.AutoSize = true;
-            this.cbReparacion.Location = new System.Drawing.Point(253, 29);
-            this.cbReparacion.Name = "cbReparacion";
-            this.cbReparacion.Size = new System.Drawing.Size(141, 27);
-            this.cbReparacion.TabIndex = 22;
-            this.cbReparacion.Text = "Reparaciones";
-            this.cbReparacion.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -386,6 +367,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Búsqueda";
             // 
+            // cbBajas
+            // 
+            this.cbBajas.AutoSize = true;
+            this.cbBajas.Location = new System.Drawing.Point(119, 29);
+            this.cbBajas.Name = "cbBajas";
+            this.cbBajas.Size = new System.Drawing.Size(73, 27);
+            this.cbBajas.TabIndex = 23;
+            this.cbBajas.Text = "Bajas";
+            this.cbBajas.UseVisualStyleBackColor = true;
+            // 
+            // cbReparacion
+            // 
+            this.cbReparacion.AutoSize = true;
+            this.cbReparacion.Location = new System.Drawing.Point(232, 29);
+            this.cbReparacion.Name = "cbReparacion";
+            this.cbReparacion.Size = new System.Drawing.Size(141, 27);
+            this.cbReparacion.TabIndex = 24;
+            this.cbReparacion.Text = "Reparaciones";
+            this.cbReparacion.UseVisualStyleBackColor = true;
+            // 
             // frmActivosPersona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -399,6 +400,7 @@
             this.Controls.Add(this.tbRespDe);
             this.Controls.Add(this.gcActivos);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmActivosPersona";
             this.Text = "Reporte de Activos por Persona";
@@ -444,8 +446,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colclaveActivo;
         private DevExpress.XtraGrid.Columns.GridColumn colstatus1;
         private System.Windows.Forms.Button btnVistaPrevia;
-        private System.Windows.Forms.CheckBox cbBajas;
-        private System.Windows.Forms.CheckBox cbReparacion;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraGrid.GridControl gcResponsables;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -454,6 +454,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colpuesto;
         private DevExpress.XtraGrid.Columns.GridColumn colsucursal;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox cbBajas;
+        private System.Windows.Forms.CheckBox cbReparacion;
 
     }
 }

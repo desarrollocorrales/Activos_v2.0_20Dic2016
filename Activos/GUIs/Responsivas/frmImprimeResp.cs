@@ -18,6 +18,7 @@ namespace Activos.GUIs.Responsivas
 {
     public partial class frmImprimeResp : Form
     {
+        ICatalogosNegocio _catalogosNegocio;
 
         private Modelos.Responsivas _responsiva = null;
         private List<Modelos.Activos> _activos = new List<Modelos.Activos>();
@@ -28,6 +29,7 @@ namespace Activos.GUIs.Responsivas
         {
             InitializeComponent();
             this._responsivasNegocio = new ResponsivasNegocio();
+            this._catalogosNegocio = new CatalogosNegocio();
         }
 
         private void btnBuscaResponsiva_Click(object sender, EventArgs e)
@@ -43,6 +45,8 @@ namespace Activos.GUIs.Responsivas
                     this.tbResponsable.Text = form._responsiva.responsable;
                     this.tbPuesto.Text = form._responsiva.puesto;
                     this.tbSucursal.Text = form._responsiva.sucursal;
+
+                    this.tbFolio.Text = form._responsiva.idResponsiva.ToString();
 
                     this._responsiva = form._responsiva;
 
@@ -113,7 +117,10 @@ namespace Activos.GUIs.Responsivas
                 // obtiene responsables
                 List<Modelos.PersonaResponsivas> responsables = this._responsivasNegocio.obtieneResponsables(this._responsiva.idResponsiva);
 
+                // obtiene logo
+                Modelos.Logo logo = this._responsivasNegocio.obtieneLogo("reportes");
 
+                form._logo = logo;
                 form._responsables = responsables;
                 form._activos = activos;
                 form._responsivas = this._responsiva;
@@ -140,9 +147,11 @@ namespace Activos.GUIs.Responsivas
                 string comando = this._responsivasNegocio.getBuscaComandoEt("activo");
 
                 if (string.IsNullOrEmpty(comando))
-                    throw new Exception("No se encotró un comando para la etiqueta");
+                    throw new Exception("No se encontró un comando para la etiqueta");
 
-                string url = ConfigurationManager.AppSettings["url"];
+                // string url = ConfigurationManager.AppSettings["url"];
+
+                string url = this._catalogosNegocio.getUrl("url");
 
                 foreach (Modelos.Activos ac in this._activos)
                 {
@@ -154,7 +163,7 @@ namespace Activos.GUIs.Responsivas
                     comEtiqueta = comEtiqueta.Replace("|nombrecorto|", ac.nombreCorto);
                     comEtiqueta = comEtiqueta.Replace("0000000000000", ac.numEtiqueta);
                     // comEtiqueta = comEtiqueta.Replace("|url|", ac.url);
-                    comEtiqueta = comEtiqueta.Replace("|url|", string.Format(url, ac.idActivo));
+                    comEtiqueta = comEtiqueta.Replace("|url|", string.Format(url + "{0}", ac.idActivo));
                     comEtiqueta = comEtiqueta.Replace("|empresa|", Modelos.Login.empresa);
 
                     sbComandos.AppendLine(comEtiqueta);

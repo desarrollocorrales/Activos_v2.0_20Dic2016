@@ -77,3 +77,8 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.csprojResolveAsse
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Reportes.frmActivosSinResp.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmTraspasarResponsiva.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmBuscaPersona.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Imagenes.frmEtiquetas.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Imagenes.frmConfig.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmReimpresionEtiquetas.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Reportes.frmResponsivasSucursal.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Reportes.frmReporteResponsivasSucursal.resources

@@ -234,5 +234,10 @@ namespace Activos.GUIs.AltaActivos
             this.cmbArea.ValueMember = "idArea";
         }
 
+        private void tbCosto_Leave(object sender, EventArgs e)
+        {
+            this.tbCosto.Text = this.tbCosto.Text.Replace(",","");
+        }
+
     }
 }

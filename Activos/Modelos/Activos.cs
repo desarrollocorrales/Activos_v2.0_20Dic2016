@@ -48,6 +48,7 @@ namespace Activos.Modelos
         public string sucursal { get; set; }
 
         public string usuario { get; set; }
+        public int? idPersona { get; set; }
         public string fecha { get; set; }
 
         public decimal? costo { get; set; }

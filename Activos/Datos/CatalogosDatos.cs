@@ -2333,5 +2333,337 @@ namespace Activos.Datos
 
             return result;
         }
+
+        // obtiene los usos para los logos
+        public List<UsoLogos> getUsosLogos()
+        {
+            List<UsoLogos> result = new List<UsoLogos>();
+            UsoLogos ent;
+
+            string sql = "select idusologo, clave, nombre as nombreUso from activos_usologo";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent =
+                                new UsoLogos(Convert.ToInt16(res.reader["idusologo"]),
+                                             Convert.ToString(res.reader["clave"]),
+                                             Convert.ToString(res.reader["nombreUso"]));
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene los logos segun un uso
+        public List<Logo> getLogos(int idUso, string status)
+        {
+            List<Logo> result = new List<Logo>();
+            Logo ent;
+
+            string sql =
+                "select l.idlogo, l.idusologo, l.descripcion, l.logo, l.fecha, " +
+                "l.observaciones, l.status, l.nombre, l.clave, u.idusologo, u.clave as claveUso, u.nombre as nombreUso " +
+                "from activos_logos l " +
+                "left join activos_usologo u on (l.idusologo = u.idusologo) " +
+                "where l.idusologo = @idUso and l.status = @status";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+                    
+                    // define parametros
+                    cmd.Parameters.AddWithValue("idUso", idUso);
+                    cmd.Parameters.AddWithValue("status", status);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new Logo();
+
+                            ent.uso = 
+                                new UsoLogos(Convert.ToInt16(res.reader["idusologo"]),
+                                             Convert.ToString(res.reader["claveUso"]),
+                                             Convert.ToString(res.reader["nombreUso"]));
+
+                            ent.clave = Convert.ToString(res.reader["clave"]);
+
+                            ent.idLogo = Convert.ToInt16(res.reader["idlogo"]);
+                            ent.descripcion = Convert.ToString(res.reader["descripcion"]);
+                            ent.logo = (byte[])res.reader["logo"];
+                            ent.fecha = Convert.ToString(res.reader["fecha"]);
+                            ent.observaciones = Convert.ToString(res.reader["observaciones"]);
+                            ent.status = Convert.ToString(res.reader["status"]);
+                            ent.nombre = Convert.ToString(res.reader["nombre"]);
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // selecciona el logo a mostrar segun el uso
+        public bool seleccionarLogo(int idLogo, UsoLogos uso)
+        {
+            MySqlTransaction trans;
+
+            bool result = true;
+
+            int rows = 0;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    trans = conn.BeginTransaction();
+
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    // quitar los seleccionados segun el estatus  y el uso
+                    string sqlBaja = "update activos_logos set clave = null where status = 'A' and idusologo = @iduso";
+                    
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@iduso", uso.idUso);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sqlBaja, ref rows, cmd);
+
+                    if (!res.ok)
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    cmd.Parameters.Clear();
+
+                    // seleccionar le logo correspondiente definiendo la clave en el registro
+                    string sqlSelec = "update activos_logos set clave = @clave where idlogo = @idlogo";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@clave", uso.clave);
+                    cmd.Parameters.AddWithValue("@idlogo", idLogo);
+
+                    res = Utilerias.EjecutaSQL(sqlSelec, ref rows, cmd);
+
+                    if (res.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res.numErr + ": " + res.descErr);
+                    }
+
+                    trans.Commit();
+
+                }
+            }
+
+            return result;
+        }
+
+        // sube un logo y los selecciona 
+        public bool subirLogo(UsoLogos uso, string nombre, string descripcion, string observaciones, bool seleccionar, byte[] logo)
+        {
+            MySqlTransaction trans;
+
+            bool result = true;
+
+            int rows = 0;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    trans = conn.BeginTransaction();
+
+                    cmd.Connection = conn;
+                    cmd.Transaction = trans;
+
+                    // quitar los seleccionados segun el estatus  y el uso
+                    if (seleccionar)
+                    {
+                        string sqlBaja = "update activos_logos set clave = null where status = 'A' and idusologo = @iduso";
+
+                        // define parametros
+                        cmd.Parameters.AddWithValue("@iduso", uso.idUso);
+
+                        ManejoSql res = Utilerias.EjecutaSQL(sqlBaja, ref rows, cmd);
+
+                        if (!res.ok)
+                        {
+                            trans.Rollback();
+                            throw new Exception(res.numErr + ": " + res.descErr);
+                        }
+
+                        cmd.Parameters.Clear();
+                    }
+
+
+                    // seleccionar le logo correspondiente definiendo la clave en el registro
+                    string sqlSelec =
+                        "insert into activos_logos (idusologo, descripcion, clave, logo, fecha, observaciones, status, nombre) " +
+                        "values (@idusologo, @descrip, @clave, @logo, now(), @obser, 'A', @nombre)";
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idusologo", uso.idUso);
+                    cmd.Parameters.AddWithValue("@descrip", descripcion);
+                    cmd.Parameters.AddWithValue("@clave", seleccionar ? uso.clave : string.Empty);
+                    cmd.Parameters.AddWithValue("@logo", logo);
+                    cmd.Parameters.AddWithValue("@obser", observaciones);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+
+                    ManejoSql res1 = Utilerias.EjecutaSQL(sqlSelec, ref rows, cmd);
+
+                    if (res1.ok)
+                    {
+                        if (rows == 0) result = false;
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        throw new Exception(res1.numErr + ": " + res1.descErr);
+                    }
+
+                    trans.Commit();
+
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene la url almacenada
+        public string getUrl(string clave)
+        {
+            string result = string.Empty;
+
+            string sql = "select idconfiguracion, descripcion, clave, valor from activos_configuracion where clave = @valor";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@valor", clave.Trim());
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            result = Convert.ToString(res.reader[3]);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+
+        public string getSucursales(int? idPersona)
+        {
+            string result = string.Empty;
+
+            string sql =
+                "select p.idpersona, p.nombrecompleto, pu.idpuesto, s.idsucursal, s.nombre as sucursal " +
+                "from activos_personas p " +
+                "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                "where p.idpersona = @idPersona";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idPersona", idPersona);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            result = Convert.ToString(res.reader[4]);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
     }
 }

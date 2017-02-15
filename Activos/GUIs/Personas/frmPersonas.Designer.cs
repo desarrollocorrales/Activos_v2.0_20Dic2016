@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPersonas));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNombreBusqModif = new System.Windows.Forms.TextBox();
             this.btnBuscarModif = new System.Windows.Forms.Button();
@@ -839,6 +840,7 @@
             this.ClientSize = new System.Drawing.Size(508, 569);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmPersonas";
             this.Text = "Personas";

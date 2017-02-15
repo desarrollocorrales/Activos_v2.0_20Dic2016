@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActPuestos));
             this.gcPuestosBaja = new DevExpress.XtraGrid.GridControl();
             this.puestosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -173,6 +174,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bntCerrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmActPuestos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

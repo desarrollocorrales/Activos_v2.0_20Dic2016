@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPuestos));
             this.btnActivaP = new System.Windows.Forms.Button();
             this.btnElimSelecc = new System.Windows.Forms.Button();
             this.gcPuestos = new DevExpress.XtraGrid.GridControl();
@@ -260,6 +261,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAgregar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPuestos";
             this.Text = "Puestos";
             this.Load += new System.EventHandler(this.frmPuestos_Load);

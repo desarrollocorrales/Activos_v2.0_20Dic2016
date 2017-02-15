@@ -105,5 +105,17 @@ namespace Activos.Negocio
 
             return result;
         }
+
+
+        public Modelos.Logo obtieneLogo(string clave)
+        {
+            return this._responsivasDatos.obtieneLogo(clave);
+        }
+
+
+        public List<Modelos.ResponsivasSucursal> getRespSuc(int idSuc, bool bajas, bool repara)
+        {
+            return this._responsivasDatos.getRespSuc(idSuc, bajas, repara);
+        }
     }
 }

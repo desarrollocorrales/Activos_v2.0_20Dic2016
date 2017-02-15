@@ -160,6 +160,8 @@ namespace Activos.GUIs.Responsivas
                     this.tbObservaciones.Text = string.Empty;
                     this.tbUsuario.Text = string.Empty;
 
+                    this.cbAgregaResp.Checked = false;
+
                 }
                 else
                 {

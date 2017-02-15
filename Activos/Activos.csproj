@@ -203,6 +203,18 @@
     <Compile Include="GUIs\Grupos\frmModifGrupos.Designer.cs">
       <DependentUpon>frmModifGrupos.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Configuracion\frmEtiquetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Configuracion\frmEtiquetas.Designer.cs">
+      <DependentUpon>frmEtiquetas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Configuracion\frmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Configuracion\frmConfig.Designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Permisos\frmBuscaUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +275,18 @@
     <Compile Include="GUIs\Reportes\frmActivosSinResp.Designer.cs">
       <DependentUpon>frmActivosSinResp.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Reportes\frmReporteResponsivasSucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmReporteResponsivasSucursal.Designer.cs">
+      <DependentUpon>frmReporteResponsivasSucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmResponsivasSucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmResponsivasSucursal.Designer.cs">
+      <DependentUpon>frmResponsivasSucursal.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Responsivas\frmBuscaPersona.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +298,12 @@
     </Compile>
     <Compile Include="GUIs\Responsivas\frmAgregaResponsables.Designer.cs">
       <DependentUpon>frmAgregaResponsables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmReimpresionEtiquetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmReimpresionEtiquetas.Designer.cs">
+      <DependentUpon>frmReimpresionEtiquetas.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Responsivas\frmTraspasarResponsiva.cs">
       <SubType>Form</SubType>
@@ -420,6 +450,7 @@
     <Compile Include="Modelos\Grupos.cs" />
     <Compile Include="Modelos\IConexion.cs" />
     <Compile Include="Modelos\Impresora.cs" />
+    <Compile Include="Modelos\Logo.cs" />
     <Compile Include="Modelos\ManejoSql.cs" />
     <Compile Include="Modelos\MotivosBaja.cs" />
     <Compile Include="Modelos\Permisos.cs" />
@@ -427,8 +458,10 @@
     <Compile Include="Modelos\Puestos.cs" />
     <Compile Include="Modelos\Reparaciones.cs" />
     <Compile Include="Modelos\Responsivas.cs" />
+    <Compile Include="Modelos\ResponsivasSucursal.cs" />
     <Compile Include="Modelos\Sucursales.cs" />
     <Compile Include="Modelos\Tipos.cs" />
+    <Compile Include="Modelos\UsoLogos.cs" />
     <Compile Include="Modelos\Usuarios.cs" />
     <Compile Include="Modelos\UsuariosResponsivas.cs" />
     <Compile Include="Modelos\Utilerias.cs" />
@@ -498,6 +531,12 @@
     <EmbeddedResource Include="GUIs\Grupos\frmModifGrupos.resx">
       <DependentUpon>frmModifGrupos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Configuracion\frmEtiquetas.resx">
+      <DependentUpon>frmEtiquetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Configuracion\frmConfig.resx">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Permisos\frmBuscaUsuario.resx">
       <DependentUpon>frmBuscaUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -528,8 +567,17 @@
     <EmbeddedResource Include="GUIs\Reportes\frmActivosSinResp.resx">
       <DependentUpon>frmActivosSinResp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Reportes\frmReporteResponsivasSucursal.resx">
+      <DependentUpon>frmReporteResponsivasSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Reportes\frmResponsivasSucursal.resx">
+      <DependentUpon>frmResponsivasSucursal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmAgregaResponsables.resx">
       <DependentUpon>frmAgregaResponsables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmReimpresionEtiquetas.resx">
+      <DependentUpon>frmReimpresionEtiquetas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmTraspasarResponsiva.resx">
       <DependentUpon>frmTraspasarResponsiva.cs</DependentUpon>
@@ -619,6 +667,7 @@
     <EmbeddedResource Include="Reportes\infResponsivas.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\infRespSucu.rdlc" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -629,12 +678,14 @@
     <None Include="Properties\DataSources\Activos.Modelos.Cambios.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Grupos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Impresora.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Logo.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.PersonaResponsivas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Personas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Puestos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Reparaciones.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Reportes.Responsiva.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Responsivas.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.ResponsivasSucursal.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Sucursales.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Tipos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Usuarios.datasource" />

@@ -20,20 +20,31 @@ using Activos.GUIs.Grupos;
 using Activos.GUIs.Permisos;
 using Activos.GUIs.Reportes;
 using Activos.GUIs;
+using Activos.GUIs.Imagenes;
+using Activos.Negocio;
 
 namespace Activos
 {
     public partial class FormPrincipal : Form
     {
+        IResponsivasNegocio _responsivasNegocio;
         public FormPrincipal()
         {
             InitializeComponent();
+            this._responsivasNegocio = new ResponsivasNegocio();
         }
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             try
             {
+                // obtiene logo
+                Modelos.Logo logo = this._responsivasNegocio.obtieneLogo("fondo");
+                
+                if(logo != null)
+                    this.BackgroundImage = Modelos.Utilerias.ByteToImage(logo.logo);
+
+
                 // privilegios
                 List<ToolStripMenuItem> allItems = new List<ToolStripMenuItem>();
                 foreach (ToolStripMenuItem toolItem in this.menuStrip1.Items)
@@ -72,6 +83,12 @@ namespace Activos
                 MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void FormPrincipal_Resize(object sender, EventArgs e)
+        {
+            this.Refresh();
+        }
+
 
         private IEnumerable<ToolStripMenuItem> GetItems(ToolStripMenuItem item)
         {
@@ -469,6 +486,26 @@ namespace Activos
             }
         }
 
+        private void reimpresiónDeEtiquetasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmReimpresionEtiquetas child = new frmReimpresionEtiquetas();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
         //****************************************************************************************************
         //************** P E R S O N A S *********************************************************************
         //****************************************************************************************************
@@ -679,6 +716,47 @@ namespace Activos
             }
         }
 
-        
+        private void logosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmConfig child = new frmConfig();
+
+                var result = child.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    // obtiene logo
+                    Modelos.Logo logo = this._responsivasNegocio.obtieneLogo("fondo");
+
+                    if (logo != null)
+                        this.BackgroundImage = Modelos.Utilerias.ByteToImage(logo.logo);
+
+                }
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void reparacionesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmResponsivasSucursal child = new frmResponsivasSucursal();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
     }
 }

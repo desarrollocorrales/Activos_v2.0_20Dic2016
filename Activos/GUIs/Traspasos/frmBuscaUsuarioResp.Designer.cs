@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuscaUsuarioResp));
             this.gcUsuarios = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colidUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -191,6 +192,7 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.OptionsView.ShowViewCaption = true;
             this.gridView2.ViewCaption = "Responsivas";
+            this.gridView2.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView2_RowCellStyle);
             // 
             // colidResponsiva
             // 
@@ -471,6 +473,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "frmBuscaUsuarioResp";

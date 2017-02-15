@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPermisos));
             this.tvPermisos = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -120,8 +121,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tvPermisos);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmPermisos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Permisos";
             this.Load += new System.EventHandler(this.frmPermisos_Load);
             this.ResumeLayout(false);

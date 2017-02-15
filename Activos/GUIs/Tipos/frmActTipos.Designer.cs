@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActTipos));
             this.btnActiva = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.bntCerrar = new System.Windows.Forms.Button();
@@ -216,6 +217,7 @@
             this.Controls.Add(this.btnActiva);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bntCerrar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmActTipos";
             this.Text = "Activar Tipos";
             this.Load += new System.EventHandler(this.frmActTipos_Load);

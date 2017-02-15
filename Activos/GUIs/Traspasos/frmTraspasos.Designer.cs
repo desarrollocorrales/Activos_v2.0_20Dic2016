@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTraspasos));
             this.tbPuesto = new System.Windows.Forms.TextBox();
             this.tbSucursal = new System.Windows.Forms.TextBox();
             this.tbResponsable = new System.Windows.Forms.TextBox();
@@ -169,6 +170,7 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowViewCaption = true;
             this.gridView1.ViewCaption = "Activos";
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             // 
             // colseleccionado
             // 
@@ -423,6 +425,7 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.OptionsView.ShowViewCaption = true;
             this.gridView2.ViewCaption = "Activos";
+            this.gridView2.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView2_RowCellStyle);
             // 
             // colseleccionado1
             // 
@@ -661,6 +664,7 @@
             // tbMotivo
             // 
             this.tbMotivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbMotivo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbMotivo.Location = new System.Drawing.Point(9, 799);
             this.tbMotivo.Multiline = true;
             this.tbMotivo.Name = "tbMotivo";
@@ -732,6 +736,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBuscaResponsiva);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmTraspasos";
             this.Text = "Traspasos";

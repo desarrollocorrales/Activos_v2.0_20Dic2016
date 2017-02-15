@@ -49,14 +49,14 @@ namespace Activos.GUIs.Traspasos
             {
                 if (this.tbObservacion.Text.Trim().Length < 10)
                 {
-                    this.tbObservacion.ForeColor = System.Drawing.Color.Red;
-                    this.tbObservacion.Text = "Observaciones*";
+                    this.label7.ForeColor = System.Drawing.Color.Red;
+                    this.label7.Text = "Observaciones*";
                     throw new Exception("La longitud miníma permitida para las observaciones es de 10 carácteres");
                 }
                 else
                 {
-                    this.tbObservacion.ForeColor = System.Drawing.Color.Black;
-                    this.tbObservacion.Text = "Observaciones";
+                    this.label7.ForeColor = System.Drawing.Color.Black;
+                    this.label7.Text = "Observaciones";
                 }
 
                 this.observaciones = this.tbObservacion.Text;

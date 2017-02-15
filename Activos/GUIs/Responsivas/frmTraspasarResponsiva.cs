@@ -41,6 +41,8 @@ namespace Activos.GUIs.Responsivas
                     this.tbPuesto.Text = form._responsiva.puesto;
                     this.tbSucursal.Text = form._responsiva.sucursal;
 
+                    this.tbFolio.Text = Convert.ToString(form._responsiva.idResponsiva);
+
                     this._idResponsiva = form._responsiva.idResponsiva;
                     this._activos = form._activos;
                     this._idPersonaAnt = form._responsiva.idPersona;
@@ -73,14 +75,14 @@ namespace Activos.GUIs.Responsivas
 
                 if (this.tbMotivo.Text.Trim().Length < 10)
                 {
-                    this.tbMotivo.ForeColor = System.Drawing.Color.Red;
-                    this.tbMotivo.Text = "Motivo*";
+                    this.label4.ForeColor = System.Drawing.Color.Red;
+                    this.label4.Text = "Motivo*";
                     throw new Exception("La longitud miníma permitida para el motivo es de 10 carácteres");
                 }
                 else
                 {
-                    this.tbMotivo.ForeColor = System.Drawing.Color.Black;
-                    this.tbMotivo.Text = "Motivo";
+                    this.label4.ForeColor = System.Drawing.Color.Black;
+                    this.label4.Text = "Motivo";
                 }
 
                 DialogResult dialogResult = MessageBox.Show(

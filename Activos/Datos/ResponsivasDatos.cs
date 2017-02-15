@@ -1067,7 +1067,7 @@ namespace Activos.Datos
             return result;
         }
 
-
+        // obtiene responsiva por folio
         public Responsivas getRespXFolio(int folio)
         {
             List<Responsivas> result = new List<Responsivas>();
@@ -1142,6 +1142,142 @@ namespace Activos.Datos
 
 
             return result.Count > 0 ? result[0] : null;
+        }
+
+        // obtine la informacion sobre un logo segun una clave
+        public Logo obtieneLogo(string clave)
+        {
+            List<Logo> result = new List<Logo>();
+            Logo ent;
+
+            string sql =
+                        "select idlogo, descripcion, clave, logo, fecha, observaciones, status " +
+                        "from activos_logos where clave = @clave";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@clave", clave);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new Logo();
+
+                            ent.idLogo = Convert.ToInt16(res.reader["idlogo"]);
+                            ent.logo = (byte[])res.reader["logo"];
+                            ent.descripcion = Convert.ToString(res.reader["descripcion"]);
+                            ent.clave = Convert.ToString(res.reader["clave"]);
+                            ent.fecha = Convert.ToString(res.reader["fecha"]);
+                            ent.observaciones = Convert.ToString(res.reader["observaciones"]);
+                            ent.status = Convert.ToString(res.reader["status"]);
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result.Count > 0 ? result[0] : null;
+        }
+
+        // obtiene las responsivas con sus activos por sucursales
+        public List<ResponsivasSucursal> getRespSuc(int idSuc, bool bajas, bool repara)
+        {
+            List<ResponsivasSucursal> result = new List<ResponsivasSucursal>();
+            ResponsivasSucursal ent;
+
+            string sql =
+                        "select p.idpersona, p.nombrecompleto, " +
+                                "pu.nombre as puesto, " +
+                                "s.nombre as sucursal, s.idsucursal, " +
+                                "r.idresponsiva as folio, " +
+                                "rd.idactivo, rd.status, " +
+                                "a.nombrecorto, a.descripcion, " +
+                                "m.motivo " +
+                        "from activos_personas p " +
+                        "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                        "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                        "left join activos_responsivas r on (p.idpersona = r.idpersona) " +
+                        "left join activos_responsivasdetalle rd on (r.idresponsiva = rd.idresponsiva) " +
+                        "left join activos_activos a on (rd.idactivo = a.idactivo) " +
+                        "left join activos_motivosbaja m on (rd.status = m.clave) " +
+                        "where s.idsucursal = @idSucu {0}";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idSucu", idSuc);
+
+                    string complemento = "and (rd.status = 'A'";
+
+                    if (bajas)
+                        complemento += "or rd.status = 'B'";
+
+                    if (repara)
+                        complemento += "or rd.status = 'R'";
+
+                    complemento += ") order by p.idpersona, r.idresponsiva, rd.idactivo";
+
+
+                    ManejoSql res = Utilerias.EjecutaSQL(string.Format(sql, complemento), cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new ResponsivasSucursal();
+                            
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
+                            ent.idResponsiva = Convert.ToInt16(res.reader["folio"]);
+                            ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                            ent.persona = Convert.ToString(res.reader["nombrecompleto"]);
+                            ent.persona = ent.persona.Replace("&", " ");
+
+                            ent.activo = Convert.ToString(res.reader["sucursal"]);
+                            ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---");
+
+                            ent.estatus = Convert.ToString(res.reader["motivo"]);
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModifActivo));
             this.btnBusqAct = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -349,6 +350,7 @@
             this.tbCosto.ReadOnly = true;
             this.tbCosto.Size = new System.Drawing.Size(255, 30);
             this.tbCosto.TabIndex = 131;
+            this.tbCosto.Leave += new System.EventHandler(this.tbCosto_Leave);
             // 
             // lbFactura
             // 
@@ -430,6 +432,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBusqAct);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmModifActivo";
             this.Text = "Modificar Activo";

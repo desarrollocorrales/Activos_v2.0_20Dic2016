@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTipos));
             this.btnActivar = new System.Windows.Forms.Button();
             this.btnElimSel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -368,6 +369,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnElimSel);
             this.Controls.Add(this.btnActivar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTipos";
             this.Text = "Tipos";
             this.Load += new System.EventHandler(this.frmTipos_Load);

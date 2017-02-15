@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAltaActivo));
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -272,6 +273,7 @@
             this.tbCosto.Name = "tbCosto";
             this.tbCosto.Size = new System.Drawing.Size(228, 30);
             this.tbCosto.TabIndex = 106;
+            this.tbCosto.Leave += new System.EventHandler(this.tbCosto_Leave);
             // 
             // lbFactura
             // 
@@ -343,6 +345,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGuardar);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "frmAltaActivo";
             this.Text = "Alta Activos";

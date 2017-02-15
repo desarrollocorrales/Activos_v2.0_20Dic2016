@@ -345,5 +345,43 @@ namespace Activos.Negocio
         {
             return this._catalogosDatos.busquedaUsuario(usuario);
         }
+
+
+        /* ************ L O G O S ************ */
+        public List<UsoLogos> getUsosLogos()
+        {
+            return this._catalogosDatos.getUsosLogos();
+        }
+
+
+        public List<Logo> getLogos(int idUso, string status)
+        {
+            return this._catalogosDatos.getLogos(idUso, status);
+
+        }
+
+
+        public bool seleccionarLogo(int idLogo, UsoLogos uso)
+        {
+            return this._catalogosDatos.seleccionarLogo(idLogo, uso);
+        }
+
+
+        public bool subirLogo(UsoLogos uso, string nombre, string descripcion, string observaciones, bool seleccionar, byte[] logo)
+        {
+            return this._catalogosDatos.subirLogo(uso, nombre, descripcion, observaciones, seleccionar, logo);
+        }
+
+
+        public string getUrl(string clave)
+        {
+            return this._catalogosDatos.getUrl(clave);
+        }
+
+
+        public string getSucursal(int? idPersona)
+        {
+            return this._catalogosDatos.getSucursales(idPersona);
+        }
     }
 }

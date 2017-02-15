@@ -31,5 +31,9 @@ namespace Activos.Negocio
         bool traspasoResponsiva(int? idResponsiva, int? idPersonaAnt, int? idPersonaNueva, List<Modelos.Activos> activos, string motivo);
 
         Modelos.RespPorFolio obtieneRespXFolio(int folio);
+
+        Modelos.Logo obtieneLogo(string clave);
+
+        List<Modelos.ResponsivasSucursal> getRespSuc(int idSuc, bool bajas, bool repara);
     }
 }

@@ -12,5 +12,7 @@ namespace Activos.Datos
         List<int> getPermisosUsuario(int idUsuario);
 
         bool actualizaPermisos(int? idUsuario, List<int> permisos);
+
+        bool guardaUrl(string url, bool nuevaUrl);
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMovimientosActivos));
             this.tbResultCveActivo = new System.Windows.Forms.TextBox();
             this.tbResultNumEtiqueta = new System.Windows.Forms.TextBox();
             this.tbResultNombre = new System.Windows.Forms.TextBox();
@@ -604,6 +605,7 @@
             this.Controls.Add(this.gbPCA);
             this.Controls.Add(this.gbPTN);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmMovimientosActivos";
             this.Text = "Movimientos Activos";

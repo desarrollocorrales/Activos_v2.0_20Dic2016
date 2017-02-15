@@ -450,7 +450,7 @@ namespace Activos.Datos
             Modelos.ActivosDesc ent;
 
             string sql =
-                "select a.idactivo, r.idpersona, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
+                "select a.idactivo, r.idpersona, p.nombrecompleto as usuario, p.idpersona, a.idarea, ar.nombre as area,  " +
                         "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, a.nombrecorto, " +
                         "a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, a.idusuarioalta, " +
                         "a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
@@ -512,6 +512,9 @@ namespace Activos.Datos
                                 ent.sucursal = Convert.ToString(res.reader["sucursal"]);
 
                                 ent.usuario = Convert.ToString(res.reader["usuario"]);
+
+                                if (res.reader["idpersona"] is DBNull) ent.idPersona = null;
+                                else ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
 
                                 ent.usuario = ent.usuario.Replace("&", " ");
 

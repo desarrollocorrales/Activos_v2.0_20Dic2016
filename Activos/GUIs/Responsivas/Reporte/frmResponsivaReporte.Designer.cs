@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmResponsivaReporte));
             this.ResponsivasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ActivosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -49,12 +50,12 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource3.Name = "dsResponsiva";
-            reportDataSource3.Value = this.ResponsivasBindingSource;
-            reportDataSource4.Name = "dsActivos";
-            reportDataSource4.Value = this.ActivosBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
+            reportDataSource1.Name = "dsResponsiva";
+            reportDataSource1.Value = this.ResponsivasBindingSource;
+            reportDataSource2.Name = "dsActivos";
+            reportDataSource2.Value = this.ActivosBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Activos.Reportes.infResponsivas.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
@@ -69,6 +70,7 @@
             this.ClientSize = new System.Drawing.Size(712, 689);
             this.Controls.Add(this.reportViewer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmResponsivaReporte";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Vista Previa";

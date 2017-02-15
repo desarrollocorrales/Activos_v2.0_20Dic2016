@@ -57,6 +57,8 @@ namespace Activos.GUIs.Traspasos
                     this.tbPuesto.Text = form._responsiva.puesto;
                     this.tbSucursal.Text = form._responsiva.sucursal;
 
+                    this.tbFolio.Text = Convert.ToString( form._responsiva.idResponsiva);
+
                     this._idResponsiva = form._responsiva.idResponsiva;
                     this._idUsuario = form._responsiva.idPersona;
 
@@ -276,8 +278,8 @@ namespace Activos.GUIs.Traspasos
                     }
                     else
                     {
-                        this.tbMotivo.ForeColor = System.Drawing.Color.Black;
-                        this.tbMotivo.Text = "Motivo";
+                        this.label7.ForeColor = System.Drawing.Color.Black;
+                        this.label7.Text = "Motivo";
                     }
 
                     string motivo = this.tbMotivo.Text;
@@ -517,6 +519,30 @@ namespace Activos.GUIs.Traspasos
                 MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
+        }
+
+        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.CadetBlue;
+                e.Appearance.ForeColor = Color.White;
+            }
+        }
+
+        private void gridView2_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.CadetBlue;
+                e.Appearance.ForeColor = Color.White;
+            }
         }
     }
 }

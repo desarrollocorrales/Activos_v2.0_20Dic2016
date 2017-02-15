@@ -104,6 +104,18 @@ namespace Activos.GUIs.AltaActivos
                 if (string.IsNullOrEmpty(this.tbDetalles.Text))
                     throw new Exception("Proporcione un detalle");
 
+                if (this.tbDetalles.Text.Trim().Length < 10)
+                {
+                    this.label10.ForeColor = System.Drawing.Color.Red;
+                    this.label10.Text = "Detalles*";
+                    throw new Exception("La longitud miníma permitida para los Detalles es de 10 carácteres");
+                }
+                else
+                {
+                    this.label10.ForeColor = System.Drawing.Color.Black;
+                    this.label10.Text = "Detalles";
+                }
+
                 if (string.IsNullOrEmpty(this.dtpFecha.Text))
                     throw new Exception("Seleccione una fecha");
 

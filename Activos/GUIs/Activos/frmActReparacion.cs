@@ -72,14 +72,14 @@ namespace Activos.GUIs.AltaActivos
 
                 if (this.tbObservAct.Text.Trim().Length < 10)
                 {
-                    this.tbObservAct.ForeColor = System.Drawing.Color.Red;
-                    this.tbObservAct.Text = "Observaciones de la Activación*";
+                    this.label6.ForeColor = System.Drawing.Color.Red;
+                    this.label6.Text = "Observaciones de la Activación*";
                     throw new Exception("La longitud miníma permitida para las observaciones es de 10 carácteres");
                 }
                 else
                 {
-                    this.tbObservAct.ForeColor = System.Drawing.Color.Black;
-                    this.tbObservAct.Text = "Observaciones de la Activación";
+                    this.label6.ForeColor = System.Drawing.Color.Black;
+                    this.label6.Text = "Observaciones de la Activación";
                 }
 
                 string observAct = this.tbObservAct.Text;

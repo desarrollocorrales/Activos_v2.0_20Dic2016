@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuscarResponsiva));
             this.cmbSucursal = new System.Windows.Forms.ComboBox();
             this.tbResp = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -292,8 +293,12 @@
             // 
             // colidResponsiva
             // 
+            this.colidResponsiva.Caption = "Folio";
             this.colidResponsiva.FieldName = "idResponsiva";
             this.colidResponsiva.Name = "colidResponsiva";
+            this.colidResponsiva.Visible = true;
+            this.colidResponsiva.VisibleIndex = 0;
+            this.colidResponsiva.Width = 30;
             // 
             // colidUsuario
             // 
@@ -329,7 +334,8 @@
             this.colresponsable.OptionsColumn.AllowMove = false;
             this.colresponsable.OptionsColumn.ReadOnly = true;
             this.colresponsable.Visible = true;
-            this.colresponsable.VisibleIndex = 0;
+            this.colresponsable.VisibleIndex = 1;
+            this.colresponsable.Width = 111;
             // 
             // colsucursal
             // 
@@ -340,7 +346,8 @@
             this.colsucursal.OptionsColumn.AllowMove = false;
             this.colsucursal.OptionsColumn.ReadOnly = true;
             this.colsucursal.Visible = true;
-            this.colsucursal.VisibleIndex = 1;
+            this.colsucursal.VisibleIndex = 2;
+            this.colsucursal.Width = 111;
             // 
             // colpuesto
             // 
@@ -351,7 +358,8 @@
             this.colpuesto.OptionsColumn.AllowMove = false;
             this.colpuesto.OptionsColumn.ReadOnly = true;
             this.colpuesto.Visible = true;
-            this.colpuesto.VisibleIndex = 2;
+            this.colpuesto.VisibleIndex = 3;
+            this.colpuesto.Width = 111;
             // 
             // colfecha
             // 
@@ -362,7 +370,8 @@
             this.colfecha.OptionsColumn.AllowMove = false;
             this.colfecha.OptionsColumn.ReadOnly = true;
             this.colfecha.Visible = true;
-            this.colfecha.VisibleIndex = 3;
+            this.colfecha.VisibleIndex = 4;
+            this.colfecha.Width = 113;
             // 
             // label1
             // 
@@ -417,6 +426,7 @@
             this.Controls.Add(this.cmbSucursal);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "frmBuscarResponsiva";

@@ -188,6 +188,47 @@
         <rd:ObjectDataSourceType>Activos.Modelos.PersonaResponsivas, Activos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="dsLogo">
+      <Fields>
+        <Field Name="clave">
+          <DataField>clave</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="descripcion">
+          <DataField>descripcion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="fecha">
+          <DataField>fecha</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idLogo">
+          <DataField>idLogo</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="logo">
+          <DataField>logo</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+        <Field Name="observaciones">
+          <DataField>observaciones</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="status">
+          <DataField>status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>ActivosModelos</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Activos.Modelos</rd:DataSetName>
+        <rd:TableName>Logo</rd:TableName>
+        <rd:ObjectDataSourceType>Activos.Modelos.Logo, Activos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
   </DataSets>
   <Body>
     <ReportItems>
@@ -784,24 +825,10 @@
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Image Name="logo">
-          <Source>Embedded</Source>
-          <Value>loscorrales7</Value>
-          <Sizing>FitProportional</Sizing>
-          <Top>0.64564cm</Top>
-          <Height>2.17546cm</Height>
-          <Width>5.20416cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </Image>
         <Line Name="Line1">
           <Left>5.20416cm</Left>
           <Height>3.32562cm</Height>
           <Width>0cm</Width>
-          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
@@ -828,7 +855,7 @@
           <Left>7.06892cm</Left>
           <Height>0.74146cm</Height>
           <Width>4.29063cm</Width>
-          <ZIndex>2</ZIndex>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -857,7 +884,7 @@
           <Left>13.72519cm</Left>
           <Height>0.6cm</Height>
           <Width>2.05021cm</Width>
-          <ZIndex>3</ZIndex>
+          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -889,7 +916,7 @@
           <Left>12.33644cm</Left>
           <Height>0.6cm</Height>
           <Width>1.38875cm</Width>
-          <ZIndex>4</ZIndex>
+          <ZIndex>3</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -919,7 +946,7 @@
           <Left>5.34527cm</Left>
           <Height>0.6cm</Height>
           <Width>2.47354cm</Width>
-          <ZIndex>5</ZIndex>
+          <ZIndex>4</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -948,7 +975,7 @@
           <Left>7.81881cm</Left>
           <Height>0.6cm</Height>
           <Width>10.5489cm</Width>
-          <ZIndex>6</ZIndex>
+          <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -978,7 +1005,7 @@
           <Left>5.34527cm</Left>
           <Height>0.6cm</Height>
           <Width>2.47354cm</Width>
-          <ZIndex>7</ZIndex>
+          <ZIndex>6</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1007,7 +1034,7 @@
           <Left>7.81881cm</Left>
           <Height>0.6cm</Height>
           <Width>10.5489cm</Width>
-          <ZIndex>8</ZIndex>
+          <ZIndex>7</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1037,7 +1064,7 @@
           <Left>5.34527cm</Left>
           <Height>0.6cm</Height>
           <Width>2.47354cm</Width>
-          <ZIndex>9</ZIndex>
+          <ZIndex>8</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1066,7 +1093,7 @@
           <Left>7.81881cm</Left>
           <Height>0.6cm</Height>
           <Width>10.5489cm</Width>
-          <ZIndex>10</ZIndex>
+          <ZIndex>9</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1097,7 +1124,7 @@
           <Left>17.05832cm</Left>
           <Height>0.6cm</Height>
           <Width>1.30938cm</Width>
-          <ZIndex>11</ZIndex>
+          <ZIndex>10</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1129,7 +1156,7 @@
           <Left>15.96061cm</Left>
           <Height>0.6cm</Height>
           <Width>1.09771cm</Width>
-          <ZIndex>12</ZIndex>
+          <ZIndex>11</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1140,6 +1167,20 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Image Name="Image3">
+          <Source>Database</Source>
+          <Value>=First(Fields!logo.Value, "dsLogo")</Value>
+          <MIMEType>image/jpeg</MIMEType>
+          <Sizing>FitProportional</Sizing>
+          <Height>3.32562cm</Height>
+          <Width>5.16888cm</Width>
+          <ZIndex>12</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
       </ReportItems>
       <Style>
         <Border>

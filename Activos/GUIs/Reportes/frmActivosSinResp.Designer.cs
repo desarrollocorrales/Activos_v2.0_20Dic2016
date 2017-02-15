@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActivosSinResp));
             this.cmbArea = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbSucursal = new System.Windows.Forms.ComboBox();
@@ -158,7 +159,7 @@
             this.colarea.OptionsColumn.AllowMove = false;
             this.colarea.OptionsColumn.ReadOnly = true;
             this.colarea.Visible = true;
-            this.colarea.VisibleIndex = 0;
+            this.colarea.VisibleIndex = 1;
             this.colarea.Width = 114;
             // 
             // colidTipo
@@ -175,7 +176,7 @@
             this.coltipo.OptionsColumn.AllowMove = false;
             this.coltipo.OptionsColumn.ReadOnly = true;
             this.coltipo.Visible = true;
-            this.coltipo.VisibleIndex = 1;
+            this.coltipo.VisibleIndex = 2;
             this.coltipo.Width = 114;
             // 
             // colnombreCorto
@@ -187,7 +188,7 @@
             this.colnombreCorto.OptionsColumn.AllowMove = false;
             this.colnombreCorto.OptionsColumn.ReadOnly = true;
             this.colnombreCorto.Visible = true;
-            this.colnombreCorto.VisibleIndex = 2;
+            this.colnombreCorto.VisibleIndex = 3;
             this.colnombreCorto.Width = 114;
             // 
             // coldescripcion
@@ -229,7 +230,7 @@
             this.colnumEtiqueta.OptionsColumn.AllowMove = false;
             this.colnumEtiqueta.OptionsColumn.ReadOnly = true;
             this.colnumEtiqueta.Visible = true;
-            this.colnumEtiqueta.VisibleIndex = 3;
+            this.colnumEtiqueta.VisibleIndex = 4;
             this.colnumEtiqueta.Width = 90;
             // 
             // colclaveActivo
@@ -241,13 +242,16 @@
             this.colclaveActivo.OptionsColumn.AllowMove = false;
             this.colclaveActivo.OptionsColumn.ReadOnly = true;
             this.colclaveActivo.Visible = true;
-            this.colclaveActivo.VisibleIndex = 4;
+            this.colclaveActivo.VisibleIndex = 5;
             this.colclaveActivo.Width = 102;
             // 
             // colstatus
             // 
+            this.colstatus.Caption = "Sucursal";
             this.colstatus.FieldName = "status";
             this.colstatus.Name = "colstatus";
+            this.colstatus.Visible = true;
+            this.colstatus.VisibleIndex = 0;
             // 
             // btnBuscaActivos
             // 
@@ -284,6 +288,7 @@
             this.Controls.Add(this.cmbSucursal);
             this.Controls.Add(this.label8);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmActivosSinResp";
             this.Text = "Reporte Activos sin Responsivas";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModifContra));
             this.tbConfirmClave = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tbClaveNueva = new System.Windows.Forms.TextBox();
@@ -147,6 +148,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmModifContra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

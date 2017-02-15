@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmResponsivas));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.tbSucursalSelec = new System.Windows.Forms.TextBox();
@@ -465,6 +466,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmResponsivas";
             this.Text = "Responsivas";

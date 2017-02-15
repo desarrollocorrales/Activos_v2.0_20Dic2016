@@ -31,5 +31,11 @@ namespace Activos.Negocio
         {
             return this._permisosDatos.actualizaPermisos(idUsuario, permisos);
         }
+
+
+        public bool guardaUrl(string url, bool nuevaUrl)
+        {
+            return this._permisosDatos.guardaUrl(url, nuevaUrl);
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModifArea));
             this.btnGuardar = new System.Windows.Forms.Button();
             this.cmbSucursal = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -99,6 +100,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbNombre);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmModifArea";
             this.Text = "Modificar Área";

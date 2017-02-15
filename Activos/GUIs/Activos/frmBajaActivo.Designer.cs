@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBajaActivo));
             this.tbUsuario = new System.Windows.Forms.TextBox();
             this.tbArea = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -509,6 +510,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBusqAct);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmBajaActivo";
             this.Text = "Baja Activos";

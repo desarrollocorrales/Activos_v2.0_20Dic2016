@@ -67,6 +67,11 @@ namespace Activos.GUIs.Reportes
 
                 List<Modelos.Activos> resultado = this._activosNegocio.getBuscaActivos(idSucursal, idArea);
 
+                string sucursal = ((Modelos.Sucursales)this.cmbSucursal.SelectedItem).nombre;
+
+                foreach (Modelos.Activos a in resultado)
+                    a.status = sucursal;
+
                 if (resultado.Count == 0)
                 {
                     this.gcActivos.DataSource = null;

@@ -12,6 +12,7 @@ namespace Activos.GUIs.Reportes
 {
     public partial class frmReporteActivosPersona : Form
     {
+        public Modelos.Logo _logo = new Modelos.Logo();
         public Modelos.Responsivas _responsivas = new Modelos.Responsivas();
         public List<Modelos.Activos> _activos = new List<Modelos.Activos>();
         public List<Modelos.PersonaResponsivas> _responsables = new List<Modelos.PersonaResponsivas>();
@@ -28,6 +29,9 @@ namespace Activos.GUIs.Reportes
             List<Modelos.Responsivas> dsResponsiva = new List<Modelos.Responsivas>();
             dsResponsiva.Add(this._responsivas);
 
+            List<Modelos.Logo> logos = new List<Modelos.Logo>();
+            logos.Add(this._logo);
+
             //Limpiemos el DataSource del informe
             reportViewer1.LocalReport.DataSources.Clear();
             //
@@ -42,6 +46,7 @@ namespace Activos.GUIs.Reportes
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsResponsiva", dsResponsiva));
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsActivos", this._activos));
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsResponsables", this._responsables));
+            reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsLogo", logos));
             //
             //Enviemos la lista de parametros
             //

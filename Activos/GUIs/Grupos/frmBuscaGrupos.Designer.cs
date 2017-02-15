@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuscaGrupos));
             this.label1 = new System.Windows.Forms.Label();
             this.tbNomGrupo = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -367,6 +368,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "frmBuscaGrupos";
