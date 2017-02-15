@@ -161,6 +161,9 @@
             this.colidResponsiva.Caption = "Folio";
             this.colidResponsiva.FieldName = "idResponsiva";
             this.colidResponsiva.Name = "colidResponsiva";
+            this.colidResponsiva.OptionsColumn.AllowEdit = false;
+            this.colidResponsiva.OptionsColumn.AllowMove = false;
+            this.colidResponsiva.OptionsColumn.ReadOnly = true;
             this.colidResponsiva.Visible = true;
             this.colidResponsiva.VisibleIndex = 1;
             this.colidResponsiva.Width = 40;
@@ -175,6 +178,9 @@
             this.colpersona.Caption = "Persona";
             this.colpersona.FieldName = "persona";
             this.colpersona.Name = "colpersona";
+            this.colpersona.OptionsColumn.AllowEdit = false;
+            this.colpersona.OptionsColumn.AllowMove = false;
+            this.colpersona.OptionsColumn.ReadOnly = true;
             this.colpersona.Visible = true;
             this.colpersona.VisibleIndex = 0;
             this.colpersona.Width = 94;
@@ -184,6 +190,9 @@
             this.colactivo.Caption = "Activo";
             this.colactivo.FieldName = "activo";
             this.colactivo.Name = "colactivo";
+            this.colactivo.OptionsColumn.AllowEdit = false;
+            this.colactivo.OptionsColumn.AllowMove = false;
+            this.colactivo.OptionsColumn.ReadOnly = true;
             this.colactivo.Visible = true;
             this.colactivo.VisibleIndex = 2;
             this.colactivo.Width = 111;
@@ -193,6 +202,9 @@
             this.coldescripcion.Caption = "Descripción";
             this.coldescripcion.FieldName = "descripcion";
             this.coldescripcion.Name = "coldescripcion";
+            this.coldescripcion.OptionsColumn.AllowEdit = false;
+            this.coldescripcion.OptionsColumn.AllowMove = false;
+            this.coldescripcion.OptionsColumn.ReadOnly = true;
             this.coldescripcion.Visible = true;
             this.coldescripcion.VisibleIndex = 3;
             this.coldescripcion.Width = 111;
@@ -202,6 +214,9 @@
             this.colestatus.Caption = "Estatus";
             this.colestatus.FieldName = "estatus";
             this.colestatus.Name = "colestatus";
+            this.colestatus.OptionsColumn.AllowEdit = false;
+            this.colestatus.OptionsColumn.AllowMove = false;
+            this.colestatus.OptionsColumn.ReadOnly = true;
             this.colestatus.Visible = true;
             this.colestatus.VisibleIndex = 4;
             this.colestatus.Width = 117;

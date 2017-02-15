@@ -63,14 +63,13 @@ namespace Activos.GUIs.AltaActivos
                     this.tbColor.Text = array[3];
                     this.tbCosto.Text = array[4];
                     this.tbFactura.Text = array[5];
-                    this.tbDescripcion.Text = array[6];
+                    this.dtpFechaConsulta.Text = array[6];
+                    this.tbDescripcion.Text = array[7];
                     this.tbUsuario.Text = activo.usuario;
 
                     this.lbNumetiqueta.Text = activo.numEtiqueta;
                     this.lbCveActivo.Text = activo.claveActivo;
-
-                    this.dtpFechaConsulta.Text = activo.fecha;
-
+                    
                     this._idActivo = activo.idActivo;
 
                     // reinicia campos

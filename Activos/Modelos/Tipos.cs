@@ -17,5 +17,6 @@ namespace Activos.Modelos
         public string costo { get; set; }
         public string factura { get; set; }
         public string status { get; set; }
+        public string fechaCompra { get; set; }
     }
 }

@@ -90,10 +90,9 @@ namespace Activos.GUIs.AltaActivos
                     this.tbColor.Text = array[3];
                     this.tbCosto.Text = array[4];
                     this.tbFactura.Text = array[5];
-                    this.tbDescripcion.Text = array[6];
+                    this.dtpFecha.Text = array[6];
+                    this.tbDescripcion.Text = array[7];
                     this.tbUsuario.Text = activo.usuario;
-
-                    this.dtpFecha.Text = activo.fecha;
 
                     this.lbNumetiqueta.Text = activo.numEtiqueta;
                     this.lbCveActivo.Text = activo.claveActivo;
@@ -143,6 +142,8 @@ namespace Activos.GUIs.AltaActivos
 
                 string nombre = this.tbNombre.Text;
 
+                string fechaCompra = this.dtpFecha.Value.ToString("yyyy-MM-dd");
+
                 string descripcion =
                     this.tbMarca.Text + "&" +
                     this.tbModelo.Text + "&" +
@@ -150,11 +151,10 @@ namespace Activos.GUIs.AltaActivos
                     this.tbColor.Text + "&" +
                     this.tbCosto.Text + "&" +
                     this.tbFactura.Text + "&" +
+                    fechaCompra + "&" +
                     this.tbDescripcion.Text;
 
-                string fecIng = this.dtpFecha.Value.ToString("yyyy-MM-dd");
-
-                bool res = this._activosNegocio.modifActivo(this._idActivo, nombre, descripcion, fecIng);
+                bool res = this._activosNegocio.modifActivo(this._idActivo, nombre, descripcion, string.Empty);
 
                 if (res) MessageBox.Show("Datos modificados correctamente", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 

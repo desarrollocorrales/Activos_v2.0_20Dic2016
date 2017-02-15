@@ -39,6 +39,7 @@
             this.cbColor = new System.Windows.Forms.CheckBox();
             this.cbModelo = new System.Windows.Forms.CheckBox();
             this.cbMarca = new System.Windows.Forms.CheckBox();
+            this.cbFechaCompra = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +76,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbFechaCompra);
             this.groupBox1.Controls.Add(this.cbFactura);
             this.groupBox1.Controls.Add(this.cbCosto);
             this.groupBox1.Controls.Add(this.cbSerie);
@@ -155,6 +157,17 @@
             this.cbMarca.Text = "Marca";
             this.cbMarca.UseVisualStyleBackColor = true;
             // 
+            // cbFechaCompra
+            // 
+            this.cbFechaCompra.AutoSize = true;
+            this.cbFechaCompra.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.cbFechaCompra.Location = new System.Drawing.Point(245, 102);
+            this.cbFechaCompra.Name = "cbFechaCompra";
+            this.cbFechaCompra.Size = new System.Drawing.Size(201, 31);
+            this.cbFechaCompra.TabIndex = 12;
+            this.cbFechaCompra.Text = "Fecha de Compra";
+            this.cbFechaCompra.UseVisualStyleBackColor = true;
+            // 
             // frmModiftipos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -192,5 +205,6 @@
         private System.Windows.Forms.CheckBox cbMarca;
         private System.Windows.Forms.CheckBox cbFactura;
         private System.Windows.Forms.CheckBox cbCosto;
+        private System.Windows.Forms.CheckBox cbFechaCompra;
     }
 }

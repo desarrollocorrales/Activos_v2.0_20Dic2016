@@ -67,6 +67,7 @@
             this.tbNumEtiqueta.Name = "tbNumEtiqueta";
             this.tbNumEtiqueta.Size = new System.Drawing.Size(199, 30);
             this.tbNumEtiqueta.TabIndex = 5;
+            this.tbNumEtiqueta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNumEtiqueta_KeyPress);
             // 
             // btnBuscarPNE
             // 
@@ -95,6 +96,7 @@
             this.tbCveActivo.Name = "tbCveActivo";
             this.tbCveActivo.Size = new System.Drawing.Size(199, 30);
             this.tbCveActivo.TabIndex = 6;
+            this.tbCveActivo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCveActivo_KeyPress);
             // 
             // btnBuscarPCA
             // 
@@ -239,7 +241,7 @@
             this.Controls.Add(this.gbPCA);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmReimpresionEtiquetas";
             this.Text = "Reimpresion Etiquetas";
             this.Load += new System.EventHandler(this.frmReimpresionEtiquetas_Load);

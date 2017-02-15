@@ -301,14 +301,14 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(25, 394);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 23);
+            this.label3.Size = new System.Drawing.Size(158, 23);
             this.label3.TabIndex = 114;
-            this.label3.Text = "Fecha";
+            this.label3.Text = "Fecha de Compra";
             // 
             // dtpFecha
             // 
             this.dtpFecha.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dtpFecha.Location = new System.Drawing.Point(91, 388);
+            this.dtpFecha.Location = new System.Drawing.Point(190, 388);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(357, 30);
             this.dtpFecha.TabIndex = 111;

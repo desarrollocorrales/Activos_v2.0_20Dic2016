@@ -22,8 +22,9 @@ namespace Activos.GUIs.Tipos
         private bool _color;
         private bool _costo;
         private bool _factura;
+        private bool _fechaCompra;
 
-        public frmModiftipos(int idTipo, string nombre, bool marca, bool modelo, bool serie, bool color, bool costo, bool factura)
+        public frmModiftipos(int idTipo, string nombre, bool marca, bool modelo, bool serie, bool color, bool costo, bool factura, bool fechaCompra)
         {
             InitializeComponent();
 
@@ -37,6 +38,7 @@ namespace Activos.GUIs.Tipos
             this._color = color;
             this._costo = costo;
             this._factura = factura;
+            this._fechaCompra = fechaCompra;
         }
 
         private void frmModiftipos_Load(object sender, EventArgs e)
@@ -51,6 +53,7 @@ namespace Activos.GUIs.Tipos
             this.cbColor.Checked = this._color;
             this.cbCosto.Checked = this._costo;
             this.cbFactura.Checked = this._factura;
+            this.cbFechaCompra.Checked = this._fechaCompra;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -68,13 +71,14 @@ namespace Activos.GUIs.Tipos
                 int color = this.cbColor.Checked ? 1 : 0;
                 int costo = this.cbCosto.Checked ? 1 : 0;
                 int factura = this.cbFactura.Checked ? 1 : 0;
+                int fechaCompra = this.cbFechaCompra.Checked ? 1 : 0;
 
                 // guardado de informacion
                 bool resultado =
                     this._catalogosNegocio.modificaTipo(
                         this._idTipo,
                         this.tbNombre.Text,
-                        marca, modelo, serie, color, costo, factura);
+                        marca, modelo, serie, color, costo, factura, fechaCompra);
 
 
                 if (resultado)

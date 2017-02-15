@@ -44,6 +44,9 @@
             this.colcolor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colserie = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colcosto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colfactura = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colfechaCompra = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcTipos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tiposBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -91,7 +94,7 @@
             this.gcTipos.Location = new System.Drawing.Point(11, 48);
             this.gcTipos.MainView = this.gridView1;
             this.gcTipos.Name = "gcTipos";
-            this.gcTipos.Size = new System.Drawing.Size(573, 238);
+            this.gcTipos.Size = new System.Drawing.Size(570, 238);
             this.gcTipos.TabIndex = 14;
             this.gcTipos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -110,7 +113,10 @@
             this.colmodelo,
             this.colcolor,
             this.colserie,
-            this.colstatus});
+            this.colstatus,
+            this.colcosto,
+            this.colfactura,
+            this.colfechaCompra});
             this.gridView1.GridControl = this.gcTipos;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
@@ -207,12 +213,45 @@
             this.colstatus.FieldName = "status";
             this.colstatus.Name = "colstatus";
             // 
+            // colcosto
+            // 
+            this.colcosto.AppearanceCell.Options.UseTextOptions = true;
+            this.colcosto.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colcosto.Caption = "Costo";
+            this.colcosto.FieldName = "costo";
+            this.colcosto.Name = "colcosto";
+            this.colcosto.Visible = true;
+            this.colcosto.VisibleIndex = 6;
+            this.colcosto.Width = 40;
+            // 
+            // colfactura
+            // 
+            this.colfactura.AppearanceCell.Options.UseTextOptions = true;
+            this.colfactura.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colfactura.Caption = "Factura";
+            this.colfactura.FieldName = "factura";
+            this.colfactura.Name = "colfactura";
+            this.colfactura.Visible = true;
+            this.colfactura.VisibleIndex = 7;
+            this.colfactura.Width = 50;
+            // 
+            // colfechaCompra
+            // 
+            this.colfechaCompra.AppearanceCell.Options.UseTextOptions = true;
+            this.colfechaCompra.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colfechaCompra.Caption = "Fecha Captura";
+            this.colfechaCompra.FieldName = "fechaCompra";
+            this.colfechaCompra.Name = "colfechaCompra";
+            this.colfechaCompra.Visible = true;
+            this.colfechaCompra.VisibleIndex = 8;
+            this.colfechaCompra.Width = 80;
+            // 
             // frmActTipos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(602, 370);
+            this.ClientSize = new System.Drawing.Size(593, 370);
             this.Controls.Add(this.gcTipos);
             this.Controls.Add(this.btnActiva);
             this.Controls.Add(this.label1);
@@ -245,5 +284,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colserie;
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
         private System.Windows.Forms.BindingSource tiposBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colcosto;
+        private DevExpress.XtraGrid.Columns.GridColumn colfactura;
+        private DevExpress.XtraGrid.Columns.GridColumn colfechaCompra;
     }
 }

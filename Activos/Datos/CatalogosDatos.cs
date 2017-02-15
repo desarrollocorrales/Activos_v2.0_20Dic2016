@@ -1244,7 +1244,7 @@ namespace Activos.Datos
             Tipos ent;
 
             string sql = 
-                        "select idtipo, nombre, marca, modelo, color, serie, costo, factura, status " 
+                        "select idtipo, nombre, marca, modelo, color, serie, costo, factura, fechacompra, status " 
                       + "from activos_tipo where status = @status order by nombre";
 
             // define conexion con la cadena de conexion
@@ -1277,6 +1277,7 @@ namespace Activos.Datos
                             ent.color = Convert.ToString(res.reader["color"]).Equals("0") ? "NO" : "SI";
                             ent.factura = Convert.ToString(res.reader["factura"]).Equals("0") ? "NO" : "SI";
                             ent.costo = Convert.ToString(res.reader["costo"]).Equals("0") ? "NO" : "SI";
+                            ent.fechaCompra = Convert.ToString(res.reader["fechacompra"]).Equals("0") ? "NO" : "SI";
 
                             ent.status = Convert.ToString(res.reader["status"]);
                             result.Add(ent);
@@ -1299,7 +1300,9 @@ namespace Activos.Datos
         {
             Tipos result = new Tipos();
 
-            string sql = "select idtipo, nombre, marca, modelo, color, serie, costo, factura, status from activos_tipo where idtipo = @idtipo";
+            string sql = 
+                "select idtipo, nombre, marca, modelo, color, serie, costo, factura, status, fechacompra " +
+                "from activos_tipo where idtipo = @idtipo";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -1331,6 +1334,7 @@ namespace Activos.Datos
                             result.color = Convert.ToString(res.reader["color"]).Equals("0") ? "NO" : "SI";
                             result.factura = Convert.ToString(res.reader["factura"]).Equals("0") ? "NO" : "SI";
                             result.costo = Convert.ToString(res.reader["costo"]).Equals("0") ? "NO" : "SI";
+                            result.fechaCompra = Convert.ToString(res.reader["fechacompra"]).Equals("0") ? "NO" : "SI";
 
                             result.status = Convert.ToString(res.reader["status"]);
                         }
@@ -1348,11 +1352,11 @@ namespace Activos.Datos
         }
 
         // agrega tipo
-        public bool agregaTipo(string nombre, int marca, int modelo, int serie, int color, int costo, int factura)
+        public bool agregaTipo(string nombre, int marca, int modelo, int serie, int color, int costo, int factura, int fechaCompra)
         {
             string sql =
-                "INSERT INTO activos_tipo (nombre, marca, modelo, color, serie, costo, factura, status) " +
-                "VALUES (@nombre, @marca, @modelo, @color, @serie, @costo, @factura, 'A')";
+                "INSERT INTO activos_tipo (nombre, marca, modelo, color, serie, costo, factura, fechacompra, status) " +
+                "VALUES (@nombre, @marca, @modelo, @color, @serie, @costo, @factura, @fechaC, 'A')";
 
             bool result = true;
 
@@ -1374,6 +1378,7 @@ namespace Activos.Datos
                     cmd.Parameters.AddWithValue("@serie", serie);
                     cmd.Parameters.AddWithValue("@costo", costo);
                     cmd.Parameters.AddWithValue("@factura", factura);
+                    cmd.Parameters.AddWithValue("@fechaC", fechaCompra);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 
@@ -1462,13 +1467,13 @@ namespace Activos.Datos
         }
 
         // modifica tipos
-        public bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color, int costo, int factura)
+        public bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color, int costo, int factura, int fechaCompra)
         {
 
             string sql = 
                 "UPDATE activos_tipo " +
                 "SET nombre = @nombre, marca = @marca, modelo = @modelo, color = @color, serie = @serie, " +
-                "costo = @costo, factura = @factura " + 
+                "costo = @costo, factura = @factura, fechacompra = @fechaC " + 
                 "WHERE idtipo = @idTipo";
 
             bool result = true;
@@ -1492,6 +1497,7 @@ namespace Activos.Datos
                     cmd.Parameters.AddWithValue("@idTipo", idTipo);
                     cmd.Parameters.AddWithValue("@costo", costo);
                     cmd.Parameters.AddWithValue("@factura", factura);
+                    cmd.Parameters.AddWithValue("@fechaC", fechaCompra);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 

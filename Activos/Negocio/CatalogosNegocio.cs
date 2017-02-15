@@ -236,7 +236,7 @@ namespace Activos.Negocio
         }
 
 
-        public bool agregaTipo(string nombre, int marca, int modelo, int serie, int color, int costo, int factura)
+        public bool agregaTipo(string nombre, int marca, int modelo, int serie, int color, int costo, int factura, int fechaCompra)
         {
             // valida si ya existe un tipo con ese nombre
             string result = this._catalogosDatos.existeTipo(nombre);
@@ -244,7 +244,7 @@ namespace Activos.Negocio
             if (!string.IsNullOrEmpty(result))
                 throw new Exception(result);
 
-            return this._catalogosDatos.agregaTipo(nombre, marca, modelo, serie, color, costo, factura);
+            return this._catalogosDatos.agregaTipo(nombre, marca, modelo, serie, color, costo, factura, fechaCompra);
         }
 
 
@@ -260,9 +260,9 @@ namespace Activos.Negocio
         }
 
 
-        public bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color, int costo, int factura)
+        public bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color, int costo, int factura, int fechaCompra)
         {
-            return this._catalogosDatos.modificaTipo(idTipo, nombre, marca, modelo, serie, color, costo, factura);
+            return this._catalogosDatos.modificaTipo(idTipo, nombre, marca, modelo, serie, color, costo, factura, fechaCompra);
         }
 
 

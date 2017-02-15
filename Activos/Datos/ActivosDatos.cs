@@ -25,7 +25,7 @@ namespace Activos.Datos
         {
             string sql = 
                 "INSERT INTO activos_activos(nombrecorto, descripcion, idarea, idtipo, idusuarioalta, claveactivo, fechaalta, status, costo) " + 
-                "VALUES (@nombre, @descrip, @idArea, @idTipo, @idUs, @cveAct, @fecha, 'A', @costo)";
+                "VALUES (@nombre, @descrip, @idArea, @idTipo, @idUs, @cveAct, now(), 'A', @costo)";
 
             long result = 0;
 
@@ -48,7 +48,6 @@ namespace Activos.Datos
                     cmd.Parameters.AddWithValue("@idTipo", idTipo);
                     cmd.Parameters.AddWithValue("@idUs", idUsuario);
                     cmd.Parameters.AddWithValue("@cveAct", claveActivo);
-                    cmd.Parameters.AddWithValue("@fecha", string.IsNullOrEmpty(fecha) ? "now()" : fecha);
                     cmd.Parameters.AddWithValue("@costo", costo);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
@@ -638,7 +637,7 @@ namespace Activos.Datos
 
             string sql =
                 "UPDATE activos_activos SET nombrecorto = @nombre, descripcion = @desc, costo = @costo, " + 
-                "idusuariomodifica = @idUsModif, fechamodificacion = now(), fechaalta = @fecha " +
+                "idusuariomodifica = @idUsModif, fechamodificacion = now() " +
                 "where idactivo = @idActivo";
 
             bool result = true;
@@ -660,7 +659,6 @@ namespace Activos.Datos
 
                     // define parametros
                     cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@fecha", fechaIng);
                     cmd.Parameters.AddWithValue("@desc", descripcion);
                     cmd.Parameters.AddWithValue("@idActivo", idActivo);
                     cmd.Parameters.AddWithValue("@costo", costo);

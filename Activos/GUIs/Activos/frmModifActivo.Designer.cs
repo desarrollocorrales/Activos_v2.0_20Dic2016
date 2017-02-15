@@ -183,7 +183,7 @@
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.ReadOnly = true;
             this.tbDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDescripcion.Size = new System.Drawing.Size(516, 70);
+            this.tbDescripcion.Size = new System.Drawing.Size(516, 102);
             this.tbDescripcion.TabIndex = 122;
             // 
             // tbColor
@@ -293,7 +293,7 @@
             // btnModificar
             // 
             this.btnModificar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnModificar.Location = new System.Drawing.Point(296, 499);
+            this.btnModificar.Location = new System.Drawing.Point(296, 523);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(233, 51);
             this.btnModificar.TabIndex = 125;
@@ -378,9 +378,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(40, 447);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 23);
+            this.label6.Size = new System.Drawing.Size(158, 23);
             this.label6.TabIndex = 135;
-            this.label6.Text = "Fecha";
+            this.label6.Text = "Fecha de Compra";
             // 
             // dtpFecha
             // 
@@ -388,9 +388,9 @@
             this.dtpFecha.CustomFormat = "dd-MM-yyyy";
             this.dtpFecha.Enabled = false;
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecha.Location = new System.Drawing.Point(106, 441);
+            this.dtpFecha.Location = new System.Drawing.Point(23, 473);
             this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(137, 30);
+            this.dtpFecha.Size = new System.Drawing.Size(257, 30);
             this.dtpFecha.TabIndex = 137;
             // 
             // frmModifActivo
@@ -398,7 +398,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(825, 571);
+            this.ClientSize = new System.Drawing.Size(825, 592);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbFactura);

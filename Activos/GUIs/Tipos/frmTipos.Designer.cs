@@ -33,6 +33,7 @@
             this.btnActivar = new System.Windows.Forms.Button();
             this.btnElimSel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbFechaCompra = new System.Windows.Forms.CheckBox();
             this.cbFactura = new System.Windows.Forms.CheckBox();
             this.cbCosto = new System.Windows.Forms.CheckBox();
             this.cbSerie = new System.Windows.Forms.CheckBox();
@@ -54,6 +55,7 @@
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colcosto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colfactura = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colfechaCompra = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcTipos)).BeginInit();
@@ -90,6 +92,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox1.Controls.Add(this.cbFechaCompra);
             this.groupBox1.Controls.Add(this.cbFactura);
             this.groupBox1.Controls.Add(this.cbCosto);
             this.groupBox1.Controls.Add(this.cbSerie);
@@ -103,6 +106,17 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Obligatorios";
+            // 
+            // cbFechaCompra
+            // 
+            this.cbFechaCompra.AutoSize = true;
+            this.cbFechaCompra.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.cbFechaCompra.Location = new System.Drawing.Point(245, 106);
+            this.cbFechaCompra.Name = "cbFechaCompra";
+            this.cbFechaCompra.Size = new System.Drawing.Size(201, 31);
+            this.cbFechaCompra.TabIndex = 10;
+            this.cbFechaCompra.Text = "Fecha de Compra";
+            this.cbFechaCompra.UseVisualStyleBackColor = true;
             // 
             // cbFactura
             // 
@@ -222,7 +236,8 @@
             this.colserie,
             this.colstatus,
             this.colcosto,
-            this.colfactura});
+            this.colfactura,
+            this.colfechaCompra});
             this.gridView1.GridControl = this.gcTipos;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
@@ -321,6 +336,8 @@
             // 
             // colcosto
             // 
+            this.colcosto.AppearanceCell.Options.UseTextOptions = true;
+            this.colcosto.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colcosto.Caption = "Costo";
             this.colcosto.FieldName = "costo";
             this.colcosto.Name = "colcosto";
@@ -333,6 +350,8 @@
             // 
             // colfactura
             // 
+            this.colfactura.AppearanceCell.Options.UseTextOptions = true;
+            this.colfactura.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colfactura.Caption = "Factura";
             this.colfactura.FieldName = "factura";
             this.colfactura.Name = "colfactura";
@@ -341,7 +360,21 @@
             this.colfactura.OptionsColumn.ReadOnly = true;
             this.colfactura.Visible = true;
             this.colfactura.VisibleIndex = 7;
-            this.colfactura.Width = 40;
+            this.colfactura.Width = 50;
+            // 
+            // colfechaCompra
+            // 
+            this.colfechaCompra.AppearanceCell.Options.UseTextOptions = true;
+            this.colfechaCompra.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colfechaCompra.Caption = "Fecha Compra";
+            this.colfechaCompra.FieldName = "fechaCompra";
+            this.colfechaCompra.Name = "colfechaCompra";
+            this.colfechaCompra.OptionsColumn.AllowEdit = false;
+            this.colfechaCompra.OptionsColumn.AllowMove = false;
+            this.colfechaCompra.OptionsColumn.ReadOnly = true;
+            this.colfechaCompra.Visible = true;
+            this.colfechaCompra.VisibleIndex = 8;
+            this.colfechaCompra.Width = 80;
             // 
             // btnAgregar
             // 
@@ -361,7 +394,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(566, 628);
+            this.ClientSize = new System.Drawing.Size(566, 614);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.gcTipos);
             this.Controls.Add(this.tbNombreTipo);
@@ -410,5 +443,7 @@
         private System.Windows.Forms.CheckBox cbCosto;
         private DevExpress.XtraGrid.Columns.GridColumn colcosto;
         private DevExpress.XtraGrid.Columns.GridColumn colfactura;
+        private System.Windows.Forms.CheckBox cbFechaCompra;
+        private DevExpress.XtraGrid.Columns.GridColumn colfechaCompra;
     }
 }

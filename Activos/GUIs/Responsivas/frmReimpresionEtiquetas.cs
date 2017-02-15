@@ -225,5 +225,21 @@ namespace Activos.GUIs.Responsivas
                 MessageBox.Show(Ex.Message, "Reimpresión de Etiquetas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void tbCveActivo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarPCA_Click(null, null);
+            }
+        }
+
+        private void tbNumEtiqueta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarPNE_Click(null, null);
+            }
+        }
     }
 }

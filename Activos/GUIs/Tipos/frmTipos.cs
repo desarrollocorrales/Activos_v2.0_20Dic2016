@@ -61,12 +61,13 @@ namespace Activos.GUIs.Tipos
                 int color = this.cbColor.Checked ? 1 : 0;
                 int costo = this.cbCosto.Checked ? 1 : 0;
                 int factura = this.cbFactura.Checked ? 1 : 0;
+                int fechaCompra = this.cbFechaCompra.Checked ? 1 : 0;
 
                 // guardado de informacion
                 bool resultado =
                     this._catalogosNegocio.agregaTipo(
                         this.tbNombreTipo.Text,
-                        marca, modelo, serie, color, costo, factura);
+                        marca, modelo, serie, color, costo, factura, fechaCompra);
 
 
                 if (resultado)
@@ -82,6 +83,7 @@ namespace Activos.GUIs.Tipos
                     this.cbColor.Checked = false;
                     this.cbCosto.Checked = false;
                     this.cbFactura.Checked = false;
+                    this.cbFechaCompra.Checked = false;
                 }
 
                 // actualizar grid
@@ -172,7 +174,8 @@ namespace Activos.GUIs.Tipos
                     ent.serie.Equals("NO") ? false : true,
                     ent.color.Equals("NO") ? false : true,
                     ent.costo.Equals("NO") ? false : true,
-                    ent.factura.Equals("NO") ? false : true
+                    ent.factura.Equals("NO") ? false : true,
+                    ent.fechaCompra.Equals("NO") ? false : true
                     );
 
                 var result = form.ShowDialog();

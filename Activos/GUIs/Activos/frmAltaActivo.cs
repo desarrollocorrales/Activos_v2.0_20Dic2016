@@ -103,7 +103,9 @@ namespace Activos.GUIs.AltaActivos
                 string nombre = this.tbNombre.Text;
                 
                 int idTipo = (int)this.cmbTipo.SelectedValue;
-                
+
+                string fechaCompra = this.dtpFecha.Value.ToString("yyyy-MM-dd");
+
                 string descripcion =
                     this.tbMarca.Text + "&" +
                     this.tbModelo.Text + "&" +
@@ -111,13 +113,12 @@ namespace Activos.GUIs.AltaActivos
                     this.tbColor.Text + "&" +
                     this.tbCosto.Text + "&" +
                     this.tbFactura.Text + "&" +
+                    fechaCompra + "&" +
                     this.tbDescripcion.Text;
-
-                string fecIng = this.dtpFecha.Value.ToString("yyyy-MM-dd");
 
                 int idArea = (int)this.cmbArea.SelectedValue;
 
-                bool result = this._activosNegocio.guardaActivo(nombre, descripcion, idArea, idTipo, this._idUsuario, fecIng);
+                bool result = this._activosNegocio.guardaActivo(nombre, descripcion, idArea, idTipo, this._idUsuario, string.Empty);
 
                 if (result)
                 {
