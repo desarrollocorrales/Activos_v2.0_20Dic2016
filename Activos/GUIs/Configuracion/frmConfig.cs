@@ -67,17 +67,18 @@ namespace Activos.GUIs.Imagenes
 
 
 
-                List<Modelos.UsoLogos> usos = this._catalogosNegocio.getUsosLogos();
+                List<Modelos.UsoLogos> usosSelec = this._catalogosNegocio.getUsosLogos();
+                List<Modelos.UsoLogos> usos2Subir = this._catalogosNegocio.getUsosLogos();
 
                 // llenar combo de usos
                 this.cmbUso.DisplayMember = "clave";
                 this.cmbUso.ValueMember = "idUso";
-                this.cmbUso.DataSource = usos;
+                this.cmbUso.DataSource = usosSelec;
                 this.cmbUso.SelectedIndex = -1;
 
                 this.cmbSubirUso.DisplayMember = "clave";
                 this.cmbSubirUso.ValueMember = "idUso";
-                this.cmbSubirUso.DataSource = usos;
+                this.cmbSubirUso.DataSource = usos2Subir;
                 this.cmbSubirUso.SelectedIndex = -1;
 
                 string url = this._catalogosNegocio.getUrl("url");
@@ -110,6 +111,8 @@ namespace Activos.GUIs.Imagenes
                 int idUso = (int)this.cmbUso.SelectedValue;
 
                 List<Modelos.Logo> logos = this._catalogosNegocio.getLogos(idUso, "A");
+
+                this.pbSelLogo.Image = null;
 
                 // llenar combo de usos
                 this.cmbNombreLogo.DisplayMember = "nombre";
@@ -491,7 +494,7 @@ namespace Activos.GUIs.Imagenes
                 if (resultado)
                 {
                     MessageBox.Show("Url guardada correctamente", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    this._nuevaUrl = false;
                 }
                 else
                     throw new Exception("Problemas al guardar la url");

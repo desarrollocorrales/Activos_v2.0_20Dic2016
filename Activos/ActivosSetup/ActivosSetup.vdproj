@@ -416,6 +416,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -1019,7 +1032,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ActivosSetup"
         "ProductCode" = "8:{575B17B4-0CFB-4A23-9F4F-6549705024A9}"
-        "PackageCode" = "8:{AD84472D-EB3D-41FD-8051-F9AC06045ED4}"
+        "PackageCode" = "8:{D434C6E7-F7D3-451C-A6E8-E9028089417B}"
         "UpgradeCode" = "8:{E4739DAC-8CD9-4DEE-AFB0-285A0DF2FF22}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -1032,7 +1045,7 @@
         "ARPHELPLINK" = "8:"
         "Title" = "8:ActivosSetup"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Nombre predeterminado de la compañía"
+        "ARPCONTACT" = "8:Sistemas de Activos"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
