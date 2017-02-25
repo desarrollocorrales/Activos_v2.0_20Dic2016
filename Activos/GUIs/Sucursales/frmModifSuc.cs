@@ -66,8 +66,10 @@ namespace Activos.GUIs.Sucursales
                         idResp = sv;
                 }
 
+                string responsable = ((Modelos.Personas)this.cmbResponsable.SelectedItem).nombreCompleto;
+
                 // guardado de informacion
-                bool resultado = this._catalogosNegocio.modificaSucursal(sucNom, idResp, this._idSucursal);
+                bool resultado = this._catalogosNegocio.modificaSucursal(sucNom, idResp, this._idSucursal, responsable);
 
                 if (resultado)
                 {

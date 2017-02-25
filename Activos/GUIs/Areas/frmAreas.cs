@@ -69,8 +69,10 @@ namespace Activos.GUIs.Areas
 
                 int idSuc = Convert.ToInt16(this.cmbSucursales.SelectedValue);
 
+                string sucursal = ((Modelos.Sucursales)this.cmbSucursales.SelectedItem).nombre;
+
                 // guardado de informacion
-                bool resultado = this._catalogosNegocio.agregaArea(areaNom, idSuc);
+                bool resultado = this._catalogosNegocio.agregaArea(areaNom, idSuc, sucursal);
 
                 if (resultado)
                 {
@@ -118,6 +120,7 @@ namespace Activos.GUIs.Areas
 
                 // obtiene los ids de los puestos seleccionadas
                 List<int> seleccionados = areas.Where(w => w.seleccionado == true).Select(s => s.idArea).ToList();
+                List<string> strings = areas.Where(w => w.seleccionado == true).Select(s => s.nombre).ToList();
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ningun área");
@@ -129,7 +132,7 @@ namespace Activos.GUIs.Areas
                 if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
-                bool resultado = this._catalogosNegocio.bajaAreas(seleccionados);
+                bool resultado = this._catalogosNegocio.bajaAreas(seleccionados, strings);
 
                 if (resultado)
                     MessageBox.Show("Áreas(s) dada(s) de baja correctamente", "Áreas", MessageBoxButtons.OK, MessageBoxIcon.Information);

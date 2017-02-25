@@ -45,12 +45,13 @@ namespace Activos.GUIs.Areas
 
                 // obtiene los ids de las sucursales seleccionadas
                 List<int> seleccionados = areas.Where(w => w.seleccionado == true).Select(s => s.idArea).ToList();
+                List<string> strings = areas.Where(w => w.seleccionado == true).Select(s => s.nombre).ToList();
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ningun área");
 
                 // dar de baja los seleccionados
-                bool resultado = this._catalogosNegocio.activaAreas(seleccionados);
+                bool resultado = this._catalogosNegocio.activaAreas(seleccionados, strings);
 
                 if (resultado)
                     MessageBox.Show("Áreas(s) activada(s) correctamente", "Áreas", MessageBoxButtons.OK, MessageBoxIcon.Information);

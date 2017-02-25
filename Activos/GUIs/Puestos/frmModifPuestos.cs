@@ -60,9 +60,10 @@ namespace Activos.GUIs.Puestos
                     throw new Exception("Seleccione una sucursal");
 
                 int idSuc = Convert.ToInt16(this.cmbSucursal.SelectedValue);
+                string sucursal = ((Modelos.Sucursales)this.cmbSucursal.SelectedItem).nombre;
 
                 // guardado de informacion
-                bool resultado = this._catalogosNegocio.modificaPuesto(puestoNom, idSuc, this._idPuesto);
+                bool resultado = this._catalogosNegocio.modificaPuesto(puestoNom, idSuc, this._idPuesto, sucursal);
 
                 if (resultado)
                 {

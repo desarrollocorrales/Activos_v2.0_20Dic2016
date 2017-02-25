@@ -123,8 +123,9 @@ namespace Activos.GUIs.Personas
                 string nombre = this.tbNombreAlta.Text + "&" + this.tbApPaternoAlta.Text + "&" + this.tbApMaternoAlta.Text;
 
                 int idPuesto = (int)this.cmbPuestoAlta.SelectedValue;
+                string puesto = ((Modelos.Puestos)this.cmbPuestoAlta.SelectedItem).nom_suc;
 
-                bool resultado = this._catalogosNegocio.altaPersona(nombre, idPuesto);
+                bool resultado = this._catalogosNegocio.altaPersona(nombre, idPuesto, puesto);
 
                 if (resultado)
                 {
@@ -236,8 +237,9 @@ namespace Activos.GUIs.Personas
                 string nombre = this.tbNombreModif.Text + "&" + this.tbApPaternoModif.Text + "&" + this.tbApMaternoModif.Text;
 
                 int idPuesto = (int)this.cmbPuestoModif.SelectedValue;
+                string puesto = ((Modelos.Puestos)this.cmbPuestoModif.SelectedItem).nom_suc;
 
-                bool resultado = this._catalogosNegocio.modifPersona(nombre, idPuesto, this._idPersona);
+                bool resultado = this._catalogosNegocio.modifPersona(nombre, idPuesto, this._idPersona, puesto);
 
                 if (resultado)
                 {
@@ -321,6 +323,7 @@ namespace Activos.GUIs.Personas
 
                 // obtiene los ids de las personas seleccionadas
                 List<int> seleccionados = personas.Where(w => w.seleccionado == true).Select(s => s.idPersona).ToList();
+                List<string> strings = personas.Where(w => w.seleccionado == true).Select(s => s.nombreCompleto).ToList();
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ninguna persona");
@@ -332,7 +335,7 @@ namespace Activos.GUIs.Personas
                 if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
-                bool resultado = this._catalogosNegocio.bajaPersonas(seleccionados);
+                bool resultado = this._catalogosNegocio.bajaPersonas(seleccionados, strings);
 
                 if (resultado)
                     MessageBox.Show("Persona (s) dada (s) de baja correctamente", "Personas", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -396,12 +399,13 @@ namespace Activos.GUIs.Personas
 
                 // obtiene los ids de las personas seleccionadas
                 List<int> seleccionados = personas.Where(w => w.seleccionado == true).Select(s => s.idPersona).ToList();
+                List<string> strings = personas.Where(w => w.seleccionado == true).Select(s => s.nombreCompleto).ToList();
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ninguna persona");
 
                 // activar los seleccionados
-                bool resultado = this._catalogosNegocio.activaPersonas(seleccionados);
+                bool resultado = this._catalogosNegocio.activaPersonas(seleccionados, strings);
 
                 if (resultado)
                     MessageBox.Show("Persona (s) activada (s) correctamente", "Personas", MessageBoxButtons.OK, MessageBoxIcon.Information);

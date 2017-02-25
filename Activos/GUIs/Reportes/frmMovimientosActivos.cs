@@ -297,8 +297,23 @@ namespace Activos.GUIs.Reportes
 
         private void btnVistaPrevia_Click(object sender, EventArgs e)
         {
-            this.gridView1.BestFitColumns();
-            this.gcCambios.ShowPrintPreview();
+            try
+            {
+
+                // bitacora
+                this._catalogosNegocio.generaBitacora(
+                    "Genera Reporte 'Movimientos de Activo' con parametros:" +
+                    " idActivo: " + this._activoSelecc.idActivo, "CONSULTAS");
+
+
+                this.gridView1.BestFitColumns();
+                this.gcCambios.ShowPrintPreview();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
         }
 
         private void gridView2_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)

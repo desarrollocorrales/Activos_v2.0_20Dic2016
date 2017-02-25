@@ -11,25 +11,25 @@ namespace Activos.Negocio
         /* ******** S U C U R S A L E S ************ */
         List<Sucursales> getSucursales(string status);
 
-        bool agregaSucursal(string sucNom, int? idResp);
+        bool agregaSucursal(string sucNom, int? idResp, string responsable);
 
-        bool bajaSucursalas(List<int> seleccionados);
+        bool bajaSucursalas(List<int> seleccionados, List<string> strings);
 
-        bool modificaSucursal(string sucNom, int? idResp, int p);
+        bool modificaSucursal(string sucNom, int? idResp, int p, string responsable);
 
-        bool activaSucursalas(List<int> seleccionados);
+        bool activaSucursalas(List<int> seleccionados, List<string> strings);
 
 
         /* ************* P U E S T O S ************* */
         List<Puestos> getPuestos(string status);
 
-        bool agregaPuesto(string puestoNom, int idSuc);
+        bool agregaPuesto(string puestoNom, int idSuc, string sucursal);
 
-        bool bajaPuestos(List<int> seleccionados);
+        bool bajaPuestos(List<int> seleccionados, List<string> strings);
 
-        bool activaPuestos(List<int> seleccionados);
+        bool activaPuestos(List<int> seleccionados, List<string> strings);
 
-        bool modificaPuesto(string puestoNom, int idSuc, int idPuesto);
+        bool modificaPuesto(string puestoNom, int idSuc, int idPuesto, string sucursal);
 
 
         /* ********** U S U A R I O  S ************* */
@@ -43,15 +43,15 @@ namespace Activos.Negocio
 
         Response creaUsuario(int idPersona, string fecha, string correo, string usuario, string clave);
 
-        bool modificacionUsuario(string correo, int idUsuario);
+        bool modificacionUsuario(string correo, int idUsuario, string usuario);
 
         bool activaUsuarios(List<int> seleccionados);
 
-        bool bajaUsuarios(List<int> seleccionados);
+        bool bajaUsuarios(List<int> seleccionados, List<string> strings);
 
         bool validaClave(string clave, int idUsuario);
 
-        bool actualizaClave(string clave, int idUsuario);
+        bool actualizaClave(string clave, int idUsuario, string usuario);
 
 
         /* ************* A R E A S *************** */
@@ -59,13 +59,13 @@ namespace Activos.Negocio
 
         List<Areas> getAreas(int idSuc);
 
-        bool agregaArea(string areaNom, int idSuc);
+        bool agregaArea(string areaNom, int idSuc, string sucursal);
 
-        bool activaAreas(List<int> seleccionados);
+        bool activaAreas(List<int> seleccionados, List<string> strings);
 
-        bool bajaAreas(List<int> seleccionados);
+        bool bajaAreas(List<int> seleccionados, List<string> strings);
 
-        bool modificaArea(string areaNom, int idSuc, int idArea);
+        bool modificaArea(string areaNom, int idSuc, int idArea, string sucursal);
 
 
         /* ************* T I P O S *************** */
@@ -75,24 +75,24 @@ namespace Activos.Negocio
 
         bool agregaTipo(string nombre, int marca, int modelo, int serie, int color, int costo, int factura, int fechaCompra);
 
-        bool activaTipos(List<int> seleccionados);
+        bool activaTipos(List<int> seleccionados, List<string> strings );
 
-        bool bajaTipos(List<int> seleccionados);
+        bool bajaTipos(List<int> seleccionados, List<string> strings);
 
         bool modificaTipo(int idTipo, string nombre, int marca, int modelo, int serie, int color, int costo, int factura, int fechaCompra);
 
 
 
         /* ********** P E R S O N A S *********** */
-        bool altaPersona(string nombre, int idPuesto);
+        bool altaPersona(string nombre, int idPuesto, string puesto);
 
         List<Personas> getPersonas(string paramBusq, string status);
 
-        bool modifPersona(string nombre, int idPuesto, int? idPersona);
+        bool modifPersona(string nombre, int idPuesto, int? idPersona, string puesto);
 
-        bool bajaPersonas(List<int> seleccionados);
+        bool bajaPersonas(List<int> seleccionados, List<string> strings);
 
-        bool activaPersonas(List<int> seleccionados);
+        bool activaPersonas(List<int> seleccionados, List<string> strings);
 
         List<Modelos.Personas> getPersonasSinUsuario(string status);
 
@@ -129,5 +129,7 @@ namespace Activos.Negocio
         string getUrl(string clave);
 
         string getSucursal(int? idPersona);
+
+        void generaBitacora(string detalle, string modulo);
     }
 }

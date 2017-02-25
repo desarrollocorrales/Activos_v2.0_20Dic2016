@@ -68,9 +68,10 @@ namespace Activos.GUIs.Puestos
                     throw new Exception("Seleccione una sucursal");
 
                 int idSuc = Convert.ToInt16(this.cmbSucursal.SelectedValue);
+                string sucursal = ((Modelos.Sucursales)this.cmbSucursal.SelectedItem).nombre;
 
                 // guardado de informacion
-                bool resultado = this._catalogosNegocio.agregaPuesto(puestoNom, idSuc);
+                bool resultado = this._catalogosNegocio.agregaPuesto(puestoNom, idSuc, sucursal);
 
                 if (resultado)
                 {
@@ -117,6 +118,7 @@ namespace Activos.GUIs.Puestos
 
                 // obtiene los ids de los puestos seleccionadas
                 List<int> seleccionados = puestos.Where(w => w.seleccionado == true).Select(s => s.idPuesto).ToList();
+                List<string> strings = puestos.Where(w => w.seleccionado == true).Select(s => s.nombre).ToList();
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ningun puesto");
@@ -128,7 +130,7 @@ namespace Activos.GUIs.Puestos
                 if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
-                bool resultado = this._catalogosNegocio.bajaPuestos(seleccionados);
+                bool resultado = this._catalogosNegocio.bajaPuestos(seleccionados, strings);
 
                 if (resultado)
                     MessageBox.Show("Puesto(s) dado(s) de baja correctamente", "Puestos", MessageBoxButtons.OK, MessageBoxIcon.Information);

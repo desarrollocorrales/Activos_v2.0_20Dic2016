@@ -38,12 +38,13 @@ namespace Activos.GUIs.Puestos
 
                 // obtiene los ids de las sucursales seleccionadas
                 List<int> seleccionados = puestos.Where(w => w.seleccionado == true).Select(s => s.idPuesto).ToList();
+                List<string> strings = puestos.Where(w => w.seleccionado == true).Select(s => s.nombre).ToList();
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ningun puesto");
 
                 // dar de baja los seleccionados
-                bool resultado = this._catalogosNegocio.activaPuestos(seleccionados);
+                bool resultado = this._catalogosNegocio.activaPuestos(seleccionados, strings);
 
                 if (resultado)
                     MessageBox.Show("Puesto(s) activado(s) correctamente", "Puestos", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -57,13 +57,13 @@
             this.catálogosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sucursalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.puestoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.áreasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bajasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.áreasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gruposToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -306,9 +306,9 @@
             this.catálogosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sucursalesToolStripMenuItem,
             this.puestoToolStripMenuItem,
-            this.áreasToolStripMenuItem,
             this.personasToolStripMenuItem,
             this.usuariosToolStripMenuItem,
+            this.áreasToolStripMenuItem,
             this.tipoToolStripMenuItem,
             this.gruposToolStripMenuItem});
             this.catálogosToolStripMenuItem.Name = "catálogosToolStripMenuItem";
@@ -331,14 +331,6 @@
             this.puestoToolStripMenuItem.Tag = "21";
             this.puestoToolStripMenuItem.Text = "&Puestos";
             this.puestoToolStripMenuItem.Click += new System.EventHandler(this.puestoToolStripMenuItem_Click);
-            // 
-            // áreasToolStripMenuItem
-            // 
-            this.áreasToolStripMenuItem.Name = "áreasToolStripMenuItem";
-            this.áreasToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.áreasToolStripMenuItem.Tag = "22";
-            this.áreasToolStripMenuItem.Text = "&Áreas";
-            this.áreasToolStripMenuItem.Click += new System.EventHandler(this.áreasToolStripMenuItem_Click);
             // 
             // personasToolStripMenuItem
             // 
@@ -391,6 +383,14 @@
             this.activarToolStripMenuItem.Text = "A&ctivar";
             this.activarToolStripMenuItem.Visible = false;
             this.activarToolStripMenuItem.Click += new System.EventHandler(this.activarToolStripMenuItem_Click);
+            // 
+            // áreasToolStripMenuItem
+            // 
+            this.áreasToolStripMenuItem.Name = "áreasToolStripMenuItem";
+            this.áreasToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.áreasToolStripMenuItem.Tag = "22";
+            this.áreasToolStripMenuItem.Text = "&Áreas";
+            this.áreasToolStripMenuItem.Click += new System.EventHandler(this.áreasToolStripMenuItem_Click);
             // 
             // tipoToolStripMenuItem
             // 
@@ -458,6 +458,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Activos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPrincipal_FormClosed);
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.Resize += new System.EventHandler(this.FormPrincipal_Resize);
             this.menuStrip1.ResumeLayout(false);

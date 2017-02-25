@@ -178,7 +178,7 @@
             this.MaximizeBox = false;
             this.Name = "frmActPuestos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmActPuestos";
+            this.Text = "Activar Puestos";
             this.Load += new System.EventHandler(this.frmActPuestos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcPuestosBaja)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.puestosBindingSource)).EndInit();

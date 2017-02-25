@@ -123,6 +123,7 @@ namespace Activos.GUIs.Tipos
 
                 // obtiene los ids de los puestos seleccionadas
                 List<int> seleccionados = puestos.Where(w => w.seleccionado == true).Select(s => s.idTipo).ToList();
+                List<string> strings = puestos.Where(w => w.seleccionado == true).Select(s => s.nombre).ToList();
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ningun tipo");
@@ -134,7 +135,7 @@ namespace Activos.GUIs.Tipos
                 if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
-                bool resultado = this._catalogosNegocio.bajaTipos(seleccionados);
+                bool resultado = this._catalogosNegocio.bajaTipos(seleccionados, strings);
 
                 if (resultado)
                     MessageBox.Show("Tipo(s) dado(s) de baja correctamente", "Tipos", MessageBoxButtons.OK, MessageBoxIcon.Information);

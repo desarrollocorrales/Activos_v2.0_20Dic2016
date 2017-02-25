@@ -178,6 +178,14 @@ namespace Activos.GUIs.Reportes
 
                 form._empresa = Modelos.Login.empresa;
 
+                // bitacora
+                this._catalogosNegocio.generaBitacora(
+                    "Genera Reporte 'Activos por Persona' con parametros:" +
+                    " sucursal: " + responsiva.sucursal +
+                    " responsable: " + responsiva.responsable + 
+                    (this.cbBajas.Checked ? " BAJAS ": string.Empty)+
+                    (this.cbReparacion.Checked ? " REPARACIONES " : string.Empty), "CONSULTAS");
+
                 form.ShowDialog();
             }
             catch (Exception Ex)

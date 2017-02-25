@@ -54,6 +54,10 @@ namespace Activos
                         Modelos.Login.admin = true;
                     else Modelos.Login.admin = false;
 
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Nuevo Acceso a usuario '" + Modelos.Login.nombre.Replace("&", " ") + "'", "ACCESO");
+
                     this.Hide();
                     new FormPrincipal().ShowDialog();
                     this.Close();

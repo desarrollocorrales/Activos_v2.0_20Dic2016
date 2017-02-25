@@ -758,5 +758,22 @@ namespace Activos
                 MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                ICatalogosNegocio catalogosNegocio = new CatalogosNegocio();
+
+                // bitacora
+                catalogosNegocio.generaBitacora(
+                    "Sesión cerrada por el usuario '" + Modelos.Login.nombre.Replace("&", " ") + "'", "ACCESO");
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
     }
 }

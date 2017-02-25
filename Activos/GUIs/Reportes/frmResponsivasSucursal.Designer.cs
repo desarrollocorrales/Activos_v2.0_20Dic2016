@@ -119,6 +119,7 @@
             // 
             // gcResponsivas
             // 
+            this.gcResponsivas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.gcResponsivas.DataSource = this.responsivasSucursalBindingSource;
             this.gcResponsivas.Location = new System.Drawing.Point(12, 194);
             this.gcResponsivas.MainView = this.gridView1;
@@ -223,6 +224,7 @@
             // 
             // btnVistaPrevia
             // 
+            this.btnVistaPrevia.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnVistaPrevia.Location = new System.Drawing.Point(302, 428);
             this.btnVistaPrevia.Name = "btnVistaPrevia";
             this.btnVistaPrevia.Size = new System.Drawing.Size(173, 43);

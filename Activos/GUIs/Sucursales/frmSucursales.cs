@@ -75,8 +75,10 @@ namespace Activos.GUIs.Sucursales
                         idResp = sv;
                 }
 
+                string responsable = ((Modelos.Personas)this.cmbResponsable.SelectedItem).nombreCompleto;
+
                 // guardado de informacion
-                bool resultado = this._catalogosNegocio.agregaSucursal(sucNom, idResp);
+                bool resultado = this._catalogosNegocio.agregaSucursal(sucNom, idResp, responsable);
 
                 if (resultado)
                 {
@@ -102,6 +104,7 @@ namespace Activos.GUIs.Sucursales
 
                 // obtiene los ids de las sucursales seleccionadas
                 List<int> seleccionados = sucursales.Where(w => w.seleccionado == true).Select(s => s.idSucursal).ToList();
+                List<string> strings = sucursales.Where(w => w.seleccionado == true).Select(s => s.nombre).ToList();
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ninguna sucursal");
@@ -113,7 +116,7 @@ namespace Activos.GUIs.Sucursales
                 if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
-                bool resultado = this._catalogosNegocio.bajaSucursalas(seleccionados);
+                bool resultado = this._catalogosNegocio.bajaSucursalas(seleccionados, strings);
 
                 if(resultado)
                     MessageBox.Show("Sucursal(es) dada(s) de baja correctamente", "Sucursales", MessageBoxButtons.OK, MessageBoxIcon.Information);

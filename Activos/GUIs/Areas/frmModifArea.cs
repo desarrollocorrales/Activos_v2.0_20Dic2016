@@ -61,8 +61,10 @@ namespace Activos.GUIs.Areas
 
                 int idSuc = Convert.ToInt16(this.cmbSucursal.SelectedValue);
 
+                string sucursal = ((Modelos.Sucursales)this.cmbSucursal.SelectedItem).nombre;
+
                 // guardado de informacion
-                bool resultado = this._catalogosNegocio.modificaArea(areaNom, idSuc, this._idArea);
+                bool resultado = this._catalogosNegocio.modificaArea(areaNom, idSuc, this._idArea, sucursal);
 
                 if (resultado)
                 {

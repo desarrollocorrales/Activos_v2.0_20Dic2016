@@ -15,6 +15,8 @@ namespace Activos.GUIs.Reportes
         ICatalogosNegocio _catalogosNegocio;
         IResponsivasNegocio _responsivasNegocio;
 
+        private string _sucursal = string.Empty;
+
         private List<Modelos.ResponsivasSucursal> _resultado = new List<Modelos.ResponsivasSucursal>();
 
         public frmResponsivasSucursal()
@@ -53,6 +55,8 @@ namespace Activos.GUIs.Reportes
                 bool repara = this.cbReparaciones.Checked;
 
                 int idSuc = (int)this.cmbSucursales.SelectedValue;
+
+                this._sucursal = ((Modelos.Sucursales)this.cmbSucursales.SelectedItem).nombre;
 
                 this._resultado = this._responsivasNegocio.getRespSuc(idSuc, bajas, repara);
 
@@ -112,6 +116,15 @@ namespace Activos.GUIs.Reportes
                 }
 
                 form._responsivas = responsiva;
+
+
+                // bitacora
+                this._catalogosNegocio.generaBitacora(
+                    "Genera Reporte 'Responsivas por sucursal' con parametros:" +
+                    " sucursal: " + this._sucursal +
+
+                    (this.cbBajas.Checked ? " BAJAS " : string.Empty) +
+                    (this.cbReparaciones.Checked ? " REPARACIONES " : string.Empty), "CONSULTAS");
 
                 form.ShowDialog();
             }

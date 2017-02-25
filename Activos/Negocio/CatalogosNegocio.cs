@@ -24,27 +24,27 @@ namespace Activos.Negocio
         }
 
 
-        public bool agregaSucursal(string sucNom, int? idResp)
+        public bool agregaSucursal(string sucNom, int? idResp, string responsable)
         {
-            return this._catalogosDatos.agregaSucursal(sucNom, idResp);
+            return this._catalogosDatos.agregaSucursal(sucNom, idResp, responsable);
         }
 
 
-        public bool bajaSucursalas(List<int> seleccionados)
+        public bool bajaSucursalas(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.bajaSucursales(seleccionados);
+            return this._catalogosDatos.bajaSucursales(seleccionados, strings);
         }
 
 
-        public bool modificaSucursal(string sucNom, int? idResp, int idSucursal)
+        public bool modificaSucursal(string sucNom, int? idResp, int idSucursal, string responsable)
         {
-            return this._catalogosDatos.modificaSucursal(sucNom, idResp, idSucursal);
+            return this._catalogosDatos.modificaSucursal(sucNom, idResp, idSucursal, responsable);
         }
 
 
-        public bool activaSucursalas(List<int> seleccionados)
+        public bool activaSucursalas(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.activaSucursales(seleccionados);
+            return this._catalogosDatos.activaSucursales(seleccionados, strings);
         }
 
 
@@ -55,27 +55,27 @@ namespace Activos.Negocio
         }
 
 
-        public bool agregaPuesto(string puestoNom, int idSuc)
+        public bool agregaPuesto(string puestoNom, int idSuc, string sucursal)
         {
-            return this._catalogosDatos.agregaPuestos(puestoNom, idSuc);
+            return this._catalogosDatos.agregaPuestos(puestoNom, idSuc, sucursal);
         }
 
 
-        public bool bajaPuestos(List<int> seleccionados)
+        public bool bajaPuestos(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.bajaPuestos(seleccionados);
+            return this._catalogosDatos.bajaPuestos(seleccionados, strings);
         }
 
 
-        public bool activaPuestos(List<int> seleccionados)
+        public bool activaPuestos(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.activaPuestos(seleccionados);
+            return this._catalogosDatos.activaPuestos(seleccionados, strings);
         }
 
 
-        public bool modificaPuesto(string puestoNom, int idSuc, int idPuesto)
+        public bool modificaPuesto(string puestoNom, int idSuc, int idPuesto, string sucursal)
         {
-            return this._catalogosDatos.modificaPuesto(puestoNom, idSuc, idPuesto);
+            return this._catalogosDatos.modificaPuesto(puestoNom, idSuc, idPuesto, sucursal);
         }
 
 
@@ -158,9 +158,9 @@ namespace Activos.Negocio
         }
 
 
-        public bool modificacionUsuario(string correo, int idUsuario)
+        public bool modificacionUsuario(string correo, int idUsuario, string usuario)
         {
-            return this._catalogosDatos.modificacionUsuario(correo, idUsuario);
+            return this._catalogosDatos.modificacionUsuario(correo, idUsuario, usuario);
         }
 
 
@@ -170,9 +170,9 @@ namespace Activos.Negocio
         }
 
 
-        public bool bajaUsuarios(List<int> seleccionados)
+        public bool bajaUsuarios(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.bajaUsuarios(seleccionados);
+            return this._catalogosDatos.bajaUsuarios(seleccionados, strings);
         }
 
 
@@ -182,9 +182,9 @@ namespace Activos.Negocio
         }
 
 
-        public bool actualizaClave(string clave, int idUsuario)
+        public bool actualizaClave(string clave, int idUsuario, string usuario)
         {
-            return this._catalogosDatos.actualizaClave(clave, idUsuario);
+            return this._catalogosDatos.actualizaClave(clave, idUsuario, usuario);
         }
 
 
@@ -199,27 +199,27 @@ namespace Activos.Negocio
             return this._catalogosDatos.getAreas(idSuc);
         }
 
-        public bool agregaArea(string areaNom, int idSuc)
+        public bool agregaArea(string areaNom, int idSuc, string sucursal)
         {
-            return this._catalogosDatos.agregaAreas(areaNom, idSuc);
+            return this._catalogosDatos.agregaAreas(areaNom, idSuc, sucursal);
         }
 
 
-        public bool activaAreas(List<int> seleccionados)
+        public bool activaAreas(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.activaAreas(seleccionados);
+            return this._catalogosDatos.activaAreas(seleccionados, strings);
         }
 
 
-        public bool bajaAreas(List<int> seleccionados)
+        public bool bajaAreas(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.bajaAreas(seleccionados);
+            return this._catalogosDatos.bajaAreas(seleccionados, strings);
         }
 
 
-        public bool modificaArea(string areaNom, int idSuc, int idArea)
+        public bool modificaArea(string areaNom, int idSuc, int idArea, string sucursal)
         {
-            return this._catalogosDatos.modificaArea(areaNom, idSuc, idArea);
+            return this._catalogosDatos.modificaArea(areaNom, idSuc, idArea, sucursal);
         }
 
 
@@ -248,15 +248,15 @@ namespace Activos.Negocio
         }
 
 
-        public bool activaTipos(List<int> seleccionados)
+        public bool activaTipos(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.activaTipos(seleccionados);
+            return this._catalogosDatos.activaTipos(seleccionados, strings);
         }
 
 
-        public bool bajaTipos(List<int> seleccionados)
+        public bool bajaTipos(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.bajaTipos(seleccionados);
+            return this._catalogosDatos.bajaTipos(seleccionados, strings);
         }
 
 
@@ -269,9 +269,9 @@ namespace Activos.Negocio
 
 
         /* ********** P E R S O N A S *********** */
-        public bool altaPersona(string nombre, int idPuesto)
+        public bool altaPersona(string nombre, int idPuesto, string puesto)
         {
-            return this._catalogosDatos.altaPersonas(nombre, idPuesto);
+            return this._catalogosDatos.altaPersonas(nombre, idPuesto, puesto);
         }
 
 
@@ -281,21 +281,21 @@ namespace Activos.Negocio
         }
 
 
-        public bool modifPersona(string nombre, int idPuesto, int? idPersona)
+        public bool modifPersona(string nombre, int idPuesto, int? idPersona, string puesto)
         {
-            return this._catalogosDatos.modifPersona(nombre, idPuesto, idPersona);
+            return this._catalogosDatos.modifPersona(nombre, idPuesto, idPersona, puesto);
         }
 
 
-        public bool bajaPersonas(List<int> seleccionados)
+        public bool bajaPersonas(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.bajaPersonas(seleccionados);
+            return this._catalogosDatos.bajaPersonas(seleccionados, strings);
         }
 
 
-        public bool activaPersonas(List<int> seleccionados)
+        public bool activaPersonas(List<int> seleccionados, List<string> strings)
         {
-            return this._catalogosDatos.activaPersonas(seleccionados);
+            return this._catalogosDatos.activaPersonas(seleccionados, strings);
         }
 
 
@@ -382,6 +382,12 @@ namespace Activos.Negocio
         public string getSucursal(int? idPersona)
         {
             return this._catalogosDatos.getSucursales(idPersona);
+        }
+
+
+        public void generaBitacora(string detalle, string modulo)
+        {
+            this._catalogosDatos.generaBitacora(detalle, modulo);
         }
     }
 }

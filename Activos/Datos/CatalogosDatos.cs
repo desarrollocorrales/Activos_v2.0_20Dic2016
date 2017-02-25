@@ -216,7 +216,7 @@ namespace Activos.Datos
         }
 
         // agrega una nueva sucursal
-        public bool agregaSucursal(string sucNom, int? idResp)
+        public bool agregaSucursal(string sucNom, int? idResp, string responsable)
         {
             string sql = "insert into activos_sucursales(nombre, idresponsable, status) values (@nombre, @idresponsable, 'A')";
 
@@ -244,6 +244,20 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora = 
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " + 
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se agregó la sucursal '" + sucNom + "' con el responsable '" + responsable + "'");
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -251,7 +265,7 @@ namespace Activos.Datos
         }
 
         // baja a una sucursal o varias
-        public bool bajaSucursales(List<int> seleccionados)
+        public bool bajaSucursales(List<int> seleccionados, List<string> strings)
         {
             string sql = "update activos_sucursales set status = 'B' where FIND_IN_SET(idsucursal, @parameter) != 0";
 
@@ -280,6 +294,20 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja las sucursales " + string.Join(",",strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -287,7 +315,7 @@ namespace Activos.Datos
         }
 
         // actualiza una sucursal
-        public bool modificaSucursal(string sucNom, int? idResp, int idSucursal)
+        public bool modificaSucursal(string sucNom, int? idResp, int idSucursal, string responsable)
         {
             string sql = "update activos_sucursales set nombre = @nombre, idresponsable = @idResp where idsucursal = @idSuc";
 
@@ -316,6 +344,20 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se modifico la sucursal " + idSucursal + " por '" + sucNom + "' con el responsable '" + responsable + "'");
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -323,7 +365,7 @@ namespace Activos.Datos
         }
 
         // activa sucursales
-        public bool activaSucursales(List<int> seleccionados)
+        public bool activaSucursales(List<int> seleccionados, List<string> strings)
         {
             string sql = "update activos_sucursales set status = 'A' where FIND_IN_SET(idsucursal, @parameter) != 0 ";
 
@@ -352,6 +394,20 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se activaron las sucursales " + string.Join(",", strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -419,7 +475,7 @@ namespace Activos.Datos
         }
 
         // inserta un nuevo puesto
-        public bool agregaPuestos(string puestoNom, int idSuc)
+        public bool agregaPuestos(string puestoNom, int idSuc, string sucursal)
         {
             string sql = "insert into activos_puesto(nombre, idsucursal, status) values (@nombre, @idsuc, 'A')";
 
@@ -447,6 +503,20 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se agregó el puesto '" + puestoNom + "' con la sucursal '" + sucursal + "'");
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -454,7 +524,7 @@ namespace Activos.Datos
         }
 
         // baja a un puesto o varios
-        public bool bajaPuestos(List<int> seleccionados)
+        public bool bajaPuestos(List<int> seleccionados, List<string> strings)
         {
             string sql = "update activos_puesto set status = 'B' where FIND_IN_SET(idpuesto, @parameter) != 0 ";
 
@@ -483,6 +553,20 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja los puestos " + string.Join(",", strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -490,7 +574,7 @@ namespace Activos.Datos
         }
 
         // activar puestos
-        public bool activaPuestos(List<int> seleccionados)
+        public bool activaPuestos(List<int> seleccionados, List<string> strings)
         {
             string sql = "update activos_puesto set status = 'A' where FIND_IN_SET(idpuesto, @parameter) != 0 ";
 
@@ -519,6 +603,21 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se activaron los puestos " + string.Join(",", strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -526,7 +625,7 @@ namespace Activos.Datos
         }
 
         // actualiza puesto
-        public bool modificaPuesto(string puestoNom, int idSuc, int idPuesto)
+        public bool modificaPuesto(string puestoNom, int idSuc, int idPuesto, string sucursal)
         {
             string sql = "update activos_puesto set nombre = @nombre, idsucursal = @idSuc where idpuesto = @idPuesto";
 
@@ -555,6 +654,20 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se modifico el puesto " + idPuesto + " por '" + puestoNom + "' con la sucursal '" + sucursal + "'");
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -798,6 +911,21 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'USUARIOS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se creó el usuario '" + usuario + "' perteneciente a la persona " + idPersona + " con clave " + claveBase64);
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -805,7 +933,7 @@ namespace Activos.Datos
         }
 
         // modifica usuarios
-        public bool modificacionUsuario(string correo, int idUsuario)
+        public bool modificacionUsuario(string correo, int idUsuario, string usuario)
         {
             string sql = "UPDATE activos_usuarios SET correo=@correo WHERE idusuario=@idUsuario";
 
@@ -833,6 +961,22 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'USUARIO')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se modifico el correo del usuario " + usuario);
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
+
                 }
             }
 
@@ -877,7 +1021,7 @@ namespace Activos.Datos
         }
 
         // baja a usuarios
-        public bool bajaUsuarios(List<int> seleccionados)
+        public bool bajaUsuarios(List<int> seleccionados, List<string> strings)
         {
             string sql = "update activos_usuarios set status = 'B' where FIND_IN_SET(idusuario, @parameter) != 0 ";
 
@@ -906,6 +1050,21 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'USUARIOS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja los usuarios " + string.Join(",", strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -957,7 +1116,7 @@ namespace Activos.Datos
         }
 
         // actualiza clave
-        public bool actualizaClave(string clave, int idUsuario)
+        public bool actualizaClave(string clave, int idUsuario, string usuario)
         {
             string sql = "update activos_usuarios set clave = @clave where idusuario = @idUsuario";
 
@@ -985,6 +1144,21 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'ARCHIVO')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se modifico la clave del usuario " + usuario + " por " + Utilerias.Base64Encode(clave));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1095,7 +1269,7 @@ namespace Activos.Datos
         }
 
         // agrega areas
-        public bool agregaAreas(string areaNom, int idSuc)
+        public bool agregaAreas(string areaNom, int idSuc, string sucursal)
         {
             string sql = "insert into activos_areas(nombre, idsucursal, status) values (@nombre, @idSucu, 'A')";
 
@@ -1123,6 +1297,21 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se agregó el área '" + areaNom + "' con la sucursal '" + sucursal + "'");
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1130,7 +1319,7 @@ namespace Activos.Datos
         }
 
         // activa areas seleccionadas
-        public bool activaAreas(List<int> seleccionados)
+        public bool activaAreas(List<int> seleccionados, List<string> strings)
         {
             string sql = "update activos_areas set status = 'A' where FIND_IN_SET(idarea, @parameter) != 0";
 
@@ -1159,6 +1348,21 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se activaron las áreas " + string.Join(",", strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1166,7 +1370,7 @@ namespace Activos.Datos
         }
 
         // baja areas
-        public bool bajaAreas(List<int> seleccionados)
+        public bool bajaAreas(List<int> seleccionados, List<string> strings)
         {
             string sql = "update activos_areas set status = 'B' where FIND_IN_SET(idarea, @parameter) != 0";
 
@@ -1195,6 +1399,20 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja las áreas " + string.Join(",", strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1202,7 +1420,7 @@ namespace Activos.Datos
         }
 
         // modifica area
-        public bool modificaArea(string areaNom, int idSuc, int idArea)
+        public bool modificaArea(string areaNom, int idSuc, int idArea, string sucursal)
         {
             string sql = "update activos_areas set nombre = @nombre, idsucursal = @idSucu where idarea = @idArea";
 
@@ -1231,6 +1449,20 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se modifico el área " + idArea + " por '" + areaNom + "' con la sucursal '" + sucursal + "'");
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1388,6 +1620,29 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string campos =
+                        (marca == 1 ? "MARCA, " : string.Empty) +
+                        (modelo == 1 ? "MODELO, " : string.Empty) +
+                        (color == 1 ? "COLOR, " : string.Empty) +
+                        (serie == 1 ? "SERIE, " : string.Empty) +
+                        (costo == 1 ? "COSTO, " : string.Empty) +
+                        (factura == 1 ? "FACTURA, " : string.Empty) +
+                        (fechaCompra == 1 ? "FECHA DE COMPRA, " : string.Empty);
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se agregó la el tipo '" + nombre + "' con campos activos '" + campos.Substring(0, campos.Trim().Length - 1) + "'");
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1395,7 +1650,7 @@ namespace Activos.Datos
         }
 
         // activar tipos
-        public bool activaTipos(List<int> seleccionados)
+        public bool activaTipos(List<int> seleccionados, List<string> strings)
         {
             string sql = "update activos_tipo set status = 'A' where FIND_IN_SET(idtipo, @parameter) != 0";
 
@@ -1424,6 +1679,21 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se activaron los tipos " + string.Join(",", strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1431,7 +1701,7 @@ namespace Activos.Datos
         }
 
         // baja tipos
-        public bool bajaTipos(List<int> seleccionados)
+        public bool bajaTipos(List<int> seleccionados, List<string> strings)
         {
             string sql = "update activos_tipo set status = 'B' where FIND_IN_SET(idtipo, @parameter) != 0";
 
@@ -1460,6 +1730,21 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja los tipos " + string.Join(",", strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1507,6 +1792,30 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string campos =
+                        (marca == 1 ? "MARCA, " : string.Empty) +
+                        (modelo == 1 ? "MODELO, " : string.Empty) +
+                        (color == 1 ? "COLOR, " : string.Empty) +
+                        (serie == 1 ? "SERIE, " : string.Empty) +
+                        (costo == 1 ? "COSTO, " : string.Empty) +
+                        (factura == 1 ? "FACTURA, " : string.Empty) +
+                        (fechaCompra == 1 ? "FECHA DE COMPRA, " : string.Empty);
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se modifico el tipo " + idTipo + " por '" + nombre + "' con campos activos '" + campos.Substring(0, campos.Trim().Length - 1) + "'");
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1514,7 +1823,7 @@ namespace Activos.Datos
         }
 
         // alta de personas
-        public bool altaPersonas(string nombre, int idPuesto)
+        public bool altaPersonas(string nombre, int idPuesto, string puesto)
         {
             string sql = "insert into activos_personas(nombrecompleto, idpuesto, status) values (@nombre, @idpuesto, 'A')";
 
@@ -1542,6 +1851,21 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se agregó la persona '" + nombre + "' con el puesto '" + puesto + "'");
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1620,7 +1944,7 @@ namespace Activos.Datos
         }
 
         // modifica una persona
-        public bool modifPersona(string nombre, int idPuesto, int? idPersona)
+        public bool modifPersona(string nombre, int idPuesto, int? idPersona, string puesto)
         {
             string sql = "update activos_personas set nombrecompleto = @nombre, idpuesto = @idPuesto where idpersona = @idPers";
 
@@ -1649,6 +1973,20 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se modifico la persona " + idPersona + " por '" + nombre + "' con el puesto '" + puesto + "'");
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -1656,7 +1994,7 @@ namespace Activos.Datos
         }
 
         // baja a una persona
-        public bool bajaPersonas(List<int> seleccionados)
+        public bool bajaPersonas(List<int> seleccionados, List<string> strings)
         {
             MySqlTransaction trans;
 
@@ -1711,6 +2049,21 @@ namespace Activos.Datos
                         throw new Exception(res.numErr + ": " + res.descErr);
                     }
 
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja las personas " + string.Join(",", strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) { trans.Rollback(); throw new Exception(res.numErr + ": " + res.descErr); }
+
                     trans.Commit();
 
                 }
@@ -1720,7 +2073,7 @@ namespace Activos.Datos
         }
 
         // activa personas
-        public bool activaPersonas(List<int> seleccionados)
+        public bool activaPersonas(List<int> seleccionados, List<string> strings)
         {
             string sql = "update activos_personas set status = 'A' where FIND_IN_SET(idpersona, @parameter) != 0";
 
@@ -1749,6 +2102,21 @@ namespace Activos.Datos
                     }
                     else
                         throw new Exception(res.numErr + ": " + res.descErr);
+
+
+                    // bitacora movimientos
+                    cmd.Parameters.Clear();
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", "Se activaron las personas " + string.Join(",", strings));
+
+                    res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
                 }
             }
 
@@ -2670,6 +3038,34 @@ namespace Activos.Datos
             }
 
             return result;
+        }
+
+
+        public void generaBitacora(string detalle, string modulo)
+        {
+            int rows = 0;
+
+            using (var conn = this._conexion.getConexion())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    string bitacora =
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), '" + modulo + "')";
+
+                    cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
+                    cmd.Parameters.AddWithValue("@detalle", detalle);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
+
+                    if (!res.ok) throw new Exception(res.numErr + ": " + res.descErr);
+                }
+            }
+
         }
     }
 }

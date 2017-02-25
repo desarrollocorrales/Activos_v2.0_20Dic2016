@@ -81,9 +81,10 @@ namespace Activos.GUIs.Usuarios
                 string correo = this.tbCorreo.Text;
 
                 int idUsuario = (int)this.cmbSelecUsuario.SelectedValue;
+                string usuario = ((Modelos.Usuarios)this.cmbSelecUsuario.SelectedItem).usuario;
 
                 // guarda el usuario
-                bool resp = this._catalogosNegocio.modificacionUsuario(correo, idUsuario);
+                bool resp = this._catalogosNegocio.modificacionUsuario(correo, idUsuario, usuario);
 
                 if (resp)
                 {

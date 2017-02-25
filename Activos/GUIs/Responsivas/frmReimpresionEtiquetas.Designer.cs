@@ -110,6 +110,7 @@
             // 
             // rbPCA
             // 
+            this.rbPCA.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rbPCA.AutoSize = true;
             this.rbPCA.Location = new System.Drawing.Point(522, 44);
             this.rbPCA.Name = "rbPCA";
@@ -121,6 +122,7 @@
             // 
             // rbPNE
             // 
+            this.rbPNE.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rbPNE.AutoSize = true;
             this.rbPNE.Location = new System.Drawing.Point(522, 23);
             this.rbPNE.Name = "rbPNE";
@@ -132,7 +134,7 @@
             // 
             // tbResultCveActivo
             // 
-            this.tbResultCveActivo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tbResultCveActivo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbResultCveActivo.Location = new System.Drawing.Point(434, 225);
             this.tbResultCveActivo.Name = "tbResultCveActivo";
             this.tbResultCveActivo.ReadOnly = true;

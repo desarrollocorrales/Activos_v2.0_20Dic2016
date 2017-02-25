@@ -82,3 +82,5 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Imagenes.frm
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Responsivas.frmReimpresionEtiquetas.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Reportes.frmResponsivasSucursal.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Reportes.frmReporteResponsivasSucursal.resources
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraTreeList.v11.1.dll
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraTreeList.v11.1.xml

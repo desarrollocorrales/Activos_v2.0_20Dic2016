@@ -38,6 +38,7 @@ namespace Activos.GUIs.Usuarios
 
                 // obtiene los ids de los usuarios seleccionadas
                 List<int> seleccionados = sucursales.Where(w => w.seleccionado == true).Select(s => s.idUsuario).ToList();
+                List<string> strings = sucursales.Where(w => w.seleccionado == true).Select(s => s.usuario).ToList();
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ningun Usuario");
@@ -49,7 +50,7 @@ namespace Activos.GUIs.Usuarios
                 if (dialogResult == DialogResult.No) return;
 
                 // dar de baja los seleccionados
-                bool resultado = this._catalogosNegocio.bajaUsuarios(seleccionados);
+                bool resultado = this._catalogosNegocio.bajaUsuarios(seleccionados, strings);
 
                 if (resultado)
                     MessageBox.Show("Usuario(s) dado(s) de baja correctamente", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);

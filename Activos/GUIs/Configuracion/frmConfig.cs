@@ -25,6 +25,8 @@ namespace Activos.GUIs.Imagenes
         ICatalogosNegocio _catalogosNegocio;
         private Modelos.Logo _logo;
 
+        private string _url = string.Empty;
+
         public frmConfig()
         {
             InitializeComponent();
@@ -81,15 +83,15 @@ namespace Activos.GUIs.Imagenes
                 this.cmbSubirUso.DataSource = usos2Subir;
                 this.cmbSubirUso.SelectedIndex = -1;
 
-                string url = this._catalogosNegocio.getUrl("url");
+                this._url = this._catalogosNegocio.getUrl("url");
 
-                if (string.IsNullOrEmpty(url))
+                if (string.IsNullOrEmpty(this._url))
                 {
                     this.btnCambia.Text = "Guardar";
                     this._nuevaUrl = true;
                 }
 
-                this.tbUrl.Text = url;
+                this.tbUrl.Text = this._url;
             }
             catch (Exception Ex)
             {
@@ -168,6 +170,11 @@ namespace Activos.GUIs.Imagenes
 
                 if (resultado)
                 {
+
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Logo Seleccionado " + this._logo.idLogo + " para el uso '" + uso.nombre + "'", "ARCHIVO - CONFIGURACION");
+
                     MessageBox.Show("Logo cambiado para '" + uso.nombre + "' correctamente", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -274,6 +281,10 @@ namespace Activos.GUIs.Imagenes
 
                 if (resultado)
                 {
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Logo Subido " + (seleccionar ? "y seleccionado" : string.Empty) + " para el uso '" + uso.nombre + "'", "ARCHIVO - CONFIGURACION");
+
                     MessageBox.Show(
                         "Logo subido " + (seleccionar ? "y seleccionado" : string.Empty) + " correctamente",
                         "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -315,6 +326,10 @@ namespace Activos.GUIs.Imagenes
 
                 if (resultado)
                 {
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Permisos alterados para '" + this.tbNombre.Text + "'", "ARCHIVO - CONFIGURACION");
+
                     MessageBox.Show("Permisos actualizados correctamente", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
@@ -493,8 +508,22 @@ namespace Activos.GUIs.Imagenes
 
                 if (resultado)
                 {
+                    if (this._nuevaUrl)
+                    {
+                        // bitacora
+                        this._catalogosNegocio.generaBitacora(
+                            "URL definida: " + url, "ARCHIVO - CONFIGURACION");
+                    }
+                    else
+                    {
+                        // bitacora
+                        this._catalogosNegocio.generaBitacora(
+                            "URL cambiada de: '" + this._url + "' a '" + url + "'", "ARCHIVO - CONFIGURACION");
+                    }
+
                     MessageBox.Show("Url guardada correctamente", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this._nuevaUrl = false;
+                    this._url = url;
                 }
                 else
                     throw new Exception("Problemas al guardar la url");

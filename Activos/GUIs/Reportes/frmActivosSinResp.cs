@@ -88,8 +88,24 @@ namespace Activos.GUIs.Reportes
 
         private void btnVistaPrevia_Click(object sender, EventArgs e)
         {
-            this.gridView2.BestFitColumns();
-            this.gcActivos.ShowPrintPreview();
+            try
+            {
+                string sucursal = ((Modelos.Sucursales)this.cmbSucursal.SelectedItem).nombre;
+                string areas = ((Modelos.Areas)this.cmbArea.SelectedItem).nombre;
+
+                // bitacora
+                this._catalogosNegocio.generaBitacora(
+                    "Genera Reporte 'Activos sin Responsivas' con parametros:" +
+                    " sucursal: " + sucursal +
+                    " area: " + areas, "CONSULTAS");
+
+                this.gridView2.BestFitColumns();
+                this.gcActivos.ShowPrintPreview();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

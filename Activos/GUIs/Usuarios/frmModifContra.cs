@@ -53,7 +53,7 @@ namespace Activos.GUIs.Usuarios
                     throw new Exception("La claves no coinciden");
 
                 // cambia la clave
-                bool respuesta = this._catalogosNegocio.actualizaClave(this.tbClaveNueva.Text, this._idUsuario);
+                bool respuesta = this._catalogosNegocio.actualizaClave(this.tbClaveNueva.Text, this._idUsuario, this._usuario);
 
                 if (respuesta)
                 {

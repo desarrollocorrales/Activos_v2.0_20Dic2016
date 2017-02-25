@@ -38,12 +38,13 @@ namespace Activos.GUIs.Sucursales
 
                 // obtiene los ids de las sucursales seleccionadas
                 List<int> seleccionados = sucursales.Where(w => w.seleccionado == true).Select(s => s.idSucursal).ToList();
+                List<string> strings = sucursales.Where(w => w.seleccionado == true).Select(s => s.nombre).ToList();
 
                 if (seleccionados.Count == 0)
                     throw new Exception("No se ha seleccionado ninguna sucursal");
 
                 // dar de baja los seleccionados
-                bool resultado = this._catalogosNegocio.activaSucursalas(seleccionados);
+                bool resultado = this._catalogosNegocio.activaSucursalas(seleccionados, strings);
 
                 if (resultado)
                     MessageBox.Show("Sucursal(es) activada(s) correctamente", "Sucursales", MessageBoxButtons.OK, MessageBoxIcon.Information);

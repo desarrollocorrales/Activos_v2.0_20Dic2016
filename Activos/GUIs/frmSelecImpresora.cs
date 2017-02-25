@@ -6,14 +6,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Activos.Negocio;
 
 namespace Activos.GUIs
 {
     public partial class frmSelecImpresora : Form
     {
+        ICatalogosNegocio _catalogosNegocio;
+
         public frmSelecImpresora()
         {
             InitializeComponent();
+            this._catalogosNegocio = new CatalogosNegocio();
         }
 
         private void frmSelecImpresora_Load(object sender, EventArgs e)
@@ -99,6 +103,12 @@ namespace Activos.GUIs
                 Properties.Settings.Default.Save();
 
                 this.tbImprSelecc.Text = Properties.Settings.Default.Impresora;
+
+
+                // bitacora
+                this._catalogosNegocio.generaBitacora(
+                    "Impresora seleccionada '" + this.tbImprSelecc.Text + "'", "ARCHIVO");
+
 
             }
             catch (Exception Ex)
