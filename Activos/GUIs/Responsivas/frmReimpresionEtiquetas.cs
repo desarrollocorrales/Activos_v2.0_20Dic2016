@@ -204,6 +204,12 @@ namespace Activos.GUIs.Responsivas
                     string impresora = Properties.Settings.Default.Impresora;
 
                     RawPrinter.SendToPrinter("Etiqueta Activos", sbComandos.ToString(), impresora);
+
+
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Se reimprimio la etiqueta '" + this._encontrado.numEtiqueta + "' con el nombre '" + this._encontrado.nombreCorto + "'", "RESPONSIVAS");
+
                 }
                 else
                 {

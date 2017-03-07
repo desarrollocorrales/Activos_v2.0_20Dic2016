@@ -157,7 +157,12 @@ namespace Activos.GUIs.AltaActivos
                 bool res = this._activosNegocio.modifActivo(this._idActivo, nombre, descripcion, string.Empty);
 
                 if (res) MessageBox.Show("Datos modificados correctamente", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
+
+                // bitacora
+                this._catalogosNegocio.generaBitacora(
+                    "Activo Modificado: " + this._idActivo + " nuevos datos: " + nombre + "/" + descripcion, "ACTIVOS");
+
             }
             catch (Exception Ex)
             {

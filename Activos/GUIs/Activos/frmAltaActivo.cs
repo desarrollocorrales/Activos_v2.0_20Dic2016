@@ -138,6 +138,12 @@ namespace Activos.GUIs.AltaActivos
                     this.cmbTipo.SelectedIndex = -1;
 
                     this.tbNombre.Text = string.Empty;
+
+
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Nuevo activo agregado: " + nombre + "/" + descripcion + "/area: " + idArea + "/tipo: " + idTipo, "ACTIVOS");
+
                 }
             }
             catch (Exception Ex)

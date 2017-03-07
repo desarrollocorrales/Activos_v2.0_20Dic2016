@@ -131,6 +131,13 @@ namespace Activos.GUIs.AltaActivos
                 {
                     MessageBox.Show("Movimiento realizado correctamente", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    string mot = ((Modelos.MotivosBaja)this.cbMotivo.SelectedItem).motivo;
+
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Activo " + this._idActivo + " enviado a: " + mot + "/detalle: " + detalle, "ACTIVOS");
+
+
                     this.tbNombre.Text = string.Empty;
                     this.tbTipo.Text = string.Empty;
                     this.tbSucursal.Text = string.Empty;

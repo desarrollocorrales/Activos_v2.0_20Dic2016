@@ -149,6 +149,14 @@ namespace Activos.GUIs.Responsivas
                 {
                     MessageBox.Show("La responsiva fue creada correctamente", "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    string resp = string.Join(",", responsables.Select(s => s.nombre).ToList());
+
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Nueva responsiva agregada para la persona: " + this._idPersona +
+                        (responsables.Count > 0 ? " con los responsables: " + resp : string.Empty), "RESPONSIVAS");
+
+
                     _idPersona = null;
                     this.gcUsuarios.DataSource = null;
 

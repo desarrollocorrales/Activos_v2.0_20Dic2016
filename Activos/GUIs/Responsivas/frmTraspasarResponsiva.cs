@@ -13,6 +13,7 @@ namespace Activos.GUIs.Responsivas
     public partial class frmTraspasarResponsiva : Form
     {
         IResponsivasNegocio _responsivasNegocio;
+        ICatalogosNegocio _catalogosNegocio;
 
         private int? _idResponsiva = null;
         private int? _idPersonaAnt = null;
@@ -24,6 +25,7 @@ namespace Activos.GUIs.Responsivas
         public frmTraspasarResponsiva()
         {
             InitializeComponent();
+            this._catalogosNegocio = new CatalogosNegocio();
             this._responsivasNegocio = new ResponsivasNegocio();
         }
 
@@ -104,6 +106,16 @@ namespace Activos.GUIs.Responsivas
                     if (resultado)
                     {
                         MessageBox.Show("Responsiva traspasada correctamente", "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        string activos = string.Join(",", this._activos.Select(s=>s.idActivo).ToList());
+
+                        // bitacora
+                        this._catalogosNegocio.generaBitacora(
+                            "Todos los activos de la responsiva se traspasaron a: " + this._idPersonaNueva
+                            + " como una nueva responsiva con los activos: " + activos
+                            + " por el motivo '" + motivo + "'", "RESPONSIVAS");
+
+
 
                         this.gcActivos.DataSource = null;
 

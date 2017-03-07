@@ -128,6 +128,12 @@ namespace Activos.GUIs.Responsivas
                 form._empresa = Modelos.Login.empresa;
 
                 form.ShowDialog();
+
+
+                // bitacora
+                this._catalogosNegocio.generaBitacora(
+                    "Se genero la vista previa de la responsiva " + this._responsiva.idResponsiva, "RESPONSIVAS");
+
             }
             catch (Exception Ex)
             {
@@ -175,6 +181,14 @@ namespace Activos.GUIs.Responsivas
                     string impresora = Properties.Settings.Default.Impresora;
 
                     RawPrinter.SendToPrinter("Etiqueta Produccion", sbComandos.ToString(), impresora);
+
+                    string activos = string.Join(",", this._activos.Select(s => s.idActivo).ToList());
+
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Se imprimieron los activos de la responsiva " + this._responsiva.idResponsiva + 
+                        "los cuales fueron " + activos, "RESPONSIVAS");
+
                 }
                 else
                 {

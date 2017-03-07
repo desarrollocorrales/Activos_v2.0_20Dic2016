@@ -14,6 +14,7 @@ namespace Activos.GUIs.Traspasos
     public partial class frmTraspasos : Form
     {
         IResponsivasNegocio _responsivasNegocio;
+        ICatalogosNegocio _catalogosNegocio;
 
         // almacena ids de la primer seleccion
         private int? _idResponsiva = null;
@@ -40,6 +41,7 @@ namespace Activos.GUIs.Traspasos
         {
             InitializeComponent();
 
+            this._catalogosNegocio = new CatalogosNegocio();
             this._responsivasNegocio = new ResponsivasNegocio();
         }
 
@@ -290,6 +292,16 @@ namespace Activos.GUIs.Traspasos
                     resultado = this._responsivasNegocio.traspasoRespExist( this._activos, this._idUsuarioT, this._idUsuario, motivo,
                         this._activosT.Where(w => !string.IsNullOrEmpty(w.accion)).ToList(),
                         this._idResponsivaT, this._idResponsiva);
+
+                    if (resultado)
+                    {
+                        string idActivos = string.Join(",", this._activosT.Where(w => !string.IsNullOrEmpty(w.accion)).Select(s => s.idActivo).ToList());
+
+                        // bitacora
+                        this._catalogosNegocio.generaBitacora(
+                            "Traspaso realizado de la responsiva " + this._idResponsiva + "a la responsiva " + this._idResponsivaT +
+                            " los activos " + idActivos + " por el motivo '" + motivo + "'", "ACTIVOS");
+                    }
                     
                 }
                 else if (this._nuevaResp)
@@ -320,6 +332,15 @@ namespace Activos.GUIs.Traspasos
                         resultado = this._responsivasNegocio.traspasoCreaResp(this._activos, this._idUsuario, motivo,
                             this._activosT.Where(w => !string.IsNullOrEmpty(w.accion)).ToList(),
                             this._idResponsiva, observaciones, this._idUsuarioT, Modelos.Login.idUsuario);
+
+                        if (resultado)
+                        {
+                            string idActivos = string.Join(",", this._activosT.Where(w => !string.IsNullOrEmpty(w.accion)).Select(s => s.idActivo).ToList());
+
+                            // bitacora
+                            this._catalogosNegocio.generaBitacora(
+                                "Traspaso realizado de la responsiva " + this._idResponsiva + "a una nueva responsiva los activos " + idActivos + " por el motivo '" + motivo + "'", "ACTIVOS");
+                        }
                     }
                     else return;
                 }

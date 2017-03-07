@@ -16,11 +16,13 @@ namespace Activos.GUIs.AltaActivos
         private int? _idActivo = null;
 
         IActivosNegocio _activosNegocio;
+        ICatalogosNegocio _catalogosNegocio;
 
         public frmActReparacion()
         {
             InitializeComponent();
 
+            this._catalogosNegocio = new CatalogosNegocio();
             this._activosNegocio = new ActivosNegocio();
         }
 
@@ -89,6 +91,10 @@ namespace Activos.GUIs.AltaActivos
                 if (resultado)
                 {
                     MessageBox.Show("Activación exitosa", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Activo " + this._idActivo + " reingresado por reparacion el dia: " + fechaFin, "ACTIVOS");
 
                     this.tbActivo.Text = string.Empty;
                     this.tbUsuario.Text = string.Empty;
