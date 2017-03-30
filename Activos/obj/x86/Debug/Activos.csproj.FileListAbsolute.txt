@@ -84,3 +84,7 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Reportes.frm
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.Reportes.frmReporteResponsivasSucursal.resources
 G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraTreeList.v11.1.dll
 G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraTreeList.v11.1.xml
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraBars.v11.1.dll
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraPrinting.v11.1.dll
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraBars.v11.1.xml
+G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraPrinting.v11.1.xml
