@@ -5,6 +5,8 @@ using System.Text;
 using Activos.Modelos;
 using System.Configuration;
 using MySql.Data.MySqlClient;
+using System.Net.Sockets;
+using System.Net;
 
 namespace Activos.Datos
 {
@@ -249,11 +251,13 @@ namespace Activos.Datos
                     cmd.Parameters.Clear();
 
                     string bitacora = 
-                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " + 
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+                        "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+                        "values (@idusu, now(), @detalle, @host, 'SUCURSALES')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se agregó la sucursal '" + sucNom + "' con el responsable '" + responsable + "'");
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -300,10 +304,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+                        "values (@idusu, now(), @detalle, @host, 'SUCURSALES')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja las sucursales " + string.Join(",",strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -350,10 +356,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+                        "values (@idusu, now(), @detalle, @host, 'SUCURSALES')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se modifico la sucursal " + idSucursal + " por '" + sucNom + "' con el responsable '" + responsable + "'");
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -400,10 +408,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'SUCURSALES')";
+                        "values (@idusu, now(), @detalle, @host, 'SUCURSALES')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se activaron las sucursales " + string.Join(",", strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -509,10 +519,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+                        "values (@idusu, now(), @detalle, @host, 'PUESTOS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se agregó el puesto '" + puestoNom + "' con la sucursal '" + sucursal + "'");
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -559,10 +571,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+                        "values (@idusu, now(), @detalle, @host, 'PUESTOS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja los puestos " + string.Join(",", strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -610,10 +624,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+                        "values (@idusu, now(), @detalle, @host, 'PUESTOS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se activaron los puestos " + string.Join(",", strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -660,10 +676,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PUESTOS')";
+                        "values (@idusu, now(), @detalle, @host, 'PUESTOS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se modifico el puesto " + idPuesto + " por '" + puestoNom + "' con la sucursal '" + sucursal + "'");
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -918,10 +936,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'USUARIOS')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'USUARIOS')";
+                        "values (@idusu, now(), @detalle, @host, 'USUARIOS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se creó el usuario '" + usuario + "' perteneciente a la persona " + idPersona + " con clave " + claveBase64);
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -968,10 +988,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'USUARIO')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'USUARIO')";
+                        "values (@idusu, now(), @detalle, @host, 'USUARIO')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se modifico el correo del usuario " + usuario);
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1057,10 +1079,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'USUARIOS')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'USUARIOS')";
+                        "values (@idusu, now(), @detalle, @host, 'USUARIOS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja los usuarios " + string.Join(",", strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1151,10 +1175,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'ARCHIVO')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'ARCHIVO')";
+                        "values (@idusu, now(), @detalle, @host, 'ARCHIVO')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se modifico la clave del usuario " + usuario + " por " + Utilerias.Base64Encode(clave));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1304,10 +1330,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+                        "values (@idusu, now(), @detalle, @host, 'AREAS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se agregó el área '" + areaNom + "' con la sucursal '" + sucursal + "'");
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1355,10 +1383,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+                        "values (@idusu, now(), @detalle, @host, 'AREAS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se activaron las áreas " + string.Join(",", strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1405,10 +1435,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+                        "values (@idusu, now(), @detalle, @host, 'AREAS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja las áreas " + string.Join(",", strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1455,10 +1487,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'AREAS')";
+                        "values (@idusu, now(), @detalle, @host, 'AREAS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se modifico el área " + idArea + " por '" + areaNom + "' con la sucursal '" + sucursal + "'");
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1635,10 +1669,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+                        "values (@idusu, now(), @detalle, @host, 'TIPOS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se agregó la el tipo '" + nombre + "' con campos activos '" + campos.Substring(0, campos.Trim().Length - 1) + "'");
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1686,10 +1722,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+                        "values (@idusu, now(), @detalle, @host, 'TIPOS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se activaron los tipos " + string.Join(",", strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1737,10 +1775,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+                        "values (@idusu, now(), @detalle, @host, 'TIPOS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja los tipos " + string.Join(",", strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1808,10 +1848,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'TIPOS')";
+                        "values (@idusu, now(), @detalle, @host, 'TIPOS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se modifico el tipo " + idTipo + " por '" + nombre + "' con campos activos '" + campos.Substring(0, campos.Trim().Length - 1) + "'");
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1858,10 +1900,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+                        "values (@idusu, now(), @detalle, @host, 'PERSONAS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se agregó la persona '" + nombre + "' con el puesto '" + puesto + "'");
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -1979,10 +2023,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+                        "values (@idusu, now(), @detalle, @host, 'PERSONAS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se modifico la persona " + idPersona + " por '" + nombre + "' con el puesto '" + puesto + "'");
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -2055,10 +2101,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+                        "values (@idusu, now(), @detalle, @host, 'PERSONAS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se dieron de baja las personas " + string.Join(",", strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -2109,10 +2157,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+                        //"values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), 'PERSONAS')";
+                        "values (@idusu, now(), @detalle, @host, 'PERSONAS')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", "Se activaron las personas " + string.Join(",", strings));
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -3055,10 +3105,12 @@ namespace Activos.Datos
 
                     string bitacora =
                         "insert into activos_movimientos (idusuario, fecha, detalle, host, modulo) " +
-                        "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), '" + modulo + "')";
+                        // "values (@idusu, now(), @detalle, (SELECT SUBSTRING_INDEX(HOST, ':', 1) AS 'ip' FROM information_schema.PROCESSLIST WHERE ID = connection_id()), '" + modulo + "')";
+                        "values (@idusu, now(), @detalle, @host , '" + modulo + "')";
 
                     cmd.Parameters.AddWithValue("@idusu", Modelos.Login.idUsuario);
                     cmd.Parameters.AddWithValue("@detalle", detalle);
+                    cmd.Parameters.AddWithValue("@host", getIpNameMachine());
 
                     ManejoSql res = Utilerias.EjecutaSQL(bitacora, ref rows, cmd);
 
@@ -3066,6 +3118,27 @@ namespace Activos.Datos
                 }
             }
 
+        }
+
+        private string getIpNameMachine()
+        {
+            // local ip
+            string localIP = string.Empty;
+            try
+            {
+                using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+                {
+                    socket.Connect("8.8.8.8", 65530);
+                    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                    localIP = endPoint.Address.ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                localIP = string.Empty;
+            }
+
+            return Environment.MachineName + (string.IsNullOrEmpty(localIP) ? string.Empty : ":" + localIP);
         }
     }
 }
