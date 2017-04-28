@@ -1260,7 +1260,7 @@ namespace Activos.Datos
                             ent.persona = Convert.ToString(res.reader["nombrecompleto"]);
                             ent.persona = ent.persona.Replace("&", " ");
 
-                            ent.activo = Convert.ToString(res.reader["sucursal"]);
+                            ent.activo = Convert.ToString(res.reader["nombrecorto"]);
                             ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---");
 
                             ent.estatus = Convert.ToString(res.reader["motivo"]);
