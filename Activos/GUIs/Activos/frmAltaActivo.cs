@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
+using Activos.GUIs.Responsivas;
 
 namespace Activos.GUIs.AltaActivos
 {
@@ -118,11 +119,15 @@ namespace Activos.GUIs.AltaActivos
 
                 int idArea = (int)this.cmbArea.SelectedValue;
 
-                bool result = this._activosNegocio.guardaActivo(nombre, descripcion, idArea, idTipo, this._idUsuario, string.Empty);
+                long result = this._activosNegocio.guardaActivo(nombre, descripcion, idArea, idTipo, this._idUsuario, string.Empty);
 
-                if (result)
+                if (result > 0)
                 {
                     MessageBox.Show("Activo guardado correctamente", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Nuevo activo agregado: " + nombre + "/" + descripcion + "/area: " + idArea + "/tipo: " + idTipo, "ACTIVOS");
 
                     this.tbMarca.Text = string.Empty;
                     this.tbModelo.Text = string.Empty;
@@ -139,11 +144,17 @@ namespace Activos.GUIs.AltaActivos
 
                     this.tbNombre.Text = string.Empty;
 
+                    // CREACION DE RESPONSIVAS
+                    if (this.cbCreaResp.Checked)
+                    {
+                        List<Modelos.Activos> activos = this._activosNegocio.getActivo(result);
 
-                    // bitacora
-                    this._catalogosNegocio.generaBitacora(
-                        "Nuevo activo agregado: " + nombre + "/" + descripcion + "/area: " + idArea + "/tipo: " + idTipo, "ACTIVOS");
+                        frmResponsivas form = new frmResponsivas(activos);
 
+                        form.ShowDialog();
+                    }
+
+                    this.cbCreaResp.Checked = false;
                 }
             }
             catch (Exception Ex)
@@ -222,6 +233,15 @@ namespace Activos.GUIs.AltaActivos
                 result = false;
             }
 
+            // COSTO varios puntos
+            int count = this.tbCosto.Text.Count(c => c == '.');
+            if (count > 1)
+            {
+                this.lbCosto.Text = "Costo*";
+                this.lbCosto.ForeColor = System.Drawing.Color.Red;
+                result = false;
+            }
+
             // FACTURA
             if (this._tipos.factura.Equals("SI") && string.IsNullOrEmpty(this.tbFactura.Text))
             {
@@ -245,6 +265,8 @@ namespace Activos.GUIs.AltaActivos
         {
             this.tbCosto.Text = this.tbCosto.Text.Replace(",","");
         }
+
+        
 
     }
 }

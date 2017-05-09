@@ -84,7 +84,7 @@ namespace Activos.Datos
                         // define parametros
                         cmd.Parameters.AddWithValue("@idResp", idResp);
                         cmd.Parameters.AddWithValue("@idActivo", activo.idActivo);
-                        cmd.Parameters.AddWithValue("@costo", activo.costo == null ? (object)DBNull.Value : activo.costo.ToString());
+                        cmd.Parameters.AddWithValue("@costo", activo.costo == null ? (object)DBNull.Value : activo.costo);
 
                         ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 

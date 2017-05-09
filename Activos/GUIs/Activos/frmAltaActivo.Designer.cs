@@ -54,12 +54,13 @@
             this.lbCosto = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.cbCreaResp = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnGuardar
             // 
             this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnGuardar.Location = new System.Drawing.Point(199, 446);
+            this.btnGuardar.Location = new System.Drawing.Point(375, 446);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(340, 56);
             this.btnGuardar.TabIndex = 112;
@@ -313,12 +314,23 @@
             this.dtpFecha.Size = new System.Drawing.Size(357, 30);
             this.dtpFecha.TabIndex = 111;
             // 
+            // cbCreaResp
+            // 
+            this.cbCreaResp.AutoSize = true;
+            this.cbCreaResp.Location = new System.Drawing.Point(19, 462);
+            this.cbCreaResp.Name = "cbCreaResp";
+            this.cbCreaResp.Size = new System.Drawing.Size(303, 27);
+            this.cbCreaResp.TabIndex = 115;
+            this.cbCreaResp.Text = "Crear Responsiva con este activo";
+            this.cbCreaResp.UseVisualStyleBackColor = true;
+            // 
             // frmAltaActivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(737, 514);
+            this.Controls.Add(this.cbCreaResp);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbFactura);
@@ -382,5 +394,6 @@
         private System.Windows.Forms.Label lbCosto;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.CheckBox cbCreaResp;
     }
 }

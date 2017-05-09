@@ -243,15 +243,6 @@ namespace Activos.GUIs.AltaActivos
                     throw new Exception("Sin resultados");
                 }
 
-                /*
-                List<Modelos.ActivosDesc> lista = resultado.Where(w => !string.IsNullOrEmpty(w.usuario)).ToList();
-
-                this.gcResulBusquedas.DataSource = this._tipoConsulta.Equals("BAJAS") ? lista : resultado;
-
-                if (this.gridView1.DataRowCount == 0)
-                    throw new Exception("Sin resultados");
-                */
-
                 this.gcResulBusquedas.DataSource = resultado;
             }
             catch (Exception Ex)

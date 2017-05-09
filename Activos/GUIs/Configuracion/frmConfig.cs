@@ -13,7 +13,6 @@ namespace Activos.GUIs.Imagenes
 {
     public partial class frmConfig : Form
     {
-
         IPermisosNegocio _permisosNegocio;
 
         // variable que contiene los ids seleccionados
@@ -21,6 +20,8 @@ namespace Activos.GUIs.Imagenes
 
         private int? _idPersona = null;
         private bool _nuevaUrl = false;
+
+        private bool _quitaLogo = false;
 
         ICatalogosNegocio _catalogosNegocio;
         private Modelos.Logo _logo;
@@ -66,7 +67,19 @@ namespace Activos.GUIs.Imagenes
                     foreach (Control ctrl in this.tabPage4.Controls)
                         ctrl.Enabled = false;
 
+                // TOOLTIP
+                // Create the ToolTip and associate with the Form container.
+                ToolTip toolTip1 = new ToolTip();
 
+                // Set up the delays for the ToolTip.
+                toolTip1.AutoPopDelay = 5000;
+                toolTip1.InitialDelay = 1000;
+                toolTip1.ReshowDelay = 500;
+                // Force the ToolTip text to be displayed whether or not the form is active.
+                toolTip1.ShowAlways = true;
+
+                // Set up the ToolTip text for the Button and Checkbox.
+                toolTip1.SetToolTip(this.btnQuitaLogo, "Quitar Seleccion");
 
 
                 List<Modelos.UsoLogos> usosSelec = this._catalogosNegocio.getUsosLogos();
@@ -161,26 +174,71 @@ namespace Activos.GUIs.Imagenes
         {
             try
             {
-                if (this._logo == null)
-                    throw new Exception("Elija un logo");
-
                 Modelos.UsoLogos uso = (Modelos.UsoLogos)this.cmbUso.SelectedItem;
 
-                bool resultado = this._catalogosNegocio.seleccionarLogo(this._logo.idLogo, uso);
+                bool resultado;
 
-                if (resultado)
+                if (this._quitaLogo)
                 {
+                    resultado = this._catalogosNegocio.seleccionarLogo(-1, uso);
 
                     // bitacora
                     this._catalogosNegocio.generaBitacora(
-                        "Logo Seleccionado " + this._logo.idLogo + " para el uso '" + uso.nombre + "'", "ARCHIVO - CONFIGURACION");
+                        "Logo removido para el uso '" + uso.nombre + "'", "ARCHIVO - CONFIGURACION");
 
-                    MessageBox.Show("Logo cambiado para '" + uso.nombre + "' correctamente", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Logo removido correctamente", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this._quitaLogo = false;
+
+                    this.btnSeleccionar.Text = "Seleccionar";
+                    this.cmbUso.SelectedIndex = -1;
                 }
                 else
                 {
-                    throw new Exception("Problemas al seleccionar el logo");
+                    if (this.cmbUso.SelectedIndex == -1)
+                        throw new Exception("Elija un uso");
+
+                    if (this._logo == null)
+                        throw new Exception("Elija un logo");
+
+                    resultado = this._catalogosNegocio.seleccionarLogo(this._logo.idLogo, uso);
+
+                    if (resultado)
+                    {
+                        // bitacora
+                        this._catalogosNegocio.generaBitacora(
+                            "Logo Seleccionado " + this._logo.idLogo + " para el uso '" + uso.nombre + "'", "ARCHIVO - CONFIGURACION");
+
+                        MessageBox.Show("Logo cambiado para '" + uso.nombre + "' correctamente", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        throw new Exception("Problemas al seleccionar el logo");
+                    }
                 }
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnQuitaLogo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this._logo == null)
+                    return;
+
+                this.cmbNombreLogo.SelectedIndex = -1;
+                this.pbSelLogo.Image = null;
+
+                this._logo = null;
+
+                this._quitaLogo = true;
+
+                this.btnSeleccionar.Text = "Guardar Cambio";
+
             }
             catch (Exception Ex)
             {

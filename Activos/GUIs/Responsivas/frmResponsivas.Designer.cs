@@ -470,6 +470,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmResponsivas";
             this.Text = "Responsivas";
+            this.Load += new System.EventHandler(this.frmResponsivas_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuarios)).EndInit();

@@ -405,11 +405,13 @@ namespace Activos.Datos
 
                                 ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
 
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
                                 ent.area = Convert.ToString(res.reader["area"]);
 
                                 ent.tipo = Convert.ToString(res.reader["tipo"]);
                                 ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
 
+                                ent.idSucursal = Convert.ToInt16(res.reader["idsucursal"]);
                                 ent.sucursal = Convert.ToString(res.reader["sucursal"]);
 
                                 ent.usuario = Convert.ToString(res.reader["usuario"]);
@@ -503,11 +505,13 @@ namespace Activos.Datos
 
                                 ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
 
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
                                 ent.area = Convert.ToString(res.reader["area"]);
 
                                 ent.tipo = Convert.ToString(res.reader["tipo"]);
                                 ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
 
+                                ent.idSucursal = Convert.ToInt16(res.reader["idsucursal"]);
                                 ent.sucursal = Convert.ToString(res.reader["sucursal"]);
 
                                 ent.usuario = Convert.ToString(res.reader["usuario"]);
@@ -593,11 +597,13 @@ namespace Activos.Datos
 
                                 ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
 
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
                                 ent.area = Convert.ToString(res.reader["area"]);
 
                                 ent.tipo = Convert.ToString(res.reader["tipo"]);
                                 ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
 
+                                ent.idSucursal = Convert.ToInt16(res.reader["idsucursal"]);
                                 ent.sucursal = Convert.ToString(res.reader["sucursal"]);
 
                                 ent.usuario = Convert.ToString(res.reader["usuario"]);
@@ -631,13 +637,14 @@ namespace Activos.Datos
         }
 
         // modifica un activo
-        public bool modificActivo(int? idActivo, string nombre, string descripcion, string fechaIng)
+        public bool modificActivo(int? idActivo, string nombre, string descripcion, string fechaIng, int idTipo, int idArea)
         {
             MySqlTransaction trans;
 
             string sql =
-                "UPDATE activos_activos SET nombrecorto = @nombre, descripcion = @desc, costo = @costo, " + 
-                "idusuariomodifica = @idUsModif, fechamodificacion = now() " +
+                "UPDATE activos_activos SET nombrecorto = @nombre, descripcion = @desc, costo = @costo, " +
+                "idusuariomodifica = @idUsModif, fechamodificacion = now(), " +
+                "idarea = @idarea, idtipo = @idTipo " +
                 "where idactivo = @idActivo";
 
             bool result = true;
@@ -662,6 +669,8 @@ namespace Activos.Datos
                     cmd.Parameters.AddWithValue("@desc", descripcion);
                     cmd.Parameters.AddWithValue("@idActivo", idActivo);
                     cmd.Parameters.AddWithValue("@costo", costo);
+                    cmd.Parameters.AddWithValue("@idTipo", idTipo);
+                    cmd.Parameters.AddWithValue("@idarea", idArea);
                     cmd.Parameters.AddWithValue("@idUsModif", Login.idUsuario);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
@@ -1410,6 +1419,87 @@ namespace Activos.Datos
                                 if (res.reader["costo"] is DBNull) ent.costo = null;
                                 else ent.costo = Convert.ToDecimal(res.reader["costo"]);
                                 
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene los datos de un activo
+        public List<Modelos.Activos> getActivo(long idActivo)
+        {
+            List<Modelos.Activos> result = new List<Modelos.Activos>();
+            Modelos.Activos ent;
+
+            string sql =
+                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo, " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
+                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, m.motivo as status " +
+                "from activos_activos a " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "left join activos_motivosbaja m on (a.status = m.clave) " +
+                "where a.idactivo = @idActivo and a.status != 'B' order by ar.nombre, t.nombre, a.nombrecorto";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idActivo", idActivo);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Activos();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
+                                ent.tipo = Convert.ToString(res.reader["tipo"]);
+
+                                ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---").Trim();
+                                ent.fechaAlta = Convert.ToString(res.reader["fechaalta"]);
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
+
+                                if (res.reader["idusuarioalta"] is DBNull) ent.idUsuarioAlta = null;
+                                else ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+
+                                if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
+                                else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
+
+                                if (res.reader["fechamodificacion"] is DBNull) ent.fechaModificacion = string.Empty;
+                                else ent.fechaModificacion = Convert.ToString(res.reader["fechamodificacion"]);
+
+                                if (res.reader["costo"] is DBNull) ent.costo = null;
+                                else ent.costo = Convert.ToDecimal(res.reader["costo"]);
+
+                                ent.status = Convert.ToString(res.reader["status"]);
+
                                 result.Add(ent);
                             }
                     }

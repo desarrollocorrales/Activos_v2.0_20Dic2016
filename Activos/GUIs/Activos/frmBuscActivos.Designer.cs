@@ -458,7 +458,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 550);
+            this.label2.Location = new System.Drawing.Point(8, 550);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 23);
             this.label2.TabIndex = 13;
@@ -468,7 +468,7 @@
             // 
             this.label100.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label100.AutoSize = true;
-            this.label100.Location = new System.Drawing.Point(13, 586);
+            this.label100.Location = new System.Drawing.Point(8, 586);
             this.label100.Name = "label100";
             this.label100.Size = new System.Drawing.Size(63, 23);
             this.label100.TabIndex = 14;
@@ -561,7 +561,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(569, 767);
+            this.ClientSize = new System.Drawing.Size(569, 784);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.tbResultCveActivo);

@@ -38,13 +38,17 @@ namespace Activos.Modelos
     public partial class ActivosDesc
     {
         public int idActivo { get; set; }
+
+        public int idArea { get; set; }
         public string area { get; set; }
+       
         public int idTipo { get; set; }
         public string tipo { get; set; }
 
         public string nombreCorto { get; set; }
         public string descripcion { get; set; }
 
+        public int idSucursal { get; set; }
         public string sucursal { get; set; }
 
         public string usuario { get; set; }

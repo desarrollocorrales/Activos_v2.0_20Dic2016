@@ -16,7 +16,7 @@ namespace Activos.Negocio
             this._activosDatos = new ActivosDatos();
         }
 
-        public bool guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string fecha)
+        public long guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string fecha)
         {
             // define clave de activo
             string consec = this._activosDatos.obtConsecTipo(idTipo);
@@ -34,7 +34,9 @@ namespace Activos.Negocio
             // obtiene el codigo verificador
             numEtiqueta += Utilerias.getCheckDigit(numEtiqueta);
 
-            return this._activosDatos.actNumEtiquetaActivo(idActivo, numEtiqueta);
+            this._activosDatos.actNumEtiquetaActivo(idActivo, numEtiqueta);
+
+            return idActivo;
         }
 
 
@@ -68,9 +70,9 @@ namespace Activos.Negocio
         }
 
 
-        public bool modifActivo(int? idActivo, string nombre, string descripcion, string fechaIng)
+        public bool modifActivo(int? idActivo, string nombre, string descripcion, string fechaIng, int idTipo, int idArea)
         {
-            return this._activosDatos.modificActivo(idActivo, nombre, descripcion, fechaIng);
+            return this._activosDatos.modificActivo(idActivo, nombre, descripcion, fechaIng, idTipo, idArea);
         }
 
 
@@ -126,6 +128,12 @@ namespace Activos.Negocio
         public List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea)
         {
             return this._activosDatos.getBuscaActivos(idSucursal, idArea);
+        }
+
+
+        public List<Modelos.Activos> getActivo(long idActivo)
+        {
+            return this._activosDatos.getActivo(idActivo);
         }
     }
 }

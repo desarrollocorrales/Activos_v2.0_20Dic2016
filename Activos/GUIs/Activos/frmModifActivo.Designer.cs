@@ -38,8 +38,6 @@
             this.lbNumetiqueta = new System.Windows.Forms.Label();
             this.lbCveActivo = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
-            this.tbTipo = new System.Windows.Forms.TextBox();
-            this.tbSucursal = new System.Windows.Forms.TextBox();
             this.tbDescripcion = new System.Windows.Forms.TextBox();
             this.tbColor = new System.Windows.Forms.TextBox();
             this.tbNumSerie = new System.Windows.Forms.TextBox();
@@ -52,7 +50,6 @@
             this.lMarca = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnModificar = new System.Windows.Forms.Button();
-            this.tbArea = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tbUsuario = new System.Windows.Forms.TextBox();
             this.tbFactura = new System.Windows.Forms.TextBox();
@@ -61,6 +58,9 @@
             this.lbCosto = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
+            this.cmbSucursal = new System.Windows.Forms.ComboBox();
+            this.cmbArea = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnBusqAct
@@ -154,24 +154,6 @@
             this.tbNombre.ReadOnly = true;
             this.tbNombre.Size = new System.Drawing.Size(420, 30);
             this.tbNombre.TabIndex = 12;
-            // 
-            // tbTipo
-            // 
-            this.tbTipo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbTipo.Location = new System.Drawing.Point(115, 65);
-            this.tbTipo.Name = "tbTipo";
-            this.tbTipo.ReadOnly = true;
-            this.tbTipo.Size = new System.Drawing.Size(420, 30);
-            this.tbTipo.TabIndex = 13;
-            // 
-            // tbSucursal
-            // 
-            this.tbSucursal.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbSucursal.Location = new System.Drawing.Point(115, 101);
-            this.tbSucursal.Name = "tbSucursal";
-            this.tbSucursal.ReadOnly = true;
-            this.tbSucursal.Size = new System.Drawing.Size(420, 30);
-            this.tbSucursal.TabIndex = 14;
             // 
             // tbDescripcion
             // 
@@ -301,15 +283,6 @@
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
-            // tbArea
-            // 
-            this.tbArea.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbArea.Location = new System.Drawing.Point(115, 137);
-            this.tbArea.Name = "tbArea";
-            this.tbArea.ReadOnly = true;
-            this.tbArea.Size = new System.Drawing.Size(420, 30);
-            this.tbArea.TabIndex = 127;
-            // 
             // label8
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -393,12 +366,47 @@
             this.dtpFecha.Size = new System.Drawing.Size(257, 30);
             this.dtpFecha.TabIndex = 137;
             // 
+            // cmbTipo
+            // 
+            this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipo.Enabled = false;
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Location = new System.Drawing.Point(115, 65);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.Size = new System.Drawing.Size(420, 31);
+            this.cmbTipo.TabIndex = 138;
+            this.cmbTipo.SelectionChangeCommitted += new System.EventHandler(this.cmbTipo_SelectionChangeCommitted);
+            // 
+            // cmbSucursal
+            // 
+            this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucursal.Enabled = false;
+            this.cmbSucursal.FormattingEnabled = true;
+            this.cmbSucursal.Location = new System.Drawing.Point(115, 102);
+            this.cmbSucursal.Name = "cmbSucursal";
+            this.cmbSucursal.Size = new System.Drawing.Size(420, 31);
+            this.cmbSucursal.TabIndex = 139;
+            this.cmbSucursal.SelectionChangeCommitted += new System.EventHandler(this.cmbSucursal_SelectionChangeCommitted);
+            // 
+            // cmbArea
+            // 
+            this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbArea.Enabled = false;
+            this.cmbArea.FormattingEnabled = true;
+            this.cmbArea.Location = new System.Drawing.Point(115, 138);
+            this.cmbArea.Name = "cmbArea";
+            this.cmbArea.Size = new System.Drawing.Size(420, 31);
+            this.cmbArea.TabIndex = 140;
+            // 
             // frmModifActivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(825, 592);
+            this.Controls.Add(this.cmbArea);
+            this.Controls.Add(this.cmbSucursal);
+            this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbFactura);
@@ -406,7 +414,6 @@
             this.Controls.Add(this.lbFactura);
             this.Controls.Add(this.lbCosto);
             this.Controls.Add(this.tbUsuario);
-            this.Controls.Add(this.tbArea);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.label1);
@@ -420,8 +427,6 @@
             this.Controls.Add(this.lNumSerie);
             this.Controls.Add(this.lModelo);
             this.Controls.Add(this.lMarca);
-            this.Controls.Add(this.tbSucursal);
-            this.Controls.Add(this.tbTipo);
             this.Controls.Add(this.tbNombre);
             this.Controls.Add(this.lbCveActivo);
             this.Controls.Add(this.lbNumetiqueta);
@@ -453,8 +458,6 @@
         private System.Windows.Forms.Label lbNumetiqueta;
         private System.Windows.Forms.Label lbCveActivo;
         private System.Windows.Forms.TextBox tbNombre;
-        private System.Windows.Forms.TextBox tbTipo;
-        private System.Windows.Forms.TextBox tbSucursal;
         private System.Windows.Forms.TextBox tbDescripcion;
         private System.Windows.Forms.TextBox tbColor;
         private System.Windows.Forms.TextBox tbNumSerie;
@@ -467,7 +470,6 @@
         private System.Windows.Forms.Label lMarca;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.TextBox tbArea;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbUsuario;
         private System.Windows.Forms.TextBox tbFactura;
@@ -476,5 +478,8 @@
         private System.Windows.Forms.Label lbCosto;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.ComboBox cmbTipo;
+        private System.Windows.Forms.ComboBox cmbSucursal;
+        private System.Windows.Forms.ComboBox cmbArea;
     }
 }

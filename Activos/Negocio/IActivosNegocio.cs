@@ -7,7 +7,7 @@ namespace Activos.Negocio
 {
     public interface IActivosNegocio
     {
-        bool guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string fecha);
+        long guardaActivo(string nombre, string descripcion, int idArea, int idTipo, int idUsuario, string fecha);
 
         List<Modelos.Activos> getBuscaActivos(int idArea, int idTipo, string nombre, string status);
 
@@ -19,7 +19,7 @@ namespace Activos.Negocio
 
         List<Modelos.ActivosDesc> busquedaUsuariosResponsiva(string usuario, string busqueda);
 
-        bool modifActivo(int? idActivo, string nombre, string descripcion, string fechaIng);
+        bool modifActivo(int? idActivo, string nombre, string descripcion, string fechaIng, int idTipo, int idArea);
 
         bool bajaActivo(int? idActivo, int idMotivo, string motivo, string detalle, string fecha, int idUsuario);
 
@@ -34,5 +34,7 @@ namespace Activos.Negocio
         List<Modelos.Cambios> getCambios(int idActivo);
 
         List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea);
+
+        List<Modelos.Activos> getActivo(long idActivo);
     }
 }

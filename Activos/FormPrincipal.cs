@@ -62,6 +62,9 @@ namespace Activos
                         item.Enabled = false;
                 }
 
+                // acerca de
+                this.ayudaToolStripMenuItem.Enabled = true;
+
                 // busca si se tiene seleccionada una impresora de etiquetas
                 if (string.IsNullOrEmpty(Properties.Settings.Default.Impresora))
                 {
@@ -731,6 +734,8 @@ namespace Activos
 
                     if (logo != null)
                         this.BackgroundImage = Modelos.Utilerias.ByteToImage(logo.logo);
+                    else
+                        this.BackgroundImage = null;
 
                 }
             }
@@ -768,6 +773,21 @@ namespace Activos
                 // bitacora
                 catalogosNegocio.generaBitacora(
                     "Sesión cerrada por el usuario '" + Modelos.Login.nombre.Replace("&", " ") + "'", "ACCESO");
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmAcercaDe child = new frmAcercaDe();
+
+                child.ShowDialog();
 
             }
             catch (Exception Ex)

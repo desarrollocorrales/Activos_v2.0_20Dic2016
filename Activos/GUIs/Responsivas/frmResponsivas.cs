@@ -17,11 +17,41 @@ namespace Activos.GUIs.Responsivas
 
         private int? _idPersona = null;
 
+        private bool _creaRespActivo;
+        private List<Modelos.Activos> _activosResp = new List<Modelos.Activos>();
+
         public frmResponsivas()
         {
             InitializeComponent();
             this._catalogosNegocio = new CatalogosNegocio();
             this._responsivasNegocio = new ResponsivasNegocio();
+        }
+
+        public frmResponsivas(List<Modelos.Activos> activos)
+        {
+            InitializeComponent();
+            this._catalogosNegocio = new CatalogosNegocio();
+            this._responsivasNegocio = new ResponsivasNegocio();
+
+            this._creaRespActivo = true;
+            this._activosResp = activos;
+        }
+
+        private void frmResponsivas_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this._creaRespActivo)
+                {
+                    this.btnBuscaActivos.Enabled = false;
+
+                    this.gcActivos.DataSource = this._activosResp;
+                }
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -156,6 +186,8 @@ namespace Activos.GUIs.Responsivas
                         "Nueva responsiva agregada para la persona: " + this._idPersona +
                         (responsables.Count > 0 ? " con los responsables: " + resp : string.Empty), "RESPONSIVAS");
 
+                    if (this._creaRespActivo)
+                        this.Close();
 
                     _idPersona = null;
                     this.gcUsuarios.DataSource = null;
@@ -194,5 +226,6 @@ namespace Activos.GUIs.Responsivas
             }
         
         }
+ 
     }
 }

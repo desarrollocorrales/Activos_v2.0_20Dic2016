@@ -23,7 +23,7 @@ namespace Activos.Datos
 
         List<Modelos.ActivosDesc> busquedaUsuariosResponsiva(string usuario, string busqueda);
 
-        bool modificActivo(int? idActivo, string nombre, string descripcion, string fechaIng);
+        bool modificActivo(int? idActivo, string nombre, string descripcion, string fechaIng, int idTipo, int idArea);
 
         long bajaActivo(int? idActivo, int idMotivo, string motivo, string detalle, string fecha, int idUsuario);
 
@@ -44,5 +44,7 @@ namespace Activos.Datos
         List<Modelos.Cambios> getCambios(int idActivo);
 
         List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea);
+
+        List<Modelos.Activos> getActivo(long idActivo);
     }
 }

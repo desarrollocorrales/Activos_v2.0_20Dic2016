@@ -66,6 +66,7 @@
             this.tbUrl = new System.Windows.Forms.TextBox();
             this.btnCambia = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.btnQuitaLogo = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSubirImagen)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -255,6 +256,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnQuitaLogo);
             this.groupBox1.Controls.Add(this.cmbNombreLogo);
             this.groupBox1.Controls.Add(this.pbSelLogo);
             this.groupBox1.Controls.Add(this.btnSeleccionar);
@@ -470,6 +472,16 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "Url Imagenes";
             // 
+            // btnQuitaLogo
+            // 
+            this.btnQuitaLogo.Image = ((System.Drawing.Image)(resources.GetObject("btnQuitaLogo.Image")));
+            this.btnQuitaLogo.Location = new System.Drawing.Point(370, 304);
+            this.btnQuitaLogo.Name = "btnQuitaLogo";
+            this.btnQuitaLogo.Size = new System.Drawing.Size(40, 40);
+            this.btnQuitaLogo.TabIndex = 15;
+            this.btnQuitaLogo.UseVisualStyleBackColor = true;
+            this.btnQuitaLogo.Click += new System.EventHandler(this.btnQuitaLogo_Click);
+            // 
             // frmConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -541,6 +553,7 @@
         private System.Windows.Forms.TextBox tbUrl;
         private System.Windows.Forms.Button btnCambia;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnQuitaLogo;
 
     }
 }

@@ -88,3 +88,4 @@ G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraPrinting.v11.1
 G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraBars.v11.1.xml
 G:\Github\Activos_v2.0_20Dic2016\Activos\bin\Debug\DevExpress.XtraPrinting.v11.1.xml
 G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.csprojResolveAssemblyReference.cache
+G:\Github\Activos_v2.0_20Dic2016\Activos\obj\x86\Debug\Activos.GUIs.frmAcercaDe.resources

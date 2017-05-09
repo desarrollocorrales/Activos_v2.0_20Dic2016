@@ -19,6 +19,9 @@ namespace Activos.GUIs.AltaActivos
         private Modelos.Tipos _tipos;
         private int? _idActivo = null;
 
+        private int _idAreaAnt;
+        private int _idTipoAnt;
+
         public frmModifActivo()
         {
             InitializeComponent();
@@ -32,6 +35,20 @@ namespace Activos.GUIs.AltaActivos
             this.lbCveActivo.Text = string.Empty;
             this.lbNumetiqueta.Text = string.Empty;
             this.tbUsuario.Text = string.Empty;
+
+            // carga combos
+            // llenar combo de Tipos
+            this.cmbTipo.DataSource = this._catalogosNegocio.getTipos("A");
+            this.cmbTipo.DisplayMember = "nombre";
+            this.cmbTipo.ValueMember = "idTipo";
+            this.cmbTipo.SelectedIndex = -1;
+
+
+            // llenar combo de sucursales
+            this.cmbSucursal.DisplayMember = "nombre";
+            this.cmbSucursal.ValueMember = "idSucursal";
+            this.cmbSucursal.DataSource = this._catalogosNegocio.getSucursales("A");
+            this.cmbSucursal.SelectedIndex = -1;
         }
 
         private void inicializaValores()
@@ -58,6 +75,10 @@ namespace Activos.GUIs.AltaActivos
             this.tbFactura.ReadOnly = false;
             this.tbDescripcion.ReadOnly = false;
             this.dtpFecha.Enabled = true;
+
+            this.cmbArea.Enabled = true;
+            this.cmbSucursal.Enabled = true;
+            this.cmbTipo.Enabled = true;
         }
 
         private void btnBusqAct_Click(object sender, EventArgs e)
@@ -81,9 +102,7 @@ namespace Activos.GUIs.AltaActivos
                     string[] array = activo.descripcion.Split('&');
 
                     this.tbNombre.Text = activo.nombreCorto;
-                    this.tbTipo.Text = activo.tipo;
-                    this.tbSucursal.Text = activo.sucursal;
-                    this.tbArea.Text = activo.area;
+
                     this.tbMarca.Text = array[0];
                     this.tbModelo.Text = array[1];
                     this.tbNumSerie.Text = array[2];
@@ -99,6 +118,25 @@ namespace Activos.GUIs.AltaActivos
 
                     this._idActivo = activo.idActivo;
 
+                    this.cmbTipo.SelectedValue = activo.idTipo;
+                    this.cmbSucursal.SelectedValue = activo.idSucursal;
+                    this.cargaAreas(activo.idSucursal);
+                    this.cmbArea.SelectedValue = activo.idArea;
+
+                    this._idTipoAnt = activo.idTipo;
+                    this._idAreaAnt = activo.idArea;
+
+                    if (!string.IsNullOrEmpty(activo.usuario))
+                    {
+                        MessageBox.Show(
+                            "No es permitido cambiar la Sucursal ni el Área\n" + 
+                            "El Activo pertenece a una responsiva\n" +
+                            "Para realizar el cambio debe ser por medio de un traspaso", "Activos",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        this.cmbArea.Enabled = false;
+                        this.cmbSucursal.Enabled = false;
+                    }
                 }
 
                 if (result == DialogResult.Cancel)
@@ -134,6 +172,13 @@ namespace Activos.GUIs.AltaActivos
                 if (string.IsNullOrEmpty(this.tbNombre.Text))
                     throw new Exception("Llene el campo nombre");
 
+                // validaciones combos
+                if (this.cmbTipo.SelectedIndex == -1)
+                    throw new Exception("Seleccione un tipo");
+
+                if (this.cmbArea.SelectedIndex == -1)
+                    throw new Exception("Seleccione un área");
+
                 // validaciones segun el tipo
                 bool resultado = validaciones();
 
@@ -154,14 +199,21 @@ namespace Activos.GUIs.AltaActivos
                     fechaCompra + "&" +
                     this.tbDescripcion.Text;
 
-                bool res = this._activosNegocio.modifActivo(this._idActivo, nombre, descripcion, string.Empty);
+                int idTipo = (int)this.cmbTipo.SelectedValue;
+                int idArea = (int)this.cmbArea.SelectedValue;
+
+                string tipo = ((Modelos.Tipos)this.cmbTipo.SelectedItem).nombre;
+                string areas = ((Modelos.Areas)this.cmbArea.SelectedItem).nombre;
+
+                bool res = this._activosNegocio.modifActivo(this._idActivo, nombre, descripcion, string.Empty, idTipo, idArea);
 
                 if (res) MessageBox.Show("Datos modificados correctamente", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
                 // bitacora
                 this._catalogosNegocio.generaBitacora(
-                    "Activo Modificado: " + this._idActivo + " nuevos datos: " + nombre + "/" + descripcion, "ACTIVOS");
+                    "Activo Modificado: " + this._idActivo + " nuevos datos: " + nombre + "/" + descripcion +
+                    "/ tipo: " + tipo + "/ area: " + areas, "ACTIVOS");
 
             }
             catch (Exception Ex)
@@ -237,6 +289,15 @@ namespace Activos.GUIs.AltaActivos
                 result = false;
             }
 
+            // COSTO varios puntos
+            int count = this.tbCosto.Text.Count(c => c == '.');
+            if (count > 1)
+            {
+                this.lbCosto.Text = "Costo*";
+                this.lbCosto.ForeColor = System.Drawing.Color.Red;
+                result = false;
+            }
+
             // FACTURA
             if (this._tipos.factura.Equals("SI") && string.IsNullOrEmpty(this.tbFactura.Text))
             {
@@ -251,6 +312,38 @@ namespace Activos.GUIs.AltaActivos
         private void tbCosto_Leave(object sender, EventArgs e)
         {
             this.tbCosto.Text = this.tbCosto.Text.Replace(",", "");
+        }
+
+        private void cmbSucursal_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                this.cargaAreas((int)this.cmbSucursal.SelectedValue);
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        public void cargaAreas(int idSucursal)
+        {
+            // llenar combo de Tipos
+            this.cmbArea.DataSource = this._catalogosNegocio.getAreas(idSucursal);
+            this.cmbArea.DisplayMember = "nombre";
+            this.cmbArea.ValueMember = "idArea";
+        }
+
+        private void cmbTipo_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                this._tipos = this._catalogosNegocio.getTipo((int)this.cmbTipo.SelectedValue);
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

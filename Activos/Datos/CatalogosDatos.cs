@@ -2903,6 +2903,12 @@ namespace Activos.Datos
 
                     cmd.Parameters.Clear();
 
+                    if (idLogo == -1)
+                    {
+                        trans.Commit();
+                        return result;
+                    }
+
                     // seleccionar le logo correspondiente definiendo la clave en el registro
                     string sqlSelec = "update activos_logos set clave = @clave where idlogo = @idlogo";
 
