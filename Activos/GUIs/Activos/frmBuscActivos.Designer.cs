@@ -92,7 +92,7 @@
             this.gbPNE.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.gbPNE.Controls.Add(this.tbNumEtiqueta);
             this.gbPNE.Controls.Add(this.btnBuscarPNE);
-            this.gbPNE.Location = new System.Drawing.Point(319, 278);
+            this.gbPNE.Location = new System.Drawing.Point(319, 260);
             this.gbPNE.Name = "gbPNE";
             this.gbPNE.Size = new System.Drawing.Size(234, 112);
             this.gbPNE.TabIndex = 3;
@@ -121,7 +121,7 @@
             this.gbPCA.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.gbPCA.Controls.Add(this.tbCveActivo);
             this.gbPCA.Controls.Add(this.btnBuscarPCA);
-            this.gbPCA.Location = new System.Drawing.Point(319, 160);
+            this.gbPCA.Location = new System.Drawing.Point(319, 142);
             this.gbPCA.Name = "gbPCA";
             this.gbPCA.Size = new System.Drawing.Size(234, 112);
             this.gbPCA.TabIndex = 2;
@@ -157,7 +157,7 @@
             this.gbPTN.Controls.Add(this.tbNombre);
             this.gbPTN.Controls.Add(this.label1);
             this.gbPTN.Controls.Add(this.cmbTipo);
-            this.gbPTN.Location = new System.Drawing.Point(12, 4);
+            this.gbPTN.Location = new System.Drawing.Point(12, -14);
             this.gbPTN.Name = "gbPTN";
             this.gbPTN.Size = new System.Drawing.Size(301, 386);
             this.gbPTN.TabIndex = 1;
@@ -255,7 +255,7 @@
             this.gbPN.Controls.Add(this.rbNombrePU);
             this.gbPN.Controls.Add(this.tbUsuarioPU);
             this.gbPN.Controls.Add(this.btnBuscarPU);
-            this.gbPN.Location = new System.Drawing.Point(319, 4);
+            this.gbPN.Location = new System.Drawing.Point(319, -14);
             this.gbPN.Name = "gbPN";
             this.gbPN.Size = new System.Drawing.Size(234, 150);
             this.gbPN.TabIndex = 7;
@@ -349,7 +349,7 @@
             // 
             this.gcResulBusquedas.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.gcResulBusquedas.DataSource = this.activosDescBindingSource;
-            this.gcResulBusquedas.Location = new System.Drawing.Point(12, 396);
+            this.gcResulBusquedas.Location = new System.Drawing.Point(12, 378);
             this.gcResulBusquedas.MainView = this.gridView1;
             this.gcResulBusquedas.Name = "gcResulBusquedas";
             this.gcResulBusquedas.Size = new System.Drawing.Size(541, 145);
@@ -458,7 +458,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 550);
+            this.label2.Location = new System.Drawing.Point(8, 532);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 23);
             this.label2.TabIndex = 13;
@@ -468,7 +468,7 @@
             // 
             this.label100.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label100.AutoSize = true;
-            this.label100.Location = new System.Drawing.Point(8, 586);
+            this.label100.Location = new System.Drawing.Point(8, 568);
             this.label100.Name = "label100";
             this.label100.Size = new System.Drawing.Size(63, 23);
             this.label100.TabIndex = 14;
@@ -478,7 +478,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(316, 626);
+            this.label4.Location = new System.Drawing.Point(316, 608);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 23);
             this.label4.TabIndex = 15;
@@ -488,7 +488,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 626);
+            this.label5.Location = new System.Drawing.Point(13, 608);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(138, 23);
             this.label5.TabIndex = 16;
@@ -497,7 +497,7 @@
             // tbResultNombre
             // 
             this.tbResultNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbResultNombre.Location = new System.Drawing.Point(95, 547);
+            this.tbResultNombre.Location = new System.Drawing.Point(95, 529);
             this.tbResultNombre.Name = "tbResultNombre";
             this.tbResultNombre.ReadOnly = true;
             this.tbResultNombre.Size = new System.Drawing.Size(444, 30);
@@ -506,7 +506,7 @@
             // tbResultDesc
             // 
             this.tbResultDesc.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbResultDesc.Location = new System.Drawing.Point(95, 583);
+            this.tbResultDesc.Location = new System.Drawing.Point(95, 565);
             this.tbResultDesc.Name = "tbResultDesc";
             this.tbResultDesc.ReadOnly = true;
             this.tbResultDesc.Size = new System.Drawing.Size(444, 30);
@@ -515,7 +515,7 @@
             // tbResultNumEtiqueta
             // 
             this.tbResultNumEtiqueta.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbResultNumEtiqueta.Location = new System.Drawing.Point(157, 623);
+            this.tbResultNumEtiqueta.Location = new System.Drawing.Point(157, 605);
             this.tbResultNumEtiqueta.Name = "tbResultNumEtiqueta";
             this.tbResultNumEtiqueta.ReadOnly = true;
             this.tbResultNumEtiqueta.Size = new System.Drawing.Size(146, 30);
@@ -526,7 +526,7 @@
             // tbResultCveActivo
             // 
             this.tbResultCveActivo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbResultCveActivo.Location = new System.Drawing.Point(430, 623);
+            this.tbResultCveActivo.Location = new System.Drawing.Point(430, 605);
             this.tbResultCveActivo.Name = "tbResultCveActivo";
             this.tbResultCveActivo.ReadOnly = true;
             this.tbResultCveActivo.Size = new System.Drawing.Size(110, 30);
@@ -537,7 +537,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCancelar.Location = new System.Drawing.Point(385, 674);
+            this.btnCancelar.Location = new System.Drawing.Point(385, 656);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 44);
             this.btnCancelar.TabIndex = 21;
@@ -548,7 +548,7 @@
             // btnAceptar
             // 
             this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnAceptar.Location = new System.Drawing.Point(210, 674);
+            this.btnAceptar.Location = new System.Drawing.Point(210, 656);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(169, 44);
             this.btnAceptar.TabIndex = 22;
