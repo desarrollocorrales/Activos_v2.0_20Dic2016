@@ -49,6 +49,7 @@
             this.btnBajaSeleccBaja = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnAgregaPuestoAlta = new System.Windows.Forms.Button();
             this.cmbPuestoAlta = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnCrearAlta = new System.Windows.Forms.Button();
@@ -59,6 +60,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnAgregaPuestoModif = new System.Windows.Forms.Button();
             this.btnModifModif = new System.Windows.Forms.Button();
             this.cmbPuestoModif = new System.Windows.Forms.ComboBox();
             this.tbApMaternoModif = new System.Windows.Forms.TextBox();
@@ -165,7 +167,7 @@
             // 
             // personasBindingSource
             // 
-            this.personasBindingSource.DataSource = typeof(Activos.Modelos.Personas);
+            this.personasBindingSource.DataSource = typeof(Modelos.Personas);
             // 
             // gridView1
             // 
@@ -284,6 +286,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.btnAgregaPuestoAlta);
             this.tabPage1.Controls.Add(this.cmbPuestoAlta);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.btnCrearAlta);
@@ -301,6 +304,19 @@
             this.tabPage1.Tag = "36";
             this.tabPage1.Text = "Alta";
             // 
+            // btnAgregaPuestoAlta
+            // 
+            this.btnAgregaPuestoAlta.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAgregaPuestoAlta.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaPuestoAlta.BackgroundImage")));
+            this.btnAgregaPuestoAlta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaPuestoAlta.Location = new System.Drawing.Point(443, 160);
+            this.btnAgregaPuestoAlta.Name = "btnAgregaPuestoAlta";
+            this.btnAgregaPuestoAlta.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaPuestoAlta.TabIndex = 186;
+            this.btnAgregaPuestoAlta.Tag = "21";
+            this.btnAgregaPuestoAlta.UseVisualStyleBackColor = true;
+            this.btnAgregaPuestoAlta.Click += new System.EventHandler(this.btnAgregaPuestoAlta_Click);
+            // 
             // cmbPuestoAlta
             // 
             this.cmbPuestoAlta.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -309,7 +325,7 @@
             this.cmbPuestoAlta.FormattingEnabled = true;
             this.cmbPuestoAlta.Location = new System.Drawing.Point(16, 160);
             this.cmbPuestoAlta.Name = "cmbPuestoAlta";
-            this.cmbPuestoAlta.Size = new System.Drawing.Size(458, 31);
+            this.cmbPuestoAlta.Size = new System.Drawing.Size(421, 31);
             this.cmbPuestoAlta.TabIndex = 19;
             // 
             // label6
@@ -393,6 +409,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.btnAgregaPuestoModif);
             this.tabPage2.Controls.Add(this.btnModifModif);
             this.tabPage2.Controls.Add(this.cmbPuestoModif);
             this.tabPage2.Controls.Add(this.tbApMaternoModif);
@@ -414,6 +431,20 @@
             this.tabPage2.Tag = "37";
             this.tabPage2.Text = "Modificar";
             // 
+            // btnAgregaPuestoModif
+            // 
+            this.btnAgregaPuestoModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAgregaPuestoModif.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaPuestoModif.BackgroundImage")));
+            this.btnAgregaPuestoModif.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaPuestoModif.Enabled = false;
+            this.btnAgregaPuestoModif.Location = new System.Drawing.Point(443, 415);
+            this.btnAgregaPuestoModif.Name = "btnAgregaPuestoModif";
+            this.btnAgregaPuestoModif.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaPuestoModif.TabIndex = 186;
+            this.btnAgregaPuestoModif.Tag = "21";
+            this.btnAgregaPuestoModif.UseVisualStyleBackColor = true;
+            this.btnAgregaPuestoModif.Click += new System.EventHandler(this.btnAgregaPuestoModif_Click);
+            // 
             // btnModifModif
             // 
             this.btnModifModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -429,11 +460,12 @@
             // 
             this.cmbPuestoModif.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbPuestoModif.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPuestoModif.DropDownWidth = 750;
             this.cmbPuestoModif.Enabled = false;
             this.cmbPuestoModif.FormattingEnabled = true;
             this.cmbPuestoModif.Location = new System.Drawing.Point(16, 415);
             this.cmbPuestoModif.Name = "cmbPuestoModif";
-            this.cmbPuestoModif.Size = new System.Drawing.Size(458, 31);
+            this.cmbPuestoModif.Size = new System.Drawing.Size(421, 31);
             this.cmbPuestoModif.TabIndex = 22;
             // 
             // tbApMaternoModif
@@ -567,7 +599,7 @@
             // 
             // personasBindingSource1
             // 
-            this.personasBindingSource1.DataSource = typeof(Activos.Modelos.Personas);
+            this.personasBindingSource1.DataSource = typeof(Modelos.Personas);
             // 
             // gridView2
             // 
@@ -725,7 +757,7 @@
             // 
             // personasBindingSource2
             // 
-            this.personasBindingSource2.DataSource = typeof(Activos.Modelos.Personas);
+            this.personasBindingSource2.DataSource = typeof(Modelos.Personas);
             // 
             // gridView3
             // 
@@ -942,5 +974,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colstatus2;
         private System.Windows.Forms.BindingSource personasBindingSource2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private System.Windows.Forms.Button btnAgregaPuestoAlta;
+        private System.Windows.Forms.Button btnAgregaPuestoModif;
     }
 }

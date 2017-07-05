@@ -48,6 +48,7 @@
             this.sucursalesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnElimSelecc = new System.Windows.Forms.Button();
             this.btnActivaS = new System.Windows.Forms.Button();
+            this.btnAgregaPersona = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.rICheckEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSucursales)).BeginInit();
@@ -75,9 +76,9 @@
             this.label1.Location = new System.Drawing.Point(20, 16);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 29);
+            this.label1.Size = new System.Drawing.Size(265, 29);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Nueva";
+            this.label1.Text = "Agregar nueva Sucursal";
             // 
             // label2
             // 
@@ -120,7 +121,7 @@
             this.cmbResponsable.Location = new System.Drawing.Point(164, 102);
             this.cmbResponsable.Margin = new System.Windows.Forms.Padding(5);
             this.cmbResponsable.Name = "cmbResponsable";
-            this.cmbResponsable.Size = new System.Drawing.Size(482, 31);
+            this.cmbResponsable.Size = new System.Drawing.Size(443, 31);
             this.cmbResponsable.TabIndex = 6;
             // 
             // rICheckEdit
@@ -144,7 +145,6 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             // 
             // colseleccionado
             // 
@@ -212,7 +212,7 @@
             // 
             // sucursalesBindingSource
             // 
-            this.sucursalesBindingSource.DataSource = typeof(Activos.Modelos.Sucursales);
+            this.sucursalesBindingSource.DataSource = typeof(Modelos.Sucursales);
             // 
             // btnElimSelecc
             // 
@@ -238,12 +238,26 @@
             this.btnActivaS.UseVisualStyleBackColor = true;
             this.btnActivaS.Click += new System.EventHandler(this.btnActivaS_Click);
             // 
+            // btnAgregaPersona
+            // 
+            this.btnAgregaPersona.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAgregaPersona.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaPersona.BackgroundImage")));
+            this.btnAgregaPersona.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaPersona.Location = new System.Drawing.Point(615, 101);
+            this.btnAgregaPersona.Name = "btnAgregaPersona";
+            this.btnAgregaPersona.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaPersona.TabIndex = 185;
+            this.btnAgregaPersona.Tag = "23";
+            this.btnAgregaPersona.UseVisualStyleBackColor = true;
+            this.btnAgregaPersona.Click += new System.EventHandler(this.btnAgregaPersona_Click);
+            // 
             // frmSucursales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(812, 592);
+            this.Controls.Add(this.btnAgregaPersona);
             this.Controls.Add(this.btnActivaS);
             this.Controls.Add(this.btnElimSelecc);
             this.Controls.Add(this.gcSucursales);
@@ -288,5 +302,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
         private System.Windows.Forms.BindingSource sucursalesBindingSource;
         private System.Windows.Forms.Button btnActivaS;
+        private System.Windows.Forms.Button btnAgregaPersona;
     }
 }

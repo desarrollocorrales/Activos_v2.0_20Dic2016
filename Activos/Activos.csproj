@@ -127,6 +127,24 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Activos\frmReimpresionBR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Activos\frmReimpresionBR.Designer.cs">
+      <DependentUpon>frmReimpresionBR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Activos\frmReporteBaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Activos\frmReporteBaja.Designer.cs">
+      <DependentUpon>frmReporteBaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Activos\frmReporteRepara.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Activos\frmReporteRepara.Designer.cs">
+      <DependentUpon>frmReporteRepara.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\frmAcercaDe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,11 +313,29 @@
     <Compile Include="GUIs\Reportes\frmReporteResponsivasSucursal.Designer.cs">
       <DependentUpon>frmReporteResponsivasSucursal.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Reportes\frmReporteRespSucXResp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmReporteRespSucXResp.Designer.cs">
+      <DependentUpon>frmReporteRespSucXResp.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Reportes\frmResponsivasSucursal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUIs\Reportes\frmResponsivasSucursal.Designer.cs">
       <DependentUpon>frmResponsivasSucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmResponsivasSucursalXResp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmResponsivasSucursalXResp.Designer.cs">
+      <DependentUpon>frmResponsivasSucursalXResp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmTraspasosRealizados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmTraspasosRealizados.Designer.cs">
+      <DependentUpon>frmTraspasosRealizados.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Responsivas\frmBuscaPersona.cs">
       <SubType>Form</SubType>
@@ -318,6 +354,24 @@
     </Compile>
     <Compile Include="GUIs\Responsivas\frmReimpresionEtiquetas.Designer.cs">
       <DependentUpon>frmReimpresionEtiquetas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmReporteTraspasos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmReporteTraspasos.Designer.cs">
+      <DependentUpon>frmReporteTraspasos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmSeleccionarRespon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmSeleccionarRespon.Designer.cs">
+      <DependentUpon>frmSeleccionarRespon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmSelRespImpr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Responsivas\frmSelRespImpr.Designer.cs">
+      <DependentUpon>frmSelRespImpr.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Responsivas\frmTraspasarResponsiva.cs">
       <SubType>Form</SubType>
@@ -475,6 +529,7 @@
     <Compile Include="Modelos\ResponsivasSucursal.cs" />
     <Compile Include="Modelos\Sucursales.cs" />
     <Compile Include="Modelos\Tipos.cs" />
+    <Compile Include="Modelos\Traspasos.cs" />
     <Compile Include="Modelos\UsoLogos.cs" />
     <Compile Include="Modelos\Usuarios.cs" />
     <Compile Include="Modelos\UsuariosResponsivas.cs" />
@@ -502,6 +557,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Activos\frmReimpresionBR.resx">
+      <DependentUpon>frmReimpresionBR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Activos\frmReporteBaja.resx">
+      <DependentUpon>frmReporteBaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Activos\frmReporteRepara.resx">
+      <DependentUpon>frmReporteRepara.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\frmAcercaDe.resx">
       <DependentUpon>frmAcercaDe.cs</DependentUpon>
@@ -587,14 +651,32 @@
     <EmbeddedResource Include="GUIs\Reportes\frmReporteResponsivasSucursal.resx">
       <DependentUpon>frmReporteResponsivasSucursal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Reportes\frmReporteRespSucXResp.resx">
+      <DependentUpon>frmReporteRespSucXResp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Reportes\frmResponsivasSucursal.resx">
       <DependentUpon>frmResponsivasSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Reportes\frmResponsivasSucursalXResp.resx">
+      <DependentUpon>frmResponsivasSucursalXResp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Reportes\frmTraspasosRealizados.resx">
+      <DependentUpon>frmTraspasosRealizados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmAgregaResponsables.resx">
       <DependentUpon>frmAgregaResponsables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmReimpresionEtiquetas.resx">
       <DependentUpon>frmReimpresionEtiquetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmReporteTraspasos.resx">
+      <DependentUpon>frmReporteTraspasos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmSeleccionarRespon.resx">
+      <DependentUpon>frmSeleccionarRespon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Responsivas\frmSelRespImpr.resx">
+      <DependentUpon>frmSelRespImpr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Responsivas\frmTraspasarResponsiva.resx">
       <DependentUpon>frmTraspasarResponsiva.cs</DependentUpon>
@@ -678,10 +760,19 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Reportes\infActivosPersona.rdlc">
+    <EmbeddedResource Include="Reportes\infActivosBaja.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\infActivosTraspaso.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\infResponsivas.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\infActivosPersona.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\infActivosRepara.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\infRespSucu.rdlc" />
@@ -692,6 +783,7 @@
     <None Include="Properties\DataSources\Activos.Modelos.Activos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.ActivosDesc.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Areas.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Bajas.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Cambios.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Grupos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Impresora.datasource" />
@@ -705,6 +797,7 @@
     <None Include="Properties\DataSources\Activos.Modelos.ResponsivasSucursal.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Sucursales.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Tipos.datasource" />
+    <None Include="Properties\DataSources\Activos.Modelos.Traspasos.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.Usuarios.datasource" />
     <None Include="Properties\DataSources\Activos.Modelos.UsuariosResponsivas.datasource" />
     <None Include="Properties\Settings.settings">

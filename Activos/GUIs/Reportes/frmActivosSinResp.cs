@@ -41,7 +41,12 @@ namespace Activos.GUIs.Reportes
                 int idSucursal = (int)this.cmbSucursal.SelectedValue;
 
                 // llenar combo de Tipos
-                this.cmbArea.DataSource = this._catalogosNegocio.getAreas(idSucursal);
+                // llenar combo de Tipos
+                List<Modelos.Areas> areas = new List<Modelos.Areas>();
+                areas.Add(new Modelos.Areas { idArea = -1, nombre = "" });
+                areas.AddRange(this._catalogosNegocio.getAreas(idSucursal));
+
+                this.cmbArea.DataSource = areas;
                 this.cmbArea.DisplayMember = "nombre";
                 this.cmbArea.ValueMember = "idArea";
             }
@@ -59,11 +64,8 @@ namespace Activos.GUIs.Reportes
                 if (this.cmbSucursal.SelectedIndex == -1)
                 throw new Exception("Seleccione una sucursal");
 
-                if (this.cmbArea.SelectedIndex == -1)
-                    throw new Exception("Seleccione un área");
-
                 int idSucursal = (int)this.cmbSucursal.SelectedValue;
-                int idArea = (int)this.cmbArea.SelectedValue;
+                int idArea = this.cmbArea.SelectedIndex == -1 ? -1 : (int)this.cmbArea.SelectedValue;
 
                 List<Modelos.Activos> resultado = this._activosNegocio.getBuscaActivos(idSucursal, idArea);
 
@@ -79,6 +81,7 @@ namespace Activos.GUIs.Reportes
                 }
 
                 this.gcActivos.DataSource = resultado;
+                this.gridView2.BestFitColumns();
             }
             catch (Exception Ex)
             {

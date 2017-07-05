@@ -170,7 +170,7 @@ namespace Activos.Datos
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
                         "left join activos_responsivasdetalle rd on (r.idresponsiva = rd.idresponsiva) " +
-                        "where s.idsucursal = @isSucursal and p.nombrecompleto LIKE @nomb and rd.status != @status and r.status != 'B' " +
+                        "where s.idsucursal = @isSucursal and replace(p.nombrecompleto, '&', ' ') LIKE @nomb and rd.status != @status and r.status != 'B' " +
                         "group by r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
                         "p.nombrecompleto, pu.nombre, s.nombre order by p.nombrecompleto ";
             
@@ -446,8 +446,8 @@ namespace Activos.Datos
 
                     // agrega los activos a la responsiva existente
                     string sqlInsertaActivos =
-                        "insert into activos_responsivasdetalle (idactivo, idresponsiva, status) " +
-                        "values (@idActivo, @idRespon, 'A')";
+                        "insert into activos_responsivasdetalle (idactivo, idresponsiva, costo, status) " +
+                        "values (@idActivo, @idRespon, @costo, 'A')";
 
                     foreach (Modelos.Activos act in activosTraspaso)
                     {
@@ -456,6 +456,7 @@ namespace Activos.Datos
                         // define parametros
                         cmd.Parameters.AddWithValue("@idRespon", idRespTraspaso);
                         cmd.Parameters.AddWithValue("@idActivo", act.idActivo);
+                        cmd.Parameters.AddWithValue("@costo", act.costo);
 
                         ManejoSql res1 = Utilerias.EjecutaSQL(sqlInsertaActivos, ref rows, cmd);
 
@@ -497,9 +498,28 @@ namespace Activos.Datos
                     }
 
                     // D E F I N E   E L   H I S T O R I A L   D E   C A M B I O
-                    string sqlHC = 
-                        "insert into activos_cambio (idpersonaant, idareaanterior, idpersonanuevo, idareanueva, fecha, motivo, idactivo) " +
-                        "values (@idpera, @idareaa, @idpern, @idarean, now(), @motivo, @idactivo)";
+
+                    // obtiene consecutivo de traspaso por fecha
+                    int consec = 0;
+
+                    string sql = "SELECT IFNULL(max(consectraspaso), 0) as consecutivo " +
+                          "FROM activos_cambio " +
+                          "WHERE date(fecha) = date(now())";
+
+                    res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                        while (res.reader.Read())
+                            consec = Convert.ToInt16(res.reader["consecutivo"]);
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+                    
+                    string sqlHC =
+                        "insert into activos_cambio (consectraspaso, idpersonaant, idareaanterior, idpersonanuevo, idareanueva, fecha, motivo, idactivo) " +
+                        "values (@consecTraspaso, @idpera, @idareaa, @idpern, @idarean, now(), @motivo, @idactivo)";
 
                     foreach (Modelos.Activos act in activosTraspaso)
                     {
@@ -514,6 +534,7 @@ namespace Activos.Datos
                         cmd.Parameters.AddWithValue("@idarean", act.idArea);
                         cmd.Parameters.AddWithValue("@motivo", motivo);
                         cmd.Parameters.AddWithValue("@idactivo", act.idActivo);
+                        cmd.Parameters.AddWithValue("@consecTraspaso", consec + 1);
 
                         ManejoSql res1 = Utilerias.EjecutaSQL(sqlHC, ref rows, cmd);
 
@@ -581,7 +602,7 @@ namespace Activos.Datos
                         trans.Rollback();
                         throw new Exception(res.numErr + ": " + res.descErr);
                     }
-
+                    
                     // crear la responsiva
                     long idResp = 0;
 
@@ -610,8 +631,8 @@ namespace Activos.Datos
 
                     // agrega los activos a la responsiva creada
                     string sqlInsertaActivos =
-                        "insert into activos_responsivasdetalle (idactivo, idresponsiva, status) " +
-                        "values (@idActivo, @idRespon, 'A')";
+                        "insert into activos_responsivasdetalle (idactivo, idresponsiva, costo, status) " +
+                        "values (@idActivo, @idRespon, @costo, 'A')";
 
                     foreach (Modelos.Activos act in activosTraspaso)
                     {
@@ -620,6 +641,7 @@ namespace Activos.Datos
                         // define parametros
                         cmd.Parameters.AddWithValue("@idRespon", idResp);
                         cmd.Parameters.AddWithValue("@idActivo", act.idActivo);
+                        cmd.Parameters.AddWithValue("@costo", act.costo);
 
                         ManejoSql res1 = Utilerias.EjecutaSQL(sqlInsertaActivos, ref rows, cmd);
 
@@ -662,9 +684,28 @@ namespace Activos.Datos
 
 
                     // D E F I N E   E L   H I S T O R I A L   D E   C A M B I O
+                    
+                    // obtiene consecutivo de traspaso por fecha
+                    int consec = 0;
+
+                    string sql = "SELECT IFNULL(max(consectraspaso), 0) as consecutivo " +
+                          "FROM activos_cambio " +
+                          "WHERE date(fecha) = date(now())";
+
+                    res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                        while (res.reader.Read())
+                            consec = Convert.ToInt16(res.reader["consecutivo"]);
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+                    
                     string sqlHC =
-                        "insert into activos_cambio (idpersonaant, idareaanterior, idpersonanuevo, idareanueva, fecha, motivo, idactivo) " +
-                        "values (@idpera, @idareaa, @idpern, @idarean, now(), @motivo, @idactivo)";
+                        "insert into activos_cambio (consectraspaso, idpersonaant, idareaanterior, idpersonanuevo, idareanueva, fecha, motivo, idactivo) " +
+                        "values (@consecTraspaso, @idpera, @idareaa, @idpern, @idarean, now(), @motivo, @idactivo)";
 
                     foreach (Modelos.Activos act in activosTraspaso)
                     {
@@ -679,6 +720,7 @@ namespace Activos.Datos
                         cmd.Parameters.AddWithValue("@idarean", act.idArea);
                         cmd.Parameters.AddWithValue("@motivo", motivo);
                         cmd.Parameters.AddWithValue("@idactivo", act.idActivo);
+                        cmd.Parameters.AddWithValue("@consecTraspaso", consec + 1);
 
                         ManejoSql res1 = Utilerias.EjecutaSQL(sqlHC, ref rows, cmd);
 
@@ -878,7 +920,7 @@ namespace Activos.Datos
                         "left join activos_personas p on (r.idpersona = p.idpersona) " +
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
-                        "where p.nombrecompleto like @resp and s.idsucursal = @idsucu " +
+                        "where replace(p.nombrecompleto, '&', ' ') like @resp and s.idsucursal = @idsucu " +
                         "group by r.idpersona, p.nombrecompleto, pu.nombre, s.nombre, s.idsucursal ";
 
             // define conexion con la cadena de conexion
@@ -1011,9 +1053,31 @@ namespace Activos.Datos
 
                     cmd.Parameters.Clear();
 
+                    // obtiene consecutivo de traspaso por fecha
+                    int consec = 0;
+
+                    string sqlTras = "SELECT IFNULL(max(consectraspaso), 0) as consecutivo " +
+                          "FROM activos_cambio " +
+                          "WHERE date(fecha) = date(now())";
+
+                    res = Utilerias.EjecutaSQL(sqlTras, cmd);
+
+                    if (res.ok)
+                        while (res.reader.Read())
+                            consec = Convert.ToInt16(res.reader["consecutivo"]);
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
                     // agregar activos a responsiva creada
                     foreach (Modelos.Activos activo in activos)
                     {
+                        string s = activo.descripcion.Replace("---", "&");
+
+                        var a = s.Split('&')[4];
+
                         decimal costo = Convert.ToDecimal(activo.descripcion.Replace("---", "&").Split('&')[4]);
 
                         string sql =
@@ -1035,10 +1099,11 @@ namespace Activos.Datos
 
                         cmd.Parameters.Clear();
 
-                        // bitacora de cambio
+                        // BITACORA DE CAMBIO
+                        
                         sql =
-                            "INSERT INTO activos_cambio(idpersonaant, idareaanterior, idpersonanuevo, idareanueva, fecha, motivo, idactivo) " +
-                            "VALUES (@idPerAnt, @idAreaAnt, @idPerNueva, @idAreaNueva, now(), @motivo, @idActivo)";
+                            "INSERT INTO activos_cambio(consectraspaso, idpersonaant, idareaanterior, idpersonanuevo, idareanueva, fecha, motivo, idactivo) " +
+                            "VALUES (@consecTraspaso, @idPerAnt, @idAreaAnt, @idPerNueva, @idAreaNueva, now(), @motivo, @idActivo)";
 
                         // define parametros
                         cmd.Parameters.AddWithValue("@idPerAnt", idPersonaAnt);
@@ -1047,6 +1112,7 @@ namespace Activos.Datos
                         cmd.Parameters.AddWithValue("@idAreaNueva", activo.idArea);
                         cmd.Parameters.AddWithValue("@motivo", "Traspaso: " + motivo);
                         cmd.Parameters.AddWithValue("@idActivo", activo.idActivo);
+                        cmd.Parameters.AddWithValue("@consecTraspaso", consec + 1);
 
                         res = Utilerias.EjecutaSQL(sql, ref rows, cmd);
 
@@ -1274,6 +1340,288 @@ namespace Activos.Datos
                     // cerrar el reader
                     res.reader.Close();
 
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene todas las responsivas
+        public List<Responsivas> getResponsivas(string tipoCons)
+        {
+            List<Responsivas> result = new List<Responsivas>();
+            Responsivas ent;
+
+            string sql =
+                        "select r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
+                        "p.nombrecompleto, " +
+                        "pu.nombre as puesto, " +
+                        "s.nombre as sucursal " +
+                        "from activos_responsivas r " +
+                        "left join activos_personas p on (r.idpersona = p.idpersona) " +
+                        "left join activos_usuarios u on (p.idpersona = u.idpersona) " +
+                        "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                        "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                        "left join activos_responsivasdetalle rd on (r.idresponsiva = rd.idresponsiva) " +
+                        "where rd.status != @status and r.status != 'B' " +
+                        (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) + 
+                        "group by r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
+                        "p.nombrecompleto, pu.nombre, s.nombre order by p.nombrecompleto ";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@status", tipoCons);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new Responsivas();
+
+                            ent.idResponsiva = Convert.ToInt16(res.reader["idresponsiva"]);
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
+                            ent.idUsuarioCrea = Convert.ToInt16(res.reader["idusuariocrea"]);
+
+                            ent.fecha = Convert.ToString(res.reader["fecha"]);
+                            ent.observaciones = Convert.ToString(res.reader["observaciones"]);
+                            ent.fechaBaja = Convert.ToString(res.reader["fechabaja"]);
+                            ent.status = Convert.ToString(res.reader["status"]);
+
+                            ent.puesto = Convert.ToString(res.reader["puesto"]);
+                            ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+                            ent.responsable = Convert.ToString(res.reader["nombrecompleto"]).Replace("&", " ").Trim();
+
+                            ent.status = string.Empty;
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // regresa responsivas por sucursal
+        public List<Responsivas> buscaRespXSuc(int idSuc)
+        {
+            List<Responsivas> result = new List<Responsivas>();
+            Responsivas ent;
+
+            string sql =
+                        "select r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
+                        "p.nombrecompleto, " +
+                        "pu.nombre as puesto, " +
+                        "s.nombre as sucursal " +
+                        "from activos_responsivas r " +
+                        "left join activos_personas p on (r.idpersona = p.idpersona) " +
+                        "left join activos_usuarios u on (p.idpersona = u.idpersona) " +
+                        "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                        "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                        "left join activos_responsivasdetalle rd on (r.idresponsiva = rd.idresponsiva) " +
+                        "where s.idsucursal = @isSucursal " +
+                        "group by r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
+                        "p.nombrecompleto, pu.nombre, s.nombre order by p.nombrecompleto ";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@isSucursal", idSuc);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new Responsivas();
+
+                            ent.idResponsiva = Convert.ToInt16(res.reader["idresponsiva"]);
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
+                            ent.idUsuarioCrea = Convert.ToInt16(res.reader["idusuariocrea"]);
+
+                            ent.fecha = Convert.ToString(res.reader["fecha"]);
+                            ent.observaciones = Convert.ToString(res.reader["observaciones"]);
+                            ent.fechaBaja = Convert.ToString(res.reader["fechabaja"]);
+                            ent.status = Convert.ToString(res.reader["status"]);
+
+                            ent.puesto = Convert.ToString(res.reader["puesto"]);
+                            ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+                            ent.responsable = Convert.ToString(res.reader["nombrecompleto"]).Replace("&", " ").Trim();
+
+                            ent.status = string.Empty;
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene las responsivas de una persona
+        public List<Responsivas> getRespPersonas(int? idPresona)
+        {
+            List<Responsivas> result = new List<Responsivas>();
+            Responsivas ent;
+
+            string sql =
+                        "select r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
+                        "p.nombrecompleto, " +
+                        "pu.nombre as puesto, " +
+                        "s.nombre as sucursal " +
+                        "from activos_responsivas r " +
+                        "left join activos_personas p on (r.idpersona = p.idpersona) " +
+                        "left join activos_usuarios u on (p.idpersona = u.idpersona) " +
+                        "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
+                        "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
+                        "left join activos_responsivasdetalle rd on (r.idresponsiva = rd.idresponsiva) " +
+                        "where r.idPersona = @idPersona and rd.status != 'B'" +
+                        "group by r.idresponsiva, r.idpersona, r.fecha, r.idusuariocrea, r.observaciones, r.fechabaja, r.status, " +
+                        "p.nombrecompleto, pu.nombre, s.nombre order by p.nombrecompleto ";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idPersona", idPresona);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new Responsivas();
+
+                            ent.idResponsiva = Convert.ToInt16(res.reader["idresponsiva"]);
+                            ent.idPersona = Convert.ToInt16(res.reader["idpersona"]);
+                            ent.idUsuarioCrea = Convert.ToInt16(res.reader["idusuariocrea"]);
+
+                            ent.fecha = Convert.ToString(res.reader["fecha"]);
+                            ent.observaciones = Convert.ToString(res.reader["observaciones"]);
+                            ent.fechaBaja = Convert.ToString(res.reader["fechabaja"]);
+                            ent.status = Convert.ToString(res.reader["status"]);
+
+                            ent.puesto = Convert.ToString(res.reader["puesto"]);
+                            ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+                            ent.responsable = Convert.ToString(res.reader["nombrecompleto"]).Replace("&", " ").Trim();
+
+                            ent.status = string.Empty;
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene traspasos por fecha
+        public List<Traspasos> getTraspasos(string fecha)
+        {
+            List<Traspasos> result = new List<Traspasos>();
+            Traspasos ent;
+
+            string sql =
+                        "select consectraspaso, idpersonaant, pa.nombrecompleto as personaant, idpersonanuevo, " +
+                        "pn.nombrecompleto as personanueva, date(fecha) fecha, motivo " +
+
+                        "from activos_cambio c  " +
+                        "left join activos_personas pa on (c.idpersonaant = pa.idpersona) " +
+                        "left join activos_personas pn on (c.idpersonanuevo = pn.idpersona) " +
+
+                        "where date(c.fecha) = @fecha " +
+                        "group by consectraspaso, idpersonaant, idpersonanuevo, date(fecha), motivo " +
+                        "order by personaant asc ";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            ent = new Traspasos();
+
+                            ent.consecTraspaso = Convert.ToInt16(res.reader["consectraspaso"]);
+                            ent.idPersonaAnt = Convert.ToInt16(res.reader["idpersonaant"]);
+                            ent.personaAnt = Convert.ToString(res.reader["personaant"]).Replace("&", " ");
+
+                            ent.idPersonaNuevo = Convert.ToInt16(res.reader["idpersonanuevo"]);
+                            ent.personaNuevo = Convert.ToString(res.reader["personanueva"]).Replace("&", " ");
+                            ent.fecha = Convert.ToString(res.reader["fecha"]);
+
+                            DateTime dt = DateTime.Parse(ent.fecha);
+                            ent.fecha = dt.ToString("yyyy-MM-dd");
+
+                            ent.motivo = Convert.ToString(res.reader["motivo"]);
+
+                            result.Add(ent);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
                 }
             }
 

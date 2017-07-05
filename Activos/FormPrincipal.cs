@@ -22,6 +22,7 @@ using Activos.GUIs.Reportes;
 using Activos.GUIs;
 using Activos.GUIs.Imagenes;
 using Activos.Negocio;
+using Activos.GUIs.Activos;
 
 namespace Activos
 {
@@ -44,23 +45,7 @@ namespace Activos
                 if(logo != null)
                     this.BackgroundImage = Modelos.Utilerias.ByteToImage(logo.logo);
 
-
-                // privilegios
-                List<ToolStripMenuItem> allItems = new List<ToolStripMenuItem>();
-                foreach (ToolStripMenuItem toolItem in this.menuStrip1.Items)
-                {
-                    allItems.Add(toolItem);
-                    //add sub items
-                    allItems.AddRange(GetItems(toolItem));
-                }
-
-                foreach (ToolStripMenuItem item in allItems)
-                {
-                    int tag = Convert.ToInt16(item.Tag);
-
-                    if (!Modelos.Login.permisos.Contains(tag))
-                        item.Enabled = false;
-                }
+                this.permisos();
 
                 // acerca de
                 this.ayudaToolStripMenuItem.Enabled = true;
@@ -85,6 +70,29 @@ namespace Activos
             {
                 MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void permisos()
+        {
+            // privilegios
+            List<ToolStripMenuItem> allItems = new List<ToolStripMenuItem>();
+            foreach (ToolStripMenuItem toolItem in this.menuStrip1.Items)
+            {
+                allItems.Add(toolItem);
+                //add sub items
+                allItems.AddRange(GetItems(toolItem));
+            }
+
+            foreach (ToolStripMenuItem item in allItems)
+            {
+                int tag = Convert.ToInt16(item.Tag);
+
+                if (!Modelos.Login.permisos.Contains(tag))
+                    item.Enabled = false;
+                else
+                    item.Enabled = true;
+            }
+
         }
 
         private void FormPrincipal_Resize(object sender, EventArgs e)
@@ -508,6 +516,24 @@ namespace Activos
             }
         }
 
+        private void seleccionarResponsivaAImprimirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmSelRespImpr child = new frmSelRespImpr();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
 
         //****************************************************************************************************
         //************** P E R S O N A S *********************************************************************
@@ -732,6 +758,10 @@ namespace Activos
                     // obtiene logo
                     Modelos.Logo logo = this._responsivasNegocio.obtieneLogo("fondo");
 
+                    this.permisos();
+
+                    this.ayudaToolStripMenuItem.Enabled = true;
+
                     if (logo != null)
                         this.BackgroundImage = Modelos.Utilerias.ByteToImage(logo.logo);
                     else
@@ -749,7 +779,8 @@ namespace Activos
         {
             try
             {
-                frmResponsivasSucursal child = new frmResponsivasSucursal();
+                // frmResponsivasSucursal child = new frmResponsivasSucursal();
+                frmResponsivasSucursalXResp child = new frmResponsivasSucursalXResp();
 
                 this.validaFormsDuplicados(child.GetType());
 
@@ -795,5 +826,44 @@ namespace Activos
                 MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void reimpresionBajasReparacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmReimpresionBR child = new frmReimpresionBR();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void traspasosRealizadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmTraspasosRealizados child = new frmTraspasosRealizados();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
     }
 }

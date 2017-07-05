@@ -25,7 +25,7 @@ namespace Activos.GUIs.AltaActivos
             
             // acomoda radios
             this.rbPN.Location = new Point(this.gbPTN.Location.X + 13, this.gbPTN.Location.Y - 1);
-            this.rbPU.Location = new Point(this.gbPN.Location.X + 13, this.gbPN.Location.Y - 1);
+            this.rbPU.Location = new Point(this.gbPN_2.Location.X + 13, this.gbPN_2.Location.Y - 1);
             this.rbPNE.Location = new Point(this.gbPNE.Location.X + 13, this.gbPNE.Location.Y - 1);
             this.rbPCA.Location = new Point(this.gbPCA.Location.X + 13, this.gbPCA.Location.Y - 1);
 
@@ -44,11 +44,24 @@ namespace Activos.GUIs.AltaActivos
         {
             try
             {
+                /* Version 2.1 21-06-2016 */
+
+                // carga el combo de usuarios
+                this.cmbUsuarios.DisplayMember = "nombreCompleto";
+                this.cmbUsuarios.ValueMember = "idPersona";
+                this.cmbUsuarios.DataSource = this._catalogosNegocio.getPersonas("%", "A");
+                this.cmbUsuarios.SelectedIndex = -1;
+
+                /* Version 2.1 21-06-2016 */
+
                 // carga el combo de tipos
+                List<Modelos.Tipos> tipos = new List<Modelos.Tipos>();
+                tipos.Add(new Modelos.Tipos { idTipo = -1, nombre = "" });
+                tipos.AddRange(this._catalogosNegocio.getTipos("A"));
+
                 this.cmbTipo.DisplayMember = "nombre";
                 this.cmbTipo.ValueMember = "idTipo";
-                this.cmbTipo.DataSource = this._catalogosNegocio.getTipos("A");
-                this.cmbTipo.SelectedIndex = -1;
+                this.cmbTipo.DataSource = tipos;
 
                 // llenar combo de sucursales
                 this.cmbSucursal.DisplayMember = "nombre";
@@ -69,7 +82,7 @@ namespace Activos.GUIs.AltaActivos
         private void rbPTN_CheckedChanged(object sender, EventArgs e)
         {
             this.gbPCA.Enabled = false;
-            this.gbPN.Enabled = false;
+            this.gbPN_2.Enabled = false;
             this.gbPNE.Enabled = false;
             this.gbPTN.Enabled = true;
 
@@ -79,7 +92,7 @@ namespace Activos.GUIs.AltaActivos
         private void rbPNE_CheckedChanged(object sender, EventArgs e)
         {
             this.gbPCA.Enabled = false;
-            this.gbPN.Enabled = false;
+            this.gbPN_2.Enabled = false;
             this.gbPNE.Enabled = true;
             this.gbPTN.Enabled = false;
 
@@ -89,7 +102,7 @@ namespace Activos.GUIs.AltaActivos
         private void rbPCA_CheckedChanged(object sender, EventArgs e)
         {
             this.gbPCA.Enabled = true;
-            this.gbPN.Enabled = false;
+            this.gbPN_2.Enabled = false;
             this.gbPNE.Enabled = false;
             this.gbPTN.Enabled = false;
 
@@ -99,7 +112,7 @@ namespace Activos.GUIs.AltaActivos
         private void rbPN_CheckedChanged(object sender, EventArgs e)
         {
             this.gbPCA.Enabled = false;
-            this.gbPN.Enabled = true;
+            this.gbPN_2.Enabled = true;
             this.gbPNE.Enabled = false;
             this.gbPTN.Enabled = false;
 
@@ -111,6 +124,7 @@ namespace Activos.GUIs.AltaActivos
             this.tbNombre.Text = string.Empty;
             this.cmbTipo.SelectedIndex = -1;
             this.cmbSucursal.SelectedIndex = -1;
+            this.cmbUsuarios.SelectedIndex = -1;
             this.cmbArea.DataSource = null;
 
             this.tbUsuarioPU.Text = string.Empty;
@@ -156,18 +170,15 @@ namespace Activos.GUIs.AltaActivos
                 if (this.cmbSucursal.SelectedIndex == -1)
                     throw new Exception("Seleccione una sucursal");
 
-                if (this.cmbArea.SelectedIndex == -1)
-                    throw new Exception("Seleccione un área");
-
-                if (this.cmbTipo.SelectedIndex == -1)
-                    throw new Exception("Seleccione un tipo");
-
                 int idSucursal = (int)this.cmbSucursal.SelectedValue;
-                int idArea = (int)this.cmbArea.SelectedValue;
-                int idTipo = (int)this.cmbTipo.SelectedValue;
+
+                int idArea = this.cmbArea.SelectedIndex == -1 ? -1 : (int)this.cmbArea.SelectedValue;
+
+                int idTipo = this.cmbTipo.SelectedIndex == -1 ? -1 : (int)this.cmbTipo.SelectedValue;
+
                 string nombre = this.tbNombre.Text;
 
-                List<Modelos.ActivosDesc> resultado = this._activosNegocio.getBuscaActivosResp(idArea, idTipo, nombre, "A");
+                List<Modelos.ActivosDesc> resultado = this._activosNegocio.getBuscaActivosResp(idSucursal, idArea, idTipo, nombre, "A");
 
                 if (resultado.Count == 0)
                 {
@@ -315,7 +326,11 @@ namespace Activos.GUIs.AltaActivos
                 int idSucursal = (int)this.cmbSucursal.SelectedValue;
 
                 // llenar combo de Tipos
-                this.cmbArea.DataSource = this._catalogosNegocio.getAreas(idSucursal);
+                List<Modelos.Areas> areas = new List<Modelos.Areas>();
+                areas.Add(new Modelos.Areas { idArea = -1, nombre = "" });
+                areas.AddRange(this._catalogosNegocio.getAreas(idSucursal));
+
+                this.cmbArea.DataSource = areas;
                 this.cmbArea.DisplayMember = "nombre";
                 this.cmbArea.ValueMember = "idArea";
             }
@@ -365,6 +380,52 @@ namespace Activos.GUIs.AltaActivos
             {
                 e.Appearance.BackColor = Color.CadetBlue;
                 e.Appearance.ForeColor = Color.White;
+            }
+        }
+
+        private void btnBuscarPU_2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Modelos.ActivosDesc> usuarios = new List<Modelos.ActivosDesc>();
+
+                // valida radio
+                string busqueda = "nombrecompleto";
+
+                if (this.cmbUsuarios.SelectedIndex == -1)
+                {
+                    // busqueda de usuarios
+                    usuarios = this._activosNegocio.busquedaUsuariosResponsiva("%", busqueda);
+                }
+                else
+                {
+                    Modelos.Personas persona = (Modelos.Personas)this.cmbUsuarios.SelectedItem;
+
+                    // busqueda de usuarios
+                    usuarios = this._activosNegocio.busquedaUsuariosResponsiva(persona.nombreCompleto, busqueda);
+                }
+
+                if (usuarios.Count == 0)
+                {
+                    this.gcResulBusquedas.DataSource = null;
+                    this.ActiveControl = this.tbUsuarioPU;
+                    this.tbUsuarioPU.SelectAll();
+                    throw new Exception("Sin resultados");
+                }
+
+                this.gcResulBusquedas.DataSource = usuarios;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void cmbUsuarios_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscarPU_2_Click(null, null);
             }
         }
 

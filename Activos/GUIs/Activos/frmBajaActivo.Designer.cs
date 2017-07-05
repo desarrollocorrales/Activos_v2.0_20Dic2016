@@ -371,9 +371,6 @@
             // 
             this.cbMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMotivo.FormattingEnabled = true;
-            this.cbMotivo.Items.AddRange(new object[] {
-            "BAJA",
-            "REPARACION"});
             this.cbMotivo.Location = new System.Drawing.Point(180, 19);
             this.cbMotivo.Name = "cbMotivo";
             this.cbMotivo.Size = new System.Drawing.Size(141, 31);

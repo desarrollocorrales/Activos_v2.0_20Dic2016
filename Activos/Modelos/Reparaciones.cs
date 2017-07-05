@@ -21,4 +21,20 @@ namespace Activos.Modelos
         public string observActivacion { get; set; }
         public string status { get; set; }
     }
+
+    public class Bajas
+    {
+        public int idBaja { get; set; }
+
+        public int idActivo { get; set; }
+        public string activo { get; set; }
+
+        public string fecha { get; set; }
+        
+        public int idUsuaroBaja { get; set; }
+        public string usuario { get; set; }
+
+        public string observaciones { get; set; }
+        public int idMotivoBaja { get; set; }
+    }
 }

@@ -35,5 +35,13 @@ namespace Activos.Negocio
         Modelos.Logo obtieneLogo(string clave);
 
         List<Modelos.ResponsivasSucursal> getRespSuc(int idSuc, bool bajas, bool repara);
+
+        List<Modelos.Responsivas> getResponsivas(string tipoCons);
+
+        List<Modelos.Responsivas> buscaRespXSuc(int idSuc);
+
+        List<Modelos.Responsivas> getRespPersonas(int? idPresona);
+
+        List<Modelos.Traspasos> getTraspasos(string fecha);
     }
 }

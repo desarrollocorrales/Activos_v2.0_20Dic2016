@@ -69,6 +69,8 @@
             this.btnBusFolio = new System.Windows.Forms.Button();
             this.tbFolio = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnCambiaResp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gcActivos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -254,8 +256,11 @@
             // 
             // colstatus
             // 
+            this.colstatus.Caption = "Estatus";
             this.colstatus.FieldName = "status";
             this.colstatus.Name = "colstatus";
+            this.colstatus.Visible = true;
+            this.colstatus.VisibleIndex = 5;
             // 
             // label3
             // 
@@ -451,12 +456,38 @@
             this.label8.TabIndex = 26;
             this.label8.Text = "Folio";
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCancelar.Location = new System.Drawing.Point(309, 731);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(187, 43);
+            this.btnCancelar.TabIndex = 180;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnCambiaResp
+            // 
+            this.btnCambiaResp.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCambiaResp.Location = new System.Drawing.Point(519, 95);
+            this.btnCambiaResp.Name = "btnCambiaResp";
+            this.btnCambiaResp.Size = new System.Drawing.Size(198, 43);
+            this.btnCambiaResp.TabIndex = 181;
+            this.btnCambiaResp.Text = "Cambiar Responsiva";
+            this.btnCambiaResp.UseVisualStyleBackColor = true;
+            this.btnCambiaResp.Visible = false;
+            this.btnCambiaResp.Click += new System.EventHandler(this.btnCambiaResp_Click);
+            // 
             // frmTraspasarResponsiva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(728, 790);
+            this.Controls.Add(this.btnCambiaResp);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbMotivo);
@@ -528,5 +559,7 @@
         private System.Windows.Forms.Button btnBusFolio;
         private System.Windows.Forms.TextBox tbFolio;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnCambiaResp;
     }
 }

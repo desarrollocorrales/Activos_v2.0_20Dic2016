@@ -94,7 +94,7 @@
             // 
             // sucursalesBindingSource
             // 
-            this.sucursalesBindingSource.DataSource = typeof(Activos.Modelos.Sucursales);
+            this.sucursalesBindingSource.DataSource = typeof(Modelos.Sucursales);
             // 
             // gridView1
             // 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
+using Activos.GUIs.Puestos;
 
 namespace Activos.GUIs.Personas
 {
@@ -51,6 +52,15 @@ namespace Activos.GUIs.Personas
                 if (!Modelos.Login.permisos.Contains(tag4))
                     foreach (Control ctrl in this.TabPage4.Controls)
                         ctrl.Enabled = false;
+
+                // boton altas modificar
+                int t = Convert.ToInt16(this.btnAgregaPuestoAlta.Tag);
+
+                if (!Modelos.Login.permisos.Contains(t))
+                {
+                    this.btnAgregaPuestoAlta.Enabled = false;
+                    this.btnAgregaPuestoModif.Enabled = false;
+                }
 
 
                 List<Modelos.Puestos> puestos = this._catalogosNegocio.getPuestos("A");
@@ -147,6 +157,28 @@ namespace Activos.GUIs.Personas
             }
         }
 
+        private void btnAgregaPuestoAlta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmPuestos form = new frmPuestos();
+
+                form.ShowDialog();
+
+                List<Modelos.Puestos> puestos = this._catalogosNegocio.getPuestos("A");
+
+                // llena el catalogo de sucursales disponibles
+                this.cmbPuestoAlta.DisplayMember = "nom_suc";
+                this.cmbPuestoAlta.ValueMember = "idPuesto";
+                this.cmbPuestoAlta.DataSource = puestos;
+                this.cmbPuestoAlta.SelectedIndex = -1;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Personas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        
         #endregion 
 
         #region - M O D I F I C A R - 
@@ -210,6 +242,14 @@ namespace Activos.GUIs.Personas
                 this.tbApMaternoModif.ReadOnly = false;
 
                 this.cmbPuestoModif.Enabled = true;
+
+                // boton altas modificar
+                int t = Convert.ToInt16(this.btnAgregaPuestoAlta.Tag);
+
+                if (!Modelos.Login.permisos.Contains(t))
+                    this.btnAgregaPuestoModif.Enabled = false;
+                else
+                    this.btnAgregaPuestoModif.Enabled = true;
             }
             catch (Exception Ex)
             {
@@ -257,6 +297,8 @@ namespace Activos.GUIs.Personas
                     this.tbApMaternoModif.ReadOnly = true;
 
                     this.cmbPuestoModif.Enabled = false;
+
+                    this.btnAgregaPuestoModif.Enabled = false;
                 }
                 else
                     throw new Exception("Problemas al modificar la persona"); 
@@ -272,6 +314,39 @@ namespace Activos.GUIs.Personas
             if (e.KeyChar == (char)13)
             {
                 this.btnBuscarModif_Click(null, null);
+            }
+        }
+
+        private void btnAgregaPuestoModif_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmPersonas form = new frmPersonas();
+
+                form.ShowDialog();
+
+                List<Modelos.Puestos> puestos = this._catalogosNegocio.getPuestos("A");
+
+                // llena el catalogo de responsables (usuarios) disponibles
+                this.cmbPuestoModif.DisplayMember = "nom_suc";
+                this.cmbPuestoModif.ValueMember = "idPuesto";
+                this.cmbPuestoModif.DataSource = puestos;
+                this.cmbPuestoModif.SelectedIndex = -1;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Personas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.CadetBlue;
+                e.Appearance.ForeColor = Color.White;
             }
         }
 
@@ -421,16 +496,5 @@ namespace Activos.GUIs.Personas
 
         #endregion
 
-        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
-
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.CadetBlue;
-                e.Appearance.ForeColor = Color.White;
-            }
-        }
-        
     }
 }

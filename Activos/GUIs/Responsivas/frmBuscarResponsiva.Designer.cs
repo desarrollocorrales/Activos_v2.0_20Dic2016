@@ -110,7 +110,7 @@
             // gcActivos
             // 
             this.gcActivos.DataSource = this.activosBindingSource;
-            this.gcActivos.Location = new System.Drawing.Point(16, 413);
+            this.gcActivos.Location = new System.Drawing.Point(18, 413);
             this.gcActivos.MainView = this.gridView2;
             this.gcActivos.Name = "gcActivos";
             this.gcActivos.Size = new System.Drawing.Size(494, 200);
@@ -120,7 +120,7 @@
             // 
             // activosBindingSource
             // 
-            this.activosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
+            this.activosBindingSource.DataSource = typeof(Modelos.Activos);
             // 
             // gridView2
             // 
@@ -242,7 +242,7 @@
             // 
             // btnSeleccionar
             // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(195, 629);
+            this.btnSeleccionar.Location = new System.Drawing.Point(197, 629);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(136, 43);
             this.btnSeleccionar.TabIndex = 7;
@@ -269,7 +269,7 @@
             // 
             // responsivasBindingSource
             // 
-            this.responsivasBindingSource.DataSource = typeof(Activos.Modelos.Responsivas);
+            this.responsivasBindingSource.DataSource = typeof(Modelos.Responsivas);
             // 
             // gridView1
             // 
@@ -296,6 +296,9 @@
             this.colidResponsiva.Caption = "Folio";
             this.colidResponsiva.FieldName = "idResponsiva";
             this.colidResponsiva.Name = "colidResponsiva";
+            this.colidResponsiva.OptionsColumn.AllowEdit = false;
+            this.colidResponsiva.OptionsColumn.AllowMove = false;
+            this.colidResponsiva.OptionsColumn.ReadOnly = true;
             this.colidResponsiva.Visible = true;
             this.colidResponsiva.VisibleIndex = 0;
             this.colidResponsiva.Width = 30;
@@ -394,7 +397,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 371);
+            this.label3.Location = new System.Drawing.Point(14, 371);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(137, 23);
             this.label3.TabIndex = 12;
@@ -402,7 +405,7 @@
             // 
             // tbRespDe
             // 
-            this.tbRespDe.Location = new System.Drawing.Point(155, 368);
+            this.tbRespDe.Location = new System.Drawing.Point(157, 368);
             this.tbRespDe.Name = "tbRespDe";
             this.tbRespDe.ReadOnly = true;
             this.tbRespDe.Size = new System.Drawing.Size(355, 30);

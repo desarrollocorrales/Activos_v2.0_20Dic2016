@@ -120,6 +120,8 @@ namespace Activos.GUIs.Responsivas
                 // validaciones
                 if (this._responsiva == null) throw new Exception("Seleccione una responsiva");
 
+                if (this._activos.Count == 0) throw new Exception("La responsiva seleccionada no contiene activos");
+
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
 
                 this.Close();

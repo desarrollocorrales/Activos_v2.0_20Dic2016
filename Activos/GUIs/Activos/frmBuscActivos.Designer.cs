@@ -78,6 +78,9 @@
             this.tbResultCveActivo = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.gbPN_2 = new System.Windows.Forms.GroupBox();
+            this.cmbUsuarios = new System.Windows.Forms.ComboBox();
+            this.btnBuscarPU_2 = new System.Windows.Forms.Button();
             this.gbPNE.SuspendLayout();
             this.gbPCA.SuspendLayout();
             this.gbPTN.SuspendLayout();
@@ -85,14 +88,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcResulBusquedas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activosDescBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.gbPN_2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbPNE
             // 
-            this.gbPNE.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.gbPNE.Controls.Add(this.tbNumEtiqueta);
             this.gbPNE.Controls.Add(this.btnBuscarPNE);
-            this.gbPNE.Location = new System.Drawing.Point(319, 260);
+            this.gbPNE.Location = new System.Drawing.Point(319, 286);
             this.gbPNE.Name = "gbPNE";
             this.gbPNE.Size = new System.Drawing.Size(234, 112);
             this.gbPNE.TabIndex = 3;
@@ -118,10 +121,9 @@
             // 
             // gbPCA
             // 
-            this.gbPCA.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.gbPCA.Controls.Add(this.tbCveActivo);
             this.gbPCA.Controls.Add(this.btnBuscarPCA);
-            this.gbPCA.Location = new System.Drawing.Point(319, 142);
+            this.gbPCA.Location = new System.Drawing.Point(319, 168);
             this.gbPCA.Name = "gbPCA";
             this.gbPCA.Size = new System.Drawing.Size(234, 112);
             this.gbPCA.TabIndex = 2;
@@ -147,7 +149,6 @@
             // 
             // gbPTN
             // 
-            this.gbPTN.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.gbPTN.Controls.Add(this.cmbArea);
             this.gbPTN.Controls.Add(this.cmbSucursal);
             this.gbPTN.Controls.Add(this.label7);
@@ -157,7 +158,7 @@
             this.gbPTN.Controls.Add(this.tbNombre);
             this.gbPTN.Controls.Add(this.label1);
             this.gbPTN.Controls.Add(this.cmbTipo);
-            this.gbPTN.Location = new System.Drawing.Point(12, -14);
+            this.gbPTN.Location = new System.Drawing.Point(12, 12);
             this.gbPTN.Name = "gbPTN";
             this.gbPTN.Size = new System.Drawing.Size(301, 386);
             this.gbPTN.TabIndex = 1;
@@ -213,7 +214,7 @@
             // 
             // btnBuscarPTN
             // 
-            this.btnBuscarPTN.Location = new System.Drawing.Point(69, 329);
+            this.btnBuscarPTN.Location = new System.Drawing.Point(69, 339);
             this.btnBuscarPTN.Name = "btnBuscarPTN";
             this.btnBuscarPTN.Size = new System.Drawing.Size(163, 34);
             this.btnBuscarPTN.TabIndex = 3;
@@ -250,16 +251,16 @@
             // 
             // gbPN
             // 
-            this.gbPN.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.gbPN.Controls.Add(this.rbUsuarioPU);
             this.gbPN.Controls.Add(this.rbNombrePU);
             this.gbPN.Controls.Add(this.tbUsuarioPU);
             this.gbPN.Controls.Add(this.btnBuscarPU);
-            this.gbPN.Location = new System.Drawing.Point(319, -14);
+            this.gbPN.Location = new System.Drawing.Point(559, 119);
             this.gbPN.Name = "gbPN";
             this.gbPN.Size = new System.Drawing.Size(234, 150);
             this.gbPN.TabIndex = 7;
             this.gbPN.TabStop = false;
+            this.gbPN.Visible = false;
             // 
             // rbUsuarioPU
             // 
@@ -347,9 +348,8 @@
             // 
             // gcResulBusquedas
             // 
-            this.gcResulBusquedas.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.gcResulBusquedas.DataSource = this.activosDescBindingSource;
-            this.gcResulBusquedas.Location = new System.Drawing.Point(12, 378);
+            this.gcResulBusquedas.Location = new System.Drawing.Point(12, 404);
             this.gcResulBusquedas.MainView = this.gridView1;
             this.gcResulBusquedas.Name = "gcResulBusquedas";
             this.gcResulBusquedas.Size = new System.Drawing.Size(541, 145);
@@ -360,7 +360,7 @@
             // 
             // activosDescBindingSource
             // 
-            this.activosDescBindingSource.DataSource = typeof(Activos.Modelos.ActivosDesc);
+            this.activosDescBindingSource.DataSource = typeof(Modelos.ActivosDesc);
             // 
             // gridView1
             // 
@@ -456,9 +456,8 @@
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 532);
+            this.label2.Location = new System.Drawing.Point(8, 558);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 23);
             this.label2.TabIndex = 13;
@@ -466,9 +465,8 @@
             // 
             // label100
             // 
-            this.label100.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label100.AutoSize = true;
-            this.label100.Location = new System.Drawing.Point(8, 568);
+            this.label100.Location = new System.Drawing.Point(8, 594);
             this.label100.Name = "label100";
             this.label100.Size = new System.Drawing.Size(63, 23);
             this.label100.TabIndex = 14;
@@ -476,9 +474,8 @@
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(316, 608);
+            this.label4.Location = new System.Drawing.Point(329, 634);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 23);
             this.label4.TabIndex = 15;
@@ -486,9 +483,8 @@
             // 
             // label5
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 608);
+            this.label5.Location = new System.Drawing.Point(13, 634);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(138, 23);
             this.label5.TabIndex = 16;
@@ -496,26 +492,23 @@
             // 
             // tbResultNombre
             // 
-            this.tbResultNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbResultNombre.Location = new System.Drawing.Point(95, 529);
+            this.tbResultNombre.Location = new System.Drawing.Point(95, 555);
             this.tbResultNombre.Name = "tbResultNombre";
             this.tbResultNombre.ReadOnly = true;
-            this.tbResultNombre.Size = new System.Drawing.Size(444, 30);
+            this.tbResultNombre.Size = new System.Drawing.Size(458, 30);
             this.tbResultNombre.TabIndex = 17;
             // 
             // tbResultDesc
             // 
-            this.tbResultDesc.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbResultDesc.Location = new System.Drawing.Point(95, 565);
+            this.tbResultDesc.Location = new System.Drawing.Point(95, 591);
             this.tbResultDesc.Name = "tbResultDesc";
             this.tbResultDesc.ReadOnly = true;
-            this.tbResultDesc.Size = new System.Drawing.Size(444, 30);
+            this.tbResultDesc.Size = new System.Drawing.Size(458, 30);
             this.tbResultDesc.TabIndex = 18;
             // 
             // tbResultNumEtiqueta
             // 
-            this.tbResultNumEtiqueta.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbResultNumEtiqueta.Location = new System.Drawing.Point(157, 605);
+            this.tbResultNumEtiqueta.Location = new System.Drawing.Point(157, 631);
             this.tbResultNumEtiqueta.Name = "tbResultNumEtiqueta";
             this.tbResultNumEtiqueta.ReadOnly = true;
             this.tbResultNumEtiqueta.Size = new System.Drawing.Size(146, 30);
@@ -525,8 +518,7 @@
             // 
             // tbResultCveActivo
             // 
-            this.tbResultCveActivo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tbResultCveActivo.Location = new System.Drawing.Point(430, 605);
+            this.tbResultCveActivo.Location = new System.Drawing.Point(443, 631);
             this.tbResultCveActivo.Name = "tbResultCveActivo";
             this.tbResultCveActivo.ReadOnly = true;
             this.tbResultCveActivo.Size = new System.Drawing.Size(110, 30);
@@ -536,8 +528,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCancelar.Location = new System.Drawing.Point(385, 656);
+            this.btnCancelar.Location = new System.Drawing.Point(384, 682);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 44);
             this.btnCancelar.TabIndex = 21;
@@ -547,8 +538,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnAceptar.Location = new System.Drawing.Point(210, 656);
+            this.btnAceptar.Location = new System.Drawing.Point(209, 682);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(169, 44);
             this.btnAceptar.TabIndex = 22;
@@ -556,12 +546,44 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
+            // gbPN_2
+            // 
+            this.gbPN_2.Controls.Add(this.cmbUsuarios);
+            this.gbPN_2.Controls.Add(this.btnBuscarPU_2);
+            this.gbPN_2.Location = new System.Drawing.Point(319, 12);
+            this.gbPN_2.Name = "gbPN_2";
+            this.gbPN_2.Size = new System.Drawing.Size(234, 150);
+            this.gbPN_2.TabIndex = 23;
+            this.gbPN_2.TabStop = false;
+            // 
+            // cmbUsuarios
+            // 
+            this.cmbUsuarios.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbUsuarios.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbUsuarios.DropDownWidth = 400;
+            this.cmbUsuarios.FormattingEnabled = true;
+            this.cmbUsuarios.Location = new System.Drawing.Point(18, 47);
+            this.cmbUsuarios.Name = "cmbUsuarios";
+            this.cmbUsuarios.Size = new System.Drawing.Size(199, 31);
+            this.cmbUsuarios.TabIndex = 7;
+            this.cmbUsuarios.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbUsuarios_KeyPress);
+            // 
+            // btnBuscarPU_2
+            // 
+            this.btnBuscarPU_2.Location = new System.Drawing.Point(36, 100);
+            this.btnBuscarPU_2.Name = "btnBuscarPU_2";
+            this.btnBuscarPU_2.Size = new System.Drawing.Size(163, 34);
+            this.btnBuscarPU_2.TabIndex = 6;
+            this.btnBuscarPU_2.Text = "Buscar";
+            this.btnBuscarPU_2.UseVisualStyleBackColor = true;
+            this.btnBuscarPU_2.Click += new System.EventHandler(this.btnBuscarPU_2_Click);
+            // 
             // frmBuscActivos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(569, 784);
+            this.ClientSize = new System.Drawing.Size(564, 743);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.tbResultCveActivo);
@@ -581,6 +603,7 @@
             this.Controls.Add(this.gbPNE);
             this.Controls.Add(this.gbPCA);
             this.Controls.Add(this.gbPTN);
+            this.Controls.Add(this.gbPN_2);
             this.Font = new System.Drawing.Font("Tahoma", 14F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -600,6 +623,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcResulBusquedas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.activosDescBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.gbPN_2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -655,5 +679,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox gbPN_2;
+        private System.Windows.Forms.ComboBox cmbUsuarios;
+        private System.Windows.Forms.Button btnBuscarPU_2;
     }
 }

@@ -60,7 +60,7 @@
             // 
             // areasBindingSource
             // 
-            this.areasBindingSource.DataSource = typeof(Activos.Modelos.Areas);
+            this.areasBindingSource.DataSource = typeof(Modelos.Areas);
             // 
             // gridView1
             // 

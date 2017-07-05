@@ -63,7 +63,7 @@
             this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbArea.DropDownWidth = 400;
             this.cmbArea.FormattingEnabled = true;
-            this.cmbArea.Location = new System.Drawing.Point(291, 36);
+            this.cmbArea.Location = new System.Drawing.Point(389, 36);
             this.cmbArea.Name = "cmbArea";
             this.cmbArea.Size = new System.Drawing.Size(273, 31);
             this.cmbArea.TabIndex = 113;
@@ -72,7 +72,7 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(304, 10);
+            this.label9.Location = new System.Drawing.Point(402, 10);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 23);
             this.label9.TabIndex = 111;
@@ -84,7 +84,7 @@
             this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSucursal.DropDownWidth = 400;
             this.cmbSucursal.FormattingEnabled = true;
-            this.cmbSucursal.Location = new System.Drawing.Point(12, 36);
+            this.cmbSucursal.Location = new System.Drawing.Point(110, 36);
             this.cmbSucursal.Name = "cmbSucursal";
             this.cmbSucursal.Size = new System.Drawing.Size(273, 31);
             this.cmbSucursal.TabIndex = 112;
@@ -94,7 +94,7 @@
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(19, 10);
+            this.label8.Location = new System.Drawing.Point(117, 10);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(81, 23);
             this.label8.TabIndex = 110;
@@ -106,7 +106,7 @@
             this.gcActivos.Location = new System.Drawing.Point(12, 146);
             this.gcActivos.MainView = this.gridView2;
             this.gcActivos.Name = "gcActivos";
-            this.gcActivos.Size = new System.Drawing.Size(552, 197);
+            this.gcActivos.Size = new System.Drawing.Size(748, 347);
             this.gcActivos.TabIndex = 114;
             this.gcActivos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -256,7 +256,7 @@
             // btnBuscaActivos
             // 
             this.btnBuscaActivos.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnBuscaActivos.Location = new System.Drawing.Point(199, 88);
+            this.btnBuscaActivos.Location = new System.Drawing.Point(297, 88);
             this.btnBuscaActivos.Name = "btnBuscaActivos";
             this.btnBuscaActivos.Size = new System.Drawing.Size(186, 41);
             this.btnBuscaActivos.TabIndex = 115;
@@ -267,7 +267,7 @@
             // btnVistaPrevia
             // 
             this.btnVistaPrevia.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnVistaPrevia.Location = new System.Drawing.Point(380, 364);
+            this.btnVistaPrevia.Location = new System.Drawing.Point(305, 499);
             this.btnVistaPrevia.Name = "btnVistaPrevia";
             this.btnVistaPrevia.Size = new System.Drawing.Size(163, 34);
             this.btnVistaPrevia.TabIndex = 116;
@@ -279,7 +279,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 417);
+            this.ClientSize = new System.Drawing.Size(772, 545);
             this.Controls.Add(this.btnVistaPrevia);
             this.Controls.Add(this.btnBuscaActivos);
             this.Controls.Add(this.gcActivos);

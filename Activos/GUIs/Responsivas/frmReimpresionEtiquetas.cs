@@ -25,18 +25,32 @@ namespace Activos.GUIs.Responsivas
             // acomoda radios
             this.rbPNE.Location = new Point(this.gbPNE.Location.X + 13, this.gbPNE.Location.Y - 1);
             this.rbPCA.Location = new Point(this.gbPCA.Location.X + 13, this.gbPCA.Location.Y - 1);
+            this.rbPTN.Location = new Point(this.gbPTN.Location.X + 13, this.gbPTN.Location.Y - 1);
 
             this._activosNegocio = new ActivosNegocio();
             this._catalogosNegocio = new CatalogosNegocio();
             this._responsivasNegocio = new ResponsivasNegocio();
-
         }
 
         private void frmReimpresionEtiquetas_Load(object sender, EventArgs e)
         {
+            // carga el combo de tipos
+            List<Modelos.Tipos> tipos = new List<Modelos.Tipos>();
+            tipos.Add(new Modelos.Tipos { idTipo = -1, nombre = "" });
+            tipos.AddRange(this._catalogosNegocio.getTipos("A"));
+
+            this.cmbTipo.DisplayMember = "nombre";
+            this.cmbTipo.ValueMember = "idTipo";
+            this.cmbTipo.DataSource = tipos;
+
+            // llenar combo de sucursales
+            this.cmbSucursal.DisplayMember = "nombre";
+            this.cmbSucursal.ValueMember = "idSucursal";
+            this.cmbSucursal.DataSource = this._catalogosNegocio.getSucursales("A");
+            this.cmbSucursal.SelectedIndex = -1;
 
             // define radios activos
-            this.rbPCA.Checked = true;
+            this.rbPTN.Checked = true;
         }
 
         private void btnBuscarPCA_Click(object sender, EventArgs e)
@@ -59,6 +73,10 @@ namespace Activos.GUIs.Responsivas
                     throw new Exception("Sin resultados");
                 }
 
+                this.gcResulBusquedas.DataSource = resultado;
+                this.gridView1.BestFitColumns();
+
+                /*
                 // si encontro algo
                 Modelos.ActivosDesc encontrado = resultado.Where(w => w.claveActivo.Equals(cveActivo)).Select(s => s).FirstOrDefault();
 
@@ -80,6 +98,7 @@ namespace Activos.GUIs.Responsivas
                 this.tbResultCveActivo.Text = encontrado.claveActivo;
 
                 this._encontrado = encontrado;
+                */
             }
             catch (Exception Ex)
             {
@@ -108,6 +127,10 @@ namespace Activos.GUIs.Responsivas
                     throw new Exception("Sin resultados");
                 }
 
+                this.gcResulBusquedas.DataSource = resultado;
+                this.gridView1.BestFitColumns();
+
+                /*
                 // si encontro algo
                 Modelos.ActivosDesc encontrado = resultado.Where(w => w.numEtiqueta.Equals(numEtiqueta)).Select(s => s).FirstOrDefault();
 
@@ -129,6 +152,7 @@ namespace Activos.GUIs.Responsivas
                 this.tbResultCveActivo.Text = encontrado.claveActivo;
 
                 this._encontrado = encontrado;
+                */
             }
             catch (Exception Ex)
             {
@@ -141,12 +165,18 @@ namespace Activos.GUIs.Responsivas
 
             this.gbPCA.Enabled = false;
             this.gbPNE.Enabled = true;
+            this.gbPTN.Enabled = false;
 
             this.reiniciaControles();
         }
 
         private void reiniciaControles()
         {
+            this.tbNombre.Text = string.Empty;
+            this.cmbTipo.SelectedIndex = -1;
+            this.cmbSucursal.SelectedIndex = -1;
+            this.cmbArea.DataSource = null;
+
             this.tbNumEtiqueta.Text = string.Empty;
 
             this.tbCveActivo.Text = string.Empty;
@@ -155,13 +185,16 @@ namespace Activos.GUIs.Responsivas
             this.tbResultDesc.Text = string.Empty;
             this.tbResultNumEtiqueta.Text = string.Empty;
             this.tbResultCveActivo.Text = string.Empty;
+
+            this._encontrado = null;
+            this.gcResulBusquedas.DataSource = null;
         }
 
         private void rbPCA_CheckedChanged(object sender, EventArgs e)
         {
-
             this.gbPCA.Enabled = true;
             this.gbPNE.Enabled = false;
+            this.gbPTN.Enabled = false;
 
             this.reiniciaControles();
         }
@@ -170,6 +203,9 @@ namespace Activos.GUIs.Responsivas
         {
             try
             {
+                if (this._encontrado == null)
+                    throw new Exception("Realice una búsqueda y/o seleccione un activo");
+
                 StringBuilder sbComandos = new StringBuilder();
                 string comando = this._responsivasNegocio.getBuscaComandoEt("activo");
 
@@ -246,6 +282,100 @@ namespace Activos.GUIs.Responsivas
             {
                 this.btnBuscarPNE_Click(null, null);
             }
+        }
+
+        private void cmbSucursal_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                int idSucursal = (int)this.cmbSucursal.SelectedValue;
+
+                // llenar combo de Tipos
+                List<Modelos.Areas> areas = new List<Modelos.Areas>();
+                areas.Add(new Modelos.Areas { idArea = -1, nombre = "" });
+                areas.AddRange(this._catalogosNegocio.getAreas(idSucursal));
+
+                this.cmbArea.DataSource = areas;
+                this.cmbArea.DisplayMember = "nombre";
+                this.cmbArea.ValueMember = "idArea";
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnBuscarPTN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // validaciones
+                if (this.cmbSucursal.SelectedIndex == -1)
+                    throw new Exception("Seleccione una sucursal");
+
+                int idSucursal = (int)this.cmbSucursal.SelectedValue;
+
+                int idArea = this.cmbArea.SelectedIndex == -1 ? -1 : (int)this.cmbArea.SelectedValue;
+
+                int idTipo = this.cmbTipo.SelectedIndex == -1 ? -1 : (int)this.cmbTipo.SelectedValue;
+
+                string nombre = this.tbNombre.Text;
+
+                List<Modelos.ActivosDesc> resultado = this._activosNegocio.getBuscaActivosResp(idSucursal, idArea, idTipo, nombre, "A");
+
+                if (resultado.Count == 0)
+                {
+                    this.gcResulBusquedas.DataSource = null;
+                    this.ActiveControl = this.tbNombre;
+                    this.tbNombre.SelectAll();
+                    throw new Exception("Sin resultados");
+                }
+
+                this.gcResulBusquedas.DataSource = resultado;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void gcResulBusquedas_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.gridView1.GetSelectedRows().Count() == 0)
+                    return;
+
+                Modelos.ActivosDesc activoSelecc = new Modelos.ActivosDesc();
+
+                foreach (int i in this.gridView1.GetSelectedRows())
+                {
+                    var dr1 = this.gridView1.GetRow(i);
+
+                    activoSelecc = (Modelos.ActivosDesc)dr1;
+                }
+
+                // imprime datos
+                this.tbResultNombre.Text = activoSelecc.nombreCorto;
+                this.tbResultDesc.Text = activoSelecc.descripcion.Replace("&", " ").Trim();
+                this.tbResultNumEtiqueta.Text = activoSelecc.numEtiqueta;
+                this.tbResultCveActivo.Text = activoSelecc.claveActivo;
+
+                this._encontrado = activoSelecc;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void rbPTN_CheckedChanged(object sender, EventArgs e)
+        {
+            this.gbPCA.Enabled = false;
+            this.gbPNE.Enabled = false;
+            this.gbPTN.Enabled = true;
+
+            this.reiniciaControles();
         }
     }
 }

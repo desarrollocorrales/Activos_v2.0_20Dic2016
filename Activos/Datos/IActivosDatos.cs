@@ -13,11 +13,11 @@ namespace Activos.Datos
 
         bool actNumEtiquetaActivo(long idActivo, string numEtiqueta);
 
-        List<Modelos.Activos> getBuscaActivos(int idArea, int idTipo, string nombre, string status);
+        List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea, int idTipo, string nombre, string status);
 
         List<Modelos.Activos> getBuscaActivos(string parametro, string tipoBq);
 
-        List<Modelos.ActivosDesc> getBuscaActivosResp(int idArea, int idTipo, string nombre, string status);
+        List<Modelos.ActivosDesc> getBuscaActivosResp(int idSucursal, int idArea, int idTipo, string nombre, string status);
 
         List<Modelos.ActivosDesc> getBuscaActivosResp(string parametro, string tipoBus);
 
@@ -46,5 +46,13 @@ namespace Activos.Datos
         List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea);
 
         List<Modelos.Activos> getActivo(long idActivo);
+
+        List<Modelos.Activos> getBuscaActivos(int idResponsiva);
+
+        Modelos.ActivosDesc getActivosDesc(int idActivo);
+
+        List<Modelos.Activos> getActivoSinEstatus(long idActivo);
+
+        List<Modelos.Activos> getActivos(string fecha, int consectraspaso);
     }
 }

@@ -71,6 +71,7 @@
             this.colclaveActivo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnBuscaActivos = new System.Windows.Forms.Button();
+            this.btnAgregaArea = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -83,6 +84,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox1.Controls.Add(this.btnAgregaArea);
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.tbSucursalSelec);
             this.groupBox1.Controls.Add(this.tbPuestoSelec);
@@ -102,7 +104,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(403, 64);
+            this.btnBuscar.Location = new System.Drawing.Point(379, 64);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(124, 40);
             this.btnBuscar.TabIndex = 2;
@@ -228,6 +230,7 @@
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.Size = new System.Drawing.Size(349, 30);
             this.tbUsuario.TabIndex = 1;
+            this.tbUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbUsuario_KeyPress);
             // 
             // label1
             // 
@@ -306,7 +309,7 @@
             // 
             // activosBindingSource
             // 
-            this.activosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
+            this.activosBindingSource.DataSource = typeof(Modelos.Activos);
             // 
             // gridView2
             // 
@@ -457,6 +460,18 @@
             this.btnBuscaActivos.UseVisualStyleBackColor = true;
             this.btnBuscaActivos.Click += new System.EventHandler(this.btnBuscaActivos_Click);
             // 
+            // btnAgregaArea
+            // 
+            this.btnAgregaArea.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaArea.BackgroundImage")));
+            this.btnAgregaArea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaArea.Location = new System.Drawing.Point(516, 69);
+            this.btnAgregaArea.Name = "btnAgregaArea";
+            this.btnAgregaArea.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaArea.TabIndex = 185;
+            this.btnAgregaArea.Tag = "23";
+            this.btnAgregaArea.UseVisualStyleBackColor = true;
+            this.btnAgregaArea.Click += new System.EventHandler(this.btnAgregaArea_Click);
+            // 
             // frmResponsivas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -527,5 +542,6 @@
         private System.Windows.Forms.TextBox tbPuestoSelec;
         private System.Windows.Forms.TextBox tbUsuarioSelec;
         private System.Windows.Forms.CheckBox cbAgregaResp;
+        private System.Windows.Forms.Button btnAgregaArea;
     }
 }

@@ -48,6 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnAgregaSucursal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gcAreas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.areasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -98,7 +99,7 @@
             // 
             // areasBindingSource
             // 
-            this.areasBindingSource.DataSource = typeof(Activos.Modelos.Areas);
+            this.areasBindingSource.DataSource = typeof(Modelos.Areas);
             // 
             // gridView1
             // 
@@ -182,7 +183,7 @@
             this.cmbSucursales.Location = new System.Drawing.Point(131, 95);
             this.cmbSucursales.Margin = new System.Windows.Forms.Padding(5);
             this.cmbSucursales.Name = "cmbSucursales";
-            this.cmbSucursales.Size = new System.Drawing.Size(378, 31);
+            this.cmbSucursales.Size = new System.Drawing.Size(366, 31);
             this.cmbSucursales.TabIndex = 15;
             // 
             // tbNombreAreas
@@ -194,7 +195,7 @@
             this.tbNombreAreas.Margin = new System.Windows.Forms.Padding(5);
             this.tbNombreAreas.MaxLength = 250;
             this.tbNombreAreas.Name = "tbNombreAreas";
-            this.tbNombreAreas.Size = new System.Drawing.Size(378, 30);
+            this.tbNombreAreas.Size = new System.Drawing.Size(405, 30);
             this.tbNombreAreas.TabIndex = 14;
             // 
             // label3
@@ -229,15 +230,15 @@
             this.label1.Location = new System.Drawing.Point(20, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 29);
+            this.label1.Size = new System.Drawing.Size(229, 29);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Nueva";
+            this.label1.Text = "Agregar Nueva Área";
             // 
             // btnAgregar
             // 
             this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnAgregar.Location = new System.Drawing.Point(529, 66);
+            this.btnAgregar.Location = new System.Drawing.Point(544, 66);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(5);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(125, 41);
@@ -247,12 +248,26 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // btnAgregaSucursal
+            // 
+            this.btnAgregaSucursal.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAgregaSucursal.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaSucursal.BackgroundImage")));
+            this.btnAgregaSucursal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaSucursal.Location = new System.Drawing.Point(505, 95);
+            this.btnAgregaSucursal.Name = "btnAgregaSucursal";
+            this.btnAgregaSucursal.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaSucursal.TabIndex = 186;
+            this.btnAgregaSucursal.Tag = "20";
+            this.btnAgregaSucursal.UseVisualStyleBackColor = true;
+            this.btnAgregaSucursal.Click += new System.EventHandler(this.btnAgregaSucursal_Click);
+            // 
             // frmAreas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(680, 587);
+            this.Controls.Add(this.btnAgregaSucursal);
             this.Controls.Add(this.btnActivaA);
             this.Controls.Add(this.btnElimSelecc);
             this.Controls.Add(this.gcAreas);
@@ -295,5 +310,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colsucursal;
         private DevExpress.XtraGrid.Columns.GridColumn colnombre;
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
+        private System.Windows.Forms.Button btnAgregaSucursal;
     }
 }

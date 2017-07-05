@@ -94,7 +94,7 @@
             // 
             // reparacionesBindingSource
             // 
-            this.reparacionesBindingSource.DataSource = typeof(Activos.Modelos.Reparaciones);
+            this.reparacionesBindingSource.DataSource = typeof(Modelos.Reparaciones);
             // 
             // btnBuscar
             // 

@@ -62,7 +62,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 48);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Sistema de Activos\r\nVersion 1.2";
+            this.label1.Text = "Sistema de Activos\r\nVersion 2.1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmAcercaDe

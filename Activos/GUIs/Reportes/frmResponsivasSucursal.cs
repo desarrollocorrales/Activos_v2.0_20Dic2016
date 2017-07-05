@@ -126,7 +126,7 @@ namespace Activos.GUIs.Reportes
                     (this.cbBajas.Checked ? " BAJAS " : string.Empty) +
                     (this.cbReparaciones.Checked ? " REPARACIONES " : string.Empty), "CONSULTAS");
 
-                form.ShowDialog();
+                form.Show();
             }
             catch (Exception Ex)
             {

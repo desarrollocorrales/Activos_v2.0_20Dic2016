@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
+using Activos.GUIs.Personas;
 
 namespace Activos.GUIs.Responsivas
 {
@@ -46,7 +47,14 @@ namespace Activos.GUIs.Responsivas
                     this.btnBuscaActivos.Enabled = false;
 
                     this.gcActivos.DataSource = this._activosResp;
+
                 }
+
+                // permiso
+                int tag = Convert.ToInt16(this.btnAgregaArea.Tag);
+
+                if (!Modelos.Login.permisos.Contains(tag))
+                    this.btnAgregaArea.Enabled = false;
             }
             catch (Exception Ex)
             {
@@ -226,6 +234,30 @@ namespace Activos.GUIs.Responsivas
             }
         
         }
- 
+
+        private void tbUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscar_Click(null, null);
+            }
+        }
+
+        private void btnAgregaArea_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmPersonas form = new frmPersonas();
+
+                form.ShowDialog();
+
+                if (this.gridView1.RowCount != 0)
+                    this.btnBuscar_Click(null, null);
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
     }
 }

@@ -182,5 +182,13 @@ namespace Activos.GUIs.Traspasos
                 e.Appearance.ForeColor = Color.White;
             }
         }
+
+        private void tbUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscar_Click(null, null);
+            }
+        }
     }
 }

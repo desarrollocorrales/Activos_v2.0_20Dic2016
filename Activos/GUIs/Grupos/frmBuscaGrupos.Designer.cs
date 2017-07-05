@@ -116,7 +116,7 @@
             // 
             // gruposBindingSource
             // 
-            this.gruposBindingSource.DataSource = typeof(Activos.Modelos.Grupos);
+            this.gruposBindingSource.DataSource = typeof(Modelos.Grupos);
             // 
             // gridView1
             // 
@@ -211,7 +211,7 @@
             // 
             // activosBindingSource
             // 
-            this.activosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
+            this.activosBindingSource.DataSource = typeof(Modelos.Activos);
             // 
             // gridView2
             // 

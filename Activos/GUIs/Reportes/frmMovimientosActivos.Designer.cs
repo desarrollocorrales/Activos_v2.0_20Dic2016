@@ -101,7 +101,6 @@
             this.tbResultCveActivo.ReadOnly = true;
             this.tbResultCveActivo.Size = new System.Drawing.Size(110, 30);
             this.tbResultCveActivo.TabIndex = 37;
-            this.tbResultCveActivo.Text = "000000";
             this.tbResultCveActivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbResultNumEtiqueta
@@ -112,7 +111,6 @@
             this.tbResultNumEtiqueta.ReadOnly = true;
             this.tbResultNumEtiqueta.Size = new System.Drawing.Size(146, 30);
             this.tbResultNumEtiqueta.TabIndex = 36;
-            this.tbResultNumEtiqueta.Text = "0000000000000";
             this.tbResultNumEtiqueta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbResultNombre
@@ -470,7 +468,8 @@
             // 
             // cambiosBindingSource
             // 
-            this.cambiosBindingSource.DataSource = typeof(Activos.Modelos.Cambios);
+            this.cambiosBindingSource.DataSource = typeof(
+                Modelos.Cambios);
             // 
             // gridView1
             // 

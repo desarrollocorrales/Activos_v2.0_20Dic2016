@@ -316,6 +316,7 @@
             // 
             // cbCreaResp
             // 
+            this.cbCreaResp.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cbCreaResp.AutoSize = true;
             this.cbCreaResp.Location = new System.Drawing.Point(19, 462);
             this.cbCreaResp.Name = "cbCreaResp";

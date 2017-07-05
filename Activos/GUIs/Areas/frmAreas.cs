@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
+using Activos.GUIs.Sucursales;
 
 namespace Activos.GUIs.Areas
 {
@@ -35,6 +36,11 @@ namespace Activos.GUIs.Areas
                             ((Button)x).Enabled = false;
                     }
                 }
+
+                int t = Convert.ToInt16(this.btnAgregaSucursal.Tag);
+
+                if (!Modelos.Login.permisos.Contains(t))
+                    this.btnAgregaSucursal.Enabled = false;
 
                 // llena el catalogo de sucursales disponibles
                 this.cmbSucursales.DataSource = this._catalogosNegocio.getSucursales("A");
@@ -178,7 +184,27 @@ namespace Activos.GUIs.Areas
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Sucursales", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(Ex.Message, "Áreas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnAgregaSucursal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmSucursales form = new frmSucursales();
+
+                form.ShowDialog();
+
+                // llena el catalogo de sucursales disponibles
+                this.cmbSucursales.DataSource = this._catalogosNegocio.getSucursales("A");
+                this.cmbSucursales.DisplayMember = "nombre";
+                this.cmbSucursales.ValueMember = "idSucursal";
+                this.cmbSucursales.SelectedIndex = -1;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Áreas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

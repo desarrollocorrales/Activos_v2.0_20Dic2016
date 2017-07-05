@@ -30,16 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuscaActivos));
-            this.gbPTN = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbArea = new System.Windows.Forms.ComboBox();
-            this.cmbSucursal = new System.Windows.Forms.ComboBox();
-            this.btnBuscarPTN = new System.Windows.Forms.Button();
-            this.tbNombre = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.rbPTN = new System.Windows.Forms.RadioButton();
             this.gbPNE = new System.Windows.Forms.GroupBox();
             this.tbNumEtiqueta = new System.Windows.Forms.TextBox();
@@ -91,7 +81,23 @@
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gbPTN.SuspendLayout();
+            this.gbPTN = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
+            this.tbNombre = new System.Windows.Forms.TextBox();
+            this.btnBuscarPTN = new System.Windows.Forms.Button();
+            this.cmbSucursal = new System.Windows.Forms.ComboBox();
+            this.cmbArea = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.gbPNE.SuspendLayout();
             this.gbPCA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcResulBusquedas)).BeginInit();
@@ -99,110 +105,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSeleccionados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            this.gbPTN.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // gbPTN
-            // 
-            this.gbPTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.gbPTN.Controls.Add(this.label4);
-            this.gbPTN.Controls.Add(this.label3);
-            this.gbPTN.Controls.Add(this.label2);
-            this.gbPTN.Controls.Add(this.cmbArea);
-            this.gbPTN.Controls.Add(this.cmbSucursal);
-            this.gbPTN.Controls.Add(this.btnBuscarPTN);
-            this.gbPTN.Controls.Add(this.tbNombre);
-            this.gbPTN.Controls.Add(this.label1);
-            this.gbPTN.Controls.Add(this.cmbTipo);
-            this.gbPTN.Location = new System.Drawing.Point(12, 12);
-            this.gbPTN.Name = "gbPTN";
-            this.gbPTN.Size = new System.Drawing.Size(536, 313);
-            this.gbPTN.TabIndex = 0;
-            this.gbPTN.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 146);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 23);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Tipo";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 23);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Sucursal";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 23);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Área";
-            // 
-            // cmbArea
-            // 
-            this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbArea.DropDownWidth = 400;
-            this.cmbArea.FormattingEnabled = true;
-            this.cmbArea.Location = new System.Drawing.Point(20, 112);
-            this.cmbArea.Name = "cmbArea";
-            this.cmbArea.Size = new System.Drawing.Size(493, 31);
-            this.cmbArea.TabIndex = 5;
-            // 
-            // cmbSucursal
-            // 
-            this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSucursal.DropDownWidth = 400;
-            this.cmbSucursal.FormattingEnabled = true;
-            this.cmbSucursal.Location = new System.Drawing.Point(20, 52);
-            this.cmbSucursal.Name = "cmbSucursal";
-            this.cmbSucursal.Size = new System.Drawing.Size(493, 31);
-            this.cmbSucursal.TabIndex = 4;
-            this.cmbSucursal.SelectionChangeCommitted += new System.EventHandler(this.cmbSucursal_SelectionChangeCommitted);
-            // 
-            // btnBuscarPTN
-            // 
-            this.btnBuscarPTN.Location = new System.Drawing.Point(171, 268);
-            this.btnBuscarPTN.Name = "btnBuscarPTN";
-            this.btnBuscarPTN.Size = new System.Drawing.Size(163, 34);
-            this.btnBuscarPTN.TabIndex = 3;
-            this.btnBuscarPTN.Text = "Buscar";
-            this.btnBuscarPTN.UseVisualStyleBackColor = true;
-            this.btnBuscarPTN.Click += new System.EventHandler(this.btnBuscarPTN_Click);
-            // 
-            // tbNombre
-            // 
-            this.tbNombre.Location = new System.Drawing.Point(20, 232);
-            this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(493, 30);
-            this.tbNombre.TabIndex = 2;
-            this.tbNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNombre_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 206);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nombre";
-            // 
-            // cmbTipo
-            // 
-            this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipo.DropDownWidth = 400;
-            this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(20, 172);
-            this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(493, 31);
-            this.cmbTipo.TabIndex = 0;
             // 
             // rbPTN
             // 
@@ -312,7 +216,7 @@
             // 
             // activosBindingSource
             // 
-            this.activosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
+            this.activosBindingSource.DataSource = typeof(Modelos.Activos);
             // 
             // gridView1
             // 
@@ -687,6 +591,173 @@
             this.gridColumn16.FieldName = "status";
             this.gridColumn16.Name = "gridColumn16";
             // 
+            // gbPTN
+            // 
+            this.gbPTN.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gbPTN.Controls.Add(this.label4);
+            this.gbPTN.Controls.Add(this.label3);
+            this.gbPTN.Controls.Add(this.label2);
+            this.gbPTN.Controls.Add(this.cmbArea);
+            this.gbPTN.Controls.Add(this.cmbSucursal);
+            this.gbPTN.Controls.Add(this.btnBuscarPTN);
+            this.gbPTN.Controls.Add(this.tbNombre);
+            this.gbPTN.Controls.Add(this.label1);
+            this.gbPTN.Controls.Add(this.cmbTipo);
+            this.gbPTN.Location = new System.Drawing.Point(12, 12);
+            this.gbPTN.Name = "gbPTN";
+            this.gbPTN.Size = new System.Drawing.Size(536, 313);
+            this.gbPTN.TabIndex = 0;
+            this.gbPTN.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 146);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 23);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Tipo";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 23);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Sucursal";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(16, 86);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 23);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Área";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.DropDownWidth = 400;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(20, 112);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(493, 21);
+            this.comboBox1.TabIndex = 5;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.DropDownWidth = 400;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(20, 52);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(493, 21);
+            this.comboBox2.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(171, 268);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(163, 34);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Buscar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(20, 232);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(493, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 206);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 23);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Nombre";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.DropDownWidth = 400;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(20, 172);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(493, 21);
+            this.comboBox3.TabIndex = 0;
+            // 
+            // cmbTipo
+            // 
+            this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipo.DropDownWidth = 400;
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Location = new System.Drawing.Point(20, 172);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.Size = new System.Drawing.Size(493, 31);
+            this.cmbTipo.TabIndex = 0;
+            // 
+            // tbNombre
+            // 
+            this.tbNombre.Location = new System.Drawing.Point(20, 232);
+            this.tbNombre.Name = "tbNombre";
+            this.tbNombre.Size = new System.Drawing.Size(493, 30);
+            this.tbNombre.TabIndex = 2;
+            this.tbNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNombre_KeyPress);
+            // 
+            // btnBuscarPTN
+            // 
+            this.btnBuscarPTN.Location = new System.Drawing.Point(171, 268);
+            this.btnBuscarPTN.Name = "btnBuscarPTN";
+            this.btnBuscarPTN.Size = new System.Drawing.Size(163, 34);
+            this.btnBuscarPTN.TabIndex = 3;
+            this.btnBuscarPTN.Text = "Buscar";
+            this.btnBuscarPTN.UseVisualStyleBackColor = true;
+            this.btnBuscarPTN.Click += new System.EventHandler(this.btnBuscarPTN_Click);
+            // 
+            // cmbSucursal
+            // 
+            this.cmbSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSucursal.DropDownWidth = 400;
+            this.cmbSucursal.FormattingEnabled = true;
+            this.cmbSucursal.Location = new System.Drawing.Point(20, 52);
+            this.cmbSucursal.Name = "cmbSucursal";
+            this.cmbSucursal.Size = new System.Drawing.Size(493, 31);
+            this.cmbSucursal.TabIndex = 4;
+            this.cmbSucursal.SelectionChangeCommitted += new System.EventHandler(this.cmbSucursal_SelectionChangeCommitted);
+            // 
+            // cmbArea
+            // 
+            this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbArea.DropDownWidth = 400;
+            this.cmbArea.FormattingEnabled = true;
+            this.cmbArea.Location = new System.Drawing.Point(20, 112);
+            this.cmbArea.Name = "cmbArea";
+            this.cmbArea.Size = new System.Drawing.Size(493, 31);
+            this.cmbArea.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 23);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Área";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 146);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 23);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Tipo";
+            // 
             // frmBuscaActivos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -714,8 +785,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Busca Activos";
             this.Load += new System.EventHandler(this.frmBuscaActivos_Load);
-            this.gbPTN.ResumeLayout(false);
-            this.gbPTN.PerformLayout();
             this.gbPNE.ResumeLayout(false);
             this.gbPNE.PerformLayout();
             this.gbPCA.ResumeLayout(false);
@@ -725,6 +794,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSeleccionados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            this.gbPTN.ResumeLayout(false);
+            this.gbPTN.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -732,12 +803,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbPTN;
-        private System.Windows.Forms.Button btnBuscarPTN;
-        private System.Windows.Forms.TextBox tbNombre;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rbPTN;
-        private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.GroupBox gbPNE;
         private System.Windows.Forms.TextBox tbNumEtiqueta;
         private System.Windows.Forms.RadioButton rbPNE;
@@ -788,10 +854,22 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private System.Windows.Forms.GroupBox gbPTN;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbArea;
         private System.Windows.Forms.ComboBox cmbSucursal;
+        private System.Windows.Forms.Button btnBuscarPTN;
+        private System.Windows.Forms.TextBox tbNombre;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbTipo;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }

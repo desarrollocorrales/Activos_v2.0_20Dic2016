@@ -65,6 +65,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.dtpFechaConsulta = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
+            this.btnAgregaArea = new System.Windows.Forms.Button();
             this.gbArea.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -310,6 +311,7 @@
             // 
             // gbArea
             // 
+            this.gbArea.Controls.Add(this.btnAgregaArea);
             this.gbArea.Controls.Add(this.cmbArea);
             this.gbArea.Controls.Add(this.label6);
             this.gbArea.Controls.Add(this.cmbSucursal);
@@ -327,7 +329,7 @@
             this.cmbArea.FormattingEnabled = true;
             this.cmbArea.Location = new System.Drawing.Point(131, 117);
             this.cmbArea.Name = "cmbArea";
-            this.cmbArea.Size = new System.Drawing.Size(494, 31);
+            this.cmbArea.Size = new System.Drawing.Size(457, 31);
             this.cmbArea.TabIndex = 183;
             // 
             // label6
@@ -412,6 +414,18 @@
             this.label13.Size = new System.Drawing.Size(60, 23);
             this.label13.TabIndex = 191;
             this.label13.Text = "Fecha";
+            // 
+            // btnAgregaArea
+            // 
+            this.btnAgregaArea.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaArea.BackgroundImage")));
+            this.btnAgregaArea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaArea.Location = new System.Drawing.Point(594, 117);
+            this.btnAgregaArea.Name = "btnAgregaArea";
+            this.btnAgregaArea.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaArea.TabIndex = 184;
+            this.btnAgregaArea.Tag = "22";
+            this.btnAgregaArea.UseVisualStyleBackColor = true;
+            this.btnAgregaArea.Click += new System.EventHandler(this.btnAgregaArea_Click);
             // 
             // frmConfirmTraspaso
             // 
@@ -505,5 +519,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dtpFechaConsulta;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnAgregaArea;
     }
 }

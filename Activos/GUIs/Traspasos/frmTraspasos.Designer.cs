@@ -143,7 +143,7 @@
             // 
             // activosBindingSource
             // 
-            this.activosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
+            this.activosBindingSource.DataSource = typeof(Modelos.Activos);
             // 
             // gridView1
             // 

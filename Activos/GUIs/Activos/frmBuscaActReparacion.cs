@@ -31,10 +31,14 @@ namespace Activos.GUIs.AltaActivos
             try
             {
                 // carga el combo de tipos
+                List<Modelos.Tipos> tipos = new List<Modelos.Tipos>();
+                tipos.Add(new Modelos.Tipos { idTipo = -1, nombre = "" });
+                tipos.AddRange(this._catalogosNegocio.getTipos("A"));
+
                 this.cmbTipo.DisplayMember = "nombre";
                 this.cmbTipo.ValueMember = "idTipo";
-                this.cmbTipo.DataSource = this._catalogosNegocio.getTipos("A");
-                this.cmbTipo.SelectedIndex = -1;
+                this.cmbTipo.DataSource = tipos;
+
 
                 // llenar combo de sucursales
                 this.cmbSucursal.DisplayMember = "nombre";
@@ -56,18 +60,15 @@ namespace Activos.GUIs.AltaActivos
                 if (this.cmbSucursal.SelectedIndex == -1)
                     throw new Exception("Seleccione una sucursal");
 
-                if (this.cmbArea.SelectedIndex == -1)
-                    throw new Exception("Seleccione un área");
-
-                if (this.cmbTipo.SelectedIndex == -1)
-                    throw new Exception("Seleccione un tipo");
-
                 int idSucursal = (int)this.cmbSucursal.SelectedValue;
-                int idArea = (int)this.cmbArea.SelectedValue;
-                int idTipo = (int)this.cmbTipo.SelectedValue;
+
+                int idArea = this.cmbArea.SelectedIndex == -1 ? -1 : (int)this.cmbArea.SelectedValue;
+
+                int idTipo = this.cmbTipo.SelectedIndex == -1 ? -1 : (int)this.cmbTipo.SelectedValue;
+
                 string nombre = this.tbNombre.Text;
 
-                List<Modelos.Reparaciones> resultado = this._reparacionesNegocio.getBuscaActivosReparacion(idArea, idTipo, nombre);
+                List<Modelos.Reparaciones> resultado = this._reparacionesNegocio.getBuscaActivosReparacion(idSucursal, idArea, idTipo, nombre);
 
                 if (resultado.Count == 0)
                 {
@@ -117,7 +118,11 @@ namespace Activos.GUIs.AltaActivos
                 int idSucursal = (int)this.cmbSucursal.SelectedValue;
 
                 // llenar combo de Tipos
-                this.cmbArea.DataSource = this._catalogosNegocio.getAreas(idSucursal);
+                List<Modelos.Areas> areas = new List<Modelos.Areas>();
+                areas.Add(new Modelos.Areas { idArea = -1, nombre = "" });
+                areas.AddRange(this._catalogosNegocio.getAreas(idSucursal));
+
+                this.cmbArea.DataSource = areas;
                 this.cmbArea.DisplayMember = "nombre";
                 this.cmbArea.ValueMember = "idArea";
             }

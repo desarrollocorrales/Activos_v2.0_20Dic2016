@@ -34,6 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
+            this.btnAgregaPuesto = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -54,7 +55,7 @@
             this.cmbSucursal.FormattingEnabled = true;
             this.cmbSucursal.Location = new System.Drawing.Point(132, 75);
             this.cmbSucursal.Name = "cmbSucursal";
-            this.cmbSucursal.Size = new System.Drawing.Size(416, 33);
+            this.cmbSucursal.Size = new System.Drawing.Size(379, 33);
             this.cmbSucursal.TabIndex = 10;
             // 
             // label3
@@ -84,12 +85,25 @@
             this.tbNombre.Size = new System.Drawing.Size(416, 33);
             this.tbNombre.TabIndex = 7;
             // 
+            // btnAgregaPuesto
+            // 
+            this.btnAgregaPuesto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaPuesto.BackgroundImage")));
+            this.btnAgregaPuesto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaPuesto.Location = new System.Drawing.Point(517, 75);
+            this.btnAgregaPuesto.Name = "btnAgregaPuesto";
+            this.btnAgregaPuesto.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaPuesto.TabIndex = 187;
+            this.btnAgregaPuesto.Tag = "20";
+            this.btnAgregaPuesto.UseVisualStyleBackColor = true;
+            this.btnAgregaPuesto.Click += new System.EventHandler(this.btnAgregaPuesto_Click);
+            // 
             // frmModifPuestos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(571, 190);
+            this.Controls.Add(this.btnAgregaPuesto);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbSucursal);
             this.Controls.Add(this.label3);
@@ -114,6 +128,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbNombre;
+        private System.Windows.Forms.Button btnAgregaPuesto;
 
     }
 }

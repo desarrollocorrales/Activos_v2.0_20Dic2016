@@ -42,6 +42,7 @@
             this.dtpFechaIngreso = new System.Windows.Forms.DateTimePicker();
             this.tbConfirmClave = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAgregaPersona = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -153,7 +154,7 @@
             this.cmbPersona.FormattingEnabled = true;
             this.cmbPersona.Location = new System.Drawing.Point(136, 18);
             this.cmbPersona.Name = "cmbPersona";
-            this.cmbPersona.Size = new System.Drawing.Size(432, 31);
+            this.cmbPersona.Size = new System.Drawing.Size(395, 31);
             this.cmbPersona.TabIndex = 8;
             // 
             // dtpFechaIngreso
@@ -188,12 +189,25 @@
             this.label1.Text = "Confirmar Clave";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnAgregaPersona
+            // 
+            this.btnAgregaPersona.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaPersona.BackgroundImage")));
+            this.btnAgregaPersona.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaPersona.Location = new System.Drawing.Point(537, 18);
+            this.btnAgregaPersona.Name = "btnAgregaPersona";
+            this.btnAgregaPersona.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaPersona.TabIndex = 186;
+            this.btnAgregaPersona.Tag = "23";
+            this.btnAgregaPersona.UseVisualStyleBackColor = true;
+            this.btnAgregaPersona.Click += new System.EventHandler(this.btnAgregaPersona_Click);
+            // 
             // frmAltaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(583, 303);
+            this.Controls.Add(this.btnAgregaPersona);
             this.Controls.Add(this.tbConfirmClave);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpFechaIngreso);
@@ -233,5 +247,6 @@
         private System.Windows.Forms.DateTimePicker dtpFechaIngreso;
         private System.Windows.Forms.TextBox tbConfirmClave;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAgregaPersona;
     }
 }

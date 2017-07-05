@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
+using Activos.GUIs.Personas;
 
 namespace Activos.GUIs.Sucursales
 {
@@ -35,6 +36,11 @@ namespace Activos.GUIs.Sucursales
                             ((Button)x).Enabled = false;
                     }
                 }
+
+                int t = Convert.ToInt16(this.btnAgregaPersona.Tag);
+
+                if (!Modelos.Login.permisos.Contains(t))
+                    this.btnAgregaPersona.Enabled = false;
 
                 // llena el catalogo de responsables (usuarios) disponibles
                 this.cmbResponsable.DataSource = this._catalogosNegocio.getPersonas("", "A");
@@ -187,8 +193,24 @@ namespace Activos.GUIs.Sucursales
             }
         }
 
-        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        private void btnAgregaPersona_Click(object sender, EventArgs e)
         {
+            try
+            {
+                frmPersonas form = new frmPersonas();
+
+                form.ShowDialog();
+
+                // llena el catalogo de responsables (usuarios) disponibles
+                this.cmbResponsable.DataSource = this._catalogosNegocio.getPersonas("", "A");
+                this.cmbResponsable.DisplayMember = "nombreCompleto";
+                this.cmbResponsable.ValueMember = "idPersona";
+                this.cmbResponsable.SelectedIndex = -1;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Sucursales", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

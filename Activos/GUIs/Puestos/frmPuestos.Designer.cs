@@ -48,6 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnAgregaPuesto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gcPuestos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puestosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -97,7 +98,7 @@
             // 
             // puestosBindingSource
             // 
-            this.puestosBindingSource.DataSource = typeof(Activos.Modelos.Puestos);
+            this.puestosBindingSource.DataSource = typeof(Modelos.Puestos);
             // 
             // gridView1
             // 
@@ -181,7 +182,7 @@
             this.cmbSucursal.Location = new System.Drawing.Point(137, 101);
             this.cmbSucursal.Margin = new System.Windows.Forms.Padding(5);
             this.cmbSucursal.Name = "cmbSucursal";
-            this.cmbSucursal.Size = new System.Drawing.Size(333, 31);
+            this.cmbSucursal.Size = new System.Drawing.Size(337, 31);
             this.cmbSucursal.TabIndex = 15;
             // 
             // tbNombrePuesto
@@ -193,7 +194,7 @@
             this.tbNombrePuesto.Margin = new System.Windows.Forms.Padding(5);
             this.tbNombrePuesto.MaxLength = 250;
             this.tbNombrePuesto.Name = "tbNombrePuesto";
-            this.tbNombrePuesto.Size = new System.Drawing.Size(333, 30);
+            this.tbNombrePuesto.Size = new System.Drawing.Size(374, 30);
             this.tbNombrePuesto.TabIndex = 14;
             // 
             // label3
@@ -228,15 +229,15 @@
             this.label1.Location = new System.Drawing.Point(26, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 29);
+            this.label1.Size = new System.Drawing.Size(251, 29);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Nueva";
+            this.label1.Text = "Agregar Nuevo Puesto";
             // 
             // btnAgregar
             // 
             this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnAgregar.Location = new System.Drawing.Point(492, 72);
+            this.btnAgregar.Location = new System.Drawing.Point(521, 75);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(5);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(125, 41);
@@ -246,12 +247,26 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // btnAgregaPuesto
+            // 
+            this.btnAgregaPuesto.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAgregaPuesto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaPuesto.BackgroundImage")));
+            this.btnAgregaPuesto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaPuesto.Location = new System.Drawing.Point(482, 101);
+            this.btnAgregaPuesto.Name = "btnAgregaPuesto";
+            this.btnAgregaPuesto.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaPuesto.TabIndex = 186;
+            this.btnAgregaPuesto.Tag = "20";
+            this.btnAgregaPuesto.UseVisualStyleBackColor = true;
+            this.btnAgregaPuesto.Click += new System.EventHandler(this.btnAgregaPuesto_Click);
+            // 
             // frmPuestos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(665, 580);
+            this.Controls.Add(this.btnAgregaPuesto);
             this.Controls.Add(this.btnActivaP);
             this.Controls.Add(this.btnElimSelecc);
             this.Controls.Add(this.gcPuestos);
@@ -294,5 +309,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colnombre;
         private DevExpress.XtraGrid.Columns.GridColumn colstatus;
         private DevExpress.XtraGrid.Columns.GridColumn colseleccionado;
+        private System.Windows.Forms.Button btnAgregaPuesto;
     }
 }

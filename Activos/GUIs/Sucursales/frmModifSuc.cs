@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
+using Activos.GUIs.Personas;
 
 namespace Activos.GUIs.Sucursales
 {
@@ -40,7 +41,12 @@ namespace Activos.GUIs.Sucursales
             // selecciona el usuario enviado
             if (this._idResponsable == null) this.cmbResponsable.SelectedIndex = -1;
             else this.cmbResponsable.SelectedValue = this._idResponsable;
-            
+
+            int t = Convert.ToInt16(this.btnAgregaPersona.Tag);
+
+            if (!Modelos.Login.permisos.Contains(t))
+                this.btnAgregaPersona.Enabled = false;
+
 
             // imprime el nombre
             this.tbNombre.Text = this._nombre;
@@ -88,6 +94,23 @@ namespace Activos.GUIs.Sucursales
             }
         }
 
+        private void btnAgregaPersona_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmPersonas form = new frmPersonas();
 
+                form.ShowDialog();
+
+                // llena el catalogo de responsables (usuarios) disponibles
+                this.cmbResponsable.DataSource = this._catalogosNegocio.getPersonas("", "A");
+                this.cmbResponsable.DisplayMember = "nombreCompleto";
+                this.cmbResponsable.ValueMember = "idPersona";
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Sucursales", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
     }
 }

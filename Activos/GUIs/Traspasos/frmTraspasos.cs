@@ -149,6 +149,21 @@ namespace Activos.GUIs.Traspasos
                 if (this.gridView1.GetSelectedRows().Count() == 0)
                     throw new Exception("Seleccione un activo a traspasar");
 
+                // obtener el activo seleccionado
+                Modelos.Activos activoSel = new Modelos.Activos();
+
+                foreach (int i in this.gridView1.GetSelectedRows())
+                {
+                    var dr1 = this.gridView1.GetRow(i);
+
+                    activoSel = (Modelos.Activos)dr1;
+                }
+
+                if (activoSel.status.Equals("REPARACION"))
+                    throw new Exception(
+                        "No se permite traspasar un activo que se encuentra en REPARACION\n" +
+                        "Reingrese el activo para poder traspasarlo");
+
                 // se bloque la seleccion de responsivas y usuario 
                 if (!this._movimiento)
                 {
@@ -168,16 +183,6 @@ namespace Activos.GUIs.Traspasos
                     }
                     else if (dialogResult == DialogResult.No) return;
 
-                }
-
-                // obtener el activo seleccionado
-                Modelos.Activos activoSel = new Modelos.Activos();
-
-                foreach (int i in this.gridView1.GetSelectedRows())
-                {
-                    var dr1 = this.gridView1.GetRow(i);
-
-                    activoSel = (Modelos.Activos)dr1;
                 }
 
                 // valida si el activo ya fue agregado
@@ -346,7 +351,32 @@ namespace Activos.GUIs.Traspasos
                 }
 
                 if (resultado)
-                { MessageBox.Show("Cambios guardados correctamente", "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Information); this.limpia(); }
+                { 
+                    MessageBox.Show("Cambios guardados correctamente", "Responsivas", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+
+                    // abrir formulario
+                    frmReporteTraspasos form = new frmReporteTraspasos();
+
+                    List<Modelos.Activos> activos = this._activosT.Where(w => !string.IsNullOrEmpty(w.accion)).ToList();
+
+                    form._empresa = Modelos.Login.empresa;
+                    form._logo = this._responsivasNegocio.obtieneLogo("reportes");
+                    form._activos = activos;
+                    form._detalle = this.tbMotivo.Text;
+                    form._personaAnterior = this.tbResponsable.Text;
+                    form._personaNueva = this.tbResponsableT.Text;
+                    form._fecha = this._catalogosNegocio.getFechaServidor();
+
+                    form.ShowDialog();
+
+                    string idActivos = string.Join(",", this._activosT.Where(w => !string.IsNullOrEmpty(w.accion)).Select(s => s.idActivo).ToList());
+
+                    // bitacora
+                    this._catalogosNegocio.generaBitacora(
+                        "Se genero la vista previa del informe de Traspaso, ACTIVOS: " + idActivos, "ACTIVOS");
+
+                    this.limpia(); 
+                }
                 else
                     throw new Exception("Problemas al guardar cambios");
             }
@@ -469,6 +499,7 @@ namespace Activos.GUIs.Traspasos
             this.tbSucursalT.Text = string.Empty;
             this.tbPuesto.Text = string.Empty;
             this.tbPuestoT.Text = string.Empty;
+            this.tbFolio.Text = string.Empty;
 
             this.gcActivos.DataSource = null;
             this.gcActivosT.DataSource = null;

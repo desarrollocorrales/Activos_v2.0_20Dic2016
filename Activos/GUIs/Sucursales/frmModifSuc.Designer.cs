@@ -34,6 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmbResponsable = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnAgregaPersona = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbNombre
@@ -70,7 +71,7 @@
             this.cmbResponsable.FormattingEnabled = true;
             this.cmbResponsable.Location = new System.Drawing.Point(160, 70);
             this.cmbResponsable.Name = "cmbResponsable";
-            this.cmbResponsable.Size = new System.Drawing.Size(416, 33);
+            this.cmbResponsable.Size = new System.Drawing.Size(376, 33);
             this.cmbResponsable.TabIndex = 5;
             // 
             // btnGuardar
@@ -84,12 +85,25 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // btnAgregaPersona
+            // 
+            this.btnAgregaPersona.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaPersona.BackgroundImage")));
+            this.btnAgregaPersona.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaPersona.Location = new System.Drawing.Point(545, 70);
+            this.btnAgregaPersona.Name = "btnAgregaPersona";
+            this.btnAgregaPersona.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaPersona.TabIndex = 186;
+            this.btnAgregaPersona.Tag = "23";
+            this.btnAgregaPersona.UseVisualStyleBackColor = true;
+            this.btnAgregaPersona.Click += new System.EventHandler(this.btnAgregaPersona_Click);
+            // 
             // frmModifSuc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(597, 180);
+            this.Controls.Add(this.btnAgregaPersona);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbResponsable);
             this.Controls.Add(this.label3);
@@ -115,5 +129,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbResponsable;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnAgregaPersona;
     }
 }

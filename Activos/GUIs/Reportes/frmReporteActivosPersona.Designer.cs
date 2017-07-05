@@ -49,19 +49,19 @@
             // 
             // ResponsivasSucursalBindingSource
             // 
-            this.ResponsivasSucursalBindingSource.DataSource = typeof(Activos.Modelos.ResponsivasSucursal);
+            this.ResponsivasSucursalBindingSource.DataSource = typeof(Modelos.ResponsivasSucursal);
             // 
             // ResponsivasBindingSource
             // 
-            this.ResponsivasBindingSource.DataSource = typeof(Activos.Modelos.Responsivas);
+            this.ResponsivasBindingSource.DataSource = typeof(Modelos.Responsivas);
             // 
             // ActivosBindingSource
             // 
-            this.ActivosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
+            this.ActivosBindingSource.DataSource = typeof(Modelos.Activos);
             // 
             // PersonaResponsivasBindingSource
             // 
-            this.PersonaResponsivasBindingSource.DataSource = typeof(Activos.Modelos.PersonaResponsivas);
+            this.PersonaResponsivasBindingSource.DataSource = typeof(Modelos.PersonaResponsivas);
             // 
             // reportViewer1
             // 
@@ -86,7 +86,7 @@
             // 
             // LogoBindingSource
             // 
-            this.LogoBindingSource.DataSource = typeof(Activos.Modelos.Logo);
+            this.LogoBindingSource.DataSource = typeof(Modelos.Logo);
             // 
             // frmReporteActivosPersona
             // 

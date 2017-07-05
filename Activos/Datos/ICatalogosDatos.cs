@@ -137,5 +137,7 @@ namespace Activos.Datos
         string getSucursales(int? idPersona);
 
         void generaBitacora(string detalle, string modulo);
+
+        string getFechaServidor();
     }
 }

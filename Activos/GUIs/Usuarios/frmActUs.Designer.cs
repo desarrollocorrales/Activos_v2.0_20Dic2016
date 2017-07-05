@@ -65,7 +65,7 @@
             // 
             // usuariosBindingSource
             // 
-            this.usuariosBindingSource.DataSource = typeof(Activos.Modelos.Usuarios);
+            this.usuariosBindingSource.DataSource = typeof(Modelos.Usuarios);
             // 
             // gridView1
             // 

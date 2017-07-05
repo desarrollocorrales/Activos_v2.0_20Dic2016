@@ -101,7 +101,7 @@
             // 
             // tiposBindingSource
             // 
-            this.tiposBindingSource.DataSource = typeof(Activos.Modelos.Tipos);
+            this.tiposBindingSource.DataSource = typeof(Modelos.Tipos);
             // 
             // gridView1
             // 

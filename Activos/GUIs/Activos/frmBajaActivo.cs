@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
+using Activos.GUIs.Activos;
 
 namespace Activos.GUIs.AltaActivos
 {
@@ -15,6 +16,10 @@ namespace Activos.GUIs.AltaActivos
         IActivosNegocio _activosNegocio;
         ICatalogosNegocio _catalogosNegocio;
         private int? _idActivo = null;
+        IResponsivasNegocio _responsivasNegocio;
+
+        private string _sucursal;
+        private string _usuario;
 
         public frmBajaActivo()
         {
@@ -22,20 +27,47 @@ namespace Activos.GUIs.AltaActivos
 
             this._catalogosNegocio = new CatalogosNegocio();
             this._activosNegocio = new ActivosNegocio();
+            this._responsivasNegocio = new ResponsivasNegocio();
         }
 
         private void frmBajaActivo_Load(object sender, EventArgs e)
         {
-            this.lbCveActivo.Text = string.Empty;
-            this.lbNumetiqueta.Text = string.Empty;
-            this.tbUsuario.Text = string.Empty;
+            try
+            {
+                this.lbCveActivo.Text = string.Empty;
+                this.lbNumetiqueta.Text = string.Empty;
+                this.tbUsuario.Text = string.Empty;
 
-            this.dtpFecha.MaxDate = DateTime.Today.AddDays(10);
+                this.dtpFecha.MaxDate = DateTime.Today.AddDays(10);
 
-            // carga combo motivos
-            this.cbMotivo.ValueMember = "idMotivoBaja";
-            this.cbMotivo.DisplayMember = "motivo";
-            this.cbMotivo.DataSource = this._catalogosNegocio.getMotivosBaja();
+                // permisos bajas responsivas
+                // bajas = 67
+                // reparacion = 68
+                List<Modelos.MotivosBaja> motivos = this._catalogosNegocio.getMotivosBaja();
+
+                if (Modelos.Login.permisos.Contains(67))
+                {
+                    if (!Modelos.Login.permisos.Contains(68))
+                        motivos = motivos.Where(w => w.clave.Equals("B")).ToList();
+                }
+                else
+                {
+                    if (Modelos.Login.permisos.Contains(68))
+                        motivos = motivos.Where(w => w.clave.Equals("R")).ToList();
+
+                    else
+                        motivos = motivos.Where(w => w.clave.Equals("A")).ToList();
+                }
+
+                // carga combo motivos
+                this.cbMotivo.ValueMember = "idMotivoBaja";
+                this.cbMotivo.DisplayMember = "motivo";
+                this.cbMotivo.DataSource = motivos;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnBusqAct_Click(object sender, EventArgs e)
@@ -50,7 +82,6 @@ namespace Activos.GUIs.AltaActivos
                 {
                     // muestra los datos del activo
                     Modelos.ActivosDesc activo = form._activoSelecc;
-
                     string[] array = activo.descripcion.Split('&');
 
                     this.tbNombre.Text = activo.nombreCorto;
@@ -71,6 +102,9 @@ namespace Activos.GUIs.AltaActivos
                     this.lbCveActivo.Text = activo.claveActivo;
                     
                     this._idActivo = activo.idActivo;
+
+                    this._usuario = activo.usuario;
+                    this._sucursal = activo.sucursal;
 
                     // reinicia campos
                     this.cbMotivo.SelectedIndex = -1;
@@ -125,6 +159,8 @@ namespace Activos.GUIs.AltaActivos
 
                 bool resultado;
 
+                List<Modelos.Activos> activoT = this._activosNegocio.getActivo((long)this._idActivo);
+
                 resultado = this._activosNegocio.bajaActivo(this._idActivo, idMotivo, motivo, detalle, fecha, Modelos.Login.idUsuario);
 
                 if (resultado)
@@ -132,6 +168,53 @@ namespace Activos.GUIs.AltaActivos
                     MessageBox.Show("Movimiento realizado correctamente", "Activos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     string mot = ((Modelos.MotivosBaja)this.cbMotivo.SelectedItem).motivo;
+
+                    if (motivo.Equals("R"))
+                    {
+                        // manda a abrir el formulario de Reparacion
+                        frmReporteRepara form = new frmReporteRepara();
+
+                        form._activos = activoT;
+                        form._empresa = Modelos.Login.empresa;
+                        form._logo = this._responsivasNegocio.obtieneLogo("reportes");
+
+                        List<Modelos.PersonaResponsivas> res = new List<Modelos.PersonaResponsivas>();
+                        res.Add(new Modelos.PersonaResponsivas {nombre = this._usuario, sucursal = this._sucursal });
+                        form._responsables = res;
+
+                        form._fecha = fecha;
+                        form._movimiento = detalle;
+                        form._activacion = string.Empty;
+
+                        form.Show();
+
+                        // bitacora
+                        this._catalogosNegocio.generaBitacora(
+                            "Se genero la vista previa del informe de Reparacion, ACTIVO: " + this._idActivo, "ACTIVOS");
+                    }
+
+                    if (motivo.Equals("B"))
+                    {
+                        // manda a abrir el formulario de Reparacion
+                        frmReporteBaja form = new frmReporteBaja();
+
+                        form._activos = activoT;
+                        form._empresa = Modelos.Login.empresa;
+                        form._logo = this._responsivasNegocio.obtieneLogo("reportes");
+
+                        List<Modelos.PersonaResponsivas> res = new List<Modelos.PersonaResponsivas>();
+                        res.Add(new Modelos.PersonaResponsivas { nombre = this._usuario, sucursal = this._sucursal });
+                        form._responsables = res;
+
+                        form._fecha = fecha;
+                        form._movimiento = detalle;
+
+                        form.Show();
+
+                        // bitacora
+                        this._catalogosNegocio.generaBitacora(
+                            "Se genero la vista previa del informe de Baja, ACTIVO: " + this._idActivo, "ACTIVOS");
+                    }
 
                     // bitacora
                     this._catalogosNegocio.generaBitacora(

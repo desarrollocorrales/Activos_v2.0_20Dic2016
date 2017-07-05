@@ -59,7 +59,7 @@
             // 
             // impresoraBindingSource
             // 
-            this.impresoraBindingSource.DataSource = typeof(Activos.Modelos.Impresora);
+            this.impresoraBindingSource.DataSource = typeof(Modelos.Impresora);
             // 
             // gridView1
             // 

@@ -467,7 +467,7 @@ namespace Activos.Datos
 
                             ent.status = Convert.ToString(res.reader["status"]);
 
-                            ent.nom_suc = ent.sucursal + " - " + ent.nombre;
+                            ent.nom_suc = ent.nombre + " - " + ent.sucursal;
 
                             result.Add(ent);
                         }
@@ -703,7 +703,7 @@ namespace Activos.Datos
                         "FROM activos_personas pe " +
                         "LEFT JOIN activos_puesto p ON (pe.idpuesto = p.idpuesto) " +
                         "LEFT JOIN activos_sucursales s ON (p.idsucursal = s.idsucursal) " +
-                        "WHERE pe.status = 'A' and pe.nombrecompleto like @nombre " + (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal + " " : string.Empty) +
+                        "WHERE pe.status = 'A' and replace(pe.nombrecompleto, '&', ' ') like @nombre " + (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal + " " : string.Empty) +
                         "order by pe.nombrecompleto ";
 
             // define conexion con la cadena de conexion
@@ -760,7 +760,7 @@ namespace Activos.Datos
                         "FROM activos_personas pe " +
                         "LEFT JOIN activos_puesto p ON (pe.idpuesto = p.idpuesto) " +
                         "LEFT JOIN activos_sucursales s ON (p.idsucursal = s.idsucursal) " +
-                        "WHERE pe.status = 'A' and pe.nombrecompleto like @nombre and s.idsucursal = @idSucursal " +
+                        "WHERE pe.status = 'A' and replace(pe.nombrecompleto, '&', ' ') like @nombre and s.idsucursal = @idSucursal " +
                         "order by pe.nombrecompleto ";
 
             // define conexion con la cadena de conexion
@@ -1928,7 +1928,7 @@ namespace Activos.Datos
                         "from activos_personas p " +
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
-                        "where p.nombrecompleto like @nombre and p.status = @status" +
+                        "where replace(p.nombrecompleto, '&', ' ') like @nombre and p.status = @status" +
                 (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) + 
                 " order by p.nombrecompleto";
 
@@ -2250,7 +2250,7 @@ namespace Activos.Datos
             List<MotivosBaja> result = new List<MotivosBaja>();
             MotivosBaja ent;
 
-            string sql = "select idmotivobaja, motivo, descripcion, clave, status from activos_motivosbaja";
+            string sql = "select idmotivobaja, motivo, descripcion, clave, status from activos_motivosbaja where clave != 'A'";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -2586,8 +2586,6 @@ namespace Activos.Datos
         {
             MySqlTransaction trans;
 
-            string sql = "delete from ";
-
             bool result = true;
 
             int rows = 0;
@@ -2663,7 +2661,7 @@ namespace Activos.Datos
                         "left join activos_personas p on (a.idpersona = p.idpersona) " +
                         "left join activos_puesto pu on (p.idpuesto = pu.idpuesto) " +
                         "left join activos_sucursales s on (pu.idsucursal = s.idsucursal) " +
-                        "WHERE p.status = 'A' and p.nombrecompleto like @nombre "+
+                        "WHERE a.status = 'A' and p.nombrecompleto like @nombre "+
                 (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty);
 
             // define conexion con la cadena de conexion
@@ -3050,7 +3048,7 @@ namespace Activos.Datos
             return result;
         }
 
-
+        // obtiene sucursales por persona
         public string getSucursales(int? idPersona)
         {
             string result = string.Empty;
@@ -3096,7 +3094,7 @@ namespace Activos.Datos
             return result;
         }
 
-
+        // genera bitacora
         public void generaBitacora(string detalle, string modulo)
         {
             int rows = 0;
@@ -3126,6 +3124,7 @@ namespace Activos.Datos
 
         }
 
+        // obtiene la direccion ip de la maquina
         private string getIpNameMachine()
         {
             // local ip
@@ -3145,6 +3144,46 @@ namespace Activos.Datos
             }
 
             return Environment.MachineName + (string.IsNullOrEmpty(localIP) ? string.Empty : ":" + localIP);
+        }
+
+        // obtiene la fecha del servidor
+        public string getFechaServidor()
+        {
+            string result = string.Empty;
+
+            string sql = "select now()";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        while (res.reader.Read())
+                        {
+                            result = Convert.ToString(res.reader[0]);
+                        }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            DateTime dt = DateTime.Parse(result);
+
+            return dt.ToString("yyyy-MM-dd");
         }
     }
 }

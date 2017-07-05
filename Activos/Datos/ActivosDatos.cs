@@ -161,7 +161,7 @@ namespace Activos.Datos
         }
 
         // busqueda de activos por tipo y nombre
-        public List<Modelos.Activos> getBuscaActivos(int idArea, int idTipo, string nombre, string status)
+        public List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea, int idTipo, string nombre, string status)
         {
             List<Modelos.Activos> result = new List<Modelos.Activos>();
             Modelos.Activos ent;
@@ -173,23 +173,9 @@ namespace Activos.Datos
                 "from activos_activos a " +
                 "left join (select idactivo from activos_responsivasdetalle where status = 'A') s on (a.idactivo = s.idactivo) " +
                 "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
-                "where a.status = @status and s.idactivo is null and a.idtipo = @idTipo and a.nombrecorto like @nombre and a.idarea = @idArea " + 
-                "order by ar.nombre, t.nombre, a.nombrecorto";
-
-            /*
-             * 
-                string sql =
-                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo, " +
-                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
-                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
-                "from activos_activos a " +
-                "left join activos_responsivasdetalle rd on (a.idactivo = rd.idactivo) " +
-                "left join activos_areas ar on (a.idarea = ar.idarea) " +
-                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
-                "where a.status = @status and rd.idactivo is null and a.idtipo = @idTipo and a.nombrecorto like @nombre";
-
-             * */
+                "where a.status = @status and s.idactivo is null ";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -201,11 +187,33 @@ namespace Activos.Datos
                 {
                     cmd.Connection = conn;
 
-                    // define parametros
-                    cmd.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
-                    cmd.Parameters.AddWithValue("@idTipo", idTipo);
                     cmd.Parameters.AddWithValue("@status", status);
-                    cmd.Parameters.AddWithValue("@idArea", idArea);
+
+                    if (idSucursal != -1)
+                    {
+                        sql += " and s.idsucursal = @idSucursal ";
+                        cmd.Parameters.AddWithValue("@idSucursal", idSucursal);
+                    }
+
+                    if (idArea != -1)
+                    {
+                        sql += " and a.idarea = @idArea ";
+                        cmd.Parameters.AddWithValue("@idArea", idArea);
+                    }
+
+                    if (idTipo != -1)
+                    {
+                        sql += " and a.idtipo = @idTipo ";
+                        cmd.Parameters.AddWithValue("@idTipo", idTipo);
+                    }
+
+                    if (!string.IsNullOrEmpty(nombre))
+                    {
+                        sql += " and a.nombrecorto like @nombre ";
+                        cmd.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                    }
+
+                    sql += " order by ar.nombre, t.nombre, a.nombrecorto";
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
 
@@ -354,7 +362,7 @@ namespace Activos.Datos
         }
 
         // busca activos por tipo y nombre
-        public List<ActivosDesc> getBuscaActivosResp(int idArea, int idTipo, string nombre, string status)
+        public List<ActivosDesc> getBuscaActivosResp(int idSucursal, int idArea, int idTipo, string nombre, string status)
         {
             List<Modelos.ActivosDesc> result = new List<Modelos.ActivosDesc>();
             Modelos.ActivosDesc ent;
@@ -375,8 +383,7 @@ namespace Activos.Datos
                 "left join activos_areas ar on (a.idarea = ar.idarea)  " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
-                "where a.status = @status and a.idtipo = @idTipo and a.nombrecorto like @nombre and a.idarea = @idArea " +
-                "order by ar.nombre, t.nombre, a.nombrecorto";
+                "where a.status = @status ";
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -388,11 +395,34 @@ namespace Activos.Datos
                 {
                     cmd.Connection = conn;
 
-                    // define parametros
-                    cmd.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
-                    cmd.Parameters.AddWithValue("@idTipo", idTipo);
                     cmd.Parameters.AddWithValue("@status", status);
-                    cmd.Parameters.AddWithValue("@idArea", idArea);
+
+                    if (idSucursal != -1)
+                    {
+                        sql += " and s.idsucursal = @idSucursal ";
+                        cmd.Parameters.AddWithValue("@idSucursal", idSucursal);
+                    }
+
+                    if (idArea != -1)
+                    {
+                        sql += " and a.idarea = @idArea ";
+                        cmd.Parameters.AddWithValue("@idArea", idArea);
+                    }
+
+                    if (idTipo != -1)
+                    {
+                        sql += " and a.idtipo = @idTipo ";
+                        cmd.Parameters.AddWithValue("@idTipo", idTipo);
+                    }
+
+                    if (!string.IsNullOrEmpty(nombre))
+                    {
+                        sql += " and a.nombrecorto like @nombre "; 
+                        cmd.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                    }
+
+                    sql += " order by s.nombre, ar.nombre, t.nombre, a.nombrecorto";
+
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
 
@@ -570,8 +600,9 @@ namespace Activos.Datos
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
                 "where a.status = 'A' and {0}" +
-                (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) + 
-                " LIKE @usuario order by {0}", busqueda.Equals("usuario") ? "u." + busqueda : "p." + busqueda);
+                (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty) +
+                " LIKE @usuario order by usuario, area, tipo, descripcion",
+                busqueda.Equals("usuario") ? "u." + busqueda : "replace(p." + busqueda + ", '&', ' ')");
 
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
@@ -1084,7 +1115,7 @@ namespace Activos.Datos
                                 ent.tipo = Convert.ToString(res.reader["tipo"]);
 
                                 ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
-                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---").Trim();
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Trim();
                                 ent.fechaAlta = Convert.ToString(res.reader["fechaalta"]);
                                 ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
                                 ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
@@ -1366,10 +1397,8 @@ namespace Activos.Datos
                 "left join activos_areas ar on (a.idarea = ar.idarea) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
                 "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
-                "where s.idsucursal = @idSucu and ar.idarea = @idArea and a.status = 'A' and (rd.status = 'B' or rd.idresponsiva is null) " +
-                "order by ar.nombre, t.nombre, a.nombrecorto ";
-
-
+                "where s.idsucursal = @idSucursal"; 
+            
             // define conexion con la cadena de conexion
             using (var conn = this._conexion.getConexion())
             {
@@ -1381,8 +1410,17 @@ namespace Activos.Datos
                     cmd.Connection = conn;
 
                     // define parametros
-                    cmd.Parameters.AddWithValue("@idSucu", idSucursal);
-                    cmd.Parameters.AddWithValue("@idArea", idArea);
+                    cmd.Parameters.AddWithValue("@idSucursal", idSucursal);
+
+                    if (idArea != -1)
+                    {
+                        sql += " and a.idarea = @idArea ";
+                        cmd.Parameters.AddWithValue("@idArea", idArea);
+                    }
+
+                    sql += " and a.status = 'A' and (rd.status = 'B' or rd.idresponsiva is null) " +
+                            "and rd.idactivo not in (select idactivo from activos_responsivasdetalle where status = 'A' and idactivo = rd.idactivo) " + 
+                            "order by ar.nombre, t.nombre, a.nombrecorto ";
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
 
@@ -1462,6 +1500,335 @@ namespace Activos.Datos
 
                     // define parametros
                     cmd.Parameters.AddWithValue("@idActivo", idActivo);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Activos();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
+                                ent.tipo = Convert.ToString(res.reader["tipo"]);
+
+                                ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---").Trim();
+                                ent.fechaAlta = Convert.ToString(res.reader["fechaalta"]);
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
+
+                                if (res.reader["idusuarioalta"] is DBNull) ent.idUsuarioAlta = null;
+                                else ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+
+                                if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
+                                else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
+
+                                if (res.reader["fechamodificacion"] is DBNull) ent.fechaModificacion = string.Empty;
+                                else ent.fechaModificacion = Convert.ToString(res.reader["fechamodificacion"]);
+
+                                if (res.reader["costo"] is DBNull) ent.costo = null;
+                                else ent.costo = Convert.ToDecimal(res.reader["costo"]);
+
+                                ent.status = Convert.ToString(res.reader["status"]);
+
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene los activos de una responsiva
+        public List<Modelos.Activos> getBuscaActivos(int idResponsiva)
+        {
+            
+            List<Modelos.Activos> result = new List<Modelos.Activos>();
+            Modelos.Activos ent;
+
+            string sql =
+                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo, " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
+                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, m.motivo as status " +
+                "from activos_responsivasdetalle rd " +
+                "left join activos_activos a on (rd.idactivo = a.idactivo) " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "left join activos_motivosbaja m on (rd.status = m.clave) " +
+                "where idresponsiva = @idResponsiva order by ar.nombre, t.nombre, a.nombrecorto";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idResponsiva", idResponsiva);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Activos();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
+                                ent.tipo = Convert.ToString(res.reader["tipo"]);
+
+                                ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---").Trim();
+                                ent.fechaAlta = Convert.ToString(res.reader["fechaalta"]);
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
+
+                                if (res.reader["idusuarioalta"] is DBNull) ent.idUsuarioAlta = null;
+                                else ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+
+                                if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
+                                else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
+
+                                if (res.reader["fechamodificacion"] is DBNull) ent.fechaModificacion = string.Empty;
+                                else ent.fechaModificacion = Convert.ToString(res.reader["fechamodificacion"]);
+
+                                if (res.reader["costo"] is DBNull) ent.costo = null;
+                                else ent.costo = Convert.ToDecimal(res.reader["costo"]);
+
+                                ent.status = Convert.ToString(res.reader["status"]);
+
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene la descripcion de un activo
+        public ActivosDesc getActivosDesc(int idActivo)
+        {
+            Modelos.ActivosDesc ent = new ActivosDesc();
+
+            string sql = 
+                "select a.idactivo, r.idpersona, p.nombrecompleto as usuario, a.idarea, ar.nombre as area,  " +
+                        "s.idsucursal, s.nombre as sucursal, a.idtipo, t.nombre as tipo, a.nombrecorto, " +
+                        "a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, a.idusuarioalta, " +
+                        "a.fechamodificacion, a.idusuariomodifica, a.costo, a.status " +
+                "from activos_activos a " +
+                "left join  " +
+                "( select idresponsiva, idactivo, status from activos_responsivasdetalle  " +
+                "	where status != 'B' GROUP BY idresponsiva, idactivo, status " +
+                ") sel on (a.idactivo = sel.idactivo) " +
+                "left join activos_responsivas r on (sel.idresponsiva = r.idresponsiva) " +
+                "left join activos_personas p on (r.idpersona = p.idpersona)  " +
+                "left join activos_usuarios u on (p.idpersona = u.idpersona)  " +
+                "left join activos_areas ar on (a.idarea = ar.idarea)  " +
+                "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "where a.idactivo = @idActivo";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idActivo", idActivo);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.ActivosDesc();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.tipo = Convert.ToString(res.reader["tipo"]);
+                                ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
+
+                                ent.idSucursal = Convert.ToInt16(res.reader["idsucursal"]);
+                                ent.sucursal = Convert.ToString(res.reader["sucursal"]);
+
+                                ent.usuario = Convert.ToString(res.reader["usuario"]);
+
+                                ent.usuario = ent.usuario.Replace("&", " ");
+
+                                ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]);
+
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
+
+                                ent.fecha = Convert.ToString(res.reader["fechaalta"]);
+
+                                if (res.reader["costo"] is DBNull) ent.costo = null;
+                                else ent.costo = Convert.ToDecimal(res.reader["costo"]);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+                }
+            }
+
+            return ent;
+        }
+
+        // regresa los activos segun un id sin tomar en cuenta sus estatus
+        public List<Modelos.Activos> getActivoSinEstatus(long idActivo)
+        {
+            List<Modelos.Activos> result = new List<Modelos.Activos>();
+            Modelos.Activos ent;
+
+            string sql =
+                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo, " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
+                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, m.motivo as status " +
+                "from activos_activos a " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "left join activos_motivosbaja m on (a.status = m.clave) " +
+                "where a.idactivo = @idActivo order by ar.nombre, t.nombre, a.nombrecorto";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@idActivo", idActivo);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Activos();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
+                                ent.tipo = Convert.ToString(res.reader["tipo"]);
+
+                                ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---").Trim();
+                                ent.fechaAlta = Convert.ToString(res.reader["fechaalta"]);
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
+
+                                if (res.reader["idusuarioalta"] is DBNull) ent.idUsuarioAlta = null;
+                                else ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+
+                                if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
+                                else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
+
+                                if (res.reader["fechamodificacion"] is DBNull) ent.fechaModificacion = string.Empty;
+                                else ent.fechaModificacion = Convert.ToString(res.reader["fechamodificacion"]);
+
+                                if (res.reader["costo"] is DBNull) ent.costo = null;
+                                else ent.costo = Convert.ToDecimal(res.reader["costo"]);
+
+                                ent.status = Convert.ToString(res.reader["status"]);
+
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
+
+        // obtiene los activos del traspaso seleccionado
+        public List<Modelos.Activos> getActivos(string fecha, int consectraspaso)
+        {
+            List<Modelos.Activos> result = new List<Modelos.Activos>();
+            Modelos.Activos ent;
+
+            string sql =
+                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo, " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
+                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, m.motivo as status " +
+                "from activos_cambio c " +
+                "left join activos_activos a on (c.idactivo = a.idactivo) " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "left join activos_motivosbaja m on (a.status = m.clave) " +
+                "where date(fecha) = @fecha and consectraspaso = @consec order by ar.nombre, t.nombre, a.nombrecorto";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+                    cmd.Parameters.AddWithValue("@fecha", fecha);
+                    cmd.Parameters.AddWithValue("@consec", consectraspaso);
 
                     ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
 

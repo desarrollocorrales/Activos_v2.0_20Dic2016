@@ -60,7 +60,7 @@
             // 
             // puestosBindingSource
             // 
-            this.puestosBindingSource.DataSource = typeof(Activos.Modelos.Puestos);
+            this.puestosBindingSource.DataSource = typeof(Modelos.Puestos);
             // 
             // gridView1
             // 

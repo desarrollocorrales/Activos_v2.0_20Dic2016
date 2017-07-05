@@ -265,9 +265,6 @@ namespace Activos.Negocio
             return this._catalogosDatos.modificaTipo(idTipo, nombre, marca, modelo, serie, color, costo, factura, fechaCompra);
         }
 
-
-
-
         /* ********** P E R S O N A S *********** */
         public bool altaPersona(string nombre, int idPuesto, string puesto)
         {
@@ -388,6 +385,12 @@ namespace Activos.Negocio
         public void generaBitacora(string detalle, string modulo)
         {
             this._catalogosDatos.generaBitacora(detalle, modulo);
+        }
+
+
+        public string getFechaServidor()
+        {
+            return this._catalogosDatos.getFechaServidor();
         }
     }
 }

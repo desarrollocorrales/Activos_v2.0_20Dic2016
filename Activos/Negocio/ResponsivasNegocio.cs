@@ -106,16 +106,35 @@ namespace Activos.Negocio
             return result;
         }
 
-
         public Modelos.Logo obtieneLogo(string clave)
         {
             return this._responsivasDatos.obtieneLogo(clave);
         }
 
-
         public List<Modelos.ResponsivasSucursal> getRespSuc(int idSuc, bool bajas, bool repara)
         {
             return this._responsivasDatos.getRespSuc(idSuc, bajas, repara);
+        }
+
+        public List<Modelos.Responsivas> getResponsivas(string tipoCons)
+        {
+            return this._responsivasDatos.getResponsivas(tipoCons);
+        }
+
+        public List<Modelos.Responsivas> buscaRespXSuc(int idSuc)
+        {
+            return this._responsivasDatos.buscaRespXSuc(idSuc);
+        }
+
+        public List<Modelos.Responsivas> getRespPersonas(int? idPresona)
+        {
+            return this._responsivasDatos.getRespPersonas(idPresona);
+        }
+
+
+        public List<Modelos.Traspasos> getTraspasos(string fecha)
+        {
+            return this._responsivasDatos.getTraspasos(fecha);
         }
     }
 }

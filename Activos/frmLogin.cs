@@ -33,10 +33,16 @@ namespace Activos
 
                 // validaciones
                 if (string.IsNullOrEmpty(this.tbUsuario.Text))
+                {
+                    this.ActiveControl = this.tbUsuario;
                     throw new Exception("Llene el campo Usuario");
+                }
 
                 if (string.IsNullOrEmpty(this.tbPass.Text))
+                {
+                    this.ActiveControl = this.tbPass;
                     throw new Exception("Llene el campo Contraseña");
+                }
 
                 Response resp = this._catalogosNegocio.validaAcceso(this.tbUsuario.Text, this.tbPass.Text);
 

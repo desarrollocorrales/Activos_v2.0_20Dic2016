@@ -49,7 +49,7 @@
             // 
             // ResponsivasSucursalBindingSource
             // 
-            this.ResponsivasSucursalBindingSource.DataSource = typeof(Activos.Modelos.ResponsivasSucursal);
+            this.ResponsivasSucursalBindingSource.DataSource = typeof(Modelos.ResponsivasSucursal);
             // 
             // frmReporteResponsivasSucursal
             // 

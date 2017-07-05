@@ -40,9 +40,9 @@ namespace Activos.Negocio
         }
 
 
-        public List<Modelos.Activos> getBuscaActivos(int idArea, int idTipo, string nombre, string status)
+        public List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea, int idTipo, string nombre, string status)
         {
-            return this._activosDatos.getBuscaActivos(idArea, idTipo, nombre, status);
+            return this._activosDatos.getBuscaActivos(idSucursal, idArea, idTipo, nombre, status);
         }
 
 
@@ -52,9 +52,9 @@ namespace Activos.Negocio
         }
 
 
-        public List<ActivosDesc> getBuscaActivosResp(int idArea, int idTipo, string nombre, string status)
+        public List<ActivosDesc> getBuscaActivosResp(int idSucursal, int idArea, int idTipo, string nombre, string status)
         {
-            return this._activosDatos.getBuscaActivosResp(idArea, idTipo, nombre, status);
+            return this._activosDatos.getBuscaActivosResp(idSucursal, idArea, idTipo, nombre, status);
         }
 
 
@@ -106,34 +106,49 @@ namespace Activos.Negocio
             return this._activosDatos.getBuscaActivos(idActivos);
         }
 
+        public List<Modelos.Activos> getBuscaActivosRepBaja(int idResponsiva)
+        {
+            return this._activosDatos.getBuscaActivos(idResponsiva);
+        }
 
         public List<Modelos.Activos> getBuscaActivosGrupo(int idGrupo)
         {
             return this._activosDatos.getBuscaActivosGrupo(idGrupo);
         }
 
-
         public List<Modelos.Activos> getBuscaActivosPersona(int idPersona, bool isBaja, bool isRepara)
         {
             return this._activosDatos.getBuscaActivosPersona(idPersona, isBaja, isRepara);
         }
-
 
         public List<Cambios> getCambios(int idActivo)
         {
             return this._activosDatos.getCambios(idActivo);
         }
 
-
         public List<Modelos.Activos> getBuscaActivos(int idSucursal, int idArea)
         {
             return this._activosDatos.getBuscaActivos(idSucursal, idArea);
         }
 
-
         public List<Modelos.Activos> getActivo(long idActivo)
         {
             return this._activosDatos.getActivo(idActivo);
+        }
+
+        public ActivosDesc getActivoDesc(int idActivo)
+        {
+            return this._activosDatos.getActivosDesc(idActivo);
+        }
+
+        public List<Modelos.Activos> getActivoSinEstatus(long idActivo)
+        {
+            return this._activosDatos.getActivoSinEstatus(idActivo);
+        }
+
+        public List<Modelos.Activos> getActivosTras(string fecha, int consectraspaso)
+        {
+            return this._activosDatos.getActivos(fecha, consectraspaso);
         }
     }
 }

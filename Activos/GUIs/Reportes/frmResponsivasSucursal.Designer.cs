@@ -131,7 +131,7 @@
             // 
             // responsivasSucursalBindingSource
             // 
-            this.responsivasSucursalBindingSource.DataSource = typeof(Activos.Modelos.ResponsivasSucursal);
+            this.responsivasSucursalBindingSource.DataSource = typeof(Modelos.ResponsivasSucursal);
             // 
             // gridView1
             // 

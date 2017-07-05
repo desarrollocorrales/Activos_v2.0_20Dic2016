@@ -80,7 +80,7 @@ namespace Activos.GUIs.Responsivas
                 // cambia activos
                 foreach (Modelos.Activos ac in this._activos)
                 {
-                    string descripcion = ac.descripcion.Replace("---", ";");
+                    string descripcion = ac.descripcion.Replace("&", ";");
                     string[] array = descripcion.Split(';');
 
                     descripcion = (!string.IsNullOrEmpty(array[0]) ? " Marca: " + array[0] + ";" : string.Empty) +
@@ -127,7 +127,7 @@ namespace Activos.GUIs.Responsivas
 
                 form._empresa = Modelos.Login.empresa;
 
-                form.ShowDialog();
+                form.Show();
 
 
                 // bitacora

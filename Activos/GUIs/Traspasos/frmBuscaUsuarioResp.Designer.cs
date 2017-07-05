@@ -172,7 +172,7 @@
             // 
             // responsivasBindingSource
             // 
-            this.responsivasBindingSource.DataSource = typeof(Activos.Modelos.Responsivas);
+            this.responsivasBindingSource.DataSource = typeof(Modelos.Responsivas);
             // 
             // gridView2
             // 
@@ -196,8 +196,14 @@
             // 
             // colidResponsiva
             // 
+            this.colidResponsiva.AppearanceCell.Options.UseTextOptions = true;
+            this.colidResponsiva.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colidResponsiva.Caption = "Folio";
             this.colidResponsiva.FieldName = "idResponsiva";
             this.colidResponsiva.Name = "colidResponsiva";
+            this.colidResponsiva.Visible = true;
+            this.colidResponsiva.VisibleIndex = 0;
+            this.colidResponsiva.Width = 40;
             // 
             // colidUsuario1
             // 
@@ -218,7 +224,7 @@
             this.colfecha.OptionsColumn.AllowMove = false;
             this.colfecha.OptionsColumn.ReadOnly = true;
             this.colfecha.Visible = true;
-            this.colfecha.VisibleIndex = 0;
+            this.colfecha.VisibleIndex = 1;
             this.colfecha.Width = 110;
             // 
             // colfechaBaja
@@ -235,7 +241,7 @@
             this.colobservaciones.OptionsColumn.AllowMove = false;
             this.colobservaciones.OptionsColumn.ReadOnly = true;
             this.colobservaciones.Visible = true;
-            this.colobservaciones.VisibleIndex = 1;
+            this.colobservaciones.VisibleIndex = 2;
             this.colobservaciones.Width = 402;
             // 
             // colstatus
@@ -271,7 +277,7 @@
             // 
             // activosBindingSource
             // 
-            this.activosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
+            this.activosBindingSource.DataSource = typeof(Modelos.Activos);
             // 
             // gridView3
             // 
@@ -437,6 +443,7 @@
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.Size = new System.Drawing.Size(330, 30);
             this.tbUsuario.TabIndex = 5;
+            this.tbUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbUsuario_KeyPress);
             // 
             // tbUsuarioSeleccionado
             // 

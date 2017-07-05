@@ -15,6 +15,7 @@ namespace Activos.GUIs.AltaActivos
         ICatalogosNegocio _catalogosNegocio;
         IActivosNegocio _activosNegocio;
 
+        private Modelos.ActivosDesc _activoAntes;
 
         private Modelos.Tipos _tipos;
         private int? _idActivo = null;
@@ -97,11 +98,11 @@ namespace Activos.GUIs.AltaActivos
                     this._tipos = this._catalogosNegocio.getTipo(form._idTipo);
 
                     // muestra los datos del activo
-                    Modelos.ActivosDesc activo = form._activoSelecc;
+                    this._activoAntes = form._activoSelecc;
 
-                    string[] array = activo.descripcion.Split('&');
+                    string[] array = this._activoAntes.descripcion.Split('&');
 
-                    this.tbNombre.Text = activo.nombreCorto;
+                    this.tbNombre.Text = this._activoAntes.nombreCorto;
 
                     this.tbMarca.Text = array[0];
                     this.tbModelo.Text = array[1];
@@ -111,30 +112,30 @@ namespace Activos.GUIs.AltaActivos
                     this.tbFactura.Text = array[5];
                     this.dtpFecha.Text = array[6];
                     this.tbDescripcion.Text = array[7];
-                    this.tbUsuario.Text = activo.usuario;
+                    this.tbUsuario.Text = this._activoAntes.usuario;
 
-                    this.lbNumetiqueta.Text = activo.numEtiqueta;
-                    this.lbCveActivo.Text = activo.claveActivo;
+                    this.lbNumetiqueta.Text = this._activoAntes.numEtiqueta;
+                    this.lbCveActivo.Text = this._activoAntes.claveActivo;
 
-                    this._idActivo = activo.idActivo;
+                    this._idActivo = this._activoAntes.idActivo;
 
-                    this.cmbTipo.SelectedValue = activo.idTipo;
-                    this.cmbSucursal.SelectedValue = activo.idSucursal;
-                    this.cargaAreas(activo.idSucursal);
-                    this.cmbArea.SelectedValue = activo.idArea;
+                    this.cmbTipo.SelectedValue = this._activoAntes.idTipo;
+                    this.cmbSucursal.SelectedValue = this._activoAntes.idSucursal;
+                    this.cargaAreas(this._activoAntes.idSucursal);
+                    this.cmbArea.SelectedValue = this._activoAntes.idArea;
 
-                    this._idTipoAnt = activo.idTipo;
-                    this._idAreaAnt = activo.idArea;
+                    this._idTipoAnt = this._activoAntes.idTipo;
+                    this._idAreaAnt = this._activoAntes.idArea;
 
-                    if (!string.IsNullOrEmpty(activo.usuario))
+                    if (!string.IsNullOrEmpty(this._activoAntes.usuario))
                     {
                         MessageBox.Show(
-                            "No es permitido cambiar la Sucursal ni el Área\n" + 
+                            "No es permitido cambiar la Sucursal\n" + 
                             "El Activo pertenece a una responsiva\n" +
                             "Para realizar el cambio debe ser por medio de un traspaso", "Activos",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        this.cmbArea.Enabled = false;
+                        // this.cmbArea.Enabled = false;
                         this.cmbSucursal.Enabled = false;
                     }
                 }
@@ -211,10 +212,15 @@ namespace Activos.GUIs.AltaActivos
 
 
                 // bitacora
+                /*
                 this._catalogosNegocio.generaBitacora(
                     "Activo Modificado: " + this._idActivo + " nuevos datos: " + nombre + "/" + descripcion +
                     "/ tipo: " + tipo + "/ area: " + areas, "ACTIVOS");
+                */
 
+                this._catalogosNegocio.generaBitacora(
+                "Activo Modificado: " + this._idActivo + " datos anteriores: " + this._activoAntes.nombreCorto + "/" + this._activoAntes.descripcion +
+                "/ tipo: " + this._activoAntes.tipo + "/ area: " + this._activoAntes.area, "ACTIVOS");
             }
             catch (Exception Ex)
             {

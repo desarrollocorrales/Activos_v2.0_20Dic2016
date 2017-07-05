@@ -34,6 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
+            this.btnAgregaSucursal = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -55,7 +56,7 @@
             this.cmbSucursal.FormattingEnabled = true;
             this.cmbSucursal.Location = new System.Drawing.Point(124, 83);
             this.cmbSucursal.Name = "cmbSucursal";
-            this.cmbSucursal.Size = new System.Drawing.Size(425, 33);
+            this.cmbSucursal.Size = new System.Drawing.Size(388, 33);
             this.cmbSucursal.TabIndex = 15;
             // 
             // label3
@@ -88,12 +89,25 @@
             this.tbNombre.Size = new System.Drawing.Size(425, 33);
             this.tbNombre.TabIndex = 12;
             // 
+            // btnAgregaSucursal
+            // 
+            this.btnAgregaSucursal.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregaSucursal.BackgroundImage")));
+            this.btnAgregaSucursal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregaSucursal.Location = new System.Drawing.Point(518, 84);
+            this.btnAgregaSucursal.Name = "btnAgregaSucursal";
+            this.btnAgregaSucursal.Size = new System.Drawing.Size(31, 31);
+            this.btnAgregaSucursal.TabIndex = 187;
+            this.btnAgregaSucursal.Tag = "20";
+            this.btnAgregaSucursal.UseVisualStyleBackColor = true;
+            this.btnAgregaSucursal.Click += new System.EventHandler(this.btnAgregaSucursal_Click);
+            // 
             // frmModifArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(561, 202);
+            this.Controls.Add(this.btnAgregaSucursal);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbSucursal);
             this.Controls.Add(this.label3);
@@ -117,5 +131,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbNombre;
+        private System.Windows.Forms.Button btnAgregaSucursal;
     }
 }

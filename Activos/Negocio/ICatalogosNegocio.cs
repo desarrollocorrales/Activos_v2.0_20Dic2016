@@ -131,5 +131,7 @@ namespace Activos.Negocio
         string getSucursal(int? idPersona);
 
         void generaBitacora(string detalle, string modulo);
+
+        string getFechaServidor();
     }
 }

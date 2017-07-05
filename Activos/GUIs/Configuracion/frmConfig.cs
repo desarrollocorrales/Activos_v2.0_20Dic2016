@@ -390,6 +390,7 @@ namespace Activos.GUIs.Imagenes
 
                     MessageBox.Show("Permisos actualizados correctamente", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    Modelos.Login.permisos = this._permisosNegocio.getPermisosUsuario(Modelos.Login.idUsuario);
                 }
                 else
                     throw new Exception("Problemas al actualizar los permisos");

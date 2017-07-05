@@ -57,11 +57,11 @@
             // 
             // ResponsivasBindingSource
             // 
-            this.ResponsivasBindingSource.DataSource = typeof(Activos.Modelos.Responsivas);
+            this.ResponsivasBindingSource.DataSource = typeof(Modelos.Responsivas);
             // 
             // ActivosBindingSource
             // 
-            this.ActivosBindingSource.DataSource = typeof(Activos.Modelos.Activos);
+            this.ActivosBindingSource.DataSource = typeof(Modelos.Activos);
             // 
             // frmResponsivaReporte
             // 

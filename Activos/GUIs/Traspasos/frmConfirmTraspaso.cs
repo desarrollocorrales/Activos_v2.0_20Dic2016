@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
+using Activos.GUIs.Areas;
 
 namespace Activos.GUIs.Traspasos
 {
@@ -59,11 +60,16 @@ namespace Activos.GUIs.Traspasos
                 this.tbModelo.Text = array[1];
                 this.tbNumSerie.Text = array[2];
                 this.tbColor.Text = array[3];
-                this.tbFactura.Text = array[4];
-                this.tbCosto.Text = array[5];
+                this.tbFactura.Text = array[5];
+                this.tbCosto.Text = array[4];
                 this.tbDescripcion.Text = array[6];
 
                 this.tbUsuario.Text = _usuario;
+
+                int tag = Convert.ToInt16(this.btnAgregaArea.Tag);
+
+                if (!Modelos.Login.permisos.Contains(tag))
+                    this.btnAgregaArea.Enabled = false;
             }
             catch (Exception Ex)
             {
@@ -146,6 +152,23 @@ namespace Activos.GUIs.Traspasos
                 this.gbArea.Enabled = true;
             else
                 this.gbArea.Enabled = false;
+        }
+
+        private void btnAgregaArea_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmAreas form = new frmAreas();
+
+                form.ShowDialog();
+
+                if(this.cmbSucursal.SelectedIndex != -1)
+                this.cmbSucursal_SelectionChangeCommitted(null, null);
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Confirmar Traspaso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

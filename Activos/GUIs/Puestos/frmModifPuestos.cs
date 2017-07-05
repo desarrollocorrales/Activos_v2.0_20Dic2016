@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
+using Activos.GUIs.Sucursales;
 
 namespace Activos.GUIs.Puestos
 {
@@ -44,6 +45,13 @@ namespace Activos.GUIs.Puestos
 
             // imprime el nombre
             this.tbNombre.Text = this._nombre;
+
+
+            int t = Convert.ToInt16(this.btnAgregaPuesto.Tag);
+
+            if (!Modelos.Login.permisos.Contains(t))
+                this.btnAgregaPuesto.Enabled = false;
+
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -79,6 +87,26 @@ namespace Activos.GUIs.Puestos
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message, "Modificar Puestos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnAgregaPuesto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmSucursales form = new frmSucursales();
+
+                form.ShowDialog();
+
+                // llena el catalogo de sucursales disponibles
+                this.cmbSucursal.DataSource = this._catalogosNegocio.getSucursales("A");
+                this.cmbSucursal.DisplayMember = "nombre";
+                this.cmbSucursal.ValueMember = "idSucursal";
+                this.cmbSucursal.SelectedIndex = -1;
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Puestos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

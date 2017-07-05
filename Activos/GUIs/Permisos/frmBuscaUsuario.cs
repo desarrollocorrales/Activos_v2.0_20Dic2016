@@ -94,5 +94,18 @@ namespace Activos.GUIs.Permisos
             }
         
         }
+
+        private void tbUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this.btnBuscar_Click(null, null);
+            }
+        }
+
+        private void frmBuscaUsuario_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = this.tbUsuario;
+        }
     }
 }

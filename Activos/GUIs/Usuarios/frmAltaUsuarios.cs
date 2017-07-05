@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Activos.Negocio;
 using Activos.Modelos;
+using Activos.GUIs.Personas;
 
 namespace Activos.GUIs.Usuarios
 {
@@ -26,6 +27,11 @@ namespace Activos.GUIs.Usuarios
         {
             try
             {
+                int t = Convert.ToInt16(this.btnAgregaPersona.Tag);
+
+                if (!Modelos.Login.permisos.Contains(t))
+                    this.btnAgregaPersona.Enabled = false;
+
                 // llena el catalogo de puestos disponibles
                 this.cmbPersona.DisplayMember = "nombrecompleto";
                 this.cmbPersona.ValueMember = "idPersona";
@@ -89,6 +95,26 @@ namespace Activos.GUIs.Usuarios
                 }
                 else
                     throw new Exception(resp.error);
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnAgregaPersona_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmPersonas form = new frmPersonas();
+
+                form.ShowDialog();
+
+                // llena el catalogo de puestos disponibles
+                this.cmbPersona.DisplayMember = "nombrecompleto";
+                this.cmbPersona.ValueMember = "idPersona";
+                this.cmbPersona.DataSource = this._catalogosNegocio.getPersonasSinUsuario("A");
+                this.cmbPersona.SelectedIndex = -1;
             }
             catch (Exception Ex)
             {
