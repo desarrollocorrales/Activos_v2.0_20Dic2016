@@ -29,7 +29,7 @@ namespace Activos.Negocio
             string numEtiqueta =
                 idTipo.ToString().PadLeft(2, '0') +
                 idArea.ToString().PadLeft(2, '0') +
-                idActivo.ToString().PadLeft(8, '0');
+                (idArea.ToString().Length == 3 ? idActivo.ToString().PadLeft(7, '0') : idActivo.ToString().PadLeft(8, '0'));
             
             // obtiene el codigo verificador
             numEtiqueta += Utilerias.getCheckDigit(numEtiqueta);
@@ -149,6 +149,11 @@ namespace Activos.Negocio
         public List<Modelos.Activos> getActivosTras(string fecha, int consectraspaso)
         {
             return this._activosDatos.getActivos(fecha, consectraspaso);
+        }
+
+        public List<Modelos.Activos> getActivosFechas(string fechaIni, string fechaFin, int idSuc, string estatus)
+        {
+            return this._activosDatos.getActivosFechas(fechaIni, fechaFin, idSuc, estatus);
         }
     }
 }

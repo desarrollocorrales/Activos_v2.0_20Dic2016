@@ -250,6 +250,9 @@
             this.colstatus.Caption = "Sucursal";
             this.colstatus.FieldName = "status";
             this.colstatus.Name = "colstatus";
+            this.colstatus.OptionsColumn.AllowEdit = false;
+            this.colstatus.OptionsColumn.AllowMove = false;
+            this.colstatus.OptionsColumn.ReadOnly = true;
             this.colstatus.Visible = true;
             this.colstatus.VisibleIndex = 0;
             // 

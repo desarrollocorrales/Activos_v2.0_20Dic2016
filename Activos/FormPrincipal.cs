@@ -865,5 +865,24 @@ namespace Activos
             }
         }
 
+        private void activosPorFechaAltaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmActivosFechas child = new frmActivosFechas();
+
+                this.validaFormsDuplicados(child.GetType());
+
+                child.MdiParent = this;
+
+                child.Show();
+
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Activos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
     }
 }

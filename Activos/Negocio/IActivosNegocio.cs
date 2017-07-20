@@ -44,5 +44,7 @@ namespace Activos.Negocio
         List<Modelos.Activos> getActivoSinEstatus(long idActivo);
 
         List<Modelos.Activos> getActivosTras(string fecha, int consectraspaso);
+
+        List<Modelos.Activos> getActivosFechas(string fechaIni, string fechaFin, int idSuc, string estatus);
     }
 }

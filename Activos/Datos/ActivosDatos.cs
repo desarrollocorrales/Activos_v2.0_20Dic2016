@@ -1881,5 +1881,107 @@ namespace Activos.Datos
 
             return result;
         }
+
+        // obtiene los activos segun la fecha de alta
+        public List<Modelos.Activos> getActivosFechas(string fechaIni, string fechaFin, int idSuc, string estatus)
+        {
+            List<Modelos.Activos> result = new List<Modelos.Activos>();
+            Modelos.Activos ent;
+
+            string sql =
+                "select a.idactivo, a.idarea, ar.nombre as area, a.idtipo, t.nombre as tipo, s.nombre as sucursal, " +
+                        "a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, " +
+                        "a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo " +
+
+                "from activos_activos a " +
+                "left join activos_areas ar on (a.idarea = ar.idarea) " +
+                "left join activos_tipo t on (a.idtipo = t.idtipo) " +
+                "left join activos_sucursales s on (ar.idsucursal = s.idsucursal) " +
+                "where a.fechaalta between @fechaIni and @fechaFin ";
+
+            // define conexion con la cadena de conexion
+            using (var conn = this._conexion.getConexion())
+            {
+                // abre la conexion
+                conn.Open();
+
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = conn;
+
+                    // define parametros
+
+
+                    if (idSuc != -1)
+                    {
+                        sql += " and s.idsucursal = @idSucursal ";
+                        cmd.Parameters.AddWithValue("@idSucursal", idSuc);
+
+                        // + (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty)
+                    }
+                    else
+                    {
+                        sql += (!Modelos.Login.admin ? " and s.idsucursal = " + Modelos.Login.idSucursal : string.Empty);
+                    }
+
+                    sql += " and a.status = @status " +
+                            "order by s.nombre, ar.nombre, t.nombre, a.nombrecorto ";
+
+                    cmd.Parameters.AddWithValue("status", estatus);
+                    cmd.Parameters.AddWithValue("fechaIni", fechaIni);
+                    cmd.Parameters.AddWithValue("fechaFin", fechaFin);
+
+                    ManejoSql res = Utilerias.EjecutaSQL(sql, cmd);
+
+                    if (res.ok)
+                    {
+                        if (res.reader.HasRows)
+                            while (res.reader.Read())
+                            {
+                                ent = new Modelos.Activos();
+
+                                ent.idActivo = Convert.ToInt16(res.reader["idactivo"]);
+
+                                ent.idArea = Convert.ToInt16(res.reader["idarea"]);
+                                ent.area = Convert.ToString(res.reader["area"]);
+
+                                ent.idTipo = Convert.ToInt16(res.reader["idtipo"]);
+                                ent.tipo = Convert.ToString(res.reader["tipo"]);
+
+                                ent.nombreCorto = Convert.ToString(res.reader["nombrecorto"]);
+                                ent.descripcion = Convert.ToString(res.reader["descripcion"]).Replace("&", "---").Trim();
+                                ent.fechaAlta = Convert.ToString(res.reader["fechaalta"]);
+                                ent.numEtiqueta = Convert.ToString(res.reader["numetiqueta"]);
+                                ent.claveActivo = Convert.ToString(res.reader["claveactivo"]);
+
+                                if (res.reader["sucursal"] is DBNull) ent.status = null;
+                                else ent.status = Convert.ToString(res.reader["sucursal"]);
+
+                                if (res.reader["idusuarioalta"] is DBNull) ent.idUsuarioAlta = null;
+                                else ent.idUsuarioAlta = Convert.ToInt16(res.reader["idusuarioalta"]);
+
+                                if (res.reader["idusuariomodifica"] is DBNull) ent.idUsuarioModifica = null;
+                                else ent.idUsuarioModifica = Convert.ToInt16(res.reader["idusuariomodifica"]);
+
+                                if (res.reader["fechamodificacion"] is DBNull) ent.fechaModificacion = string.Empty;
+                                else ent.fechaModificacion = Convert.ToString(res.reader["fechamodificacion"]);
+
+                                if (res.reader["costo"] is DBNull) ent.costo = null;
+                                else ent.costo = Convert.ToDecimal(res.reader["costo"]);
+
+                                result.Add(ent);
+                            }
+                    }
+                    else
+                        throw new Exception(res.numErr + ": " + res.descErr);
+
+                    // cerrar el reader
+                    res.reader.Close();
+
+                }
+            }
+
+            return result;
+        }
     }
 }

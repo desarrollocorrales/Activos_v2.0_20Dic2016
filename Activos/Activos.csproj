@@ -283,6 +283,12 @@
     <Compile Include="GUIs\Puestos\frmPuestos.Designer.cs">
       <DependentUpon>frmPuestos.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Reportes\frmActivosFechas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Reportes\frmActivosFechas.Designer.cs">
+      <DependentUpon>frmActivosFechas.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Reportes\frmActivosPersona.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -635,6 +641,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Puestos\frmPuestos.resx">
       <DependentUpon>frmPuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Reportes\frmActivosFechas.resx">
+      <DependentUpon>frmActivosFechas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Reportes\frmActivosPersona.resx">
       <DependentUpon>frmActivosPersona.cs</DependentUpon>

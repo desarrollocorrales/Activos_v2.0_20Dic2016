@@ -219,17 +219,70 @@ namespace Activos.GUIs.Responsivas
 
                 string sucursal = this._catalogosNegocio.getSucursal(this._encontrado.idPersona);
 
+                string[] tipoArray = this._encontrado.tipo.Split(' ');
+
+                List<string> listOfStrings = new List<string>();
+
+                string agregado = string.Empty;
+                string linea = string.Empty;
+
+                foreach (string ta in tipoArray)
+                {
+
+                    agregado += ta + " ";
+
+                    if (agregado.Trim().Length >= 13)
+                    {
+                        listOfStrings.Add(linea);
+                        linea = string.Empty;
+                        agregado = ta + " ";
+                    }
+
+                    linea += ta + " ";
+                }
+
+                if(!string.IsNullOrEmpty(linea))
+                    listOfStrings.Add(linea);
+
+                linea = string.Empty;
+
+                if (listOfStrings.Count > 1)
+                {
+                    linea = "\nA244,149,2,4,1,1,N,\"" + listOfStrings[1] + "\"";
+                }
+
+                if (listOfStrings.Count > 2)
+                {
+                    linea += "\nA244,114,2,4,1,1,N,\"" + listOfStrings[2] + "\"";
+                }
+
+                comando = comando.Insert(comando.IndexOf("|tipo|") + 7, linea);
 
                 string comEtiqueta = comando;
 
-                comEtiqueta = comEtiqueta.Replace("|sucursal|", sucursal);
-                comEtiqueta = comEtiqueta.Replace("|area|", this._encontrado.area);
-                comEtiqueta = comEtiqueta.Replace("|cveActivo|", this._encontrado.claveActivo);
-                comEtiqueta = comEtiqueta.Replace("|nombrecorto|", this._encontrado.nombreCorto);
+
+                comEtiqueta = comEtiqueta.Replace("|A|", this._encontrado.numEtiqueta[1].ToString());
+                comEtiqueta = comEtiqueta.Replace("|B|", this._encontrado.numEtiqueta[2].ToString());
+                comEtiqueta = comEtiqueta.Replace("|C|", this._encontrado.numEtiqueta[3].ToString());
+                comEtiqueta = comEtiqueta.Replace("|D|", this._encontrado.numEtiqueta[4].ToString());
+                comEtiqueta = comEtiqueta.Replace("|E|", this._encontrado.numEtiqueta[5].ToString());
+                comEtiqueta = comEtiqueta.Replace("|F|", this._encontrado.numEtiqueta[6].ToString());
+                comEtiqueta = comEtiqueta.Replace("|G|", this._encontrado.numEtiqueta[7].ToString());
+                comEtiqueta = comEtiqueta.Replace("|H|", this._encontrado.numEtiqueta[8].ToString());
+                comEtiqueta = comEtiqueta.Replace("|I|", this._encontrado.numEtiqueta[9].ToString());
+                comEtiqueta = comEtiqueta.Replace("|J|", this._encontrado.numEtiqueta[10].ToString());
+                comEtiqueta = comEtiqueta.Replace("|K|", this._encontrado.numEtiqueta[11].ToString());
+                comEtiqueta = comEtiqueta.Replace("|L|", this._encontrado.numEtiqueta[12].ToString());
+                comEtiqueta = comEtiqueta.Replace("|M|", this._encontrado.numEtiqueta[0].ToString());
+
+
+                comEtiqueta = comEtiqueta.Replace("|tipo|", listOfStrings[0]);
+
+                comEtiqueta = comEtiqueta.Replace("|cveAct|", this._encontrado.claveActivo);
+
                 comEtiqueta = comEtiqueta.Replace("0000000000000", this._encontrado.numEtiqueta);
                 // comEtiqueta = comEtiqueta.Replace("|url|", ac.url);
                 comEtiqueta = comEtiqueta.Replace("|url|", string.Format(url + "{0}", this._encontrado.idActivo));
-                comEtiqueta = comEtiqueta.Replace("|empresa|", Modelos.Login.empresa);
 
                 sbComandos.AppendLine(comEtiqueta);
 
