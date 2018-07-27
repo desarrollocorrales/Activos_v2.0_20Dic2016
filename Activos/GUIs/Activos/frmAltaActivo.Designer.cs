@@ -202,6 +202,7 @@
             // 
             this.tbDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbDescripcion.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDescripcion.Location = new System.Drawing.Point(253, 259);
             this.tbDescripcion.MaxLength = 500;
             this.tbDescripcion.Multiline = true;
