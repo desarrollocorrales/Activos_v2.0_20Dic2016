@@ -1080,7 +1080,7 @@ namespace Activos.Datos
                 "left join activos_areas ar on (a.idarea = ar.idarea) " +
                 "left join activos_tipo t on (a.idtipo = t.idtipo) " +
                 "left join activos_motivosbaja m on (a.status = m.clave) " +
-                "where FIND_IN_SET(a.idactivo, @parameter) != 0 and rd.status != 'B' order by ar.nombre, t.nombre, a.nombrecorto";
+                "where FIND_IN_SET(a.idactivo, @parameter) != 0 and rd.status != 'B' group by a.idactivo, a.idarea, ar.nombre, a.idtipo, t.nombre, a.nombrecorto, a.descripcion, a.fechaalta, a.numetiqueta, a.claveactivo, a.idusuarioalta, a.fechamodificacion, a.idusuariomodifica, a.costo, m.motivo order by ar.nombre, t.nombre, a.nombrecorto";
 
             string wherIn = string.Join(",", idActivos);
 
