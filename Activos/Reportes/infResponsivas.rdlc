@@ -686,7 +686,7 @@
                             <TextRun>
                               <Value>=Fields!descripcion.Value</Value>
                               <Style>
-                                <FontSize>8pt</FontSize>
+                                <FontSize>6pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>

@@ -18,6 +18,7 @@ namespace Activos.GUIs.AltaActivos
 
         private Modelos.Tipos _tipos;
 
+
         // CAMBIAR CUANDO SE DEFINA EL LOGIN
         private int _idUsuario = 1;
 
